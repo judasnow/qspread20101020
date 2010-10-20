@@ -1,0 +1,17 @@
+# Rewrite rules for Zend Framework
+RewriteEngine on
+
+# Any request will go through index.php file excepted .js or .ico or .gif ... files
+#RewriteRule !(\.(js|ico|gif|jpg|bmp|png|css|swf|xml|html|html)|media/(.)*|general/(.)*)$ index.php
+
+#Newer
+RewriteEngine On
+
+RewriteRule .* ../../index.php [NC,L]
+
+# Security: Don't allow browsing of directories
+Options -Indexes
+# PHP Settings
+php_flag magic_quotes_qpc off
+php_flag register_globals off
+php_flag short_open_tag off
