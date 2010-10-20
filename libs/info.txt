@@ -1,0 +1,5 @@
+Vi 1.0
+ZendFW 1.8.4 (new update)
+Smarty 2.6.22
+ExtJS 3.0 (new update)
+ExtCore 3.0
