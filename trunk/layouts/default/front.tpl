@@ -9,18 +9,119 @@
 	<link rel="Shortcut Icon" href="{{$BASE_URL}}general/icons/site/vi.ico">       
 	{{$headLink}}
 	{{$headStyle}}
-	<script type="text/javascript" src="{{$BASE_URL}}libs/JQuery/jquery.min.js"></script>
-	<script type="text/javascript" src="{{$BASE_URL}}libs/JQuery/jquery-ui.custom.min.js"></script>
-	<script type="text/javascript" src="{{$BASE_URL}}libs/JQuery/jquery.validate.js"></script>
-	<link href="{{$LAYOUT_COLLECTION_HELPER_URL}}{{$LAYOUT_NAME}}/css/style.css" rel="stylesheet" type="text/css" />
-	<link href="{{$LAYOUT_COLLECTION_HELPER_URL}}{{$LAYOUT_NAME}}/css/screen/content.css" rel="stylesheet" type="text/css" />
-	<link href="{{$BASE_URL}}libs/JQuery/jquery-ui.custom.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="{{$LAYOUT_HELPER_URL}}front/js/jquery.min.js"></script>
+	<script type="text/javascript" src="{{$LAYOUT_HELPER_URL}}front/js/jquery-ui.custom.min.js"></script>
+	<script type="text/javascript" src="{{$LAYOUT_HELPER_URL}}front/js/jquery.validate.js"></script>
+	
+	<link href="{{$LAYOUT_HELPER_URL}}front/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	{{$headScript}}
-<!-- begin: #Page -->
-{{$content}}
-<!-- end: #Page -->
+	<!-- begin: #Page -->
+<div id="page">
+ <!-- begin: #Page_margin -->
+ <div id="page_margin">
+    <!-- begin: #Header -->
+    <div id="header">
+    	<div class="h115">
+        	<div class="float_left">
+                <p class="color_1 p20t"><b>Making online take out easy !</b></p>
+                <div class="logo p20t"><a href="index.html"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo.jpg" alt="" /></a></div>
+            </div>
+            <div class="float_right">
+            	<ul class="na_1">
+                	<li><a href="index.html" class="current" style="border:none;">Home</a></li>
+                    <li><a href="signin.html">Sign in</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+                <div class="float_right m10r"><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_setup.jpg" alt="" /></a></div>
+				<br class="clear_right" />
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div id="tabs7">
+        <ul>
+                            <!-- CSS Tabs -->
+            <li class="current"><a href="find.html"><span>Find a restaurant</span></a></li>
+            <li><a href="howitwork.html"><span>How it works</span></a></li>
+            <li><a href="coropporate.html"><span>Coropporate Accounts</span></a></li>
+            <li><a href="philan.html"><span>Philanthropy</span></a></li>
+            <li><a href="restaurant.html"><span>Refer a Restaurant</span></a></li>
+            <li><a href="friend.html"><span>Refer a friend</span></a></li>
+            <li><a href="about.html"><span>About us</span></a></li>
+            <li><a href="contact.html"><span>Contact us</span></a></li>
+        </ul>
+        </div><br class="clear_left" />
+    </div>
+    <!-- end: #Header -->
+	
+	
+    <!-- begin: #Main >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START MODULE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+		{{$content}}
+    <!-- end: #Main >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END MODULE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+	
+	
+	
+ </div>
+ <!-- end: #Page_margin -->
+ 	<!-- begin: #Main_bot -->
+    <div id="main_bot">
+    	<div id="page_margin">
+    		<div class="w200 float_left">
+            	<p class="color_2 p20l"><b><a href="#">QuickSpread.com</a></b></p>
+                <ul class="list_2 p5t p20l">
+                	<li><a href="aboutus.html">About Us</a></li>
+                    <li><a href="howitwork.html">How it Works</a></li>
+                    <li><a href="browse.html">Browse Restaurants</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="newroom.html">Newsroom</a></li>
+                </ul>
+            </div>
+            <div class="w200 float_left m10l">
+            	<p class="color_2"><b><a href="#">Programs</a></b></p>
+                <ul class="list_2 p5t">
+                	<li><a href="share.html">Share the Bounty</a></li>
+                    <li><a href="fund.html">Fundraising</a></li>
+                    <li><a href="friend.html">Refer a Friend</a></li>
+                    <li><a href="restaurant.html">Refer a Restaurant</a></li>
+                </ul>
+            </div>
+            <div class="w200 float_left">
+            	<p class="color_2"><b><a href="#">Business Solutions</a></b></p>
+                <ul class="list_2 p5t">
+                	<li><a href="corporate.html">Corporate Accounts</a></li>
+                    <li><a href="restaurantowners.html">Restaurant Owners</a></li>
+                    <li><a href="businesspartners.html">Business Partners</a></li>
+                </ul>
+            </div>
+            <div class="w175 float_left">
+            	<p class="color_2"><b><a href="#">Legal Info</a></b></p>
+                <ul class="list_2 p5t">
+                	<li><a href="termofuse.html">Term of Use</a></li>
+                    <li><a href="privace.html">Privace Policy</a></li>
+                    <li><a href="sitemap.html">Sitemap</a></li>
+                    <li><a href="copyright.html">Copyright</a></li>
+                </ul>
+            </div>
+            <div class="w110 float_left">
+            	<p class="color_2"><b><a href="#">Legal Info</a></b></p>
+                <ul class="list_2 p5t">
+                	<li><a href="faq.html">FAQs</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="clear_left"></div>
+        </div>
+    </div>
+    <!-- end: #Main_bot -->
+ 	<!-- begin: #Footer -->
+    <div id="footer">
+    	<div id="page_margin">
+            <p class="float_right">Copyright © 2008 Quick Spread, Inc. All Rights Reserved</p>
+            <br class="clear" />
+        </div>
+    </div>
+    <!-- end: #Footer -->
 </body>
 </html>
 
