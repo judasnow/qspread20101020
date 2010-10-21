@@ -79,16 +79,6 @@
 					</a>       
 				</li>
                 
-                <li> 
-                    <a href="#" class="nav-top-item {{if $menu[0]=='word'}}current{{/if}}">
-                    Words
-                    </a>
-                    <ul>
-                        {{p name='new_word' module='word'  expandId='?'}}<li><a href="{{$APP_BASE_URL}}word/admin/new" class="{{if $menu[1]=='newword'}}current{{/if}}">New Word</a></li>{{/p}}
-                        {{p name='edit_word' module='word'  expandId='?'}}<li><a href="{{$APP_BASE_URL}}word/admin/check-word" class="{{if $menu[1]=='checkword'}}current{{/if}}">Check Word</a></li>{{/p}}
-                        {{p name='see_word' module='word'  expandId='?'}}<li><a href="{{$APP_BASE_URL}}word/admin/manager" class="{{if $menu[1]=='wordmanager'}}current{{/if}}">Word Manager</a></li>{{/p}}
-                    </ul>
-                </li>
 				
 				<li> 
 					<a href="#" class="nav-top-item {{if $menu[0]=='usergroup'}}current{{/if}}">
