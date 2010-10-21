@@ -133,29 +133,9 @@ class user_AdminController extends Vi_Controller_Action_Admin
                             'password'               => $data['password'],
                             'repeat_password'        => $data['repeat_password'],
                             'enabled'                => $data['enabled'],
-                            'fb_session'             => $data['fb_session'],
-                            'fb_user_id'             => $data['fb_user_id'],
-                            'tw_user_id'             => $data['tw_user_id'],
-                            'friend_num'             => $data['friend_num'],
-                            'friend_id_string'       => $data['friend_id_string'],
-                            'learned_word_num_today' => $data['learned_word_num_today'],
-                            'learned_word_num_week'  => $data['learned_word_num_week'],
-                            'learned_word_num_month' => $data['learned_word_num_month'],
-                            'learned_word_num_total' => $data['learned_word_num_total'],
-                            'posted_word_num_week'   => $data['posted_word_num_week'],
-                            'posted_word_num_total'  => $data['posted_word_num_total']
                         );
             $newUserExp = array(
                             'admin_note'                    => $data['admin_note'],
-                            'about_me'                      => $data['about_me'],
-                            'notify_add_friend'             => $data['notify_add_friend'],
-                            'notify_send_message'           => $data['notify_send_message'],
-                            'notify_confirm_friend_request' => $data['notify_confirm_friend_request'],
-                            'notify_comment_post'           => $data['notify_comment_post'],
-                            'notify_top5'                   => $data['notify_top5'],
-                            'notify_out_top5'               => $data['notify_out_top5'],
-                            'notify_friend_top5'            => $data['notify_friend_top5'],
-                            'notify_friend_out_top5'        => $data['notify_friend_out_top5']
                         );
                         
             /**

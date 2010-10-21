@@ -6,7 +6,7 @@ return array (
                         'host' => 'localhost',
                         'username' => 'root',
                         'password' => '',
-                        'dbname' => 'wordeveryday',
+                        'dbname' => 'quickspread',
                         'prefix' => 'vi_',
                         'profiler' => false //if false, system is quick
                       )
@@ -74,5 +74,5 @@ return array (
   
   'forgotPasswordExpiredTime' => 86400,
         
-  'websiteName' => 'WordEveryDay'
+  'websiteName' => 'QuickSpread'
 );
