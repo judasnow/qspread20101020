@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 20, 2010 at 10:44 AM
+-- Generation Time: Oct 21, 2010 at 05:51 PM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `vi_group` (
   `enabled` tinyint(1) DEFAULT '1',
   `sorting` int(11) DEFAULT '1',
   PRIMARY KEY (`group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `vi_group`
@@ -80,8 +80,9 @@ CREATE TABLE IF NOT EXISTS `vi_group` (
 
 INSERT INTO `vi_group` (`group_id`, `name`, `default`, `description`, `color`, `image_url`, `enabled`, `sorting`) VALUES
 (1, 'Admin', 0, NULL, '#ff0000', NULL, 1, 5),
-(2, 'Client', 0, NULL, '#0000ff', NULL, 1, 4),
-(3, 'Guest', 1, '', '#000000', NULL, 1, 1);
+(2, 'Restaurant Owner', 0, NULL, '#0000ff', NULL, 1, 4),
+(3, 'Frontend User', 0, '', '#00ff00', NULL, 1, 3),
+(4, 'Guest', 1, NULL, '#000000', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -294,6 +295,7 @@ CREATE TABLE IF NOT EXISTS `vi_scontent` (
   `publish_down_date` int(11) DEFAULT '0',
   `sorting` int(11) DEFAULT '1',
   `created_date` int(11) DEFAULT NULL,
+  `template` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`scontent_id`),
   KEY `Ref_08` (`scontent_category_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
@@ -302,13 +304,13 @@ CREATE TABLE IF NOT EXISTS `vi_scontent` (
 -- Dumping data for table `vi_scontent`
 --
 
-INSERT INTO `vi_scontent` (`scontent_id`, `scontent_category_id`, `enabled`, `publish_up_date`, `publish_down_date`, `sorting`, `created_date`) VALUES
-(1, 2, 1, 0, 0, 2, 1284536259),
-(2, 1, 1, 0, 0, 3, 1284540328),
-(3, 1, 0, 1293814800, 1372608000, 4, 1284557381),
-(10, 1, 0, 0, 0, 5, 1284612739),
-(11, 1, 0, 0, 0, 6, 1284612875),
-(12, 1, 1, 0, 0, 1, 1284614542);
+INSERT INTO `vi_scontent` (`scontent_id`, `scontent_category_id`, `enabled`, `publish_up_date`, `publish_down_date`, `sorting`, `created_date`, `template`) VALUES
+(1, 2, 1, 0, 0, 2, 1284536259, NULL),
+(2, 1, 1, 0, 0, 3, 1284540328, NULL),
+(3, 1, 0, 1293814800, 1372608000, 4, 1284557381, NULL),
+(10, 1, 0, 0, 0, 5, 1284612739, NULL),
+(11, 1, 0, 0, 0, 6, 1284612875, NULL),
+(12, 1, 1, 0, 0, 1, 1284614542, NULL);
 
 -- --------------------------------------------------------
 
@@ -321,16 +323,17 @@ CREATE TABLE IF NOT EXISTS `vi_scontent_category` (
   `name` varchar(50) DEFAULT NULL,
   `enabled` tinyint(1) DEFAULT '1',
   `sorting` int(11) DEFAULT '1',
+  `template` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`scontent_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `vi_scontent_category`
 --
 
-INSERT INTO `vi_scontent_category` (`scontent_category_id`, `name`, `enabled`, `sorting`) VALUES
-(1, 'Uncategorised', 1, 1),
-(2, 'News', 1, 1);
+INSERT INTO `vi_scontent_category` (`scontent_category_id`, `name`, `enabled`, `sorting`, `template`) VALUES
+(1, 'Uncategorised', 1, 1, NULL),
+(2, 'News', 1, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -386,16 +389,17 @@ CREATE TABLE IF NOT EXISTS `vi_user` (
   `avartar` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `Ref_01` (`group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `vi_user`
 --
 
 INSERT INTO `vi_user` (`user_id`, `group_id`, `username`, `email`, `full_name`, `password`, `created_date`, `enabled`, `last_login_date`, `avartar`) VALUES
-(1, 1, 'admin', 'nguoiao007@gmail.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', 1284310752, 1, 1287550615, NULL),
-(3, 2, 'client1', 'client1@test.com', 'First Name2 wgeg', 'a165dd3c2e98d5d607181d0b87a4c66b', 1286424420, 1, NULL, NULL),
-(4, 2, 'client2', 'client2@test.com', 'First Name2 Last Name2', '2c66045d4e4a90814ce9280272e510ec', 1286441213, 1, NULL, NULL);
+(1, 1, 'admin', 'nguoiao007@gmail.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', 1284310752, 1, 1287671980, NULL),
+(3, 3, 'client1', 'client1@test.com', 'First Name2 wgeg', 'a165dd3c2e98d5d607181d0b87a4c66b', 1286424420, 1, NULL, NULL),
+(4, 2, 'client2', 'client2@test.com', 'First Name2 Last Name2', '2c66045d4e4a90814ce9280272e510ec', 1286441213, 1, NULL, NULL),
+(5, 4, 'test3', 'test3@test.com', 'TEST 3 ', 'e12234d4575a12bfd61d61294f32b086', 1287672225, 1, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -413,7 +417,7 @@ CREATE TABLE IF NOT EXISTS `vi_user_expand` (
   `admin_note` tinytext,
   PRIMARY KEY (`user_expand_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `vi_user_expand`
@@ -422,7 +426,8 @@ CREATE TABLE IF NOT EXISTS `vi_user_expand` (
 INSERT INTO `vi_user_expand` (`user_expand_id`, `user_id`, `active_code`, `active_expired_date`, `forgot_password_code`, `forgot_password_expired_date`, `admin_note`) VALUES
 (1, 1, NULL, 0, NULL, 0, ''),
 (3, 3, NULL, 0, NULL, 0, ''),
-(4, 4, NULL, 0, NULL, 0, '');
+(4, 4, NULL, 0, NULL, 0, ''),
+(5, 5, NULL, 0, NULL, 0, 'This is note');
 
 --
 -- Constraints for dumped tables
