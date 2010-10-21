@@ -1,0 +1,58 @@
+@charset "UTF-8";
+
+
+@media all
+{
+ /*------------------------------------------------------------------------------------------------------*/
+
+  /* Page margins and background | Randbereiche & Seitenhintergrund */
+  body { width:100%; background-color:#fff; color:#707070;}
+
+  /* Layout: Width, Background, Border | Layout: Breite, Hintergrund, Rahmen */
+  #page{ width:100%; background:url(../../img/bg.jpg) repeat-x top left;}
+  #page_margin{ width:906px; margin:0px auto;}
+  
+  .w898{ width:898px; max-width:898px; min-width:898px; margin:0px auto;}
+
+  /* Design of the Main Layout Elements | Gestaltung der Hauptelemente des Layouts */
+  #header { width:100%; height:150px;}
+  	.h115{ height:115px;}
+  	.logo{}
+	.menu{}
+	
+  #topnav {  }
+
+  #main { margin:0px auto; padding-top:20px;}
+  	.flash{ width:590px; height:250px; border:solid 5px #442006; margin-top:25px;}
+  #main_bot { width:100%; padding:10px 0px; background:url(../../img/bg_footer.jpg) repeat-x top left; margin-top:10px;}
+	
+  #footer { width:100%; height:40px; padding-top:15px; background:url(../../img/bg_footer.jpg) repeat-x top left;}
+
+ /*------------------------------------------------------------------------------------------------------*/
+
+ /**
+  * Formatting of the Content Area | Formatierung der Inhaltsbereichs
+  *
+  * @section layout-main
+  */
+
+  .col1 { width:287px; float:left;}
+  .col1_content {  }
+
+  .col2 { width:608px; float:right;}
+  .col2_content {  }
+
+  .col3 { float:left;}
+  .col3_content {  }
+
+
+ /*------------------------------------------------------------------------------------------------------*/
+
+ /**
+  * Design of Additional Layout Elements | Gestaltung weiterer Layoutelemente
+  *
+  * @section layout-misc
+  */
+
+
+}
