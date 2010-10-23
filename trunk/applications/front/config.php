@@ -1,6 +1,7 @@
 <?php
 return array (
   'module' => array (
+		'test' => 'test'
       ),
   'layoutCollection' => 'default',
   'defaultLayout' => 'front',

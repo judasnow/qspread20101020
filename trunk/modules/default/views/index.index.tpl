@@ -1,10 +1,13 @@
 <div id="main">
         <div class="col1">
+        
+           
             <div class="bg_1">
+            <form method="POST" action="{{$APP_BASE_URL}}restaurant">
                 <img src="{{$LAYOUT_HELPER_URL}}front/img/tt_find.png" alt="" />
                 <div class="input_form">
                     <label class="w55">by zip</label>
-                    <input type="text" value="" class="w50" />
+                    <input type="text" value="" class="w50" name="data[zip]"/>
                     <span class="color_1"><b>OR</b></span><br />
                     <label class="w55">by zip</label>
                     <select class="w165">
@@ -12,7 +15,11 @@
                     </select><br />
                     <label>Choose Cuisine (optional)</label><br class="clear_left" />
                     <select class="w215">
-                        <option>International</option>
+                    
+                    	{{foreach from=$cuisines item=item}}
+                        <option>{{$item}}</option>
+                        {{/foreach}}
+                        
                     </select><br />
                     <div class="w110 float_left">
                         <label>Time</label><br class="clear_left" />
@@ -30,7 +37,10 @@
                 </div>
                 <div class="uper float_left p20t m10t"><a href="#">Begin your oder</a></div>
                 <div class="float_left m5l m10t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_6.jpg" alt="" /></div>
+            </form>
             </div>
+            
+            
             <div class="bg_tt m10t"><img src="{{$LAYOUT_HELPER_URL}}front/img/tt_1.png" alt="" /></div>
             <div class="bg_tt m15t"><img src="{{$LAYOUT_HELPER_URL}}front/img/tt_2.png" alt="" /></div>
             <div class="bg_tt m15t"><img src="{{$LAYOUT_HELPER_URL}}front/img/tt_3.png" alt="" /></div>
