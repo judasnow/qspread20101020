@@ -38,7 +38,8 @@ return array (
             'default' => 'default',
             'user'    => 'user',
             'access'    => 'access',
-            'error' => 'error'
+            'error' => 'error',
+			'restaurant' => 'restaurant'
         ),
         
   'log' => array(
