@@ -3,7 +3,7 @@
         
            
             <div class="bg_1">
-            <form method="POST" action="{{$APP_BASE_URL}}restaurant">
+            <form method="POST" action="{{$APP_BASE_URL}}restaurant?mark=pickup">
                 <img src="{{$LAYOUT_HELPER_URL}}front/img/tt_find.png" alt="" />
                 <div class="input_form">
                     <label class="w55">by zip</label>
