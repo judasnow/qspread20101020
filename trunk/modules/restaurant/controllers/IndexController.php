@@ -14,5 +14,15 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    	 * Condition here
 	    	 */
 	    }
+	    /**
+	     * Get data from database
+	     */
+	    include_once 'libs/Shared/Models/Restaurant.php';
+	    $objRestaurant = new Models_Restaurant();	 
+	    $restaurants = $objRestaurant->getAllRestaurant();   
+	    /**
+	     * Set variables for template
+	     */	   
+	    $this->view->restaurants = $restaurants;	    
 	}
 }

@@ -36,7 +36,12 @@
                     <br class="clear_left" />
                 </div>
                 <div class="uper float_left p20t m10t"><a href="#">Begin your oder</a></div>
-                <div class="float_left m5l m10t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_6.jpg" alt="" /></div>
+                <div class="float_left m5l m10t">
+               <!--               
+                	<img src="{{$LAYOUT_HELPER_URL}}front/img/icon_6.jpg" alt="" />
+           	   -->           	
+					<input type="submit" style="background: url({{$LAYOUT_HELPER_URL}}front/img/icon_6.jpg) repeat scroll 0% 0% transparent; cursor: pointer; width: 42px; height: 39px; border: 0pt none;" value="">
+                </div>
             </form>
             </div>
             
