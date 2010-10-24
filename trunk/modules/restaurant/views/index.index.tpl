@@ -1,3 +1,10 @@
+<script type="text/javascript">
+function load_data(value){
+	var frm = document.form_filter;
+	frm.action = "{{$APP_BASE_URL}}restaurant?mark="+value;
+	frm.submit();
+}
+</script>
 <div id="main">
         <div class="w201 float_left">
         	<div class="top1 m20t"></div>
@@ -46,10 +53,11 @@
             <div class="cen2">
             	<div class="cen_2">
                 	<div class="p10">
-						<div class="bd1b">
+						<div class="bd1b">	
+						<form method="POST" action="{{$APP_BASE_URL}}restaurant" name="form_filter">					
 							<img src="{{$LAYOUT_HELPER_URL}}front/img/tt_selectarestaurant.jpg" alt="" class="float_left p10t" />
 							<div class="float_left m20l fs11">
-								<input type="radio" class="mid" />
+								<input type="radio" class="mid" value="pickup" onclick="load_data(this.value);" {{$mark_pickup}} />
 								<span class="mid">Pick up</span>
 								<div class="p5t">
 									<input type="radio" class="mid" />
@@ -57,10 +65,10 @@
 								</div>
 							</div>
 							<div class="float_left m20l fs11">
-								<input type="radio" class="mid" />
+								<input type="radio" class="mid"  value="curbsida" onclick="load_data(this.value);" {{$mark_curbside}}/>
 								<span class="mid">Curbside</span>
 								<div class="p5t">
-									<input type="radio" class="mid" />
+									<input type="radio" class="mid"  value="catering_pickup_only" onclick="load_data(this.value);" {{$mark_catering_pickup_only}}/>
 									<span class="mid">Catering Pickup Only</span>
 								</div>
 							</div>
@@ -77,7 +85,8 @@
 									<li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="" /></a></li>
 								</ul>
 							</div>
-							<div class="clear"></div>
+							<div class="clear"></div>	
+							</form>					
 						</div>
 						<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
 						  <tr>
@@ -100,7 +109,7 @@
 								</p>
 							</td>
 							<td class="bd1b p10t p5b center top">{{$item.mileage}}</td>
-							<td class="bd1b p10t p5b center top">Pickup<br />~ {{$item.lead_time}} min</td>
+							<td class="bd1b p10t p5b center top"><b>{{$lead_time}}</b><br />~ {{$item.$mark}} </td>
 							<td class="bd1b p10t p5b top">${{$item.minimum_delivery}}</td>
 							<td class="bd1b p10t p5b top">${{$item.delivery_charge}}</td>
 							<td class="bd1b p10t p5b top">
@@ -112,35 +121,12 @@
 						  </tr>
 						  {{/foreach}}						  
 						</table>
-						<a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_all.jpg" alt="" class="float_left p7t m5r" /></a>
+						<a href="{{$APP_BASE_URL}}restaurant?mark=pickup"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_all.jpg" alt="" class="float_left p7t m5r" /></a>
 						<ul class="list_4 float_left p5t">
 							<li></li>
-							<li><a href="#">a</a></li>
-							<li><a href="#">b</a></li>
-							<li><a href="#">c</a></li>
-							<li><a href="#">d</a></li>
-							<li><a href="#">e</a></li>
-							<li><a href="#">f</a></li>
-							<li><a href="#">g</a></li>
-							<li><a href="#">h</a></li>
-							<li><a href="#">i</a></li>
-							<li><a href="#">j</a></li>
-							<li><a href="#">k</a></li>
-							<li><a href="#">l</a></li>
-							<li><a href="#">m</a></li>
-							<li><a href="#">n</a></li>
-							<li><a href="#">o</a></li>
-							<li><a href="#">p</a></li>
-							<li><a href="#">q</a></li>
-							<li><a href="#">r</a></li>
-							<li><a href="#">s</a></li>
-							<li><a href="#">t</a></li>
-							<li><a href="#">u</a></li>
-							<li><a href="#">v</a></li>
-							<li><a href="#">w</a></li>
-							<li><a href="#">v</a></li>
-							<li><a href="#">y</a></li>
-							<li><a href="#">z</a></li>
+							{{foreach from=$alphabet item=item}}	
+								<li><a href="{{$APP_BASE_URL}}restaurant?mark=pickup&find={{$item}}">{{$item}}</a></li>
+							{{/foreach}}	
 						</ul>
 						<div class="float_right">
 							<ul class="list_3">
