@@ -57,7 +57,7 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    /**
 	     * Pagination
 	     */
-        $this->setPagination($numRowPerPage, $currentPage, $count);
+        $this->setPagination($numRowPerPage, $currentPage, $count);        
 	}
 } 
 
