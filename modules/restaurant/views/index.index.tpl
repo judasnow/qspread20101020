@@ -75,16 +75,33 @@ function load_data(value){
 							<div class="float_left m20l fs11">
 								<input type="radio" class="mid" />
 								<span class="mid">Catering Delivery Only</span>
-							</div>
+							</div>							
+							<!-- PAGINATION -->
+							{{if $countAllPages > 1}}
 							<div class="float_right p20t">
 								<ul class="list_3">
-									<li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="" /></a></li>
-									<li><a href="#">1</a></li>
-									<li><a href="#">2</a></li>
-									<li><a href="#">3</a></li>
-									<li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="" /></a></li>
+		                            {{if $prevPage}}
+		                            <li><a href="?page={{$prevPage}}&mark={{$mark}}" title="Previous"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="Previous" /></a></li>
+		                            {{/if}}
+		                            
+		                            {{foreach from=$prevPages item=item}}
+		                            <li><a href="?page={{$item}}&mark={{$mark}}"  title="{{$item}}">{{$item}}</a></li>
+		                            {{/foreach}}
+		                            
+		                            <li><a href="#" class="current" title="{{$currentPage}}">{{$currentPage}}</a></li>
+		                            
+		                            {{foreach from=$nextPages item=item}}
+									<li><a href="?page={{$item}}&mark={{$mark}}"  title="{{$item}}">{{$item}}</a></li>
+		                            {{/foreach}}
+		                            
+		                            {{if $nextPage}}
+									<li><a href="?page={{$nextPage}}&mark={{$mark}}" title="Next"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="Next" /></a></li>
+		                            {{/if}}
+	                            
 								</ul>
 							</div>
+							{{/if}}
+							<!-- End .pagination -->
 							<div class="clear"></div>	
 							</form>					
 						</div>
@@ -113,7 +130,7 @@ function load_data(value){
 							<td class="bd1b p10t p5b top">${{$item.minimum_delivery}}</td>
 							<td class="bd1b p10t p5b top">${{$item.delivery_charge}}</td>
 							<td class="bd1b p10t p5b top">
-								<img src="img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span>
+								<img src="img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span>								
 								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span></p>
 								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span></p>
 								
