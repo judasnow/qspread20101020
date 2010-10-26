@@ -100,8 +100,8 @@ function load_data(value){
 						  </tr>
 						  {{foreach from=$restaurants item=item}}						  
 						  <tr>
-							<td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img.jpg" alt="" /></td>
-							<td class="bd1b p10t p5b">
+							<td class="bd1b p10t p5b"><img src="{{$BASE_URL}}{{$item.image}}" alt="" /></td>
+							<td class="bd1b p10t p5b" style="padding-left:5px;" valign="top">
 								<b>{{$item.name}}</b>
 								<p class="fs11">
 									({{$item.address}}
@@ -121,11 +121,11 @@ function load_data(value){
 						  </tr>
 						  {{/foreach}}						  
 						</table>
-						<a href="{{$APP_BASE_URL}}restaurant?mark=pickup"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_all.jpg" alt="" class="float_left p7t m5r" /></a>
+						<a href="{{$APP_BASE_URL}}restaurant?mark={{$mark}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_all.jpg" alt="" class="float_left p7t m5r" /></a>
 						<ul class="list_4 float_left p5t">
 							<li></li>
 							{{foreach from=$alphabet item=item}}	
-								<li><a href="{{$APP_BASE_URL}}restaurant?mark=pickup&find={{$item}}">{{$item}}</a></li>
+								<li><a href="{{$APP_BASE_URL}}restaurant?mark={{$mark}}&find={{$item}}">{{$item}}</a></li>
 							{{/foreach}}	
 						</ul>
 						
@@ -134,21 +134,21 @@ function load_data(value){
 						<div class="float_right">
 							<ul class="list_3">
 	                            {{if $prevPage}}
-	                            <li><a href="?page={{$prevPage}}" title="Previous"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="Previous" /></a></li>
+	                            <li><a href="?page={{$prevPage}}&mark={{$mark}}" title="Previous"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="Previous" /></a></li>
 	                            {{/if}}
 	                            
 	                            {{foreach from=$prevPages item=item}}
-	                            <li><a href="?page={{$item}}"  title="{{$item}}">{{$item}}</a></li>
+	                            <li><a href="?page={{$item}}&mark={{$mark}}"  title="{{$item}}">{{$item}}</a></li>
 	                            {{/foreach}}
 	                            
 	                            <li><a href="#" class="current" title="{{$currentPage}}">{{$currentPage}}</a></li>
 	                            
 	                            {{foreach from=$nextPages item=item}}
-								<li><a href="?page={{$item}}"  title="{{$item}}">{{$item}}</a></li>
+								<li><a href="?page={{$item}}&mark={{$mark}}"  title="{{$item}}">{{$item}}</a></li>
 	                            {{/foreach}}
 	                            
 	                            {{if $nextPage}}
-								<li><a href="?page={{$nextPage}}" title="Next"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="Next" /></a></li>
+								<li><a href="?page={{$nextPage}}&mark={{$mark}}" title="Next"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="Next" /></a></li>
 	                            {{/if}}
                             
 							</ul>
