@@ -128,15 +128,35 @@ function load_data(value){
 								<li><a href="{{$APP_BASE_URL}}restaurant?mark=pickup&find={{$item}}">{{$item}}</a></li>
 							{{/foreach}}	
 						</ul>
+						
+						 <!-- PAGINATION -->
+						 {{if $countAllPages > 1}}
 						<div class="float_right">
 							<ul class="list_3">
-								<li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="" /></a></li>
-								<li><a href="#">1</a></li>
-								<li><a href="#">2</a></li>
-								<li><a href="#">3</a></li>
-								<li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="" /></a></li>
+	                            {{if $prevPage}}
+	                            <li><a href="?page={{$prevPage}}" title="Previous"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="Previous" /></a></li>
+	                            {{/if}}
+	                            
+	                            {{foreach from=$prevPages item=item}}
+	                            <li><a href="?page={{$item}}"  title="{{$item}}">{{$item}}</a></li>
+	                            {{/foreach}}
+	                            
+	                            <li><a href="#" class="current" title="{{$currentPage}}">{{$currentPage}}</a></li>
+	                            
+	                            {{foreach from=$nextPages item=item}}
+								<li><a href="?page={{$item}}"  title="{{$item}}">{{$item}}</a></li>
+	                            {{/foreach}}
+	                            
+	                            {{if $nextPage}}
+								<li><a href="?page={{$nextPage}}" title="Next"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="Next" /></a></li>
+	                            {{/if}}
+                            
 							</ul>
 						</div>
+						{{/if}}
+						<!-- End .pagination -->
+						
+						
 						<div class="clear"></div>
 					</div>
                 </div>

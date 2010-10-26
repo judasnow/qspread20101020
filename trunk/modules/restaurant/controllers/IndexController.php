@@ -7,6 +7,11 @@ class restaurant_IndexController extends Vi_Controller_Action
 	 */
 	public function indexAction()
 	{
+		$config = Vi_Registry::getConfig();
+        $numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
+        $numRowPerPage = 1;
+        $currentPage = $this->_getParam("page",1);
+        
 	    $condition = $this->_getParam('data', array());
 	    
 	    if (null != @$condition['zip']) {
@@ -19,7 +24,12 @@ class restaurant_IndexController extends Vi_Controller_Action
 	     */
 	    include_once 'libs/Shared/Models/Restaurant.php';
 	    $objRestaurant = new Models_Restaurant();	 
-	    $restaurants = $objRestaurant->getAllRestaurant();   
+	    $restaurants = $objRestaurant->getByColumnName(array('name like ? OR TRUE' => 'Apple%'), 
+			    											array('name ASC'), 
+			    											$numRowPerPage,
+		                                                   ($currentPage - 1) * $numRowPerPage)->toArray(); 
+	    $count = count($objRestaurant->getByColumnName(array('name like ? OR TRUE' => 'Apple%')));
+//	    echo "<pre>";print_r($restaurants);die;  
 	    /**
 	     * Set variables for template
 	     */	   
@@ -43,6 +53,11 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    $this->view->lead_time = $str_lead_time_title;
 	    $this->view->mark = $mark;
 	    $this->view->alphabet = GetAlphabet();	    
+	    
+	    /**
+	     * Pagination
+	     */
+        $this->setPagination($numRowPerPage, $currentPage, $count);
 	}
 } 
 
