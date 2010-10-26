@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Oct 24, 2010 at 09:20 AM
+-- Generation Time: Oct 26, 2010 at 02:09 PM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -48,5 +48,5 @@ CREATE TABLE IF NOT EXISTS `vi_restaurant` (
 --
 
 INSERT INTO `vi_restaurant` (`restaurant_id`, `name`, `address`, `map`, `description`, `mileage`, `pickup`, `curbside`, `catering_pickup_only`, `minimum_delivery`, `delivery_charge`, `services`, `image`) VALUES
-(1, 'Apple Spice Junction - Audubon', '(Italian, Pizza)<br />2017 Camino Del Este<br />San Diego, CA 92108<br />', NULL, 'Apple Spice Junction offers box lunch delivery, corporate catering and deli dining. Sandwich selections feature freshly-baked breads, fine meats and cheeses and crisp vegetables. Homemade soups, healthy salads and fresh bakery treats round out the box lunch menu, while breakfast offerings range from pastries and fruit to gourmet eggs and seasoned potatoes. Whether you need a caterer for a business event or family party, or just want to stop in for a sandwich and a bowl of soup, Apple Spice Junction means "good food when you need it."', 1.15, '45 min', NULL, '1 day', 50, 15, 'Catering- Delivery,Delivery', NULL),
-(2, 'Xpress Pizza and Grill', '(Pizza, Sandwiches)<br/>217 Bridge Street <br/>Phoenixville, PA 19460', NULL, 'We serve Phoenixville and surrounding areas with the best pizza in town, made with fresh ingredients. Our menu also include a variety of delicious choices such as Stromboli, Quesadilla, Sandwiches and Appetizers, with something for everyone.', 4.52, '20 min', NULL, '6 hours', 15, 2, 'Delivery,Catering- Delivery', NULL);
+(1, 'Apple Spice Junction - Audubon', '(Italian, Pizza)<br />2017 Camino Del Este<br />San Diego, CA 92108<br />', NULL, 'Apple Spice Junction offers box lunch delivery, corporate catering and deli dining. Sandwich selections feature freshly-baked breads, fine meats and cheeses and crisp vegetables. Homemade soups, healthy salads and fresh bakery treats round out the box lunch menu, while breakfast offerings range from pastries and fruit to gourmet eggs and seasoned potatoes. Whether you need a caterer for a business event or family party, or just want to stop in for a sandwich and a bowl of soup, Apple Spice Junction means "good food when you need it."', 1.15, '45 min', NULL, '1 day', 50, 15, 'Catering- Delivery,Delivery', 'media/userfiles/images/restaurant/img.jpg'),
+(2, 'Xpress Pizza and Grill', '(Pizza, Sandwiches)<br/>217 Bridge Street <br/>Phoenixville, PA 19460', NULL, 'We serve Phoenixville and surrounding areas with the best pizza in town, made with fresh ingredients. Our menu also include a variety of delicious choices such as Stromboli, Quesadilla, Sandwiches and Appetizers, with something for everyone.', 4.52, '20 min', NULL, '6 hours', 15, 2, 'Delivery,Catering- Delivery', 'media/userfiles/images/restaurant/Apple-Spice.gif');
