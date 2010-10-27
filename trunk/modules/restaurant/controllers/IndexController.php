@@ -13,34 +13,24 @@ class restaurant_IndexController extends Vi_Controller_Action
         $currentPage = $this->_getParam("page",1);
         
 	    $condition = $this->_getParam('data', array());
-	    
+	    $find = $this->_getParam('find', false);
+	    $mark = $this->_getParam('mark', false);
+	   
 	    if (null != @$condition['zip']) {
 	    	/**
 	    	 * Condition here
 	    	 */
 	    }
-	    /**
-	     * Get data from database
-	     */
-	    include_once 'libs/Shared/Models/Restaurant.php';
-	    $objRestaurant = new Models_Restaurant();	 
-	    $restaurants = $objRestaurant->getByColumnName(array('name like ? OR TRUE' => 'Apple%'), 
-			    											array('name ASC'), 
-			    											$numRowPerPage,
-		                                                   ($currentPage - 1) * $numRowPerPage)->toArray(); 
-	    $count = count($objRestaurant->getByColumnName(array('name like ? OR TRUE' => 'Apple%')));
-//	    echo "<pre>";print_r($restaurants);die;  
-	    /**
+		 /**
 	     * Set variables for template
 	     */	   
-	    $this->view->restaurants = $restaurants;
-	    $mark = $this->_getParam('mark');
+	    
 	    if (strcmp($mark,'pickup')==0)
 	    {
 	    	$this->view->mark_pickup = 'checked';
 	    	$str_lead_time_title = 'Pick up';
 	    }
-	    elseif (strcmp($mark,'curbsida')==0)
+	    elseif (strcmp($mark,'curbside')==0)
 	    {
 	    	$this->view->mark_curbside = 'checked';
 	    	$str_lead_time_title = 'Curbside';
@@ -50,10 +40,39 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    	$this->view->mark_catering_pickup_only = 'checked';
 	    	$str_lead_time_title = 'Catering Pickup Only';
 	    }
+	    
+	    /**
+	     * Get condition for search
+	     */
+	    $arr_condition = array();
+	    if ( false != $mark ){
+	    	$arr_condition["{$mark} != ?"] = Zend_DB::NULL_EMPTY_STRING;
+	    }
+	    if ( false != $find){
+	    	$arr_condition["name LIKE ? "] = $find."%";
+	    }
+	    
+//	    echo "<pre>";print_r($arr_condition);die;
+	    /**
+	     * Get data from database
+	     */
+	    include_once 'libs/Shared/Models/Restaurant.php';
+	    $objRestaurant = new Models_Restaurant();	 
+	    $restaurants = $objRestaurant->getByColumnName($arr_condition, 
+			    											array('name ASC'), 
+			    											$numRowPerPage,
+		                                                   ($currentPage - 1) * $numRowPerPage)->toArray(); 
+	    $count = count($objRestaurant->getByColumnName($arr_condition));
+
 	    $this->view->lead_time = $str_lead_time_title;
 	    $this->view->mark = $mark;
-	    $this->view->alphabet = GetAlphabet();	    
+	    $this->view->alphabet = GetAlphabet();
 	    
+	    foreach ( $restaurants as $key=>$value ){
+	    	$arr_services = explode(',',$value['services']);
+	    	$restaurants[$key]['arr_service'] = $arr_services;
+	    }	      
+	    $this->view->restaurants = $restaurants;
 	    /**
 	     * Pagination
 	     */

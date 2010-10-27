@@ -26,7 +26,7 @@
     	<div class="h115">
         	<div class="float_left">
                 <p class="color_1 p20t"><b>Making online take out easy !</b></p>
-                <div class="logo p20t"><a href="index.html"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo.jpg" alt="" /></a></div>
+                <div class="logo p20t"><a href="{{$BASE_URL}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo.jpg" alt="" /></a></div>
             </div>
             <div class="float_right">
             	<ul class="na_1">
