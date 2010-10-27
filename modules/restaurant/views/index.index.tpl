@@ -65,7 +65,7 @@ function load_data(value){
 								</div>
 							</div>
 							<div class="float_left m20l fs11">
-								<input type="radio" class="mid"  value="curbsida" onclick="load_data(this.value);" {{$mark_curbside}}/>
+								<input type="radio" class="mid"  value="curbside" onclick="load_data(this.value);" {{$mark_curbside}}/>
 								<span class="mid">Curbside</span>
 								<div class="p5t">
 									<input type="radio" class="mid"  value="catering_pickup_only" onclick="load_data(this.value);" {{$mark_catering_pickup_only}}/>
@@ -130,10 +130,10 @@ function load_data(value){
 							<td class="bd1b p10t p5b top">${{$item.minimum_delivery}}</td>
 							<td class="bd1b p10t p5b top">${{$item.delivery_charge}}</td>
 							<td class="bd1b p10t p5b top">
-								<img src="img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span>								
-								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span></p>
-								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span></p>
-								
+								<img src="img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span>
+								{{foreach from=$item.arr_service item=item}}																					
+								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">{{$item}} </span></p>
+								{{/foreach}}		
 							</td>
 						  </tr>
 						  {{/foreach}}						  
