@@ -5,12 +5,38 @@ function load_data(value){
 	frm.submit();
 }
 </script>
+<!-- begin autocomplete --> 
+<script src="{{$LAYOUT_HELPER_URL}}front/autocomplete/jquery.autocomplete.js" type="text/javascript"></script>
+<link rel="stylesheet" href="{{$LAYOUT_HELPER_URL}}front/autocomplete/styles.css" type="text/css" media="screen" />
+<script type="text/javascript">
+  //<![CDATA[
+
+  var a1;
+  
+  jQuery(function() {  
+
+    var options = {
+      serviceUrl: '{{$APP_BASE_URL}}restaurant?autocomplete=city',
+      width: 300,
+      delimiter: /(,|;)\s*/,
+      deferRequestBy: 0, //miliseconds
+      noCache: false //set to true, to disable caching
+    };
+	
+    a1 = $('#searchword').autocomplete(options);
+
+  });
+  
+//]]>
+</script>
+<!-- end autocomplete -->
 <div id="main">
         <div class="w201 float_left">
         	<div class="top1 m20t"></div>
             <div class="cen1">
             	<div class="cen_1">
                 	<div class="p10">
+                		<form onsubmit="return sub_search();" id="searchForm" action="{{$APP_BASE_URL}}restaurant?search=city" method="post" name="searchForm">
 						<img src="{{$LAYOUT_HELPER_URL}}front/img/tt_yourorder.jpg" alt="" />
 						<div class="p10t">
 							<div class="float_left"><b>Location</b></div>
@@ -26,7 +52,7 @@ function load_data(value){
 						</div>
 						<div class="input_form bd1b p20b">
 							<label class="w30">City</label>
-							<input type="text" value="" class="w130" /><br />
+							<input type="text" value="" class="w130" name="searchword" id="searchword" /><br />
 							<label class="w30">Zip</label>
 							<input type="text" value="" class="w50" /><br />
 							<a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_go.jpg" alt="" /></a>
@@ -43,6 +69,7 @@ function load_data(value){
 							</select><br />
 							<div class="center"><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_checkout.png" alt="" /></a></div>
 						</div>
+						</form>
 					</div>
                 </div>
             </div>

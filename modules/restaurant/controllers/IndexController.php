@@ -74,9 +74,57 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    }	      
 	    $this->view->restaurants = $restaurants;
 	    /**
+	     * Begin get country to autocomplete
+	     */
+	    
+	    /**
 	     * Pagination
 	     */
         $this->setPagination($numRowPerPage, $currentPage, $count);        
+	}
+	
+	function search_ajax()
+	{		
+		$autocomplete = $this->_getParam('autocomplete', false);
+		include_once 'libs/Shared/Models/Country.php';
+		
+		$objCountry = new Models_Country();
+		$countries = $objCountry->fetchAll();
+		
+		$db = &JFactory::getDBO();
+		$query = $_REQUEST['query'];
+		$query = addslashes($query);
+				
+		$counter= 0;	
+		$str_jason = "";	
+		$str_jason .=  "{";
+		$str_jason .= "query:'$query',";
+		$str_jason .= "suggestions:[";
+		$sql = "select name from jos_mwc_shop_categories where name like '$query%' ORDER BY name desc";
+		$db->setQuery($sql);
+		$obj_cat = $db->loadObjectList();
+		
+		
+		$tmpArr = array();
+		foreach ( $obj_cat as $key=>$value ){
+//			$counter++;
+//			if ($counter > 1) {
+//			$str_jason .= ",";
+//			}
+			$name = $value->name;
+			$name = addslashes(trim($name, "\r\n "));
+//			$str_jason .= "'$name'";
+			$tmpArr[] = "'$name'";
+		}
+		
+		if (! empty($tmpArr)) {
+			$str_jason .= implode(',', $tmpArr);
+		}
+		
+		$str_jason .= "]}";
+		
+		echo $str_jason;
+		exit;			
 	}
 } 
 
