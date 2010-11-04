@@ -16,7 +16,7 @@ function load_data(value){
   jQuery(function() {  
 
     var options = {
-      serviceUrl: '{{$APP_BASE_URL}}restaurant?autocomplete=city',
+      serviceUrl: '{{$APP_BASE_URL}}restaurant/index/autocomplete-city',
       width: 300,
       delimiter: /(,|;)\s*/,
       deferRequestBy: 0, //miliseconds
