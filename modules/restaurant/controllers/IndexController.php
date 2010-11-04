@@ -83,37 +83,26 @@ class restaurant_IndexController extends Vi_Controller_Action
         $this->setPagination($numRowPerPage, $currentPage, $count);        
 	}
 	
-	function search_ajax()
+	function autocompleteCityAction()
 	{		
-		$autocomplete = $this->_getParam('autocomplete', false);
+		$query = $this->_getParam('query', false);
 		include_once 'libs/Shared/Models/Country.php';
 		
+		$arr_condition["city LIKE ? "] = $query."%";
 		$objCountry = new Models_Country();
-		$countries = $objCountry->fetchAll();
-		
-		$db = &JFactory::getDBO();
-		$query = $_REQUEST['query'];
-		$query = addslashes($query);
-				
-		$counter= 0;	
+		$cities = $objCountry->getByColumnName($arr_condition, 
+			    											array('city ASC'))->toArray();
+		$counter = 0;	
 		$str_jason = "";	
 		$str_jason .=  "{";
 		$str_jason .= "query:'$query',";
 		$str_jason .= "suggestions:[";
-		$sql = "select name from jos_mwc_shop_categories where name like '$query%' ORDER BY name desc";
-		$db->setQuery($sql);
-		$obj_cat = $db->loadObjectList();
-		
+	
 		
 		$tmpArr = array();
-		foreach ( $obj_cat as $key=>$value ){
-//			$counter++;
-//			if ($counter > 1) {
-//			$str_jason .= ",";
-//			}
-			$name = $value->name;
+		foreach ( $cities as $key=>$value ){
+			$name = $value['city'];
 			$name = addslashes(trim($name, "\r\n "));
-//			$str_jason .= "'$name'";
 			$tmpArr[] = "'$name'";
 		}
 		
