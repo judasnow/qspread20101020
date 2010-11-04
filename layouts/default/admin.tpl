@@ -88,7 +88,8 @@
 						{{p name='new_user' module='user'}}<li><a href="{{$APP_BASE_URL}}user/admin/new-user" class="{{if $menu[1]=='newuser'}}current{{/if}}">New User</a></li>{{/p}}
 						{{p name='see_user' module='user'}}<li><a href="{{$APP_BASE_URL}}user/admin/user-manager" class="{{if $menu[1]=='usermanager'}}current{{/if}}">User Manager</a></li>{{/p}}
                         {{p name='see_group' module='user'}}<li><a href="{{$APP_BASE_URL}}user/admin/group-manager" class="{{if $menu[1]=='groupmanager'}}current{{/if}}">Group Manager</a></li>{{/p}}
-                        {{p name='see_permission' module='permission'}}<li><a href="{{$APP_BASE_URL}}permission/admin/manager" class="{{if $menu[1]=='permissionmanager'}}current{{/if}}">Permission Manager</a></li>{{/p}}
+                       <!--  {{p name='see_permission' module='permission'}}<li><a href="{{$APP_BASE_URL}}permission/admin/manager" class="{{if $menu[1]=='permissionmanager'}}current{{/if}}">Permission Manager</a></li>{{/p}}
+                        -->
 					</ul>
 				</li>
 				
@@ -115,11 +116,21 @@
                     </ul>
                 </li>
 				
-				
+				<!-- 
 				<li>
                     <a href="{{$APP_BASE_URL}}default/admin/settings" class="nav-top-item no-submenu {{if $menu[0]=='settings'}}current{{/if}}">
                         Settings
                     </a>       
+                </li>
+                 -->
+                
+                <li> 
+                    <a href="#" class="nav-top-item {{if $menu[0]=='others'}}current{{/if}}">
+                    Others
+                    </a>
+                    <ul>
+                        <li><a href="{{$APP_BASE_URL}}category/admin/category-manager" class="{{if $menu[1]=='categorymanager'}}current{{/if}}">Category Manager</a></li>
+                    </ul>
                 </li>
 				
 			</ul> <!-- End #main-nav -->

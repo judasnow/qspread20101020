@@ -39,7 +39,8 @@ return array (
             'user'    => 'user',
             'access'    => 'access',
             'error' => 'error',
-			'restaurant' => 'restaurant'
+			'restaurant' => 'restaurant',
+			'category' => 'category'
         ),
         
   'log' => array(
