@@ -14,10 +14,10 @@
                         <option></option>
                     </select><br />
                     <label>Choose Cuisine (optional)</label><br class="clear_left" />
-                    <select class="w215">
+                    <select class="w215" name="condition[cuisine]">
                     
                     	{{foreach from=$cuisines item=item}}
-                        <option>{{$item}}</option>
+                        <option value="{{$item.value}}">{{$item.name}}</option>
                         {{/foreach}}
                         
                     </select><br />

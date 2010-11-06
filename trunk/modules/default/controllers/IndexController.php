@@ -1,5 +1,6 @@
 <?php
 
+include_once 'Shared/Models/Category.php';
 class default_IndexController extends Vi_Controller_Action
 {
 	public function indexAction()
@@ -13,12 +14,9 @@ class default_IndexController extends Vi_Controller_Action
 	     */
 	    include_once 'libs/Shared/Models/User.php';
 	    $objUser = new Models_User();
+	    $objCat  = new Models_Category();
 	    
-	    $cuisines = array(
-		    'AAAAAAAAAA',
-		    'BBBBBBBBBBB',
-		    'CCCCCCCCCCCC'
-	    );
+	    $cuisines = $objCat->getAllValues('cuisine');
 //	    $cuisines = $objUser->getAll()->toArray();
 //	    $cuisines = $objUser->getByColumnName(array(
 //	    	"username LIKE ?" => '%admin%',

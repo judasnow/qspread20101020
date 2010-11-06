@@ -35,4 +35,17 @@ class Models_Category extends Vi_Model
         
         return $this->fetchAll($select)->toArray();
     }
+    
+    public function getAllValues($catName)
+    {
+    	$catName = $this->getAdapter()->quote($catName);
+    	$query = "  SELECT cv.*, cv.category_value_id AS value 
+    				FROM (SELECT category_id FROM {$this->_name} WHERE name = {$catName}) AS c
+    				JOIN {$this->_prefix}category_value AS cv
+    				ON c.category_id = cv.category_id
+    				ORDER BY sorting ASC, name ASC
+    	";
+    	
+    	return $this->_db->fetchAll($query);
+    }
 }
