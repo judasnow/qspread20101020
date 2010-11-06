@@ -88,10 +88,8 @@ class restaurant_IndexController extends Vi_Controller_Action
 		$query = $this->_getParam('query', false);
 		include_once 'libs/Shared/Models/Country.php';
 		
-		$arr_condition["city LIKE ? "] = $query."%";
 		$objCountry = new Models_Country();
-		$cities = $objCountry->getByColumnName($arr_condition, 
-			    											array('city ASC'))->toArray();
+		$cities = $objCountry->getAllCountry($query);
 		$counter = 0;	
 		$str_jason = "";	
 		$str_jason .=  "{";
