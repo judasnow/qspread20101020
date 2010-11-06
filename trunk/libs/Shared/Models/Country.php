@@ -30,14 +30,23 @@ class Models_Country extends Vi_Model
      * 
      * @example $this->getAllRestaurant('restaurant_id ASC', 10, 0);
      */
-    public function getAllCountry($order = null, $count = null, $offset = null)
+    public function getAllCountry($city)
     {
-        $select = $this->select()
-                ->setIntegrityCheck(false)
-                ->from(array('u' => $this->_name))                
-                ->order($order)
-                ->limit($count, $offset);
-                
-        return $this->fetchAll($select)->toArray();
+//        $select = $this->select()
+//                ->setIntegrityCheck(false)
+//                ->from(array('u' => $this->_name))                
+//                ->order($order)
+//                ->limit($count, $offset);
+//                
+//        return $this->fetchAll($select)->toArray();
+        
+//    	$city = $this->getAdapter()->quote($city);
+        $query = "  SELECT DISTINCT city
+    				FROM {$this->_name}
+    				WHERE city like '%$city%'   				
+    				ORDER BY city ASC
+    	";
+//    	print $query;die;
+    	return $this->_db->fetchAll($query);
     }
 }
