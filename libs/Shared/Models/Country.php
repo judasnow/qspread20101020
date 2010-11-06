@@ -43,7 +43,7 @@ class Models_Country extends Vi_Model
 //    	$city = $this->getAdapter()->quote($city);
         $query = "  SELECT DISTINCT city
     				FROM {$this->_name}
-    				WHERE city like '%$city%'   				
+    				WHERE city like '$city%'   				
     				ORDER BY city ASC
     	";
 //    	print $query;die;
