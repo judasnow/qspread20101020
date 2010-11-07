@@ -74,9 +74,21 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    }	      
 	    $this->view->restaurants = $restaurants;
 	    /**
-	     * Begin get country to autocomplete
-	     */
-	    
+	     * Begin get time
+	     */	    
+//		print $date_month = strtotime(date("M jS - D"));
+//		$date_month = array();
+//		for ( $i=$date_month; $i<$date_month+14; $i++ ){
+//			 $date_month[] = date("M jS - D") + $i;
+//		}
+//		echo "<pre>";print_r($date_month);echo "</pre>";die;
+
+		$now = time();
+		$nextWeek = time() + (7 * 24 * 60 * 60);
+		for( $i=$now; $i<$nextWeek; $i++ ){
+			$date_month[] = date('Y-m-d', $i);
+		}
+		echo "<pre>";print_r($date_month);echo "</pre>";die;
 	    /**
 	     * Pagination
 	     */
