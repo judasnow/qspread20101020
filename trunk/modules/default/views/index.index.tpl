@@ -24,7 +24,10 @@
                     <div class="w110 float_left">
                         <label>Time</label><br class="clear_left" />
                         <select class="w70">
-                            <option>ASAP</option>
+                            <option value="asap">ASAP</option>
+                            {{foreach from=$arr_time item=item}}
+	                        <option value="{{$item}}">{{$item}}</option>
+	                        {{/foreach}}
                         </select><br />
                     </div>
                     <div class="w110 float_left">
