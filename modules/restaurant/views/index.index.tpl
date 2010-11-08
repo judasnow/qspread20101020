@@ -61,12 +61,16 @@ function load_data(value){
 							<p class="p10b"><b>Date and time</b></p>
 							<label class="w30">Date</label>
 							<select class="w130">
-								<option></option>
+								{{foreach from=$date_month item=item}}	
+								<option value="{{$item}}">{{$item}}</option>
+								{{/foreach}}
 							</select><br />
 							<label class="w30">Time</label>
-							<select class="w130">
-								<option></option>
-							</select><br />
+							<select class="form_text3" id="ctl00_cBody_Backet_datetimeuc_ddlTime" onchange="javascript:setTimeout('__doPostBack(\'ctl00$cBody$Backet$datetimeuc$ddlTime\',\'\')', 0)" name="ctl00$cBody$Backet$datetimeuc$ddlTime">
+								{{foreach from=$arr_time item=item}}	
+								<option value="{{$item}}">{{$item}}</option>
+								{{/foreach}}							
+							</select>							
 							<div class="center"><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_checkout.png" alt="" /></a></div>
 						</div>
 						</form>
