@@ -56,6 +56,15 @@ class default_IndexController extends Vi_Controller_Action
 	    }
 	    
 	    /**
+	     * Begin get date and month
+	     */	    
+		$date_month[] = date("M jS - D");
+		for( $i=1; $i<14; $i++ ){			
+			$date_month[] = date("M jS - D", time() + ($i * 24 * 60 * 60));
+		}
+		$this->view->date_month = $date_month;
+	    
+	    /**
 	     * Set variables for template
 	     */
 	    $this->view->cuisines = $cuisines;

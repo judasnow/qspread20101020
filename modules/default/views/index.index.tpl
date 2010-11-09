@@ -1,3 +1,28 @@
+<!-- begin autocomplete --> 
+<script src="{{$LAYOUT_HELPER_URL}}front/autocomplete/jquery.autocomplete.js" type="text/javascript"></script>
+<link rel="stylesheet" href="{{$LAYOUT_HELPER_URL}}front/autocomplete/styles.css" type="text/css" media="screen" />
+<script type="text/javascript">
+  //<![CDATA[
+
+  var a1;
+  
+  jQuery(function() {  
+
+    var options = {
+      serviceUrl: '{{$APP_BASE_URL}}restaurant/index/autocomplete-city',
+      width: 300,
+      delimiter: /(,|;)\s*/,
+      deferRequestBy: 0, //miliseconds
+      noCache: false //set to true, to disable caching
+    };
+	
+    a1 = $('#searchword').autocomplete(options);
+
+  });
+  
+//]]>
+</script>
+<!-- end autocomplete -->
 <div id="main">
         <div class="col1">
         
@@ -9,13 +34,11 @@
                     <label class="w55">by zip</label>
                     <input type="text" value="" class="w50" name="data[zip]"/>
                     <span class="color_1"><b>OR</b></span><br />
-                    <label class="w55">by zip</label>
-                    <select class="w165">
-                        <option></option>
-                    </select><br />
+                    <label class="w55">by city</label>
+                    <input type="text" value="" class="w130" name="searchword" id="searchword" /><br />
+                    <br />
                     <label>Choose Cuisine (optional)</label><br class="clear_left" />
-                    <select class="w215" name="condition[cuisine]">
-                    
+                    <select class="w215" name="condition[cuisine]">                    
                     	{{foreach from=$cuisines item=item}}
                         <option value="{{$item.value}}">{{$item.name}}</option>
                         {{/foreach}}
@@ -33,7 +56,9 @@
                     <div class="w110 float_left">
                         <label>Date</label><br class="clear_left" />
                         <select class="w110">
-                            <option>Sep - 6th</option>
+                            {{foreach from=$date_month item=item}}	
+							<option value="{{$item}}">{{$item}}</option>
+							{{/foreach}}
                         </select><br />
                     </div>
                     <br class="clear_left" />

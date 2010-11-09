@@ -52,10 +52,10 @@ function load_data(value){
 						</div>
 						<div class="input_form bd1b p20b">
 							<label class="w30">City</label>
-							<input type="text" value="" class="w130" name="searchword" id="searchword" /><br />
+							<input type="text" value="" class="w130" name="searchword_s" id="searchword_s" /><br />
 							<label class="w30">Zip</label>
 							<input type="text" value="" class="w50" /><br />
-							<a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_go.jpg" alt="" /></a>
+							<a href="{{$APP_BASE_URL}}restaurant?search=city"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_go.jpg" alt="" /></a>
 						</div>
 						<div class="input_form p20b">
 							<p class="p10b"><b>Date and time</b></p>
