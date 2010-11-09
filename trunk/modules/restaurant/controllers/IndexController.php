@@ -15,6 +15,7 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    $condition = $this->_getParam('data', array());
 	    $find = $this->_getParam('find', false);
 	    $mark = $this->_getParam('mark', false);
+	    $searchword = $this->_getParam('searchword_s', false);
 	   
 	    if (null != @$condition['zip']) {
 	    	/**
@@ -24,7 +25,7 @@ class restaurant_IndexController extends Vi_Controller_Action
 		 /**
 	     * Set variables for template
 	     */	   
-	    
+	    $str_lead_time_title = "";
 	    if (strcmp($mark,'pickup')==0)
 	    {
 	    	$this->view->mark_pickup = 'checked';
@@ -50,6 +51,9 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    }
 	    if ( false != $find){
 	    	$arr_condition["name LIKE ? "] = $find."%";
+	    }
+		if ( false != $searchword){
+	    	$arr_condition["address LIKE ? %"] = $searchword."%";
 	    }
 	    
 //	    echo "<pre>";print_r($arr_condition);die;
