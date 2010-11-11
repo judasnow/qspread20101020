@@ -3,7 +3,7 @@
                 
                 <div class="content-box-header">
                     
-                    <h3>New Value</h3>
+                    <h3>Edit Value</h3>
                     
                     <div class="clear"></div>
                     

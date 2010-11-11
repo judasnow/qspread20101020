@@ -3,7 +3,7 @@
                 <h2>Category Value Manager</h2>
            </div>     
            <div style="float:right;padding-right:35px;padding-top:8px;">
-                <a href="{{$APP_BASE_URL}}category/admin/add-value/cid/{{$category.category_id}}"><img style="vertical-align: middle;" src="{{$LAYOUT_HELPER_URL}}admin/images/icons/add_16.png"> Add new value</a>
+                <a href="{{$APP_BASE_URL}}category/admin/new-value/cid/{{$category.category_id}}"><img style="vertical-align: middle;" src="{{$LAYOUT_HELPER_URL}}admin/images/icons/add_16.png"> Add new value</a>
            </div>
             
              <!-- End .shortcut-buttons-set -->
@@ -15,7 +15,7 @@
                 
                 <div class="content-box-header">
                     
-                    <a name="listofcontent"><h3>Category: "{{$category.name}}"</h3></a> 
+                    <a name="listofvalue"><h3>Category: "{{$category.name}}"</h3></a> 
                    
                    <div style="float:right;padding-right:20px;padding-top:5px;">
                         <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}category/admin/category-value-manager/id/{{$category.category_id}}">
@@ -95,7 +95,7 @@
                                     </td>
                                     <td class="center">
                                         <!-- Icons -->
-                                         <a href="{{$APP_BASE_URL}}category/admin/edit-category-value/id/{{$item.category_value_id}}" title="Edit"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/pencil.png"  alt="Edit" /></a>
+                                         <a href="{{$APP_BASE_URL}}category/admin/edit-value/cid/{{$category.category_id}}/id/{{$item.category_value_id}}" title="Edit"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/pencil.png"  alt="Edit" /></a>
                                          <a href="javascript:deleteACategoryValue({{$item.category_value_id}});" title="Delete"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross.png"  alt="Delete" /></a> 
                                     </td>
                                 </tr>
@@ -204,7 +204,7 @@ function deleteCategoryValue()
             return;
         }
     }
-    window.location.href = '{{$APP_BASE_URL}}category/admin/delete-category-value/cid/{{$category.category_id}}/id/' + tmp;
+    window.location.href = '{{$APP_BASE_URL}}category/admin/delete-value/cid/{{$category.category_id}}/id/' + tmp;
 }
 
 
@@ -214,6 +214,6 @@ function deleteACategoryValue(id)
     if (false == result) {
         return;
     }
-    window.location.href = '{{$APP_BASE_URL}}category/admin/delete-category-value/cid/{{$category.category_id}}/id/' + id;
+    window.location.href = '{{$APP_BASE_URL}}category/admin/delete-value/cid/{{$category.category_id}}/id/' + id;
 }
 </script>
