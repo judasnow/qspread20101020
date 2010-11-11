@@ -325,7 +325,7 @@ class category_AdminController extends Vi_Controller_Action_Admin
         }
         
         $this->view->headTitle(Vi_Language::translate('Value manager'));
-        $this->view->menu = array('category', 'categorymanager');
+        $this->view->menu = array('others', 'categorymanager');
         
         $config = Vi_Registry::getConfig();
         $numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
@@ -407,109 +407,144 @@ class category_AdminController extends Vi_Controller_Action_Admin
         
     }
 
-    public function deleteCategoryAction()
+    public function deleteValueAction()
     {
-        /**
-         * Check permission
-         */
-        if (false == $this->checkPermission('delete_category')) {
-            $this->_forwardToNoPermissionPage();
-            return;
-        }
         
         $id = $this->_getParam('id', false);
+        $cid = $this->_getParam('cid', false);
         
-        if (false == $id) {
+        if (false == $id || false == $cid) {
             $this->_redirect('category/admin/category-manager');
         }
         
         $ids = explode('_', trim($id, '_'));
         
-        $objCategory = new Models_Category();
+        $objCatValue = new Models_CategoryValue();
         try {
             foreach ($ids as $id) {
-               $objCategory->delete( array('category_id=?' => $id));
+               $objCatValue->delete( array('category_value_id=?' => $id));
             }
-            $this->session->categoryMessage = array(
+            $this->session->categoryValueMessage = array(
                                                'success' => true,
-                                               'message' => Vi_Language::translate('Delete category successfully')
+                                               'message' => Vi_Language::translate('Delete value successfully')
                                            );
         } catch (Exception $e) {
-            $this->session->categoryMessage = array(
+            $this->session->categoryValueMessage = array(
                                                'success' => false,
-                                               'message' => Vi_Language::translate('Can NOT delete this category. Please try again')
+                                               'message' => Vi_Language::translate('Can NOT delete this value. Please try again')
                                            );
         }
-        $this->_redirect('category/admin/category-manager#listofcategory');
+        $this->_redirect('category/admin/category-value-manager/id/' . $cid);
     }
     
-    public function newUserAction()
+    public function newValueAction()
     {
-        /**
-         * Check permission
-         */
-        if (false == $this->checkPermission('new_user')) {
-            $this->_forwardToNoPermissionPage();
-            return;
-        }
         
         $data = $this->_getParam('data', false);
-        $errors = array();
+        $cid = $this->_getParam('cid', false);
+        
+        if (false == $cid) {
+            $this->_redirect('category/admin/category-manager');
+        }
+        
         if (false !== $data) {
         
             /**
              * Insert new user
              */
-            $objUser = new Models_User();
-            $objUserExp = new Models_UserExpand();
-            $newUser = array(
-                            'group_id'        => $data['group_id'],
-                            'username'        => $data['username'],
-                            'email'           => $data['email'],
-                            'full_name'       => $data['full_name'],
-                            'password'        => $data['password'],
-                            'repeat_password' => $data['repeat_password'],
-                            'created_date'    => time(),
-                            'enabled'         => $data['enabled']
+            $objCatValue = new Models_CategoryValue();
+            $newValue = array(
+                            'category_id'        => $cid,
+                            'name'        => $data['name'],
+                            'sorting'           => $data['sorting'],
                         );
-            $errors = $objUser->validate($newUser);
-            if (true === $errors) {
-                $newUser['password'] = md5($newUser['password']);
-                /**
-                 * TODO Read date format from language table
-                 */
-                unset($newUser['repeat_password']);
-                try {
-                    $id = $objUser->insert($newUser);
-                    $newUserExp = array(
-                                        'user_id'    => $id,
-                                        'admin_note' => $data['admin_note']
-                                    );
-                    $objUserExp->insert($newUserExp);
-                    $this->_redirect('user/admin/user-manager');
-                } catch (Exception $e) {
-                    $errors = array('main' => Vi_Language::translate('Can not insert into database now'));
-                }
+            try {
+                $objCatValue->insert($newValue);
+                $this->session->categoryValueMessage = array(
+                                               'success' => true,
+                                               'message' => Vi_Language::translate('Add new value successfully')
+                                           );
+                $this->_redirect('category/admin/category-value-manager/id/' . $cid);
+            } catch (Exception $e) {
+                $errors = array('main' => Vi_Language::translate('Can not insert into database now'));
             }
+        } else {
+            $data['sorting'] = 1;
         }
+        /**
+         * Get current category
+         */
+        $objCat = new Models_Category();
+        $category = $objCat->find($cid)->toArray();
+        $category = current($category);
         /**
          * Prepare for template
          */
-        $this->view->errors = $errors;
         $this->view->data = $data;
-        $this->view->headTitle(Vi_Language::translate('New user'));
-        $this->view->menu = array('usergroup', 'newuser');
-        /**
-        * Get all groups
-        */
-        $objGroup = new Models_Group();
-        $this->view->allGroups = $objGroup->getAll(array('sorting ASC', 'group_id ASC'))->toArray();
-//        /**
-//        * Get all countries
-//        */
-//        $objCountry = new Models_Country();
-//        $this->view->allCountries = $objCountry->getAll(array('sorting ASC', 'country_id ASC'))->toArray();
+        $this->view->category = $category;
+        $this->view->headTitle(Vi_Language::translate('New value'));
+        $this->view->menu = array('others', 'categorymanager');
     }
 
+
     
+    public function editValueAction()
+    {
+        
+        $data = $this->_getParam('data', false);
+        $cid = $this->_getParam('cid', false);
+        $id = $this->_getParam('id', false);
+        
+        if (false == $cid || false == $id) {
+            $this->_redirect('category/admin/category-manager');
+        }
+        
+        if (false !== $data) {
+        
+            /**
+             * Insert new user
+             */
+            $objCatValue = new Models_CategoryValue();
+            $newValue = array(
+                            'category_id'        => $cid,
+                            'name'        => $data['name'],
+                            'sorting'           => $data['sorting'],
+                        );
+            try {
+                $objCatValue->update($newValue, array('category_value_id=?' => $id));
+                $this->session->categoryValueMessage = array(
+                                               'success' => true,
+                                               'message' => Vi_Language::translate('Update new value successfully')
+                                           );
+                $this->_redirect('category/admin/category-value-manager/id/' . $cid);
+            } catch (Exception $e) {
+                $errors = array('main' => Vi_Language::translate('Can not insert into database now'));
+            }
+        } else {
+            /**
+             * Load value
+             */
+            $objCatValue = new Models_CategoryValue();
+            
+            $data = $objCatValue->find($id)->toArray();
+            $data = current($data);
+            
+            if (false == $data) {
+                $this->_redirect('category/admin/category-manager');
+            }
+        }
+        /**
+         * Get current category
+         */
+        $objCat = new Models_Category();
+        $category = $objCat->find($cid)->toArray();
+        $category = current($category);
+        /**
+         * Prepare for template
+         */
+        $this->view->data = $data;
+        $this->view->category = $category;
+        $this->view->headTitle(Vi_Language::translate('Edit value'));
+        $this->view->menu = array('others', 'categorymanager');
+    }
 }
