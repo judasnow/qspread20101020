@@ -179,4 +179,3 @@ function GetAlphabet($type='array',$lower=true){
     }
     return $r;
 }
-
