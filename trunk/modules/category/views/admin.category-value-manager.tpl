@@ -1,4 +1,10 @@
-            <h2>Category Value Manager</h2>
+            
+            <div style="float:left;">
+                <h2>Category Value Manager</h2>
+           </div>     
+           <div style="float:right;padding-right:35px;padding-top:8px;">
+                <a href="{{$APP_BASE_URL}}category/admin/add-value/cid/{{$category.category_id}}"><img style="vertical-align: middle;" src="{{$LAYOUT_HELPER_URL}}admin/images/icons/add_16.png"> Add new value</a>
+           </div>
             
              <!-- End .shortcut-buttons-set -->
             
@@ -9,12 +15,7 @@
                 
                 <div class="content-box-header">
                     
-                    <div style="float:left;">
-                        <a name="listofcontent"><h3>Category: "{{$category.name}}"</h3></a>
-                   </div>   
-                   <div style="float:right;">
-                        <a href="#">New value</a>
-                   </div>  
+                    <a name="listofcontent"><h3>Category: "{{$category.name}}"</h3></a> 
                    
                    <div style="float:right;padding-right:20px;padding-top:5px;">
                         <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}category/admin/category-value-manager/id/{{$category.category_id}}">

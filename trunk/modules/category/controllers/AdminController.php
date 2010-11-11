@@ -442,6 +442,74 @@ class category_AdminController extends Vi_Controller_Action_Admin
         }
         $this->_redirect('category/admin/category-manager#listofcategory');
     }
+    
+    public function newUserAction()
+    {
+        /**
+         * Check permission
+         */
+        if (false == $this->checkPermission('new_user')) {
+            $this->_forwardToNoPermissionPage();
+            return;
+        }
+        
+        $data = $this->_getParam('data', false);
+        $errors = array();
+        if (false !== $data) {
+        
+            /**
+             * Insert new user
+             */
+            $objUser = new Models_User();
+            $objUserExp = new Models_UserExpand();
+            $newUser = array(
+                            'group_id'        => $data['group_id'],
+                            'username'        => $data['username'],
+                            'email'           => $data['email'],
+                            'full_name'       => $data['full_name'],
+                            'password'        => $data['password'],
+                            'repeat_password' => $data['repeat_password'],
+                            'created_date'    => time(),
+                            'enabled'         => $data['enabled']
+                        );
+            $errors = $objUser->validate($newUser);
+            if (true === $errors) {
+                $newUser['password'] = md5($newUser['password']);
+                /**
+                 * TODO Read date format from language table
+                 */
+                unset($newUser['repeat_password']);
+                try {
+                    $id = $objUser->insert($newUser);
+                    $newUserExp = array(
+                                        'user_id'    => $id,
+                                        'admin_note' => $data['admin_note']
+                                    );
+                    $objUserExp->insert($newUserExp);
+                    $this->_redirect('user/admin/user-manager');
+                } catch (Exception $e) {
+                    $errors = array('main' => Vi_Language::translate('Can not insert into database now'));
+                }
+            }
+        }
+        /**
+         * Prepare for template
+         */
+        $this->view->errors = $errors;
+        $this->view->data = $data;
+        $this->view->headTitle(Vi_Language::translate('New user'));
+        $this->view->menu = array('usergroup', 'newuser');
+        /**
+        * Get all groups
+        */
+        $objGroup = new Models_Group();
+        $this->view->allGroups = $objGroup->getAll(array('sorting ASC', 'group_id ASC'))->toArray();
+//        /**
+//        * Get all countries
+//        */
+//        $objCountry = new Models_Country();
+//        $this->view->allCountries = $objCountry->getAll(array('sorting ASC', 'country_id ASC'))->toArray();
+    }
 
     
 }
