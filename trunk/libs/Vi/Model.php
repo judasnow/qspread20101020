@@ -120,7 +120,6 @@ class Vi_Model extends Zend_Db_Table
         } else {
             throw new Exception('Columns have to be string, array or Zend_Db_Table_Select');
         }
-        
         return $this->fetchAll($select, $order, $count, $offset);
        
     }   

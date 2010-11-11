@@ -49,4 +49,23 @@ class Models_Country extends Vi_Model
 //    	print $query;die;
     	return $this->_db->fetchAll($query);
     }
+    
+	public function getCityByCode($code)
+    {
+//        $select = $this->select()
+//                ->setIntegrityCheck(false)
+//                ->from(array('u' => $this->_name))                
+//                ->order($order)
+//                ->limit($count, $offset);
+//                
+//        return $this->fetchAll($select)->toArray();
+        
+    	$code = $this->getAdapter()->quote($code);
+        $query = "  SELECT city
+    				FROM {$this->_name}
+    				WHERE postal_code = $code 	
+    	";
+//    	print $query;die;
+    	return $this->_db->fetchAll($query);
+    }
 }
