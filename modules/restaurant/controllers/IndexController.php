@@ -1,5 +1,6 @@
 <?php
-
+include_once 'libs/Shared/Models/Restaurant.php';
+include_once 'libs/Shared/Models/Country.php';
 class restaurant_IndexController extends Vi_Controller_Action
 {
 	/**
@@ -15,13 +16,9 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    $condition = $this->_getParam('data', array());
 	    $find = $this->_getParam('find', false);
 	    $mark = $this->_getParam('mark', false);
-	    $searchword = $this->_getParam('searchword_s', false);
-	   
-	    if (null != @$condition['zip']) {
-	    	/**
-	    	 * Condition here
-	    	 */
-	    }
+	    $searchword = $this->_getParam('searchword', false);
+	    
+	    
 		 /**
 	     * Set variables for template
 	     */	   
@@ -52,15 +49,23 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    if ( false != $find){
 	    	$arr_condition["name LIKE ? "] = $find."%";
 	    }
-		if ( false != $searchword){
-	    	$arr_condition["address LIKE ? %"] = $searchword."%";
+		if (null != @$condition['zip']) {
+	    	/**
+	    	 * Condition here
+	    	 */
+	    	$objCountry = new Models_Country();
+	    	$city_from_code = $objCountry->getCityByCode($condition['zip']);
+	    	$arr_condition["address LIKE ? "] = "%".$city_from_code[0]['city']."%";
+	    }
+		else if ( false != $searchword){
+	    	$arr_condition["address LIKE ? "] = "%".$searchword."%";
 	    }
 	    
 //	    echo "<pre>";print_r($arr_condition);die;
 	    /**
 	     * Get data from database
 	     */
-	    include_once 'libs/Shared/Models/Restaurant.php';
+	    
 	    $objRestaurant = new Models_Restaurant();	 
 	    $restaurants = $objRestaurant->getByColumnName($arr_condition, 
 			    											array('name ASC'), 
@@ -136,7 +141,6 @@ class restaurant_IndexController extends Vi_Controller_Action
 	function autocompleteCityAction()
 	{		
 		$query = $this->_getParam('query', false);
-		include_once 'libs/Shared/Models/Country.php';
 		
 		$objCountry = new Models_Country();
 		$cities = $objCountry->getAllCountry($query);
