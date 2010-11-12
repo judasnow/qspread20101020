@@ -349,26 +349,26 @@ class Vi_Initializer
             return;
         }
         $router = Vi_Controller_Front::getInstance()->getRouter();
-        if (Vi_Initializer::$_config['usingOneLanguage']) {
+        if (true == Vi_Initializer::$_config['usingOneLanguage']) {
             $route  = new Zend_Controller_Router_Route_Regex(
-                                                     'content/(.*)',
+                                                     'page/(.*)',
                                                      array(
-                                                        'module'     => 'content',
+                                                        'module'     => 'scontent',
                                                         'controller' => 'index',
                                                         'action'     => 'index'
                                                      ),
-                                                     array(1 =>'friendlyUrl')
+                                                     array(1 =>'url')
                                                 );
         } else {
-            $route  = new Zend_Controller_Router_Route_Regex(
-                                                     'content/([\w_-]*)(.*)',
-                                                     array(
-                                                        'module'     => 'content',
-                                                        'controller' => 'index',
-                                                        'action'     => 'index'
-                                                     ),
-                                                     array(1=>'langCode', 2 =>'friendlyUrl')
-                                                );
+//            $route  = new Zend_Controller_Router_Route_Regex(
+//                                                     'content/([\w_-]*)(.*)',
+//                                                     array(
+//                                                        'module'     => 'content',
+//                                                        'controller' => 'index',
+//                                                        'action'     => 'index'
+//                                                     ),
+//                                                     array(1=>'langCode', 2 =>'friendlyUrl')
+//                                                );
         }
         $router->addRoute('content', $route);
     }

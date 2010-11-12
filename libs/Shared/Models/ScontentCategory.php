@@ -45,4 +45,5 @@ class Models_ScontentCategory extends Vi_Model
         $this->_name = $this->_prefix . 'scontent_category';
         return parent::__construct($config); 
     }
+
 }

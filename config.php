@@ -40,7 +40,8 @@ return array (
             'access'    => 'access',
             'error' => 'error',
 			'restaurant' => 'restaurant',
-			'category' => 'category'
+			'category' => 'category',
+            'scontent' => 'scontent'
         ),
         
   'log' => array(
@@ -68,7 +69,7 @@ return array (
 
   'defaultNumberRowPerPage' => 10,
    
-  'usingOneLanguage' => false,
+  'usingOneLanguage' => true,
         
   'dateFormat' => 'd-M-Y',
         
