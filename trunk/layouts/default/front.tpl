@@ -40,17 +40,9 @@
             <div class="clear"></div>
         </div>
         <div id="tabs7">
-        <ul>
-                            <!-- CSS Tabs -->
-            <li class="current"><a href="find.html"><span>Find a restaurant</span></a></li>
-            <li><a href="howitwork.html"><span>How it works</span></a></li>
-            <li><a href="coropporate.html"><span>Coropporate Accounts</span></a></li>
-            <li><a href="philan.html"><span>Philanthropy</span></a></li>
-            <li><a href="restaurant.html"><span>Refer a Restaurant</span></a></li>
-            <li><a href="friend.html"><span>Refer a friend</span></a></li>
-            <li><a href="about.html"><span>About us</span></a></li>
-            <li><a href="contact.html"><span>Contact us</span></a></li>
-        </ul>
+            <!-- MAIN MENU -->
+            {{sticker name=main_menu}}
+            <!-- END MENU -->
         </div><br class="clear_left" />
     </div>
     <!-- end: #Header -->

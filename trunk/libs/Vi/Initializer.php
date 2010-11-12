@@ -145,14 +145,12 @@ class Vi_Initializer
          *  be action... This solution is useful for default application when users are brownsing without
          *  application name, example: http://yourdomain/controller/action
          */
-        $usingDefaultAppFlag = false;
         if (! is_dir($this->_root . 'applications/' . $appName)) {
             if ($generalConfig['forwardToDefaultAppWhenNotFoundAppName']) {
                 /**
                  * Application name will be used to load appliaction's config
                  */
                 $appName = $generalConfig['defaultApp'];
-                $usingDefaultAppFlag = true;
             } else {
                 throw new Exception('Application name is not correct');
             }
@@ -187,7 +185,7 @@ class Vi_Initializer
         /**
          * When using default application, the application name can be missed in URL
          */
-        if ($usingDefaultAppFlag) {
+        if ($appName == $generalConfig['defaultApp']) {
             Vi_Registry::set('APP_BASE_URL', $BASE_URL);
         } else {
             Vi_Registry::set('APP_BASE_URL', $BASE_URL . $appName . '/');

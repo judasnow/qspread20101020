@@ -56,7 +56,7 @@ class Models_ScontentLang extends Vi_Model
             return Vi_Registry::getAppBaseUrl();
         }
         
-        return Vi_Registry::getAppBaseUrl() . $result['url'] . '.html';
+        return Vi_Registry::getAppBaseUrl() . 'page/' . $result['url'] . '.html';
     }
 
 }
