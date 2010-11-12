@@ -129,7 +129,7 @@ class Models_Scontent extends Vi_Model
                         FROM {$this->_prefix}scontent_lang 
                         WHERE lang_id = {$langId} AND enabled = 1 AND url = {$url} 
                        ) AS sl
-                 JOIN ( SELECT scontent_id, scontent_category_id, enabled AS senabled, publish_up_date, publish_down_date, sorting AS ssorting, created_date
+                 JOIN ( SELECT scontent_id, scontent_category_id, enabled AS senabled, publish_up_date, publish_down_date, sorting AS ssorting, created_date, layout
                         FROM {$this->_prefix}scontent 
                         WHERE enabled = 1 AND publish_up_date <= {$time} AND (publish_down_date = 0 OR publish_down_date > {$time} )
                        ) AS s

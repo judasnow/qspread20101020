@@ -12,7 +12,6 @@ class scontent_IndexController extends Vi_Controller_Action
     
 	public function indexAction()
 	{
-	    $this->setLayout('front2');
 		/**
 		 * Display article or category
 		 */
@@ -40,9 +39,14 @@ class scontent_IndexController extends Vi_Controller_Action
 	    if (null == @$this->content['scontent_lang_id']) {
 	        $this->_redirectToNotFoundPage();
 	    }
-	    
+	    /**
+	     * Set params
+	     */
 	    $this->view->headTitle($this->content['title']);
 	    $this->view->menuId = $this->content['scontent_id'];
+	    if (null != @$this->content['layout']) {
+            $this->setLayout($this->content['layout']);
+	    }
 	    /**
 	     * Prepare for view
 	     */

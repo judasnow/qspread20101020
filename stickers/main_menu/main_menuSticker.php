@@ -15,7 +15,7 @@ class main_menuSticker extends Vi_Sticker
             0 => array(
                     'url' => Vi_Registry::getBaseUrl(),
                     'name' => 'Find a restaurant',
-                    'id' => 0
+                    'id' => 'home'
                     ),
             1 => array(
                     'url' => Vi_Registry::getContentUrl(1),
@@ -23,34 +23,34 @@ class main_menuSticker extends Vi_Sticker
                     'id' => 1
                     ),
             2 => array(
-                    'url' => Vi_Registry::getContentUrl(1),
+                    'url' => Vi_Registry::getContentUrl(2),
                     'name' => 'Coropporate Accounts',
                     'id' => 2
                     ),
             3 => array(
-                    'url' => Vi_Registry::getContentUrl(1),
+                    'url' => Vi_Registry::getContentUrl(3),
                     'name' => 'Philanthropy',
                     'id' => 3
                     ),
             4 => array(
-                    'url' => Vi_Registry::getContentUrl(1),
+                    'url' => Vi_Registry::getContentUrl(4),
                     'name' => 'Refer a Restaurant',
                     'id' => 4
                     ),
             5 => array(
-                    'url' => Vi_Registry::getContentUrl(1),
+                    'url' => Vi_Registry::getContentUrl(5),
                     'name' => 'Refer a friend',
                     'id' => 5
                     ),
             6 => array(
-                    'url' => Vi_Registry::getContentUrl(1),
+                    'url' => Vi_Registry::getContentUrl(6),
                     'name' => 'About us',
                     'id' => 6
                     ),
             7 => array(
-                    'url' => Vi_Registry::getContentUrl(1),
+                    'url' => Vi_Registry::getBaseUrl(),
                     'name' => 'Contact us',
-                    'id' => 7
+                    'id' => 'contactus'
                     ),
         );
         $this->view->menus = $menus;

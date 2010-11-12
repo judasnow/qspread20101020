@@ -55,13 +55,9 @@
             <div class="cen1">
                 <div class="cen_1">
                     <div class="p10">
-                        <ul class="list_menu">
-                            <li><a href="about.html">About us</a></li>
-                            <li><a href="howitwork.html">How it works</a></li>
-                            <li><a href="meettheteam.html">Meet the team</a></li>
-                            <li><a href="careers.html" class="current">Careers</a></li>
-                            <li style="border:none;"><a href="newsroom.html">News room</a></li>
-                        </ul>
+                        <!-- LEFT MENU -->
+                        {{sticker name=left_menu}}
+                        <!-- END LEFT MENU -->
                     </div>
                 </div>
             </div>
