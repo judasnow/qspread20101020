@@ -46,4 +46,17 @@ class Models_ScontentLang extends Vi_Model
         return parent::__construct($config); 
     }
 
+    
+    public function getUrl($id)
+    {
+        $result = $this->getByColumnName(array('scontent_id=?' => $id))->toArray();
+        $result = current($result);
+        
+        if (null == @$result['url']) {
+            return Vi_Registry::getAppBaseUrl();
+        }
+        
+        return Vi_Registry::getAppBaseUrl() . $result['url'] . '.html';
+    }
+
 }

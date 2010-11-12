@@ -226,4 +226,12 @@ class Vi_Registry extends Zend_Registry
     {
         return @self::getLoggedInUser()->user_id;
     }
+    
+    public static function getContentUrl($id)
+    {
+        require_once 'Shared/Models/ScontentLang.php';
+        $objContent = new Models_ScontentLang();
+        
+        return $objContent->getUrl($id);
+    }
 }

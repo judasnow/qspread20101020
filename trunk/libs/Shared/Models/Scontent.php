@@ -116,4 +116,28 @@ class Models_Scontent extends Vi_Model
         
         $this->_db->query($sql);
     }
+
+    public function getContentByUrl($url, $langId)
+    {
+        $url = $this->getAdapter()->quote($url);
+        $langId = intval($langId);
+        $time = time();
+        
+        $query = "
+                 SELECT *
+                 FROM ( SELECT * 
+                        FROM {$this->_prefix}scontent_lang 
+                        WHERE lang_id = {$langId} AND enabled = 1 AND url = {$url} 
+                       ) AS sl
+                 JOIN ( SELECT scontent_id, scontent_category_id, enabled AS senabled, publish_up_date, publish_down_date, sorting AS ssorting, created_date
+                        FROM {$this->_prefix}scontent 
+                        WHERE enabled = 1 AND publish_up_date <= {$time} AND (publish_down_date = 0 OR publish_down_date > {$time} )
+                       ) AS s
+                 ON s.scontent_id = sl.scontent_id
+                 LIMIT 0,1
+        ";
+//        echo $query;die;
+        
+        return $this->_db->fetchRow($query);
+    }
 }

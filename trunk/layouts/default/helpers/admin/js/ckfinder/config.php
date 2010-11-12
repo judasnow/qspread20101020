@@ -65,7 +65,7 @@ Examples:
 
 ATTENTION: The trailing slash is required.
 */
-$baseUrl = '/wed/media/userfiles/';
+$baseUrl = '/quickspread/media/userfiles/';
 
 /*
 $baseDir : the path to the local directory (in the server) which points to the
