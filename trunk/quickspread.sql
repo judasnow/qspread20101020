@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 12, 2010 at 01:49 AM
+-- Generation Time: Nov 12, 2010 at 06:59 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -420,19 +420,14 @@ CREATE TABLE IF NOT EXISTS `vi_scontent` (
   `created_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`scontent_id`),
   KEY `Ref_08` (`scontent_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
 
 --
 -- Dumping data for table `vi_scontent`
 --
 
 INSERT INTO `vi_scontent` (`scontent_id`, `scontent_category_id`, `enabled`, `publish_up_date`, `publish_down_date`, `sorting`, `created_date`) VALUES
-(1, 2, 1, 0, 0, 2, 1284536259),
-(2, 1, 1, 0, 0, 3, 1284540328),
-(3, 1, 0, 1293814800, 1372608000, 4, 1284557381),
-(10, 1, 0, 0, 0, 5, 1284612739),
-(11, 1, 0, 0, 0, 6, 1284612875),
-(12, 1, 1, 0, 0, 1, 1284614542);
+(1, 1, 1, 0, 0, 1, 1289536365);
 
 -- --------------------------------------------------------
 
@@ -482,16 +477,14 @@ CREATE TABLE IF NOT EXISTS `vi_scontent_lang` (
   PRIMARY KEY (`scontent_lang_id`),
   KEY `Ref_06` (`scontent_id`),
   KEY `Ref_07` (`lang_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `vi_scontent_lang`
 --
 
 INSERT INTO `vi_scontent_lang` (`scontent_lang_id`, `scontent_id`, `lang_id`, `enabled`, `title`, `category_alias`, `alias`, `url`, `intro_text`, `full_text`, `hit`, `last_view_date`, `param`, `meta_data`) VALUES
-(5, 2, 1, 0, 'aaa', 'new', 'aaa', 'new/aaa', '<p>\r\n	aaa</p>\r\n', '<p>\r\n	aaa</p>\r\n', 0, 0, NULL, NULL),
-(7, 3, 1, 1, 'bbb11', 'bbb11', 'bbb11', 'bbb11/bbb11', '<p>\r\n	bbb1111</p>\r\n', '<p>\r\n	bbb1111</p>\r\n', 0, 0, NULL, NULL),
-(10, 1, 1, 1, 'First news', 'news', 'first-new', 'news/first-new', '<p>\r\n	wefwe fwe fwefwe few</p>\r\n', '<p>\r\n	f wef ewf ewf we fw&nbsp; fwe fw</p>\r\n', 0, 0, NULL, NULL);
+(11, 1, 1, 1, 'How it works', '', 'how-it-works', 'how-it-works', '', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>HOW TO PLACE AN ORDER AT QUICKSPEAD.COM</strong></span><br />\r\n	<br />\r\n	Get the food you crave without waiting on the phone, waiting in line, or waiting to pay.<img alt="" src="/quickspread/media/userfiles/images/bg_howitwork.jpg" style="width: 312px; height: 290px; float: right;" /><br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>1. Sign Up or log In</strong></span><br />\r\n	Creating an account is free<br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>2. Choose a Restaurant</strong></span><br />\r\n	Search by restaurant name, cuisine or delivery preference.<br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>3. Place Your Order</strong></span><br />\r\n	Select the items you want.<br />\r\n	Indicate a delivery or pickup time.<br />\r\n	Include any special instructions.<br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>4. Your Food is Prepared</strong></span><br />\r\n	Once your order is sent to the restaurant, you receive a confirmation email.<br />\r\n	Your meal will be ready for pickup or curdside takeaway at the restaurant.<br />\r\n	If you opted for delivery, the restaurant brings your food to you.<br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>5. Enjoy Your Meal!</strong></span><br />\r\n	Should you fail to receive a confirmation email, or have general questions about your order,<br />\r\n	please contact our customer service team at 1-866-545-8808, and they&#39;ll get you squared away.</p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	<img alt="" src="/quickspread/media/userfiles/images/bt_setup.jpg" style="width: 179px; height: 34px;" /></p>\r\n', 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -520,7 +513,7 @@ CREATE TABLE IF NOT EXISTS `vi_user` (
 --
 
 INSERT INTO `vi_user` (`user_id`, `group_id`, `username`, `email`, `full_name`, `password`, `created_date`, `enabled`, `last_login_date`, `avartar`) VALUES
-(1, 1, 'admin', 'nguoiao007@gmail.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', 1284310752, 1, 1288875869, NULL),
+(1, 1, 'admin', 'nguoiao007@gmail.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', 1284310752, 1, 1289532006, NULL),
 (3, 2, 'client1', 'client1@test.com', 'First Name2 wgeg', 'a165dd3c2e98d5d607181d0b87a4c66b', 1286424420, 1, NULL, NULL),
 (4, 2, 'client2', 'client2@test.com', 'First Name2 Last Name2', '2c66045d4e4a90814ce9280272e510ec', 1286441213, 1, NULL, NULL);
 
