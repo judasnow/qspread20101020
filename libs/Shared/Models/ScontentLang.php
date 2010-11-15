@@ -58,5 +58,25 @@ class Models_ScontentLang extends Vi_Model
         
         return Vi_Registry::getAppBaseUrl() . 'page/' . $result['url'] . '.html';
     }
+    
+    public function getUrlWithoutAppBaseUrl($id)
+    {
+        $result = $this->getByColumnName(array('scontent_id=?' => $id))->toArray();
+        $result = current($result);
+        
+        if (null == @$result['url']) {
+            return Vi_Registry::getAppBaseUrl();
+        }
+        
+        return 'page/' . $result['url'] . '.html';
+    }
 
+    
+    public function getContent($id)
+    {
+        $result = $this->getByColumnName(array('scontent_id=?' => $id))->toArray();
+        $result = current($result);
+        
+        return $result;
+    }
 }

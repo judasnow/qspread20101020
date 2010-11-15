@@ -347,4 +347,5 @@ class Vi_Controller_Action extends Zend_Controller_Action {
                                       && $countAllPage != $currentPage)? $countAllPage:'';
         $this->view->countAllPages = $countAllPage;                                      
 	}
+	
 }

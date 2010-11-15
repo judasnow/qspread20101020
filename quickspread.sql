@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 15, 2010 at 10:11 AM
+-- Generation Time: Nov 15, 2010 at 11:22 PM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -137,9 +137,10 @@ CREATE TABLE IF NOT EXISTS `vi_group` (
 --
 
 INSERT INTO `vi_group` (`group_id`, `name`, `default`, `description`, `color`, `image_url`, `enabled`, `sorting`) VALUES
-(1, 'Admin', 0, NULL, '#ff0000', NULL, 1, 5),
-(2, 'Client', 0, NULL, '#0000ff', NULL, 1, 4),
-(3, 'Guest', 1, '', '#000000', NULL, 1, 1);
+(1, 'Admin', 0, NULL, '#ff0000', NULL, 1, 4),
+(2, 'Restaurant Owner', 0, NULL, '#0000ff', NULL, 1, 3),
+(3, 'Registered User', 0, NULL, '#000000', NULL, 1, 2),
+(4, 'Guest', 1, '', '#000000', NULL, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -190,7 +191,7 @@ INSERT INTO `vi_group_permission` (`group_permission_id`, `group_id`, `permissio
 (25, 1, 11, NULL, 1),
 (26, 1, 10, NULL, 1),
 (27, 2, 2, NULL, 1),
-(28, 3, 2, NULL, 1);
+(28, 4, 2, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -255,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `vi_mail_lang` (
   PRIMARY KEY (`mail_lang_id`),
   KEY `Ref_02` (`mail_id`),
   KEY `Ref_03` (`lang_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `vi_mail_lang`
@@ -416,22 +417,24 @@ CREATE TABLE IF NOT EXISTS `vi_scontent` (
   `layout` varchar(255) DEFAULT 'front',
   PRIMARY KEY (`scontent_id`),
   KEY `Ref_08` (`scontent_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=12 ;
 
 --
 -- Dumping data for table `vi_scontent`
 --
 
 INSERT INTO `vi_scontent` (`scontent_id`, `scontent_category_id`, `enabled`, `publish_up_date`, `publish_down_date`, `sorting`, `created_date`, `layout`) VALUES
-(1, 1, 1, 0, 0, 9, 1289536365, 'front2'),
-(2, 1, 1, 0, 0, 8, 1289550663, 'front2'),
-(3, 1, 1, 0, 0, 7, 1289551148, 'front2'),
-(4, 1, 1, 0, 0, 6, 1289551786, 'front'),
-(5, 1, 1, 0, 0, 5, 1289551897, 'front'),
-(6, 1, 1, 0, 0, 4, 1289552025, 'front2'),
-(7, 1, 1, 0, 0, 3, 1289552144, 'front2'),
-(8, 1, 1, 0, 0, 2, 1289552229, 'front2'),
-(9, 1, 1, 0, 0, 1, 1289552364, 'front2');
+(1, 1, 1, 0, 0, 11, 1289536365, 'front2'),
+(2, 1, 1, 0, 0, 10, 1289550663, 'front2'),
+(3, 1, 1, 0, 0, 9, 1289551148, 'front2'),
+(4, 1, 1, 0, 0, 8, 1289551786, 'front'),
+(5, 1, 1, 0, 0, 7, 1289551897, 'front'),
+(6, 1, 1, 0, 0, 6, 1289552025, 'front2'),
+(7, 1, 1, 0, 0, 5, 1289552144, 'front2'),
+(8, 1, 1, 0, 0, 4, 1289552229, 'front2'),
+(9, 1, 1, 0, 0, 3, 1289552364, 'front2'),
+(10, 1, 1, 0, 0, 2, 1289850430, 'front'),
+(11, 1, 1, 0, 0, 1, 1289861527, 'front');
 
 -- --------------------------------------------------------
 
@@ -479,7 +482,7 @@ CREATE TABLE IF NOT EXISTS `vi_scontent_lang` (
   PRIMARY KEY (`scontent_lang_id`),
   KEY `Ref_06` (`scontent_id`),
   KEY `Ref_07` (`lang_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
 
 --
 -- Dumping data for table `vi_scontent_lang`
@@ -494,7 +497,9 @@ INSERT INTO `vi_scontent_lang` (`scontent_lang_id`, `scontent_id`, `lang_id`, `e
 (16, 6, 1, 1, 'About us', '', 'about-us', 'about-us', '<br />', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>ABOUT US</strong></span><br />\r\n	<br />\r\n	LiveOnTheGo.com is a free and convenient online service that allows users to order and pay for take out food in advance via the Web, iPhone or iPod Touch from favorite local restaurants and have it ready when they want it &mdash; with no waiting on the phone, no waiting in line and no waiting to pay.<br />\r\n	<br />\r\n	Founded in 2006 in Costa Mesa, California, LiveOnTheGo.com came out of personal need - for a quick cup of coffee after a long night&#39;s work.<br />\r\n	<br />\r\n	One of the co-founders of LiveOnTheGo.com had burned the midnight oil working on a business transaction. On his way to an early morning meeting the next day, he was in desperate need of a cup of coffee. But he didn&#39;t have time to stop at his local coffee house, park and then wait in line to order, pay and pickup his drink.<br />\r\n	<br />\r\n	Later that day, when talking to a colleague (the other co - founder of LiveOnTheGo.com), he mentioned what happened that morning, asking &quot;Wouldn&#39;t it be great if we could order and pay for coffee in advance, and have it ready when we want?&quot; Although this colleague was not a coffee drinker, he saw the bigger potential.<br />\r\n	<br />\r\n	The two joined together to create LiveOnTheGo.com, the online service that makes it easy for people to order and pay for food online without waiting on the phone, waiting in line or waiting to pay. They hope you enjoy the service as much as they do.</p>\r\n<br />', 0, 0, NULL, NULL),
 (17, 7, 1, 1, 'Meet the team', '', 'meet-the-team', 'meet-the-team', '', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>MEET THE TEAM</strong></span><br />\r\n	<br />\r\n	LiveOnTheGo.com is a free and convenient online service that allows users to order and pay for take out food in advance via the Web, iPhone or iPod Touch from favorite local restaurants and have it ready when they want it &mdash; with no waiting on the phone, no waiting in line and no waiting to pay.<br />\r\n	<br />\r\n	Founded in 2006 in Costa Mesa, California, LiveOnTheGo.com came out of personal need - for a quick cup of coffee after a long night&#39;s work.<br />\r\n	<br />\r\n	One of the co-founders of LiveOnTheGo.com had burned the midnight oil working on a business transaction. On his way to an early morning meeting the next day, he was in desperate need of a cup of coffee. But he didn&#39;t have time to stop at his local coffee house, park and then wait in line to order, pay and pickup his drink.<br />\r\n	<br />\r\n	Later that day, when talking to a colleague (the other co - founder of LiveOnTheGo.com), he mentioned what happened that morning, asking &quot;Wouldn&#39;t it be great if we could order and pay for coffee in advance, and have it ready when we want?&quot; Although this colleague was not a coffee drinker, he saw the bigger potential.<br />\r\n	<br />\r\n	The two joined together to create LiveOnTheGo.com, the online service that makes it easy for people to order and pay for food online without waiting on the phone, waiting in line or waiting to pay. They hope you enjoy the service as much as they do.</p>\r\n', 0, 0, NULL, NULL),
 (18, 8, 1, 1, 'Careers', '', 'careers', 'careers', '', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>CAREERS</strong></span></p>\r\n<p>\r\n	<br />\r\n	LiveOnTheGo.com is a free and convenient online service that allows users to order and pay for take out food in advance via the Web, iPhone or iPod Touch from favorite local restaurants and have it ready when they want it &mdash; with no waiting on the phone, no waiting in line and no waiting to pay.<br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>Sales</strong></span><br />\r\n	It is the Salesperson&rsquo;s responsibility to originate and sign on new restaurant partners. This involves all aspects of the sales process from cold-calling prospects to final execution of the paperwork necessary to close the sale. This person will partner closely with the Owner of the company to develop a pipeline of potential restaurant partners and help set strategies for aggressive growth.<br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>Sales</strong></span><br />\r\n	It is the Salesperson&rsquo;s responsibility to originate and sign on new restaurant partners. This involves all aspects of the sales process from cold-calling prospects to final execution of the paperwork necessary to close the sale. This person will partner closely with the Owner of the company to develop a pipeline of potential restaurant partners and help set strategies for aggressive growth.</p>\r\n', 0, 0, NULL, NULL),
-(19, 9, 1, 1, 'News room', '', 'news-room', 'news-room', '', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>NEWS ROOM</strong></span></p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare orci eget urna suscipit porttitor. Cras fermentum suscipit sodales. Suspendisse viverra lacinia mollis. Aenean dignissim magna posuere lacus adipiscing faucibus. Nulla facilisi. Vestibulum in commodo odio. Donec sollicitudin, tellus vitae egestas ultricies, urna diam pulvinar elit, luctus pharetra dolor justo porta justo. Praesent accumsan quam ac ipsum semper ut luctus sem mollis. Curabitur vehicula dui sem. Proin euismod ante lectus. Maecenas egestas facilisis leo at scelerisque.<br />\r\n	<br />\r\n	Suspendisse erat lectus, sollicitudin ac malesuada id, condimentum sit amet leo. Nullam rhoncus leo vitae nisi consectetur scelerisque. Donec ac ante metus, vitae eleifend risus. In at mollis sem. Curabitur odio risus, facilisis sit amet venenatis pharetra, convallis eget elit. In gravida, risus eu sollicitudin condimentum, nunc ante aliquam lacus, eu egestas neque arcu a nisl. Maecenas non neque sapien. Integer vitae purus sit amet elit condimentum posuere. Aliquam ultricies dictum massa, id tincidunt libero aliquet in. Nam leo justo, tincidunt tempus porttitor a, sollicitudin at eros. Sed pretium, magna ut lacinia laoreet, est ante posuere neque, non molestie mi arcu fermentum enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur eget nisl velit. Suspendisse sed magna vitae tellus imperdiet molestie. Praesent pharetra, orci a venenatis auctor, lacus neque tristique lacus, vel consequat nisi risus et mauris. Suspendisse id sapien in lacus venenatis hendrerit vel nec dui. Suspendisse euismod rutrum lectus id volutpat. Quisque massa dui, dictum iaculis molestie quis, porta ut metus. Donec convallis tincidunt arcu eu rhoncus.<br />\r\n	<br />\r\n	Mauris dui ligula, accumsan vel volutpat ut, elementum in metus. Integer nibh lacus, tincidunt id aliquam sit amet, laoreet a orci. Nam tristique accumsan enim id ultrices. Suspendisse sit amet scelerisque tellus. Vivamus est metus, elementum sed euismod convallis, dapibus vitae nisl. Mauris dapibus iaculis ante, ac vehicula velit tincidunt quis. Etiam a tortor nunc, ut luctus massa. Praesent venenatis, lacus sit amet iaculis volutpat, quam metus mollis augue, id porttitor nisl erat eu nibh. Duis turpis nunc, dapibus non hendrerit sit amet, pretium in risus. Nullam pulvinar, dolor ut congue sollicitudin, est justo accumsan enim, sit amet rutrum purus erat nec lacus.<br />\r\n	<br />\r\n	Pellentesque a viverra enim. Cras ac libero ac dui faucibus facilisis quis id arcu. Suspendisse nec erat augue. Curabitur laoreet nunc et felis mollis dignissim. Maecenas dapibus enim tincidunt quam rhoncus porttitor. Aliquam erat volutpat. Pellentesque viverra tristique sollicitudin. Phasellus a erat a neque semper mattis at sed orci. Suspendisse quis ultricies velit. Aenean eu libero in urna ullamcorper porta. Suspendisse rutrum aliquam diam vitae gravida. Vestibulum in risus dolor, vitae aliquet justo. Ut diam nulla, aliquam a fermentum sed, cursus tempor nisl.<br />\r\n	<br />\r\n	Nunc auctor, ligula porta condimentum pharetra, tortor risus bibendum nisl, pharetra adipiscing eros mauris eget libero. Donec in blandit ligula. Aliquam ut lectus rutrum leo varius pharetra. Nullam tristique odio a lacus accumsan vitae convallis nisi malesuada. Duis eu odio at est dapibus malesuada. Donec rutrum elit eget diam tincidunt bibendum. Mauris metus orci, molestie et pellentesque in, volutpat eget nibh. Nullam sed tempor dui. Cras diam erat, porttitor vitae tempus eu, aliquet nec justo. Proin mollis dui non nisl convallis tincidunt. Vestibulum pellentesque blandit lorem, sed condimentum purus vulputate ac. Curabitur condimentum lorem felis, quis suscipit urna. Suspendisse dignissim dolor et erat volutpat et dictum felis molestie.</p>\r\n', 0, 0, NULL, NULL);
+(19, 9, 1, 1, 'News room', '', 'news-room', 'news-room', '', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>NEWS ROOM</strong></span></p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare orci eget urna suscipit porttitor. Cras fermentum suscipit sodales. Suspendisse viverra lacinia mollis. Aenean dignissim magna posuere lacus adipiscing faucibus. Nulla facilisi. Vestibulum in commodo odio. Donec sollicitudin, tellus vitae egestas ultricies, urna diam pulvinar elit, luctus pharetra dolor justo porta justo. Praesent accumsan quam ac ipsum semper ut luctus sem mollis. Curabitur vehicula dui sem. Proin euismod ante lectus. Maecenas egestas facilisis leo at scelerisque.<br />\r\n	<br />\r\n	Suspendisse erat lectus, sollicitudin ac malesuada id, condimentum sit amet leo. Nullam rhoncus leo vitae nisi consectetur scelerisque. Donec ac ante metus, vitae eleifend risus. In at mollis sem. Curabitur odio risus, facilisis sit amet venenatis pharetra, convallis eget elit. In gravida, risus eu sollicitudin condimentum, nunc ante aliquam lacus, eu egestas neque arcu a nisl. Maecenas non neque sapien. Integer vitae purus sit amet elit condimentum posuere. Aliquam ultricies dictum massa, id tincidunt libero aliquet in. Nam leo justo, tincidunt tempus porttitor a, sollicitudin at eros. Sed pretium, magna ut lacinia laoreet, est ante posuere neque, non molestie mi arcu fermentum enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur eget nisl velit. Suspendisse sed magna vitae tellus imperdiet molestie. Praesent pharetra, orci a venenatis auctor, lacus neque tristique lacus, vel consequat nisi risus et mauris. Suspendisse id sapien in lacus venenatis hendrerit vel nec dui. Suspendisse euismod rutrum lectus id volutpat. Quisque massa dui, dictum iaculis molestie quis, porta ut metus. Donec convallis tincidunt arcu eu rhoncus.<br />\r\n	<br />\r\n	Mauris dui ligula, accumsan vel volutpat ut, elementum in metus. Integer nibh lacus, tincidunt id aliquam sit amet, laoreet a orci. Nam tristique accumsan enim id ultrices. Suspendisse sit amet scelerisque tellus. Vivamus est metus, elementum sed euismod convallis, dapibus vitae nisl. Mauris dapibus iaculis ante, ac vehicula velit tincidunt quis. Etiam a tortor nunc, ut luctus massa. Praesent venenatis, lacus sit amet iaculis volutpat, quam metus mollis augue, id porttitor nisl erat eu nibh. Duis turpis nunc, dapibus non hendrerit sit amet, pretium in risus. Nullam pulvinar, dolor ut congue sollicitudin, est justo accumsan enim, sit amet rutrum purus erat nec lacus.<br />\r\n	<br />\r\n	Pellentesque a viverra enim. Cras ac libero ac dui faucibus facilisis quis id arcu. Suspendisse nec erat augue. Curabitur laoreet nunc et felis mollis dignissim. Maecenas dapibus enim tincidunt quam rhoncus porttitor. Aliquam erat volutpat. Pellentesque viverra tristique sollicitudin. Phasellus a erat a neque semper mattis at sed orci. Suspendisse quis ultricies velit. Aenean eu libero in urna ullamcorper porta. Suspendisse rutrum aliquam diam vitae gravida. Vestibulum in risus dolor, vitae aliquet justo. Ut diam nulla, aliquam a fermentum sed, cursus tempor nisl.<br />\r\n	<br />\r\n	Nunc auctor, ligula porta condimentum pharetra, tortor risus bibendum nisl, pharetra adipiscing eros mauris eget libero. Donec in blandit ligula. Aliquam ut lectus rutrum leo varius pharetra. Nullam tristique odio a lacus accumsan vitae convallis nisi malesuada. Duis eu odio at est dapibus malesuada. Donec rutrum elit eget diam tincidunt bibendum. Mauris metus orci, molestie et pellentesque in, volutpat eget nibh. Nullam sed tempor dui. Cras diam erat, porttitor vitae tempus eu, aliquet nec justo. Proin mollis dui non nisl convallis tincidunt. Vestibulum pellentesque blandit lorem, sed condimentum purus vulputate ac. Curabitur condimentum lorem felis, quis suscipit urna. Suspendisse dignissim dolor et erat volutpat et dictum felis molestie.</p>\r\n', 0, 0, NULL, NULL),
+(20, 10, 1, 1, 'Term of Use', '', 'term-of-use', 'term-of-use', '', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>TERM OF USE</strong></span></p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare orci eget urna suscipit porttitor. Cras fermentum suscipit sodales. Suspendisse viverra lacinia mollis. Aenean dignissim magna posuere lacus adipiscing faucibus. Nulla facilisi. Vestibulum in commodo odio. Donec sollicitudin, tellus vitae egestas ultricies, urna diam pulvinar elit, luctus pharetra dolor justo porta justo. Praesent accumsan quam ac ipsum semper ut luctus sem mollis. Curabitur vehicula dui sem. Proin euismod ante lectus. Maecenas egestas facilisis leo at scelerisque.<br />\r\n	<br />\r\n	Suspendisse erat lectus, sollicitudin ac malesuada id, condimentum sit amet leo. Nullam rhoncus leo vitae nisi consectetur scelerisque. Donec ac ante metus, vitae eleifend risus. In at mollis sem. Curabitur odio risus, facilisis sit amet venenatis pharetra, convallis eget elit. In gravida, risus eu sollicitudin condimentum, nunc ante aliquam lacus, eu egestas neque arcu a nisl. Maecenas non neque sapien. Integer vitae purus sit amet elit condimentum posuere. Aliquam ultricies dictum massa, id tincidunt libero aliquet in. Nam leo justo, tincidunt tempus porttitor a, sollicitudin at eros. Sed pretium, magna ut lacinia laoreet, est ante posuere neque, non molestie mi arcu fermentum enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur eget nisl velit. Suspendisse sed magna vitae tellus imperdiet molestie. Praesent pharetra, orci a venenatis auctor, lacus neque tristique lacus, vel consequat nisi risus et mauris. Suspendisse id sapien in lacus venenatis hendrerit vel nec dui. Suspendisse euismod rutrum lectus id volutpat. Quisque massa dui, dictum iaculis molestie quis, porta ut metus. Donec convallis tincidunt arcu eu rhoncus.<br />\r\n	<br />\r\n	Mauris dui ligula, accumsan vel volutpat ut, elementum in metus. Integer nibh lacus, tincidunt id aliquam sit amet, laoreet a orci. Nam tristique accumsan enim id ultrices. Suspendisse sit amet scelerisque tellus. Vivamus est metus, elementum sed euismod convallis, dapibus vitae nisl. Mauris dapibus iaculis ante, ac vehicula velit tincidunt quis. Etiam a tortor nunc, ut luctus massa. Praesent venenatis, lacus sit amet iaculis volutpat, quam metus mollis augue, id porttitor nisl erat eu nibh. Duis turpis nunc, dapibus non hendrerit sit amet, pretium in risus. Nullam pulvinar, dolor ut congue sollicitudin, est justo accumsan enim, sit amet rutrum purus erat nec lacus.<br />\r\n	<br />\r\n	Pellentesque a viverra enim. Cras ac libero ac dui faucibus facilisis quis id arcu. Suspendisse nec erat augue. Curabitur laoreet nunc et felis mollis dignissim. Maecenas dapibus enim tincidunt quam rhoncus porttitor. Aliquam erat volutpat. Pellentesque viverra tristique sollicitudin. Phasellus a erat a neque semper mattis at sed orci. Suspendisse quis ultricies velit. Aenean eu libero in urna ullamcorper porta. Suspendisse rutrum aliquam diam vitae gravida. Vestibulum in risus dolor, vitae aliquet justo. Ut diam nulla, aliquam a fermentum sed, cursus tempor nisl.<br />\r\n	<br />\r\n	Nunc auctor, ligula porta condimentum pharetra, tortor risus bibendum nisl, pharetra adipiscing eros mauris eget libero. Donec in blandit ligula. Aliquam ut lectus rutrum leo varius pharetra. Nullam tristique odio a lacus accumsan vitae convallis nisi malesuada. Duis eu odio at est dapibus malesuada. Donec rutrum elit eget diam tincidunt bibendum. Mauris metus orci, molestie et pellentesque in, volutpat eget nibh. Nullam sed tempor dui. Cras diam erat, porttitor vitae tempus eu, aliquet nec justo. Proin mollis dui non nisl convallis tincidunt. Vestibulum pellentesque blandit lorem, sed condimentum purus vulputate ac. Curabitur condimentum lorem felis, quis suscipit urna. Suspendisse dignissim dolor et erat volutpat et dictum felis molestie.</p>\r\n', 0, 0, NULL, NULL),
+(21, 11, 1, 1, 'Registered Successfully', '', 'registered-successfully', 'registered-successfully', '', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>REGISTERED SUCCESSFULLY</strong></span></p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	Your account is registered successfully. You can login now.</p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	&nbsp;</p>', 0, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -519,7 +524,9 @@ CREATE TABLE IF NOT EXISTS `vi_user` (
   `city` varchar(255) DEFAULT NULL,
   `state` varchar(255) DEFAULT NULL,
   `zipcode` varchar(255) DEFAULT NULL,
-  `phone` varchar(255) DEFAULT NULL,
+  `phone1` varchar(255) DEFAULT NULL,
+  `phone2` varchar(255) DEFAULT NULL,
+  `phone3` varchar(255) DEFAULT NULL,
   `birthday_date` int(11) DEFAULT NULL,
   `birthday_month` int(11) DEFAULT NULL,
   `birthday_year` int(11) DEFAULT NULL,
@@ -529,16 +536,20 @@ CREATE TABLE IF NOT EXISTS `vi_user` (
   `send_discount_code` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `Ref_01` (`group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `vi_user`
 --
 
-INSERT INTO `vi_user` (`user_id`, `group_id`, `username`, `email`, `full_name`, `password`, `created_date`, `enabled`, `last_login_date`, `avartar`, `company`, `address`, `suite_apt_note`, `city`, `state`, `zipcode`, `phone`, `birthday_date`, `birthday_month`, `birthday_year`, `gender`, `security_question`, `security_answer`, `send_discount_code`) VALUES
-(1, 1, 'admin', 'nguoiao007@gmail.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', 1284310752, 1, 1289798812, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 2, 'client1', 'client1@test.com', 'First Name2 wgeg', 'a165dd3c2e98d5d607181d0b87a4c66b', 1286424420, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 2, 'client2', 'client2@test.com', 'First Name2 Last Name2', '2c66045d4e4a90814ce9280272e510ec', 1286441213, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `vi_user` (`user_id`, `group_id`, `username`, `email`, `full_name`, `password`, `created_date`, `enabled`, `last_login_date`, `avartar`, `company`, `address`, `suite_apt_note`, `city`, `state`, `zipcode`, `phone1`, `phone2`, `phone3`, `birthday_date`, `birthday_month`, `birthday_year`, `gender`, `security_question`, `security_answer`, `send_discount_code`) VALUES
+(1, 1, 'admin', 'nguoiao007@gmail.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', 1284310752, 1, 1289850316, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 2, 'client1', 'client1@test.com', 'First Name2 wgeg', 'a165dd3c2e98d5d607181d0b87a4c66b', 1286424420, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 2, 'client2', 'client2@test.com', 'First Name2 Last Name2', '2c66045d4e4a90814ce9280272e510ec', 1286441213, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(5, 3, 'hoaitan', 'hoaitan_it@yahoo.com', 'Nguyen Hoai Tan', 'e40880fd26194bedaa390ea7a0b3c4e7', 1289861130, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'British Columbia', '12345', '123', '456', '7890', 2, 12, 1987, 1, 52, 'Ho Chi Minh', 1),
+(6, 3, 'hoaitan2', 'hoaitan2@yahoo.com', 'Nguyen Hoai Tan', 'ca48157e9805d0578cc9923333112a9c', 1289861404, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Manitoba', '1234', '123', '456', '7890', 2, 12, 1987, 1, 53, 'cat', 1),
+(7, 3, 'hoaitan3', 'hoaitan3@yahoo.com', 'Nguyen Hoai Tan', '0cbb154f441fcd8d8af563519586c67e', 1289861880, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Alberta', '1234', '123', '456', '7890', 11, 12, 1987, 1, 52, 'Ho Chi Minh', 0),
+(8, 3, 'hoaitan4', 'hoaitan4@yahoo.com', 'Nguyen Hoai Tan', '70db9384969255aa93c549e3aa0c6b0f', 1289862575, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Newfoundland', '1234', '123', '456', '7890', 11, 11, 1987, 1, 52, 'Ho Chi Minh', 1);
 
 -- --------------------------------------------------------
 
@@ -556,7 +567,7 @@ CREATE TABLE IF NOT EXISTS `vi_user_expand` (
   `admin_note` tinytext,
   PRIMARY KEY (`user_expand_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `vi_user_expand`
@@ -565,7 +576,11 @@ CREATE TABLE IF NOT EXISTS `vi_user_expand` (
 INSERT INTO `vi_user_expand` (`user_expand_id`, `user_id`, `active_code`, `active_expired_date`, `forgot_password_code`, `forgot_password_expired_date`, `admin_note`) VALUES
 (1, 1, NULL, 0, NULL, 0, ''),
 (3, 3, NULL, 0, NULL, 0, ''),
-(4, 4, NULL, 0, NULL, 0, '');
+(4, 4, NULL, 0, NULL, 0, ''),
+(5, 5, NULL, 0, NULL, 0, NULL),
+(6, 6, NULL, 0, NULL, 0, NULL),
+(7, 7, NULL, 0, NULL, 0, NULL),
+(8, 8, NULL, 0, NULL, 0, NULL);
 
 --
 -- Constraints for dumped tables
