@@ -1,4 +1,28 @@
+<script type="text/javascript">
+$().ready(function() {
+    // validate signup form on keyup and submit
+    $("#contact").validate({
+        rules: {
+            'data[name]': "required",
+            'data[email]': {
+                required: true,
+                email: true
+            },
+            'data[retype_email]': {
+            	equalTo: "#email"
+            },
+            'data[phone]': "required"
+        },
+        messages: {
+            'data[name]': "",
+            'data[email]': "",
+            'data[retype_email]': "",
+            'data[phone]': ""
+        }
+    }); 
+});
 
+</script>
 
     <div id="main">
         <p class="p10t title1">Contact Us</p>
@@ -35,7 +59,7 @@
                 <input name="data[company_name]"  type="text" value="" class="w270" /><br />
                 
                 <label class="w110">E-mail:<span class="red">*</span></label>
-                <input name="data[email]"  type="text" value="" class="w270" /><br />
+                <input id="email" name="data[email]"  type="text" value="" class="w270" /><br />
                 
                 <label class="w110">Re-type E-mail:<span class="red">*</span></label>
                 <input name="data[retype_email]"  type="text" value="" class="w270" /><br />
@@ -47,7 +71,7 @@
                 <input name="data[fax]"  type="text" value="" class="w270" /><br />
                 
                 <label class="w110">Your message:</label>
-                <textarea name="data[your_message]"  rows="5" class="w270"></textarea><br />
+                <textarea name="data[message]"  rows="5" class="w270"></textarea><br />
                 
                 <label class="w110">&nbsp;</label>
                 <input type="image" name="SUBMIT" src="img/bt_send.jpg" alt="" style="border: none;padding: 0px;margin: 0px; height: 100%" />
