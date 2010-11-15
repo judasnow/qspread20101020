@@ -31,7 +31,7 @@ $().ready(function() {
             <div class="cen1">
                 <div class="cen_1">
                     <div class="p10">
-                        <div class="center"><img src="img/tt_quick.png" alt="" /></div>
+                        <div class="center"><img src="{{$LAYOUT_HELPER_URL}}front/img/tt_quick.png" alt="" /></div>
                         <p class="p10t fs14"><b>Address:</b></p>
                         1210 N. Jefferson Street, Suite<br /> 
                         PAnaheim, CA 92807
@@ -76,8 +76,8 @@ $().ready(function() {
                 <textarea name="data[message]"  rows="5" class="w270"></textarea><br />
                 
                 <label class="w110">&nbsp;</label>
-                <input type="image" name="SUBMIT" src="img/bt_send.jpg" alt="" style="border: none;padding: 0px;margin: 0px; height: 100%" />
-                <a href="javascript:document.contact.reset();"><img src="img/bt_reset.jpg" alt="" /></a><br />
+                <input type="image" name="SUBMIT" src="{{$LAYOUT_HELPER_URL}}front/img/bt_send.jpg" alt="" style="border: none;padding: 0px;margin: 0px; height: 100%" />
+                <a href="javascript:document.contact.reset();"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_reset.jpg" alt="" /></a><br />
             </form>
             </div>
         </div>
