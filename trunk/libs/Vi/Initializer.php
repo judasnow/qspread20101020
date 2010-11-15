@@ -357,6 +357,16 @@ class Vi_Initializer
                                                      ),
                                                      array(1 =>'url')
                                                 );
+                                                
+            $route2  = new Zend_Controller_Router_Route_Regex(
+                                                     'contact-us.html',
+                                                     array(
+                                                        'module'     => 'contact',
+                                                        'controller' => 'index',
+                                                        'action'     => 'index'
+                                                     ),
+                                                     array()
+                                                );
         } else {
 //            $route  = new Zend_Controller_Router_Route_Regex(
 //                                                     'content/([\w_-]*)(.*)',
@@ -369,6 +379,7 @@ class Vi_Initializer
 //                                                );
         }
         $router->addRoute('content', $route);
+        $router->addRoute('contact', $route2);
     }
     /**
      * Initialize Controller paths 

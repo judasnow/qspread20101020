@@ -33,6 +33,7 @@ return array (
                     'port' => 465,
                     'mailServer' => 'smtp.gmail.com'
             ),
+  'fromMail' => 'info@quickspread.com',
             
   'requiredModule' => array(
             'default' => 'default',
@@ -41,7 +42,8 @@ return array (
             'error' => 'error',
 			'restaurant' => 'restaurant',
 			'category' => 'category',
-            'scontent' => 'scontent'
+            'scontent' => 'scontent',
+            'contact' => 'contact'
         ),
         
   'log' => array(

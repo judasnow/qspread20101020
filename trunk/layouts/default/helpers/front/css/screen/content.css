@@ -265,7 +265,9 @@
 		.input_form select{ height:22px; padding:1px; border:solid 1px #707070; margin-bottom:5px; background-color:transparent;}
 		.input_form textarea{ padding:2px; border:solid 1px #707070; margin-bottom:5px; background-color:transparent;}	
 		
-		
+	.input_form input.error {
+		border-color: red;
+    }	
 		
 	
 }

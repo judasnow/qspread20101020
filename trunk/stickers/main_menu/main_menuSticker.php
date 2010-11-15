@@ -48,7 +48,7 @@ class main_menuSticker extends Vi_Sticker
                     'id' => 6
                     ),
             7 => array(
-                    'url' => Vi_Registry::getBaseUrl(),
+                    'url' => Vi_Registry::getBaseUrl() . 'contact-us.html',
                     'name' => 'Contact us',
                     'id' => 'contactus'
                     ),

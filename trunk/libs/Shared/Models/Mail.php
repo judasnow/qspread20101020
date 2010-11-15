@@ -73,4 +73,85 @@ class Models_Mail extends Vi_Model
         
         return $this->fetchAll($select)->toArray();
     }
+    
+
+    /**
+     * Send HTML mail from DB mail template
+     * 
+     * @param string $mailTemplateName
+     * @param array $data
+     * @param string|array $to 
+     * @param string $subject If null, subject from DB will be chosen
+     */
+    public function sendHtmlMail($mailTemplateName, $data = array(), $to = array(), $subject = null, $langId = null)
+    {
+        if (!is_array($to)) {
+            $to = array($to);
+        }
+        if (null == $langId) {
+            $langId = 1;
+        }
+        /**
+         * Get mail template
+         */
+        $select = $this->select()
+                ->setIntegrityCheck(false)
+                ->from(array('m' => $this->_name))
+                ->joinLeft(array('ml' => $this->_prefix . 'mail_lang'), 'm.mail_id = ml.mail_id', array('lang_id', 'subject', 'content'))
+                ->where('m.name=?', $mailTemplateName)
+                ->where('ml.lang_id=?', $langId);
+        
+        $mail = @$this->fetchRow($select)->toArray(); 
+        if (null == $mail) {
+            return true;
+        }
+        /**
+         * Change key
+         */
+        $newKey = array();
+        foreach ($data as $index => $item) {
+            $newKey[] = '['. strtoupper($index) . ']';
+        }
+        $data = $newKey;
+        /**
+         * Insert data file for the first time call
+         */
+        if (null == $mail['data'] && ! empty($data)) {
+            $this->update(array('data' => implode('<br/>', $data)), array('name=?' => $mailTemplateName));
+        }
+        /**
+         * Replace subject
+         */
+        if (null == $subject) {
+            /**
+             * Replace subject with DATA
+             */
+            $mail['subject'] = str_replace(array_keys($data), $data, $mail['subject']);
+        } else {
+            $mail['subject'] = $subject;
+        }
+        
+        /**
+         * Replace content
+         */
+        $mail['content'] = str_replace(array_keys($data), $data, $mail['content']);
+        
+        
+        $fromMail = Vi_Registry::getConfig('fromMail');
+        // To send HTML mail, the Content-type header must be set
+        $headers  = 'MIME-Version: 1.0' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n";
+        if (null != $fromMail) {
+            $headers .= "From: {$fromMail}" . "\r\n" .
+                "Reply-To: {$fromMail}" . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+        }
+        
+        /**
+         * Send mail
+         */
+        foreach ($to as $email) {
+            @mail($email, $mail['subject'], $mail['content'], $headers);
+        }
+    }
 }

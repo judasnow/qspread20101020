@@ -3,7 +3,8 @@ return array (
   'module' => array (
         'permission' => 'permission',
 		'scontent' => 'scontent',
-        'word' => 'word'
+        'word' => 'word',
+        'mail' => 'mail'
       ),
   'layoutCollection' => 'default',
   'defaultLayout' => 'admin',

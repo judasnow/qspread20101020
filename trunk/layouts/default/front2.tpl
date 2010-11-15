@@ -81,54 +81,7 @@
  </div>
  <!-- end: #Page_margin -->
  	<!-- begin: #Main_bot -->
-    <div id="main_bot">
-    	<div id="page_margin">
-    		<div class="w200 float_left">
-            	<p class="color_2 p20l"><b><a href="#">QuickSpread.com</a></b></p>
-                <ul class="list_2 p5t p20l">
-                	<li><a href="aboutus.html">About Us</a></li>
-                    <li><a href="howitwork.html">How it Works</a></li>
-                    <li><a href="browse.html">Browse Restaurants</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="newroom.html">Newsroom</a></li>
-                </ul>
-            </div>
-            <div class="w200 float_left m10l">
-            	<p class="color_2"><b><a href="#">Programs</a></b></p>
-                <ul class="list_2 p5t">
-                	<li><a href="share.html">Share the Bounty</a></li>
-                    <li><a href="fund.html">Fundraising</a></li>
-                    <li><a href="friend.html">Refer a Friend</a></li>
-                    <li><a href="restaurant.html">Refer a Restaurant</a></li>
-                </ul>
-            </div>
-            <div class="w200 float_left">
-            	<p class="color_2"><b><a href="#">Business Solutions</a></b></p>
-                <ul class="list_2 p5t">
-                	<li><a href="corporate.html">Corporate Accounts</a></li>
-                    <li><a href="restaurantowners.html">Restaurant Owners</a></li>
-                    <li><a href="businesspartners.html">Business Partners</a></li>
-                </ul>
-            </div>
-            <div class="w175 float_left">
-            	<p class="color_2"><b><a href="#">Legal Info</a></b></p>
-                <ul class="list_2 p5t">
-                	<li><a href="termofuse.html">Term of Use</a></li>
-                    <li><a href="privace.html">Privace Policy</a></li>
-                    <li><a href="sitemap.html">Sitemap</a></li>
-                    <li><a href="copyright.html">Copyright</a></li>
-                </ul>
-            </div>
-            <div class="w110 float_left">
-            	<p class="color_2"><b><a href="#">Legal Info</a></b></p>
-                <ul class="list_2 p5t">
-                	<li><a href="faq.html">FAQs</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
-                </ul>
-            </div>
-            <div class="clear_left"></div>
-        </div>
-    </div>
+    {{sticker name=bottom_menu}}
     <!-- end: #Main_bot -->
  	<!-- begin: #Footer -->
     <div id="footer">
