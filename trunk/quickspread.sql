@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 12, 2010 at 09:54 AM
+-- Generation Time: Nov 15, 2010 at 09:14 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -223,7 +223,7 @@ CREATE TABLE IF NOT EXISTS `vi_mail` (
   `type` tinyint(1) NOT NULL DEFAULT '2' COMMENT '1: system mail; 2: newsletter',
   `enabled` tinyint(1) DEFAULT '1',
   PRIMARY KEY (`mail_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `vi_mail`
@@ -231,7 +231,8 @@ CREATE TABLE IF NOT EXISTS `vi_mail` (
 
 INSERT INTO `vi_mail` (`mail_id`, `name`, `data`, `type`, `enabled`) VALUES
 (1, 'register', '[USER_ID]\r\n[USERNAME]\r\n[FULL_NAME]\r\n[PASSWORD]', 1, 1),
-(2, 'forgot_password', '[USER_ID]\r\n[USERNAME]\r\n[FULL_NAME]\r\n[PASSWORD]]', 1, 1);
+(2, 'forgot_password', '[USER_ID]\r\n[USERNAME]\r\n[FULL_NAME]\r\n[PASSWORD]]', 1, 1),
+(3, 'contact', '[NAME]<br/>[TITLE]<br/>[COMPANY_NAME]<br/>[EMAIL]<br/>[RETYPE_EMAIL]<br/>[PHONE]<br/>[FAX]<br/>[MESSAGE]', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -249,15 +250,16 @@ CREATE TABLE IF NOT EXISTS `vi_mail_lang` (
   PRIMARY KEY (`mail_lang_id`),
   KEY `Ref_02` (`mail_id`),
   KEY `Ref_03` (`lang_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `vi_mail_lang`
 --
 
 INSERT INTO `vi_mail_lang` (`mail_lang_id`, `mail_id`, `lang_id`, `subject`, `content`, `enabled`) VALUES
-(1, 1, 1, 'Welcome to Wordeveryday', '<p>\r\n	Hi [FULL_NAME],<br />\r\n	Welcome to Wordeveryday.com<br />\r\n	<br />\r\n	Your account: <b>[USERNAME]</b><br />\r\n	Your password: <b>[PASSWORD]</b></p>\r\n', 1),
-(3, 2, 1, 'e ew few fe fw', '<p>\r\n	fwef wef we few fwe</p>\r\n', 1);
+(1, 1, 1, NULL, NULL, 1),
+(2, 2, 1, NULL, NULL, 1),
+(3, 3, 1, 'Contact Message', '<p>\r\n	Hi <strong>admin</strong>,</p>\r\n<p>\r\n	You have new contact with following information:</p>\r\n<p>\r\n	Name: [NAME]</p>\r\n<p>\r\n	Title: [TITLE]</p>\r\n<p>\r\n	Company name: [COMPANY_NAME]</p>\r\n<p>\r\n	Email: [EMAIL]</p>\r\n<p>\r\n	Phone: [PHONE]</p>\r\n<p>\r\n	Fax: [FAX]</p>\r\n<p>\r\n	Message:</p>\r\n<p>\r\n	[MESSAGE]</p>\r\n', 1);
 
 -- --------------------------------------------------------
 
@@ -409,7 +411,7 @@ CREATE TABLE IF NOT EXISTS `vi_scontent` (
   `layout` varchar(255) DEFAULT 'front',
   PRIMARY KEY (`scontent_id`),
   KEY `Ref_08` (`scontent_category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=22 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `vi_scontent`
@@ -506,6 +508,20 @@ CREATE TABLE IF NOT EXISTS `vi_user` (
   `enabled` tinyint(1) DEFAULT '1',
   `last_login_date` int(11) DEFAULT NULL,
   `avartar` varchar(255) DEFAULT NULL,
+  `company` varchar(255) DEFAULT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `suite_apt_note` varchar(255) DEFAULT NULL,
+  `city` varchar(255) DEFAULT NULL,
+  `state` varchar(255) DEFAULT NULL,
+  `zipcode` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `birthday_date` int(11) DEFAULT NULL,
+  `birthday_month` int(11) DEFAULT NULL,
+  `birthday_year` int(11) DEFAULT NULL,
+  `gender` tinyint(4) DEFAULT NULL COMMENT '0:don''t select 1:male 2:female',
+  `security_question` int(11) DEFAULT NULL,
+  `security_answer` varchar(255) DEFAULT NULL,
+  `send_discount_code` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`user_id`),
   KEY `Ref_01` (`group_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
@@ -514,10 +530,10 @@ CREATE TABLE IF NOT EXISTS `vi_user` (
 -- Dumping data for table `vi_user`
 --
 
-INSERT INTO `vi_user` (`user_id`, `group_id`, `username`, `email`, `full_name`, `password`, `created_date`, `enabled`, `last_login_date`, `avartar`) VALUES
-(1, 1, 'admin', 'nguoiao007@gmail.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', 1284310752, 1, 1289550488, NULL),
-(3, 2, 'client1', 'client1@test.com', 'First Name2 wgeg', 'a165dd3c2e98d5d607181d0b87a4c66b', 1286424420, 1, NULL, NULL),
-(4, 2, 'client2', 'client2@test.com', 'First Name2 Last Name2', '2c66045d4e4a90814ce9280272e510ec', 1286441213, 1, NULL, NULL);
+INSERT INTO `vi_user` (`user_id`, `group_id`, `username`, `email`, `full_name`, `password`, `created_date`, `enabled`, `last_login_date`, `avartar`, `company`, `address`, `suite_apt_note`, `city`, `state`, `zipcode`, `phone`, `birthday_date`, `birthday_month`, `birthday_year`, `gender`, `security_question`, `security_answer`, `send_discount_code`) VALUES
+(1, 1, 'admin', 'nguoiao007@gmail.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', 1284310752, 1, 1289798812, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 2, 'client1', 'client1@test.com', 'First Name2 wgeg', 'a165dd3c2e98d5d607181d0b87a4c66b', 1286424420, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 2, 'client2', 'client2@test.com', 'First Name2 Last Name2', '2c66045d4e4a90814ce9280272e510ec', 1286441213, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

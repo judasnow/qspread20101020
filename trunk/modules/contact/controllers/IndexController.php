@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Shared/Models/Mail.php';
+include_once 'Shared/Models/User.php';
 class contact_IndexController extends Vi_Controller_Action
 {
 	public function indexAction()
@@ -18,10 +19,15 @@ class contact_IndexController extends Vi_Controller_Action
 	    
 	    if (false != $data) {
 	        /**
+	         * Get admin
+	         */
+	        $objUser = new Models_User();
+	        $admin = $objUser->getByUserName('admin');
+	        /**
 	         * Send message
 	         */
 	        $objMail = new Models_Mail();
-	        $objMail->sendHtmlMail('contact', $data, 'nguoiao007@gmail.com');
+	        $objMail->sendHtmlMail('contact', $data, $admin['email']);
 	    }
 	    
 	    $this->view->data = $data;
