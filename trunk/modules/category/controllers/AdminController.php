@@ -13,114 +13,6 @@ require_once 'Shared/Models/CategoryValue.php';
 class category_AdminController extends Vi_Controller_Action_Admin 
 {
     
-	public function newCategoryAction()
-	{
-        /**
-         * Check permission
-         */
-        if (false == $this->checkPermission('new_category')) {
-            $this->_forwardToNoPermissionPage();
-            return;
-        }
-        
-	    $data = $this->_getParam('data', false);
-	    $images = $this->_getParam('image', false);
-        $imageTypes = $this->_getParam('image_type', false);
-        $imageMains = $this->_getParam('image_main', false);
-	    $videos = $this->_getParam('video', false);
-//	    echo '<pre>';print_r($data);die;
-	    $error = false;
-        $objCategory = new Models_Category();
-        $objCategoryImage = new Models_CategoryImage();
-        $objCategoryVideo = new Models_CategoryVideo();
-        
-	    if (false !== $data) {
-	    
-	        /**
-	         * Insert new category
-	         */
-            $newCategory = $data;
-            $newCategory['created_date'] = time();
-            /**
-             * Check code
-             */
-            $check = $objCategory->getByColumnName(array('code=?' => $newCategory['code']))->toArray();
-            if (count($check) > 0) {
-                $error = 'CODE is used. Please enter another code';
-            }
-            
-            if (false === $error) {
-                try {
-                    $id = $objCategory->insert($newCategory);
-                    /**
-                     * Insert images
-                     */
-                    foreach ($images as $index => $image) {
-                        if (null == $image) {
-                            continue;
-                        }
-                        $data = array(
-                            'category_id' => $id,
-                            'display_value' => $image,
-                            'value' => $this->_getImagePath($image),
-                            'created_date' => time()
-                        );
-                        if (null != @$imageTypes[$index]) {
-                            $data['image_type'] = $imageTypes[$index];
-                        }
-                        if ('1' == @$imageMains[$index]) {
-                            $data['main_image'] = 1;
-                        }
-                        $objCategoryImage->insert($data);
-                    }
-                    /**
-                     * Insert videos
-                     */
-                    foreach ($videos as $video) {
-                        if (null == $video) {
-                            continue;
-                        }
-                        $data = array(
-                            'category_id' => $id,
-                            'display_value' => $video,
-                            'value' => $this->_getYoutubeLink($video),
-                            'created_date' => time()
-                        );
-                        $objCategoryVideo->insert($data);
-                    }
-                    $this->session->categoryMessage = array(
-                        'success' => true,
-                        'message' => 'New category is created successfully'
-                    );
-                    $this->_redirect('category/admin/category-manager');
-                } catch (Exception $e) {
-                    $error = Vi_Language::translate('Can not insert into database now');
-                }
-            }
-	    } else {
-	        /**
-	         * Generate unique CODE
-	         */
-	        while (true) {
-    	        $code = $objCategory->generateCode(10);
-    	        $check = $objCategory->getByColumnName(array('code=?' => $code))->toArray();
-    	        if (count($check) == 0) {
-    	            break;
-    	        }
-	        }
-	        $data = array(
-	           'code' => $code
-	        );
-	    }
-	    /**
-	     * Prepare for template
-	     */
-	    $this->view->error = $error;
-	    $this->view->data = $data;
-        $this->view->headTitle(Vi_Language::translate('New category'));
-        $this->view->menu = array('category', 'newcategory');
-	}
-	
 
     public function editCategoryAction()
     {
@@ -301,7 +193,7 @@ class category_AdminController extends Vi_Controller_Action_Admin
         /**
          * Count all categorys
          */
-        $count = count($objCategory->getAllCategories());
+        $count = count($objCategory->getAllCategories($condition));
         /**
          * Set values for tempalte
          */
@@ -387,7 +279,7 @@ class category_AdminController extends Vi_Controller_Action_Admin
         /**
          * Count all categoryValues
          */
-        $count = count($objCategoryValue->getAllCategoryValues());
+        $count = count($objCategoryValue->getAllCategoryValues($condition));
         /**
          * Load category
          */

@@ -17,7 +17,9 @@
                     <input type="text" value="" class="w230" /><br />
                     <label class="w130 m10r right">State:<span class="red">*</span></label>
                     <select class="w235">
-                        <option></option>
+                        {{foreach from=$allProvinces item=item}}
+                        <option value="{{$item.province}}">{{$item.province}}</option>
+                        {{/foreach}}
                     </select><br />
                     <label class="w130 m10r right">Zip/Postal Code:<span class="red">*</span></label>
                     <input type="text" value="" class="w230" /><br />
@@ -45,7 +47,11 @@
                     <input type="text" value="00" class="w70" />
                     <input type="text" value="0000" class="w70" /><br />
                     <label class="w130 m10r right">Gender:</label>
-                    <input type="text" value="" class="w230" /><br />
+                    <select class="w235">
+                        <option value="0">-select gender-</option>
+                        <option value="1">Male</option>
+                        <option value="2">Female</option>
+                    </select><br />
                     
                 </div> 
             </div>
@@ -61,7 +67,9 @@
                     <input type="text" value="" class="w230" /><br />
                     <label class="w130 m10r right">Security Question:<span class="red">*</span></label>
                     <select class="w235">
-                        <option></option>
+                        {{foreach from=$allQuestions item=item}}
+                        <option value="{{$item.value}}">{{$item.name}}</option>
+                        {{/foreach}}
                     </select><br />
                     <label class="w130 m10r right">Security Answer:<span class="red">*</span></label>
                     <input type="text" value="" class="w230" /><br />
