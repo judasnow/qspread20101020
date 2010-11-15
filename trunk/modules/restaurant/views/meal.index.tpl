@@ -108,21 +108,22 @@
 							<td width="11%" class="color_1 p5t p5b bd1b"><b>Delivery charge</b></td>
 							<td width="12%" class="color_1 p5t p5b bd1b"><b>Service</b></td>
 						  </tr>
+						  {{foreach from=$arr_meal item=item}}
 						  <tr>
 							<td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img.jpg" alt="" /></td>
 							<td class="bd1b p10t p5b">
-								<b>Pasta Bravo - Mission Valley</b>
+								<b>{{$item.name}}</b>
 								<p class="fs11">
 									(Italian, Pizza)<br />
 									2017 Camino Del Este<br />
 									San Diego, CA 92108<br />
 									<span class="color_1"><a href="#">Map</a>
 									<br/>
-									<a href="{{$APP_BASE_URL}}restaurant/cart">Select</a>
+									<a href="{{$APP_BASE_URL}}restaurant/cart?meal_id={{$item.meal_id}}">Select</a>
 									</span>
 								</p>
 							</td>
-							<td class="bd1b p10t p5b center top">3.70</td>
+							<td class="bd1b p10t p5b center top">$ {{$item.price}}</td>
 							<td class="bd1b p10t p5b center top">Pickup<br />~ 15 min</td>
 							<td class="bd1b p10t p5b top">$40.00</td>
 							<td class="bd1b p10t p5b top">$40.00</td>
@@ -132,76 +133,8 @@
 								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span></p>
 								
 							</td>
-						  </tr>
-						  <tr>
-							<td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img.jpg" alt="" /></td>
-							<td class="bd1b p10t p5b">
-								<b>Pasta Bravo - Mission Valley</b>
-								<p class="fs11">
-									(Italian, Pizza)<br />
-									2017 Camino Del Este<br />
-									San Diego, CA 92108<br />
-									<span class="color_1"><a href="#">Map</a> <br/>
-									<a href="{{$APP_BASE_URL}}restaurant/cart">Select</a></span>
-								</p>
-							</td>
-							<td class="bd1b p10t p5b center top">3.70</td>
-							<td class="bd1b p10t p5b center top">Pickup<br />~ 15 min</td>
-							<td class="bd1b p10t p5b top">$40.00</td>
-							<td class="bd1b p10t p5b top">$40.00</td>
-							<td class="bd1b p10t p5b top">
-								<img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span>
-								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span></p>
-								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span></p>
-								
-							</td>
-						  </tr>
-						  <tr>
-							<td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img.jpg" alt="" /></td>
-							<td class="bd1b p10t p5b">
-								<b>Pasta Bravo - Mission Valley</b>
-								<p class="fs11">
-									(Italian, Pizza)<br />
-									2017 Camino Del Este<br />
-									San Diego, CA 92108<br />
-									<span class="color_1"><a href="#">Map</a> <br/>
-									<a href="{{$APP_BASE_URL}}restaurant/cart">Select</a></span>
-								</p>
-							</td>
-							<td class="bd1b p10t p5b center top">3.70</td>
-							<td class="bd1b p10t p5b center top">Pickup<br />~ 15 min</td>
-							<td class="bd1b p10t p5b top">$40.00</td>
-							<td class="bd1b p10t p5b top">$40.00</td>
-							<td class="bd1b p10t p5b top">
-								<img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span>
-								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span></p>
-								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span></p>
-								
-							</td>
-						  </tr>
-						  <tr>
-							<td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img.jpg" alt="" /></td>
-							<td class="bd1b p10t p5b">
-								<b>Pasta Bravo - Mission Valley</b>
-								<p class="fs11">
-									(Italian, Pizza)<br />
-									2017 Camino Del Este<br />
-									San Diego, CA 92108<br />
-									<span class="color_1"><a href="#">Map</a> <br/>
-									<a href="{{$APP_BASE_URL}}restaurant/cart">Select</a></span>
-								</p>
-							</td>
-							<td class="bd1b p10t p5b center top">3.70</td>
-							<td class="bd1b p10t p5b center top">Pickup<br />~ 15 min</td>
-							<td class="bd1b p10t p5b top">$40.00</td>
-							<td class="bd1b p10t p5b top">$40.00</td>
-							<td class="bd1b p10t p5b top">
-								<img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span>
-								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span></p>
-								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span></p>
-								
-							</td>
-						  </tr>
+						  </tr>	
+						  {{/foreach}}					  
 						</table>
 						<a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_all.jpg" alt="" class="float_left p7t m5r" /></a>
 						<ul class="list_4 float_left p5t">

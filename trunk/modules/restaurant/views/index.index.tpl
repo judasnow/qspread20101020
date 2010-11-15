@@ -155,7 +155,7 @@ function load_data(value){
 									({{$item.address}}
 									<span class="color_1"><a href="#">Map</a> </span>
 									<br/>
-									<a href="{{$APP_BASE_URL}}restaurant/meal">Select</a>
+									<a href="{{$APP_BASE_URL}}restaurant/meal?id={{$item.restaurant_id}}">Select</a>
 								</p>
 							</td>
 							<td class="bd1b p10t p5b center top">{{$item.mileage}}</td>
