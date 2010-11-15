@@ -51,6 +51,7 @@ class scontent_IndexController extends Vi_Controller_Action
 	     * Prepare for view
 	     */
 	    $this->view->content = $this->content;
+	    $this->view->layout = @$this->content['layout'];
 	}
 	
 	private function _redirectToNotFoundPage()

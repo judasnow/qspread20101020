@@ -367,6 +367,16 @@ class Vi_Initializer
                                                      ),
                                                      array()
                                                 );
+                                                
+            $route3  = new Zend_Controller_Router_Route_Regex(
+                                                     'register.html',
+                                                     array(
+                                                        'module'     => 'user',
+                                                        'controller' => 'index',
+                                                        'action'     => 'register'
+                                                     ),
+                                                     array()
+                                                );
         } else {
 //            $route  = new Zend_Controller_Router_Route_Regex(
 //                                                     'content/([\w_-]*)(.*)',
@@ -380,6 +390,7 @@ class Vi_Initializer
         }
         $router->addRoute('content', $route);
         $router->addRoute('contact', $route2);
+        $router->addRoute('register', $route3);
     }
     /**
      * Initialize Controller paths 
