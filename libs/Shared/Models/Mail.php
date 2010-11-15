@@ -110,14 +110,14 @@ class Models_Mail extends Vi_Model
          */
         $newKey = array();
         foreach ($data as $index => $item) {
-            $newKey[] = '['. strtoupper($index) . ']';
+            $newKey['['. strtoupper($index) . ']'] = $item;
         }
         $data = $newKey;
         /**
          * Insert data file for the first time call
          */
         if (null == $mail['data'] && ! empty($data)) {
-            $this->update(array('data' => implode('<br/>', $data)), array('name=?' => $mailTemplateName));
+            $this->update(array('data' => implode('<br/>', array_keys($data))), array('name=?' => $mailTemplateName));
         }
         /**
          * Replace subject
@@ -135,6 +135,7 @@ class Models_Mail extends Vi_Model
          * Replace content
          */
         $mail['content'] = str_replace(array_keys($data), $data, $mail['content']);
+//        echo '<pre>';print_r($mail);die;
         
         
         $fromMail = Vi_Registry::getConfig('fromMail');
