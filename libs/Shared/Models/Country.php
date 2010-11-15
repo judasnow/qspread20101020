@@ -68,4 +68,23 @@ class Models_Country extends Vi_Model
 //    	print $query;die;
     	return $this->_db->fetchAll($query);
     }
+    
+
+    public function getAllProvinceCodes()
+    {
+        $query = "  SELECT DISTINCT province_code
+                    FROM {$this->_name}
+                    ORDER BY province_code ASC
+        ";
+        return $this->_db->fetchAll($query);
+    }
+
+    public function getAllProvinces()
+    {
+        $query = "  SELECT DISTINCT province
+                    FROM {$this->_name}
+                    ORDER BY province ASC
+        ";
+        return $this->_db->fetchAll($query);
+    }
 }

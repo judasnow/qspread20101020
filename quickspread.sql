@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 15, 2010 at 09:27 AM
+-- Generation Time: Nov 15, 2010 at 10:11 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -25,19 +25,19 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `vi_category`
 --
 
-DROP TABLE IF EXISTS `vi_category`;
 CREATE TABLE IF NOT EXISTS `vi_category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `vi_category`
 --
 
 INSERT INTO `vi_category` (`category_id`, `name`) VALUES
-(1, 'cuisine');
+(1, 'cuisine'),
+(2, 'security_question');
 
 -- --------------------------------------------------------
 
@@ -45,7 +45,6 @@ INSERT INTO `vi_category` (`category_id`, `name`) VALUES
 -- Table structure for table `vi_category_value`
 --
 
-DROP TABLE IF EXISTS `vi_category_value`;
 CREATE TABLE IF NOT EXISTS `vi_category_value` (
   `category_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
@@ -53,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `vi_category_value` (
   `sorting` int(11) DEFAULT '1',
   PRIMARY KEY (`category_value_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
 
 --
 -- Dumping data for table `vi_category_value`
@@ -109,7 +108,11 @@ INSERT INTO `vi_category_value` (`category_value_id`, `category_id`, `name`, `so
 (47, 1, 'Thai', 1),
 (48, 1, 'Turkish', 1),
 (49, 1, 'Vegetarian', 1),
-(50, 1, 'Vietnamese', 1);
+(50, 1, 'Vietnamese', 1),
+(51, 2, 'What is your mother''s maiden name?', 1),
+(52, 2, 'What city where you born in?', 1),
+(53, 2, 'What is your pet''s name?', 1),
+(54, 2, 'What is your father''s middle name?', 1);
 
 -- --------------------------------------------------------
 
@@ -117,7 +120,6 @@ INSERT INTO `vi_category_value` (`category_value_id`, `category_id`, `name`, `so
 -- Table structure for table `vi_group`
 --
 
-DROP TABLE IF EXISTS `vi_group`;
 CREATE TABLE IF NOT EXISTS `vi_group` (
   `group_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -145,7 +147,6 @@ INSERT INTO `vi_group` (`group_id`, `name`, `default`, `description`, `color`, `
 -- Table structure for table `vi_group_permission`
 --
 
-DROP TABLE IF EXISTS `vi_group_permission`;
 CREATE TABLE IF NOT EXISTS `vi_group_permission` (
   `group_permission_id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) DEFAULT NULL,
@@ -197,7 +198,6 @@ INSERT INTO `vi_group_permission` (`group_permission_id`, `group_id`, `permissio
 -- Table structure for table `vi_lang`
 --
 
-DROP TABLE IF EXISTS `vi_lang`;
 CREATE TABLE IF NOT EXISTS `vi_lang` (
   `lang_id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_code` varchar(5) NOT NULL,
@@ -221,7 +221,6 @@ INSERT INTO `vi_lang` (`lang_id`, `lang_code`, `lang_image`, `enabled`, `name`, 
 -- Table structure for table `vi_mail`
 --
 
-DROP TABLE IF EXISTS `vi_mail`;
 CREATE TABLE IF NOT EXISTS `vi_mail` (
   `mail_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -246,7 +245,6 @@ INSERT INTO `vi_mail` (`mail_id`, `name`, `data`, `type`, `enabled`) VALUES
 -- Table structure for table `vi_mail_lang`
 --
 
-DROP TABLE IF EXISTS `vi_mail_lang`;
 CREATE TABLE IF NOT EXISTS `vi_mail_lang` (
   `mail_lang_id` int(11) NOT NULL AUTO_INCREMENT,
   `mail_id` int(11) NOT NULL,
@@ -274,7 +272,6 @@ INSERT INTO `vi_mail_lang` (`mail_lang_id`, `mail_id`, `lang_id`, `subject`, `co
 -- Table structure for table `vi_meal`
 --
 
-DROP TABLE IF EXISTS `vi_meal`;
 CREATE TABLE IF NOT EXISTS `vi_meal` (
   `meal_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -303,7 +300,6 @@ INSERT INTO `vi_meal` (`meal_id`, `name`, `description`, `price`, `parent`, `res
 -- Table structure for table `vi_message`
 --
 
-DROP TABLE IF EXISTS `vi_message`;
 CREATE TABLE IF NOT EXISTS `vi_message` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
   `from_user_id` int(11) DEFAULT NULL,
@@ -329,7 +325,6 @@ CREATE TABLE IF NOT EXISTS `vi_message` (
 -- Table structure for table `vi_permission`
 --
 
-DROP TABLE IF EXISTS `vi_permission`;
 CREATE TABLE IF NOT EXISTS `vi_permission` (
   `permission_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -379,7 +374,6 @@ INSERT INTO `vi_permission` (`permission_id`, `name`, `module`, `description`, `
 -- Table structure for table `vi_restaurant`
 --
 
-DROP TABLE IF EXISTS `vi_restaurant`;
 CREATE TABLE IF NOT EXISTS `vi_restaurant` (
   `restaurant_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -411,7 +405,6 @@ INSERT INTO `vi_restaurant` (`restaurant_id`, `name`, `address`, `map`, `descrip
 -- Table structure for table `vi_scontent`
 --
 
-DROP TABLE IF EXISTS `vi_scontent`;
 CREATE TABLE IF NOT EXISTS `vi_scontent` (
   `scontent_id` int(11) NOT NULL AUTO_INCREMENT,
   `scontent_category_id` int(11) DEFAULT NULL,
@@ -446,7 +439,6 @@ INSERT INTO `vi_scontent` (`scontent_id`, `scontent_category_id`, `enabled`, `pu
 -- Table structure for table `vi_scontent_category`
 --
 
-DROP TABLE IF EXISTS `vi_scontent_category`;
 CREATE TABLE IF NOT EXISTS `vi_scontent_category` (
   `scontent_category_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
@@ -469,7 +461,6 @@ INSERT INTO `vi_scontent_category` (`scontent_category_id`, `name`, `enabled`, `
 -- Table structure for table `vi_scontent_lang`
 --
 
-DROP TABLE IF EXISTS `vi_scontent_lang`;
 CREATE TABLE IF NOT EXISTS `vi_scontent_lang` (
   `scontent_lang_id` int(11) NOT NULL AUTO_INCREMENT,
   `scontent_id` int(11) NOT NULL,
@@ -511,7 +502,6 @@ INSERT INTO `vi_scontent_lang` (`scontent_lang_id`, `scontent_id`, `lang_id`, `e
 -- Table structure for table `vi_user`
 --
 
-DROP TABLE IF EXISTS `vi_user`;
 CREATE TABLE IF NOT EXISTS `vi_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) NOT NULL,
@@ -556,7 +546,6 @@ INSERT INTO `vi_user` (`user_id`, `group_id`, `username`, `email`, `full_name`, 
 -- Table structure for table `vi_user_expand`
 --
 
-DROP TABLE IF EXISTS `vi_user_expand`;
 CREATE TABLE IF NOT EXISTS `vi_user_expand` (
   `user_expand_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
