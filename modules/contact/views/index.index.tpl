@@ -45,6 +45,8 @@ $().ready(function() {
             </div>
             <div class="bot1"></div>
         </div>
+        
+        {{if false==$data}}
         <div class="w692 float_right m20t">
             We welcome your feedback and want to hear from you. We are constantly searching for ways to better serve you, so your comments and suggestions are valuable to us. Thank you for choosing to share your viewpoint with us.
             <div class="input_form">
@@ -79,5 +81,14 @@ $().ready(function() {
             </form>
             </div>
         </div>
+        {{else}}
+        <div class="w692 float_right m20t" style="font-size: large;color: #442006;">
+            Thank you very much. Your message is sent.<br/>
+            We will contact you soon.
+        </div>
+        {{/if}}
+        
+        
+        
         <div class="clear"></div>
     </div>

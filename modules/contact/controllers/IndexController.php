@@ -22,7 +22,8 @@ class contact_IndexController extends Vi_Controller_Action
 	         */
 	        $objMail = new Models_Mail();
 	        $objMail->sendHtmlMail('contact', $data, 'nguoiao007@gmail.com');
-	        die;
 	    }
+	    
+	    $this->view->data = $data;
 	}
 }
