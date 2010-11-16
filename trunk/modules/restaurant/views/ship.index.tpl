@@ -67,7 +67,7 @@
                     <label class="w130 m10r right">Email:<span class="red">*</span></label>
                     <input type="text" value="" class="w230" /><br />
 					<label class="w130 m10r right">&nbsp;</label>
-					<a href="{{$APP_BASE_URL}}restaurant/info">
+					<a href="{{$APP_BASE_URL}}restaurant/info?order_id={{$order_id}}">
                     	<img src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" />
                     </a>
                     <br />
