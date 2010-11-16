@@ -8,8 +8,7 @@ class restaurant_CartController extends Vi_Controller_Action
 	public function indexAction()
 	{
 		 //-- begin add information into cart
-		 $meal_id = $this->_getParam('meal_id', false); 
-		 //-- end add information into cart	
+		 $meal_id = $this->_getParam('meal_id', false); 		 
 		 if ( false != $meal_id ){
 			 $objMeal = new Models_Meal();
 			 $arr_meal = $objMeal->getDataById($meal_id);
@@ -25,6 +24,7 @@ class restaurant_CartController extends Vi_Controller_Action
 		 }
 		 else
 		 	$this->view->session_cart = '';	
+		 //-- end add information into cart	
 	}	
 } 
 
