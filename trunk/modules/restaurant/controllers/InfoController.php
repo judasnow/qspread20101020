@@ -7,7 +7,8 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 */
 	public function indexAction()
 	{
-		  $this->view->session_cart = $_SESSION['cart'];
+		$order_id = $this->_getParam('order_id', false); 
+		$this->view->session_cart = $_SESSION['cart'][$order_id];
 	}
 	
 	

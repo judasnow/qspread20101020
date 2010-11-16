@@ -43,8 +43,8 @@
                             <td width="14%" class="color_1 p5t p5b bd1b center"><b>Price</b></td>
                             <td width="11%" class="color_1 p5t p5b bd1b"><b>Total</b></td>
                             <td width="6%" class="color_1 p5t p5b bd1b"><b>Edit</b></td>
-                          </tr>
-                          {{foreach from=$session_cart item=item key=key}}
+                          </tr>                                                   
+                          {{foreach from=$session_cart item=item key=key}}                         
                           <tr>
                             <td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img_restaurant_menu.jpg" alt="" width="58" height="57" /></td>
                             <td class="bd1b p10t p5b"><b>{{$item.name}}</b>
@@ -100,7 +100,7 @@
                             <td class="center top"><br /></td>
                             <td class="center top"></td>
                             <td class="p10t" color_1 fs14">
-                            	<a href="{{$APP_BASE_URL}}restaurant/ship">
+                            	<a href="{{$APP_BASE_URL}}restaurant/ship?order_id={{$order_id}}">
                             		<img src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" />
                             	</a>
                             </td>
