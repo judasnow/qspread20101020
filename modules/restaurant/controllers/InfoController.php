@@ -1,4 +1,5 @@
 <?php
+include_once 'libs/Shared/Models/Meal.php';
 class restaurant_InfoController extends Vi_Controller_Action
 {
 	/**
@@ -6,7 +7,7 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 */
 	public function indexAction()
 	{
-		      
+		  $this->view->session_cart = $_SESSION['cart'];
 	}
 	
 	
