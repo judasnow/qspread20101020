@@ -30,68 +30,31 @@
 <div class="logo p20t"><a href="{{$BASE_URL}}"><img
 	src="{{$LAYOUT_HELPER_URL}}front/img/logo.jpg" alt="" /></a></div>
 </div>
-<div class="float_right">
-<ul class="na_1">
-	<li><a href="index.html" class="current" style="border: none;">Home</a></li>
-	<li><a href="javascript:openLoginForm();">Sign in</a></li>
-	<li><a href="faq.html">FAQ</a></li>
-</ul>
-<div class="float_right m10r"><a href="#"><img
-	src="{{$LAYOUT_HELPER_URL}}front/img/icon_setup.jpg" alt="" /></a></div>
-<br class="clear_right" />
-</div>
+
+<!-- TOP MENU -->
+{{sticker name=top_menu}}
+<!-- END TOP MENU -->
+
 <div class="clear"></div>
 </div>
-<div id="tabs7"><!-- MAIN MENU --> {{sticker name=main_menu}} <!-- END MENU -->
+
+<div id="tabs7">
+    <!-- MAIN MENU --> 
+    {{sticker name=main_menu}} 
+    <!-- END MENU -->
 </div>
+
 <br class="clear_left" />
 </div>
-<!-- end: #Header --> <!-- begin: #Main >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START MODULE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
-{{$content}} <!-- end: #Main >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END MODULE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
+<!-- end: #Header --> 
+<!-- begin: #Main >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START MODULE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<-->
+{{$content}}
+ <!-- end: #Main >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END MODULE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 
 <!-- LOGIN DIV -->
-<div id="overlay" style="display: none;"></div>
-<div id="login" class="done" style="display: none;">
-    <div class="lbContent">
-        <form>
-            <h2>Login</h2>
-            <div style="float: right;margin-top: -30px;"><a href="javascript:closeLoginForm();">[X]</a></div>
-            <table>
-                <tr>
-                    <td>Username:</td>
-                    <td><input class="text" type="text" name="username"></td> 
-                </tr>
-                <tr>
-                    <td>Password:</td>
-                    <td><input class="text" type="password" name="password"></td> 
-                </tr>
-                <tr>
-                    <td></td>
-                    <td><input type="submit" value="LOGIN"></td> 
-                </tr>
-            </table>
-            
-            <br/>
-            <a href="#">Forgot password</a><br/>
-            <a href="#">Register new account</a>
-        </form>
-    </div>
+{{sticker name=login}}
+<!-- END LOGIN -->
 </div>
-
-<script type="text/javascript">
-function openLoginForm()
-{
-	document.getElementById('overlay').style.display = 'block';
-	document.getElementById('login').style.display = 'block';
-}
-function closeLoginForm()
-{
-    document.getElementById('overlay').style.display = 'none';
-    document.getElementById('login').style.display = 'none';
-}
-</script>
-
-<!-- END LOGIN --></div>
 <!-- end: #Page_margin --> <!-- begin: #Main_bot --> {{sticker
 name=bottom_menu}} <!-- end: #Main_bot --> <!-- begin: #Footer -->
 <div id="footer">

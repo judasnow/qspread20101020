@@ -212,6 +212,9 @@ class Vi_Registry extends Zend_Registry
 	 */
 	public static function getLoggedInUser()
 	{
+	    if (NULL == self::getAuth()->getUsername()) {
+	        return false;
+	    }
 	    require_once 'Shared/Models/User.php';
 	    $objUser = new Models_User();
 	    return $objUser->getByUserName(self::getAuth()->getUsername());
