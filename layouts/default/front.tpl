@@ -59,7 +59,7 @@
 name=bottom_menu}} <!-- end: #Main_bot --> <!-- begin: #Footer -->
 <div id="footer">
 <div id="page_margin">
-<p class="float_right">Copyright © 2008 Quick Spread, Inc. All Rights
+<p class="float_right">Copyright © 2010 Quick Spread, Inc. All Rights
 Reserved</p>
 <br class="clear" />
 </div>
