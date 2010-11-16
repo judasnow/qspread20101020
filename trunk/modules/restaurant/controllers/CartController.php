@@ -1,4 +1,5 @@
 <?php
+include_once 'libs/Shared/Models/Meal.php';
 class restaurant_CartController extends Vi_Controller_Action
 {
 	/**
@@ -6,9 +7,24 @@ class restaurant_CartController extends Vi_Controller_Action
 	 */
 	public function indexAction()
 	{
-		      
-	}
-	
-	
+		 //-- begin add information into cart
+		 $meal_id = $this->_getParam('meal_id', false); 
+		 //-- end add information into cart	
+		 if ( false != $meal_id ){
+			 $objMeal = new Models_Meal();
+			 $arr_meal = $objMeal->getDataById($meal_id);
+
+			 $_SESSION['cart'][$meal_id]['meal_id'] = $arr_meal['meal_id'];
+			 $_SESSION['cart'][$meal_id]['name'] = $arr_meal['name'];
+			 $_SESSION['cart'][$meal_id]['description'] = $arr_meal['description'];
+			 $_SESSION['cart'][$meal_id]['price'] = $arr_meal['price'];
+			 $_SESSION['cart'][$meal_id]['quantity'] = 1;
+			 $_SESSION['cart'][$meal_id]['total_money'] = $_SESSION['cart'][$meal_id]['price']*$_SESSION['cart'][$meal_id]['quantity'];
+			 
+			 $this->view->session_cart = $_SESSION['cart'];
+		 }
+		 else
+		 	$this->view->session_cart = '';	
+	}	
 } 
 

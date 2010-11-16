@@ -65,6 +65,7 @@
             <div class="cen2">
             	<div class="cen_2">
                 	<div class="p10">
+<!--                 	
 						<div class="bd1b">
 							<img src="{{$LAYOUT_HELPER_URL}}front/img/tt_selectarestaurant.jpg" alt="" class="float_left p10t" />
 							<div class="float_left m20l fs11">
@@ -98,7 +99,9 @@
 							</div>
 							<div class="clear"></div>
 						</div>
+-->						
 						<table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+<!-- 						
 						  <tr>
 							<td width="16%" class="color_1 p5t p5b bd1b"><b>Restaurant name</b></td>
 							<td width="25%" class="color_1 p5t p5b bd1b">&nbsp;</td>
@@ -108,6 +111,7 @@
 							<td width="11%" class="color_1 p5t p5b bd1b"><b>Delivery charge</b></td>
 							<td width="12%" class="color_1 p5t p5b bd1b"><b>Service</b></td>
 						  </tr>
+-->						  
 						  {{foreach from=$arr_meal item=item}}
 						  <tr>
 							<td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img.jpg" alt="" /></td>
@@ -136,7 +140,8 @@
 						  </tr>	
 						  {{/foreach}}					  
 						</table>
-						<a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_all.jpg" alt="" class="float_left p7t m5r" /></a>
+<!-- 						
+						<a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_all.jpg" alt="" class="float_left p7t m5r" /></a>						
 						<ul class="list_4 float_left p5t">
 							<li></li>
 							<li><a href="#">a</a></li>
@@ -166,6 +171,7 @@
 							<li><a href="#">y</a></li>
 							<li><a href="#">z</a></li>
 						</ul>
+-->						
 						<div class="float_right">
 							<ul class="list_3">
 								<li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="" /></a></li>
