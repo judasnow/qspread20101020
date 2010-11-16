@@ -87,7 +87,7 @@ function submit_form(){
                 <img src="{{$LAYOUT_HELPER_URL}}front/img/tt_4.png" alt="" /><br /><br /><br />
                 <div class="float_left m10t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_top.png" alt="" /></div>
                 <div class="w215 float_left p10t p5l b_color">
-                    <b>Lorem ipsum dolor sit amet, consec- tetuer adipiscing elit. Nullam sed justo. Morbi purus. Maecenas facilisis vesti- bulum felis. Aliquam sed risus. Etiam egestas mollis mauris. Proin sceleris- que mollis enim. Suspendisse potenti. Phasellus id lectus. Mauris tristique, ligula in scelerisque tempus,....</b>                 
+                    {{$article.full_text}}                 
                 </div><br class="clear_left" />
                 <div class="right"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_bot.png" alt="" /></div>
             </div>

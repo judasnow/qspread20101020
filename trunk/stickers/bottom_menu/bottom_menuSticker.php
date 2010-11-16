@@ -63,9 +63,9 @@ class bottom_menuSticker extends Vi_Sticker
                     'id' => 'restaurant_owners'
                     ),
             2 => array(
-                    'url' => Vi_Registry::getBaseUrl(),
+                    'url' => Vi_Registry::getContentUrl(18),
                     'name' => 'Business Partners',
-                    'id' => 'business_partners'
+                    'id' => 18
                     ),
         );
         
