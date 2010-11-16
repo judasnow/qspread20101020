@@ -22,13 +22,19 @@
   
 //]]>
 </script>
+<script type="text/javascript">
+function submit_form(){
+	var frm = document.form_submit;
+	frm.submit();
+}
+</script>
 <!-- end autocomplete -->
 <div id="main">
         <div class="col1">
         
            
             <div class="bg_1">
-            <form method="POST" action="{{$APP_BASE_URL}}restaurant?mark=pickup">
+            <form method="POST" action="{{$APP_BASE_URL}}restaurant?mark=pickup" name="form_submit" id="form_submit">
                 <img src="{{$LAYOUT_HELPER_URL}}front/img/tt_find.png" alt="" />
                 <div class="input_form">
                     <label class="w55">by zip</label>
@@ -63,7 +69,7 @@
                     </div>
                     <br class="clear_left" />
                 </div>
-                <div class="uper float_left p20t m10t"><a href="#">Begin your oder</a></div>
+                <div class="uper float_left p20t m10t"><a href="#" onclick="submit_form();">Begin your oder</a></div>
                 <div class="float_left m5l m10t">
                <!--               
                 	<img src="{{$LAYOUT_HELPER_URL}}front/img/icon_6.jpg" alt="" />
