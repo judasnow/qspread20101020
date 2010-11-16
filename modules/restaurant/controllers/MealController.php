@@ -14,7 +14,5 @@ class restaurant_MealController extends Vi_Controller_Action
 		 $this->view->arr_meal = $arrMeal;
 		//-- end get meal
 	}
-	
-	
 } 
 

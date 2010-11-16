@@ -54,4 +54,12 @@ class Models_Meal extends Vi_Model
     	";
     	return $this->_db->fetchAll($query);
     }
+    
+	public function getDataById($meal_id){    	
+        $query = "  SELECT m.*
+    				FROM ".$this->_prefix."meal m
+    				WHERE m.meal_id = $meal_id    				
+    	";
+    	return $this->_db->fetchRow($query);
+    }
 }
