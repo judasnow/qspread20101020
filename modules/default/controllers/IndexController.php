@@ -1,6 +1,7 @@
 <?php
 
 include_once 'Shared/Models/Category.php';
+include_once 'Shared/Models/ScontentLang.php';
 class default_IndexController extends Vi_Controller_Action
 {
 	public function indexAction()
@@ -9,6 +10,7 @@ class default_IndexController extends Vi_Controller_Action
 		 * Display tempalte
 		 */
 	    $this->view->headTitle('Find a restaurant');
+	    $this->view->menuId = 'home';
 	    /**
 	     * Get data
 	     */
@@ -69,6 +71,12 @@ class default_IndexController extends Vi_Controller_Action
 	     */
 	    $this->view->cuisines = $cuisines;
 	    $this->view->arr_time = $arr_time;
+	    
+	    /**
+	     * Get content for TESTIMONIAL
+	     */
+	    $objContent = new Models_ScontentLang();
+	    $this->view->article = $objContent->getContent(17);
 	    
 	    
 	}
