@@ -7,9 +7,9 @@ class bottom_menuSticker extends Vi_Sticker
 	    
         $menus1 = array(
             0 => array(
-                    'url' => Vi_Registry::getBaseUrl(),
+                    'url' => Vi_Registry::getContentUrl(6),
                     'name' => 'About Us',
-                    'id' => 'home'
+                    'id' => 6
                     ),
             1 => array(
                     'url' => Vi_Registry::getContentUrl(1),
@@ -17,96 +17,86 @@ class bottom_menuSticker extends Vi_Sticker
                     'id' => 1
                     ),
             2 => array(
-                    'url' => Vi_Registry::getContentUrl(2),
+                    'url' => Vi_Registry::getBaseUrl(),
                     'name' => 'Browse Restaurants',
-                    'id' => 2
+                    'id' => 'home'
                     ),
             3 => array(
-                    'url' => Vi_Registry::getContentUrl(3),
-                    'name' => 'Blog',
-                    'id' => 3
-                    ),
-            4 => array(
-                    'url' => Vi_Registry::getContentUrl(4),
+                    'url' => Vi_Registry::getContentUrl(9),
                     'name' => 'Newsroom',
-                    'id' => 4
+                    'id' => 9
                     ),
         );
         
         $menus2 = array(
             0 => array(
-                    'url' => Vi_Registry::getBaseUrl(),
+                    'url' => Vi_Registry::getContentUrl(3),
                     'name' => 'Share the Bounty',
-                    'id' => 'home'
+                    'id' => 3
                     ),
             1 => array(
-                    'url' => Vi_Registry::getContentUrl(1),
+                    'url' => Vi_Registry::getContentUrl(13),
                     'name' => 'Fundraising',
-                    'id' => 1
+                    'id' => 13
                     ),
             2 => array(
-                    'url' => Vi_Registry::getContentUrl(2),
+                    'url' => Vi_Registry::getContentUrl(5),
                     'name' => 'Refer a Friend',
-                    'id' => 2
+                    'id' => 5
                     ),
             3 => array(
-                    'url' => Vi_Registry::getContentUrl(3),
+                    'url' => Vi_Registry::getContentUrl(4),
                     'name' => 'Refer a Restaurant',
-                    'id' => 3
+                    'id' => 4
                     ),
         );
         
         $menus3 = array(
             0 => array(
-                    'url' => Vi_Registry::getBaseUrl(),
+                    'url' => Vi_Registry::getContentUrl(2),
                     'name' => 'Corporate Accounts',
-                    'id' => 'home'
+                    'id' => 2
                     ),
             1 => array(
-                    'url' => Vi_Registry::getContentUrl(1),
+                    'url' => Vi_Registry::getBaseUrl(),
                     'name' => 'Restaurant Owners',
-                    'id' => 1
+                    'id' => 'restaurant_owners'
                     ),
             2 => array(
-                    'url' => Vi_Registry::getContentUrl(2),
+                    'url' => Vi_Registry::getBaseUrl(),
                     'name' => 'Business Partners',
-                    'id' => 2
+                    'id' => 'business_partners'
                     ),
         );
         
         $menus4 = array(
             0 => array(
-                    'url' => Vi_Registry::getBaseUrl(),
+                    'url' => Vi_Registry::getContentUrl(10),
                     'name' => 'Term of Use',
-                    'id' => 'home'
+                    'id' => 10
                     ),
             1 => array(
-                    'url' => Vi_Registry::getContentUrl(1),
-                    'name' => 'Privace Policy',
-                    'id' => 1
+                    'url' => Vi_Registry::getContentUrl(14),
+                    'name' => 'Privacy Policy',
+                    'id' => 14
                     ),
             2 => array(
-                    'url' => Vi_Registry::getContentUrl(2),
-                    'name' => 'Sitemap',
-                    'id' => 2
-                    ),
-            3 => array(
-                    'url' => Vi_Registry::getContentUrl(3),
+                    'url' => Vi_Registry::getContentUrl(16),
                     'name' => 'Copyright',
-                    'id' => 3
+                    'id' => 16
                     ),
         );
         
         $menus5 = array(
             0 => array(
-                    'url' => Vi_Registry::getBaseUrl(),
+                    'url' => Vi_Registry::getContentUrl(15),
                     'name' => 'FAQs',
-                    'id' => 'home'
+                    'id' => 15
                     ),
             1 => array(
-                    'url' => Vi_Registry::getContentUrl(1),
+                    'url' => Vi_Registry::getBaseUrl() . 'contact-us.html',
                     'name' => 'Contact Us',
-                    'id' => 1
+                    'id' => 'contactus'
                     ),
         );
         
