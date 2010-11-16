@@ -74,44 +74,17 @@
                       <td width="17%" class="color_1 p5t p5b bd1b center"><b>Price</b></td>
                       <td width="14%" class="color_1 p5t p5b bd1b"><b>Total</b></td>
                     </tr>
+                    {{foreach from=$session_cart item=item key=key}}
                     <tr>
                       <td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img_restaurant_menu.jpg" alt="" width="58" height="57" /></td>
-                      <td class="bd1b p10t p5b"><b>Pasta Bravo - Mission Valley</b>
-                          <p class="fs11"> Spicy Szechuan Shrimp - Large shrimp stir-fried with fresh sweet onions and green scallions in a spicy Szechuan sauce.<br />
+                      <td class="bd1b p10t p5b"><b>{{$item.name}}</b>
+                          <p class="fs11"> {{$item.description}}<br />
                         </p></td>
-                      <td class="bd1b p10t p5b center top">1 <br /></td>
-                      <td class="bd1b p10t p5b center top">$5.5</td>
-                      <td class="bd1b p10t p5b top">$5.5</td>
+                      <td class="bd1b p10t p5b center top">{{$item.quantity}} <br /></td>
+                      <td class="bd1b p10t p5b center top">${{$item.price}}</td>
+                      <td class="bd1b p10t p5b top">${{$item.total_money}}</td>
                     </tr>
-                    <tr>
-                      <td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img_restaurant_menu.jpg" alt="" width="58" height="57" /></td>
-                      <td class="bd1b p10t p5b"><b>Pasta Bravo - Mission Valley</b>
-                          <p class="fs11"> Spicy Szechuan Shrimp - Large shrimp stir-fried with fresh sweet onions and green scallions in a spicy Szechuan sauce.<br />
-                        </p></td>
-                      <td class="bd1b p10t p5b center top">1 <br /></td>
-                      <td class="bd1b p10t p5b center top">$5.5</td>
-                      <td class="bd1b p10t p5b top">$5.5</td>
-                    </tr>
-                    <tr>
-                      <td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img_restaurant_menu.jpg" alt="" width="58" height="57" /></td>
-                      <td class="bd1b p10t p5b"><b>Pasta Bravo - Mission Valley</b>
-                          <p class="fs11"> Spicy Szechuan Shrimp - Large shrimp stir-fried with fresh sweet onions and green scallions in a spicy Szechuan sauce.<br />
-                        </p></td>
-                      <td class="bd1b p10t p5b center top">1 <br /></td>
-                      <td class="bd1b p10t p5b center top">$5.5</td>
-                      <td class="bd1b p10t p5b top">$5.5</td>
-                     
-                    </tr>
-                    <tr>
-                      <td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img_restaurant_menu.jpg" alt="" width="58" height="57" /></td>
-                      <td class="bd1b p10t p5b"><b>Pasta Bravo - Mission Valley</b>
-                          <p class="fs11"> Spicy Szechuan Shrimp - Large shrimp stir-fried with fresh sweet onions and green scallions in a spicy Szechuan sauce.<br />
-                        </p></td>
-                      <td class="bd1b p10t p5b center top">1 <br /></td>
-                      <td class="bd1b p10t p5b center top">$5.5</td>
-                      <td class="bd1b p10t p5b top">$5.5</td>
-                      
-                    </tr>
+                    {{/foreach}} 
                     <tr>
                       <td class=" ">&nbsp;</td>
                       <td class="  "><p class="fs11"><br />
