@@ -38,7 +38,7 @@ function submit_form(){
                 <img src="{{$LAYOUT_HELPER_URL}}front/img/tt_find.png" alt="" />
                 <div class="input_form">
                     <label class="w55">by zip</label>
-                    <input type="text" value="" class="w50" name="data[zip]"/>
+                    <input type="text" value="" class="w50" name="data[zip]" id="data[zip]"/>
                     <span class="color_1"><b>OR</b></span><br />
                     <label class="w55">by city</label>
                     <input type="text" value="" class="w130" name="searchword" id="searchword" /><br />
@@ -52,7 +52,7 @@ function submit_form(){
                     </select><br />
                     <div class="w110 float_left">
                         <label>Time</label><br class="clear_left" />
-                        <select class="w70">
+                        <select class="w70" name="condition[time]">
                             <option value="asap">ASAP</option>
                             {{foreach from=$arr_time item=item}}
 	                        <option value="{{$item}}">{{$item}}</option>
@@ -61,7 +61,7 @@ function submit_form(){
                     </div>
                     <div class="w110 float_left">
                         <label>Date</label><br class="clear_left" />
-                        <select class="w110">
+                        <select class="w110" name="condition[date]">
                             {{foreach from=$date_month item=item}}	
 							<option value="{{$item}}">{{$item}}</option>
 							{{/foreach}}

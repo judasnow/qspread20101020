@@ -17,6 +17,7 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    $find = $this->_getParam('find', false);
 	    $mark = $this->_getParam('mark', false);
 	    $searchword = $this->_getParam('searchword', false);
+	    $conditions = $this->_getParam('condition', array());
 	    
 	    
 		 /**
