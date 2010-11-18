@@ -377,6 +377,16 @@ class Vi_Initializer
                                                      ),
                                                      array()
                                                 );
+                                                
+//            $route4  = new Zend_Controller_Router_Route_Regex(
+//                                                     'restaurant-owner-register.html',
+//                                                     array(
+//                                                        'module'     => 'user',
+//                                                        'controller' => 'index',
+//                                                        'action'     => 'restaurant-register'
+//                                                     ),
+//                                                     array()
+//                                                );
         } else {
 //            $route  = new Zend_Controller_Router_Route_Regex(
 //                                                     'content/([\w_-]*)(.*)',
@@ -391,6 +401,7 @@ class Vi_Initializer
         $router->addRoute('content', $route);
         $router->addRoute('contact', $route2);
         $router->addRoute('register', $route3);
+//        $router->addRoute('restaurant-register', $route4);
     }
     /**
      * Initialize Controller paths 
