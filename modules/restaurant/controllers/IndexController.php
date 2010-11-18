@@ -62,6 +62,15 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    	$arr_condition["address LIKE ? "] = "%".$searchword."%";
 	    }
 	    
+		if (null != @$conditions['cuisine']) {
+	    	/**
+	    	 * Condition here
+	    	 */
+			$arr_condition['cuisine_id'] = $conditions['cuisine'];
+	    	$objRestaurant = new Models_Restaurant();
+	    	$arr_restaurant = $objRestaurant->getRestaurantByData($arr_condition);
+	    }
+	    
 //	    echo "<pre>";print_r($arr_condition);die;
 	    /**
 	     * Get data from database
