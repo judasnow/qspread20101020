@@ -40,8 +40,12 @@ function load_data(value){
 						<img src="{{$LAYOUT_HELPER_URL}}front/img/tt_yourorder.jpg" alt="" />
 						<div class="p10t">
 							<div class="float_left"><b>Location</b></div>
-							<div class="float_right color_2"><a href="#">Add New Address</a></div><br class="clear" />
+<!-- 							
+							<div class="float_right color_2"><a href="#">Add New Address</a></div>
+-->							
+							<br class="clear" />
 						</div>
+<!-- 						
 						<div class="input_form bd1b p10b">
 							<label>Select a saved address</label><br class="clear_left" />
 							<select class="w165">
@@ -50,11 +54,12 @@ function load_data(value){
 							<p class="fs11"><i>La Habra, CA</i></p>
 							<div class="center p5t">OR</div>
 						</div>
+-->						
 						<div class="input_form bd1b p20b">
-							<label class="w30">City</label>
-							<input type="text" value="" class="w130" name="searchword_s" id="searchword_s" /><br />
 							<label class="w30">Zip</label>
-							<input type="text" value="" class="w50" /><br />
+							<input type="text" value="" class="w50" /><span class="color_1"><b> OR</b></span>	<br />								
+							<label class="w30">City</label>
+							<input type="text" value="" class="w130" name="searchword_s" id="searchword_s" /><br />						
 							<a href="{{$APP_BASE_URL}}restaurant?search=city"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_go.jpg" alt="" /></a>
 						</div>
 						<div class="input_form p20b">
@@ -70,8 +75,10 @@ function load_data(value){
 								{{foreach from=$arr_time item=item}}	
 								<option value="{{$item}}">{{$item}}</option>
 								{{/foreach}}							
-							</select>							
+							</select>	
+<!-- 													
 							<div class="center"><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_checkout.png" alt="" /></a></div>
+-->							
 						</div>
 						</form>
 					</div>
