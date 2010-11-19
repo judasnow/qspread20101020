@@ -68,12 +68,18 @@ class Models_Restaurant extends Vi_Model
         return $this->fetchAll($select)->toArray();
     }
     
-    public function getRestaurantByData($arrData){    	
+    public function getRestaurantByData($arrData, $count = null, $offset = null){      	
         $query = "  SELECT r.*
-    				FROM vi_restaurant r, vi_cuisine c
-    				WHERE r.restaurant_id = c.restaurant_id
-    				AND c.cuisine_id = 	".$arrData['cuisine_id']."
+    				FROM vi_restaurant r
+    				JOIN vi_meal m ON (r.restaurant_id = m.restaurant_id) AND (m.meal_id =	".$arrData['cuisine_id'].")    				
     	";
+        if ( isset($arrData['city']) )
+        	$query .= " AND (r.address LIKE '%".$arrData['city']."%')";
+        if ( isset($arrData['zip']) )
+        	$query .= " JOIN vi_country c ON (c.postal_code = ".$arrData['zip'].") AND (r.address LIKE '%c.city%')";
+        	
+        $query .= " LIMIT $offset,$count";
+    
     	return $this->_db->fetchAll($query);
     }
 }
