@@ -60,7 +60,7 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    	$arr_con['city'] = $city_from_code[0]['city'];
 	    	$arr_con['zip'] = $condition['zip'];
 	    }
-		else if ( false != $searchword){
+		else if ( false != $searchword){//-- searchword: city
 	    	$arr_condition["address LIKE ? "] = "%".$searchword."%";
 	    }
 	    
