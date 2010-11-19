@@ -44,7 +44,8 @@ function submit_form(){
                     <input type="text" value="" class="w130" name="searchword" id="searchword" /><br />
                     <br />
                     <label>Choose Cuisine (optional)</label><br class="clear_left" />
-                    <select class="w215" name="condition[cuisine]">                    
+                    <select class="w215" name="condition[cuisine]">   
+                    	<option value="0">All Cuisines</option>                 
                     	{{foreach from=$cuisines item=item}}
                         <option value="{{$item.value}}">{{$item.name}}</option>
                         {{/foreach}}

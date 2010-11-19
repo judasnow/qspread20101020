@@ -57,19 +57,23 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    	$objCountry = new Models_Country();
 	    	$city_from_code = $objCountry->getCityByCode($condition['zip']);
 	    	$arr_condition["address LIKE ? "] = "%".$city_from_code[0]['city']."%";
+	    	$arr_con['city'] = $city_from_code[0]['city'];
+	    	$arr_con['zip'] = $condition['zip'];
 	    }
 		else if ( false != $searchword){
 	    	$arr_condition["address LIKE ? "] = "%".$searchword."%";
 	    }
 	    
-		if (null != @$conditions['cuisine']) {
+		if ((null != @$conditions['cuisine']) && ($conditions['cuisine'] > 0)) {
 	    	/**
 	    	 * Condition here
-	    	 */
-			$arr_condition['cuisine_id'] = $conditions['cuisine'];
+	    	 */			
+			$arr_con['cuisine_id'] = $conditions['cuisine'];		
 	    	$objRestaurant = new Models_Restaurant();
-	    	$arr_restaurant = $objRestaurant->getRestaurantByData($arr_condition);
+	    	$restaurants = $objRestaurant->getRestaurantByData($arr_con,$numRowPerPage,($currentPage - 1) * $numRowPerPage);	    
+	    	$count = count($restaurants);	
 	    }
+	    else{
 	    
 //	    echo "<pre>";print_r($arr_condition);die;
 	    /**
@@ -82,7 +86,8 @@ class restaurant_IndexController extends Vi_Controller_Action
 			    											$numRowPerPage,
 		                                                   ($currentPage - 1) * $numRowPerPage)->toArray(); 
 	    $count = count($objRestaurant->getByColumnName($arr_condition));
-
+	    }
+	    
 	    $this->view->lead_time = $str_lead_time_title;
 	    $this->view->mark = $mark;
 	    $this->view->alphabet = GetAlphabet();
