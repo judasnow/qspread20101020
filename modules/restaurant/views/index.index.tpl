@@ -57,9 +57,9 @@ function load_data(value){
 -->						
 						<div class="input_form bd1b p20b">
 							<label class="w30">Zip</label>
-							<input type="text" value="" class="w50" /><span class="color_1"><b> OR</b></span>	<br />								
+							<input type="text" value="{{$zip}}" class="w50" /><span class="color_1"><b> OR</b></span>	<br />								
 							<label class="w30">City</label>
-							<input type="text" value="" class="w130" name="searchword_s" id="searchword_s" /><br />						
+							<input type="text" value="{{$city}}" class="w130" name="searchword_s" id="searchword_s" /><br />						
 							<a href="{{$APP_BASE_URL}}restaurant?search=city"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_go.jpg" alt="" /></a>
 						</div>
 						<div class="input_form p20b">
@@ -67,13 +67,14 @@ function load_data(value){
 							<label class="w30">Date</label>
 							<select class="w130">
 								{{foreach from=$date_month item=item}}	
-								<option value="{{$item}}">{{$item}}</option>
+								<option value="{{$item}}" {{if $date eq $item }} selected {{/if}} >{{$item}}</option>
 								{{/foreach}}
 							</select><br />
 							<label class="w30">Time</label>
 							<select class="form_text3" id="ctl00_cBody_Backet_datetimeuc_ddlTime" onchange="javascript:setTimeout('__doPostBack(\'ctl00$cBody$Backet$datetimeuc$ddlTime\',\'\')', 0)" name="ctl00$cBody$Backet$datetimeuc$ddlTime">
+								<option value="asap">ASAP</option>
 								{{foreach from=$arr_time item=item}}	
-								<option value="{{$item}}">{{$item}}</option>
+								<option value="{{$item}}" {{if $time eq $item }} selected {{/if}} >{{$item}}</option>
 								{{/foreach}}							
 							</select>	
 <!-- 													
