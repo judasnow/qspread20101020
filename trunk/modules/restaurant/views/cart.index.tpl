@@ -44,7 +44,8 @@
                             <td width="11%" class="color_1 p5t p5b bd1b"><b>Total</b></td>
                             <td width="6%" class="color_1 p5t p5b bd1b"><b>Edit</b></td>
                           </tr>                                                   
-                          {{foreach from=$session_cart item=item key=key}}                         
+                          {{foreach from=$session_cart item=item key=key}} 
+                          {{if isset($item.name) }}                        
                           <tr>
                             <td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img_restaurant_menu.jpg" alt="" width="58" height="57" /></td>
                             <td class="bd1b p10t p5b"><b>{{$item.name}}</b>
@@ -59,6 +60,7 @@
                             	<a class="color_2" href="#">remove</a>
                             </td>
                           </tr> 
+                          {{/if}}
                           {{/foreach}}   
                           <tr>
                             <td colspan="2" rowspan="3" class=" ">
@@ -67,19 +69,19 @@
                                                </td>
                             <td class="top"><br /></td>
                             <td class="center top">Subtotal</td>
-                            <td class="top">$40.5</td>
+                            <td class="top">${{$subtotal}}</td>
                             <td class="top"><a class="color_2" href="#"></a></td>
                           </tr>
                           <tr>
                             <td class="center top"><br /></td>
-                            <td class="center top">GST</td>
-                            <td class="top">$40.5</td>
+                            <td class="center top">Sales tax</td>
+                            <td class="top">${{$tax}}</td>
                             <td class="top"><a class="color_2" href="#"></a></td>
                           </tr>
                           <tr>
                             <td class="center top"><br /></td>
                             <td class="center top">Shipping fee</td>
-                            <td class="top">$40.5</td>
+                            <td class="top">${{$shipping}}</td>
                             <td class="top"><a class="color_2" href="#"></a></td>
                           </tr>
                           <tr>
@@ -87,8 +89,8 @@
                             <td class=""><p class="fs11"><br />
                             </p></td>
                             <td class="center top"><br /></td>
-                            <td class="center top">Subtotal</td>
-                            <td class="top color_1 fs14"><b>$180.5</b></td>
+                            <td class="center top">Order total</td>
+                            <td class="top color_1 fs14"><b>${{$ordertotal}}</b></td>
                             <td class="top"><a class="color_2" href="#"></a></td>
                           </tr>
                           <tr>
