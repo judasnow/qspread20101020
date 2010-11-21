@@ -146,10 +146,10 @@ class restaurant_IndexController extends Vi_Controller_Action
 		}
 		
 		$this->view->arr_time = $arr_time;
-		$this->view->zip = $condition['zip'];
+		$this->view->zip = null != @$condition['zip']?$condition['zip']:'';
 		$this->view->city = $searchword;
-		$this->view->time = $conditions['time'];
-		$this->view->date = $conditions['date'];		
+		$this->view->time = null != @$conditions['time']?$conditions['time']:'';
+		$this->view->date = null != @$conditions['date']?$conditions['date']:'';		
 		
 	    /**
 	     * Pagination
