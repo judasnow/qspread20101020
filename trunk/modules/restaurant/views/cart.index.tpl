@@ -54,31 +54,29 @@
                                 <br /></td>
                             <td class="bd1b p10t p5b center top">${{$item.price}}</td>
                             <td class="bd1b p10t p5b top">${{$item.total_money}}</td>
-                            <td class="bd1b p10t p5b top"><a class="color_2" href="#">remove</a></td>
+                            <td class="bd1b p10t p5b top">
+                            	<a class="color_2" href="#">update</a>
+                            	<a class="color_2" href="#">remove</a>
+                            </td>
                           </tr> 
-                          {{/foreach}}                         
+                          {{/foreach}}   
                           <tr>
-                            <td class=" ">&nbsp;</td>
-                            <td class="  "><p class="fs11"><br />
-                            </p></td>
+                            <td colspan="2" rowspan="3" class=" ">
+                            	<strong>Available Discounts</strong> - only one can be use per order  <br />        
+                            	<input type="radio" class="mid float_left m5r" /><b class="float_left m5r">Promo/Coupon Code:</b><input type="input" class="input_tr float_left"/>  <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_apply.png" alt="" /></a>
+                                               </td>
                             <td class="top"><br /></td>
                             <td class="center top">Subtotal</td>
                             <td class="top">$40.5</td>
                             <td class="top"><a class="color_2" href="#"></a></td>
                           </tr>
                           <tr>
-                            <td class=" ">&nbsp;</td>
-                            <td class="  "><p class="fs11"><br />
-                            </p></td>
                             <td class="center top"><br /></td>
                             <td class="center top">GST</td>
                             <td class="top">$40.5</td>
                             <td class="top"><a class="color_2" href="#"></a></td>
                           </tr>
                           <tr>
-                            <td class="">&nbsp;</td>
-                            <td class=" "><p class="fs11"><br />
-                            </p></td>
                             <td class="center top"><br /></td>
                             <td class="center top">Shipping fee</td>
                             <td class="top">$40.5</td>
@@ -100,9 +98,9 @@
                             <td class="center top"><br /></td>
                             <td class="center top"></td>
                             <td class="p10t" color_1 fs14">
-                            	<a href="{{$APP_BASE_URL}}restaurant/ship?order_id={{$order_id}}">
-                            		<img src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" />
-                            	</a>
+                            <a href="{{$APP_BASE_URL}}restaurant/ship?order_id={{$order_id}}">
+                            	<img src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" />
+                            </a>
                             </td>
                             <td class="top"><a class="color_2" href="#"></a></td>
                           </tr>

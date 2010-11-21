@@ -28,6 +28,11 @@ function load_data(value){
   });
   
 //]]>
+function submit_search(){
+	var frm = document.searchForm;
+	frm.submit();
+}
+
 </script>
 <!-- end autocomplete -->
 <div id="main">
@@ -36,7 +41,7 @@ function load_data(value){
             <div class="cen1">
             	<div class="cen_1">
                 	<div class="p10">
-                		<form onsubmit="return sub_search();" id="searchForm" action="{{$APP_BASE_URL}}restaurant?search=city" method="post" name="searchForm">
+                		<form onsubmit="return sub_search();" id="searchForm" action="{{$APP_BASE_URL}}restaurant?mark=pickup" method="post" name="searchForm">
 						<img src="{{$LAYOUT_HELPER_URL}}front/img/tt_yourorder.jpg" alt="" />
 						<div class="p10t">
 							<div class="float_left"><b>Location</b></div>
@@ -59,8 +64,8 @@ function load_data(value){
 							<label class="w30">Zip</label>
 							<input type="text" value="{{$zip}}" class="w50" /><span class="color_1"><b> OR</b></span>	<br />								
 							<label class="w30">City</label>
-							<input type="text" value="{{$city}}" class="w130" name="searchword_s" id="searchword_s" /><br />						
-							<a href="{{$APP_BASE_URL}}restaurant?search=city"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_go.jpg" alt="" /></a>
+							<input type="text" value="{{$city}}" class="w130" name="searchword" id="searchword" /><br />						
+							<a href="#" onclick="submit_search();"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_go.jpg" alt="" /></a>
 						</div>
 						<div class="input_form p20b">
 							<p class="p10b"><b>Date and time</b></p>
@@ -163,7 +168,7 @@ function load_data(value){
 									({{$item.address}}
 									<span class="color_1"><a href="#">Map</a> </span>
 									<br/>
-									<a href="{{$APP_BASE_URL}}restaurant/meal?id={{$item.restaurant_id}}">Select</a>
+									<a href="{{$APP_BASE_URL}}restaurant/meal?id={{$item.restaurant_id}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_select.png" alt="" /></a>									
 								</p>
 							</td>
 							<td class="bd1b p10t p5b center top">{{$item.mileage}}</td>
