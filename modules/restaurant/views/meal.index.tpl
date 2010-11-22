@@ -47,6 +47,7 @@
       </div>      
 
       <div class="w692 float_right m20t po_re">
+<!--       
         <div class="bg_popup p10">
           <div class="bd1b p5b w600"> <img src="{{$LAYOUT_HELPER_URL}}front/img/text_fire.png" alt="" class="float_left"/>
             <div class="float_right l_title"> <b>Quality:</b> &nbsp;&nbsp;
@@ -85,7 +86,7 @@
             </div>
           </div>
         </div>               
-        
+-->        
         <p class="float_left m10r"><img src="{{$LAYOUT_HELPER_URL}}front/img/img.jpg" alt="" /></p>
         <span class="fs14"><b>Wok-N-Roll</b></span><br />
         1908 Mass Ave.<br />
