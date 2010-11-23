@@ -36,23 +36,20 @@
 						</div>
 			<div class="c50l">
                 <p class="color_2 uper"><b>Shipping Address</b></p>
-                <div class="input_form">
-                    <label class="w130 m10r right">First Name:</label>
-                    <span class="color_2">Nguyen</span>
-                    <br class="clear"/>
-                    <label class="w130 m10r right">Last Name:</label>
-                    <span class="color_2">Dang</span>
+                <div class="input_form">                    
+                    <label class="w130 m10r right">Full Name:</label>
+                    <span class="color_2">{{$full_name}}</span>
                     <br class="clear" />
                     <label class="w130 m10r right">Address:</label>
-                    <span class="color_2">1045 Hong Bang</span><br class="clear" />                    
+                    <span class="color_2">{{$address}}</span><br class="clear" />                    
                     <label class="w130 m10r right">Zip/Postal Code:</label>
-                    <span class="color_2">548</span><br class="clear" />
+                    <span class="color_2">{{$zip_code}}</span><br class="clear" />
                     <label class="w130 m10r right">Phone:</label>
-                    <span class="color_2">0903038899</span><br class="clear" />
-                    <label class="w130 m10r right">Mobile Phone:</label>
-                    <span class="color_2">0903038899</span><br class="clear" />                    
+                    <span class="color_2">{{$phone}}</span><br class="clear" />
+<!--                                         
 					<label class="w130 m10r right">&nbsp;</label>
                     <img src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" /><br />
+-->                    
 				</div> 
 				<br class="clear" />
             </div>
