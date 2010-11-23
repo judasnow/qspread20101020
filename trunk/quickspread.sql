@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2010 at 04:49 AM
+-- Generation Time: Nov 23, 2010 at 09:01 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -371,6 +371,7 @@ DROP TABLE IF EXISTS `vi_order_detail`;
 CREATE TABLE IF NOT EXISTS `vi_order_detail` (
   `order_detail_id` int(11) NOT NULL AUTO_INCREMENT,
   `meal_id` int(11) DEFAULT NULL,
+  `order_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `quantity` int(11) DEFAULT NULL,
   `price` float DEFAULT NULL,
