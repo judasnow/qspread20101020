@@ -21,7 +21,25 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 	$this->view->phone		= $data_info['phone1'].".".$data_info['phone2'].".".$data_info['phone3'];
 	 	if ( false != $data_info ){ 
 	 		//-- begin save into db: vi_order and vi_order_detail
+	 		$arr_order = array(
+	 			'order_id'		=>	$order_id,
+	 			'sub_total'		=>	$_SESSION['cart'][$order_id]['subtotal'],
+	 			'sales_tax'		=>	$_SESSION['cart'][$order_id]['tax'],
+	 			'shipping_fee'	=>	$_SESSION['cart'][$order_id]['shipping'],
+	 			'order_total'	=>	$_SESSION['cart'][$order_id]['ordertotal'],
+	 			'full_name'		=>	$data_info['full_name'],
+	 			'address'		=>	$data_info['address'],
+	 			'suite'			=>	$data_info['note'],
+	 			'city'			=>	$data_info['city'],
+	 			'state'			=> 	$data_info['state'],
+	 			'zip_code'		=> 	$data_info['zip_code'],
+	 			'phone'			=> 	$data_info['phone1'].".".$data_info['phone2'].".".$data_info['phone3'],
+	 			'email'			=> 	$data_info['email']
+	 		);
 	 		
+	 		$arr_order_detail = array(
+	 			'order_id'		=>	$order_id,
+	 		);
 	 		//-- end save into db: vi_order and vi_order_detail
 	 	}
 	}	
