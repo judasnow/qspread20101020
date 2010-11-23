@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2010 at 09:01 AM
+-- Generation Time: Nov 23, 2010 at 09:07 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -373,6 +373,7 @@ CREATE TABLE IF NOT EXISTS `vi_order_detail` (
   `meal_id` int(11) DEFAULT NULL,
   `order_id` int(11) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
+  `description` text,
   `quantity` int(11) DEFAULT NULL,
   `price` float DEFAULT NULL,
   `total` float DEFAULT NULL,

@@ -36,10 +36,17 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 			'phone'			=> 	$data_info['phone1'].".".$data_info['phone2'].".".$data_info['phone3'],
 	 			'email'			=> 	$data_info['email']
 	 		);
-	 		
-	 		$arr_order_detail = array(
-	 			'order_id'		=>	$order_id,
-	 		);
+	 		foreach ( $_SESSION['cart'][$order_id] as $key=>$value ){	 			
+		 		$arr_order_detail = array(
+		 			'order_id'		=> $order_id,
+		 			'meal_id'		=> $value['meal_id'],
+		 			'name'			=> $value['name'],
+		 			'description'	=> $value['description'],
+		 			'price'			=> $value['price'],
+		 			'quantity'		=> $value['quantity'],
+		 			'total'			=> $value['total_money'],
+		 		);
+	 		}
 	 		//-- end save into db: vi_order and vi_order_detail
 	 	}
 	}	
