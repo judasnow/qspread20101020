@@ -48,7 +48,9 @@
 	                    <input type="text" value="" class="w230" id="data[city]" name="data[city]" /><br />
 	                    <label class="w130 m10r right">State:<span class="red">*</span></label>
 	                    <select class="w235" id="data[state]" name="data[state]">
-	                    	<option></option>
+	                    	{{foreach from=$arr_province item=item}}	
+	                    	<option value="{{$item.province}}">{{$item.province}}</option>
+	                    	{{/foreach}}
 	                    </select><br />
 	                    <label class="w130 m10r right">Zip/Postal Code:<span class="red">*</span></label>
 	                    <input type="text" value="" class="w230" id="data[zip_code]" name="data[zip_code]" /><br />
@@ -72,7 +74,7 @@
 	                    	<img src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" />
 	                    </a>
 -->	                    
-	                    <input type="submit" style="background:url({{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg);width:67px;height:26px;border:0px;cursor: pointer;" value="" />
+	                    <input type="submit" style="background:url({{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg);width:69px;height:21px;border:0px;cursor: pointer;" value="" />
 	                    <br />
                     </form>
 				</div> 
