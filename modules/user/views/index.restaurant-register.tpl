@@ -1,4 +1,3 @@
-
             <div class="bg_howitwork">
                 <p class="title1">Sign Up Now</p>
                 <p class="p5t">Enter your information below to become a QuickSpread Restaurant Partner</p>

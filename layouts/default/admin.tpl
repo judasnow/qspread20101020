@@ -21,7 +21,6 @@
 	<!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
 	<link rel="stylesheet" href="{{$LAYOUT_HELPER_URL}}admin/css/invalid.css"  type="text/css" />	
 	
-
 	
 	<!-- Internet Explorer Fixes Stylesheet -->
 	

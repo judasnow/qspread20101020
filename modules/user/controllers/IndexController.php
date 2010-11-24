@@ -14,6 +14,7 @@ require_once 'Shared/Models/Group.php';
 require_once 'Shared/Models/User.php';
 require_once 'Shared/Models/UserExpand.php';
 require_once 'Shared/Models/ScontentLang.php';
+
 class user_IndexController extends Vi_Controller_Action
 {
     public function registerAction()
