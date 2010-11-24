@@ -12,6 +12,7 @@ require_once 'Shared/Models/Country.php';
 require_once 'Shared/Models/Group.php';
 require_once 'Shared/Models/User.php';
 require_once 'Shared/Models/UserExpand.php';
+
 class user_AdminController extends Vi_Controller_Action_Admin 
 {
     
