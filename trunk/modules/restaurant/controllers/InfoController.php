@@ -1,5 +1,7 @@
 <?php
 include_once 'libs/Shared/Models/Meal.php';
+include_once 'libs/Shared/Models/Order.php';
+include_once 'libs/Shared/Models/OrderDetail.php';
 class restaurant_InfoController extends Vi_Controller_Action
 {
 	/**
@@ -22,7 +24,7 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 	if ( false != $data_info ){ 
 	 		//-- begin save into db: vi_order and vi_order_detail
 	 		$arr_order = array(
-	 			'order_id'		=>	$order_id,
+//	 			'order_id'		=>	$order_id,
 	 			'sub_total'		=>	$_SESSION['cart'][$order_id]['subtotal'],
 	 			'sales_tax'		=>	$_SESSION['cart'][$order_id]['tax'],
 	 			'shipping_fee'	=>	$_SESSION['cart'][$order_id]['shipping'],
@@ -36,16 +38,24 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 			'phone'			=> 	$data_info['phone1'].".".$data_info['phone2'].".".$data_info['phone3'],
 	 			'email'			=> 	$data_info['email']
 	 		);
+	 		
+	 		$objOrder = new Models_Order();
+	 		$bResultOrder = $objOrder->insert($arr_order);
+	 		
 	 		foreach ( $_SESSION['cart'][$order_id] as $key=>$value ){	 			
 		 		$arr_order_detail = array(
-		 			'order_id'		=> $order_id,
+		 			'order_id'		=> $bResultOrder,
 		 			'meal_id'		=> $value['meal_id'],
 		 			'name'			=> $value['name'],
 		 			'description'	=> $value['description'],
 		 			'price'			=> $value['price'],
 		 			'quantity'		=> $value['quantity'],
-		 			'total'			=> $value['total_money'],
+		 			'total'			=> $value['total_money']
 		 		);
+		 		if ( !empty($value['name']) ){
+			 		$objOrderDetail = new Models_OrderDetail();
+			 		$objOrderDetail->insert($arr_order_detail);
+		 		}
 	 		}
 	 		//-- end save into db: vi_order and vi_order_detail
 	 	}

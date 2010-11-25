@@ -10,7 +10,7 @@ class restaurant_CartController extends Vi_Controller_Action
 		 //-- begin add information into cart
 		 $meal_id = $this->_getParam('meal_id', false); 
 		
-		 $order_id = 1;		 
+		 $order_id = session_id();		 
 		 if ( false != $meal_id ){
 		 	 if ( isset($_SESSION['cart'][$order_id][$meal_id]['meal_id']) && $_SESSION['cart'][$order_id][$meal_id]['meal_id']==$meal_id ){
 		 	 	$_SESSION['cart'][$order_id][$meal_id]['quantity'] = $_SESSION['cart'][$order_id][$meal_id]['quantity']+1;		 	 	
