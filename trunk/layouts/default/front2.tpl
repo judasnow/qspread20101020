@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="bot1"></div>
-            <div class="bg_join m10t"><a href="#">JOIN NOW</a></div>
+            <div class="bg_join m10t"><a href="{{$BASE_URL}}restaurant-owner-register.html">JOIN NOW</a></div>
         </div>
         <div class="w692 float_right m20t">
         <!--  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> START MODULE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->

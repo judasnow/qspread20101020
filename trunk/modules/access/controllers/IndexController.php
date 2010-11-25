@@ -40,12 +40,12 @@ class access_IndexController extends Vi_Controller_Action {
 				}
 			} else {
 				$loginError = true;
-				$this->session->loginError = true;
-			    if ($this->_getCallBackUrl ()) {
-                    $this->_redirect ($this->_getCallBackUrl ());
-                } else {
-                    $this->_redirect ("");
-                }
+//				$this->session->loginError = true;
+//			    if ($this->_getCallBackUrl ()) {
+//                    $this->_redirect ($this->_getCallBackUrl ());
+//                } else {
+//                    $this->_redirect ("");
+//                }
 			}
 		}
 		$this->view->submitHandler = $submitHandler;

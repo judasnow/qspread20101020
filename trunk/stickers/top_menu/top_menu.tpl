@@ -3,7 +3,7 @@
 <div class="float_right">
     <ul class="na_1">
         <li><a href="{{$BASE_URL}}" {{if $menuId == 'home'}} class="current" {{/if}} style="border: none;">Home</a></li>
-        <li><a href="javascript:openLoginForm();">Sign in</a></li>
+        <li><a href="{{$BASE_URL}}access/index/login">Sign in</a></li>
         <li><a  {{if $menuId == 15}} class="current" {{/if}} href="faq.html">FAQ</a></li>
     </ul>
     <div class="float_right m10r"><a href="{{$BASE_URL}}register.html">
