@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2010 at 09:07 AM
+-- Generation Time: Nov 25, 2010 at 09:38 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -25,7 +25,6 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `vi_category`
 --
 
-DROP TABLE IF EXISTS `vi_category`;
 CREATE TABLE IF NOT EXISTS `vi_category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -46,7 +45,6 @@ INSERT INTO `vi_category` (`category_id`, `name`) VALUES
 -- Table structure for table `vi_category_value`
 --
 
-DROP TABLE IF EXISTS `vi_category_value`;
 CREATE TABLE IF NOT EXISTS `vi_category_value` (
   `category_value_id` int(11) NOT NULL AUTO_INCREMENT,
   `category_id` int(11) DEFAULT NULL,
@@ -122,7 +120,6 @@ INSERT INTO `vi_category_value` (`category_value_id`, `category_id`, `name`, `so
 -- Table structure for table `vi_group`
 --
 
-DROP TABLE IF EXISTS `vi_group`;
 CREATE TABLE IF NOT EXISTS `vi_group` (
   `group_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -151,7 +148,6 @@ INSERT INTO `vi_group` (`group_id`, `name`, `default`, `description`, `color`, `
 -- Table structure for table `vi_group_permission`
 --
 
-DROP TABLE IF EXISTS `vi_group_permission`;
 CREATE TABLE IF NOT EXISTS `vi_group_permission` (
   `group_permission_id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) DEFAULT NULL,
@@ -203,7 +199,6 @@ INSERT INTO `vi_group_permission` (`group_permission_id`, `group_id`, `permissio
 -- Table structure for table `vi_lang`
 --
 
-DROP TABLE IF EXISTS `vi_lang`;
 CREATE TABLE IF NOT EXISTS `vi_lang` (
   `lang_id` int(11) NOT NULL AUTO_INCREMENT,
   `lang_code` varchar(5) NOT NULL,
@@ -227,7 +222,6 @@ INSERT INTO `vi_lang` (`lang_id`, `lang_code`, `lang_image`, `enabled`, `name`, 
 -- Table structure for table `vi_mail`
 --
 
-DROP TABLE IF EXISTS `vi_mail`;
 CREATE TABLE IF NOT EXISTS `vi_mail` (
   `mail_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) NOT NULL,
@@ -252,7 +246,6 @@ INSERT INTO `vi_mail` (`mail_id`, `name`, `data`, `type`, `enabled`) VALUES
 -- Table structure for table `vi_mail_lang`
 --
 
-DROP TABLE IF EXISTS `vi_mail_lang`;
 CREATE TABLE IF NOT EXISTS `vi_mail_lang` (
   `mail_lang_id` int(11) NOT NULL AUTO_INCREMENT,
   `mail_id` int(11) NOT NULL,
@@ -280,7 +273,6 @@ INSERT INTO `vi_mail_lang` (`mail_lang_id`, `mail_id`, `lang_id`, `subject`, `co
 -- Table structure for table `vi_meal`
 --
 
-DROP TABLE IF EXISTS `vi_meal`;
 CREATE TABLE IF NOT EXISTS `vi_meal` (
   `meal_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -311,7 +303,6 @@ INSERT INTO `vi_meal` (`meal_id`, `name`, `description`, `price`, `parent`, `res
 -- Table structure for table `vi_message`
 --
 
-DROP TABLE IF EXISTS `vi_message`;
 CREATE TABLE IF NOT EXISTS `vi_message` (
   `message_id` int(11) NOT NULL AUTO_INCREMENT,
   `from_user_id` int(11) DEFAULT NULL,
@@ -337,7 +328,6 @@ CREATE TABLE IF NOT EXISTS `vi_message` (
 -- Table structure for table `vi_order`
 --
 
-DROP TABLE IF EXISTS `vi_order`;
 CREATE TABLE IF NOT EXISTS `vi_order` (
   `order_id` int(11) NOT NULL AUTO_INCREMENT,
   `sub_total` float DEFAULT NULL,
@@ -367,7 +357,6 @@ CREATE TABLE IF NOT EXISTS `vi_order` (
 -- Table structure for table `vi_order_detail`
 --
 
-DROP TABLE IF EXISTS `vi_order_detail`;
 CREATE TABLE IF NOT EXISTS `vi_order_detail` (
   `order_detail_id` int(11) NOT NULL AUTO_INCREMENT,
   `meal_id` int(11) DEFAULT NULL,
@@ -391,7 +380,6 @@ CREATE TABLE IF NOT EXISTS `vi_order_detail` (
 -- Table structure for table `vi_permission`
 --
 
-DROP TABLE IF EXISTS `vi_permission`;
 CREATE TABLE IF NOT EXISTS `vi_permission` (
   `permission_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -441,21 +429,57 @@ INSERT INTO `vi_permission` (`permission_id`, `name`, `module`, `description`, `
 -- Table structure for table `vi_restaurant`
 --
 
-DROP TABLE IF EXISTS `vi_restaurant`;
 CREATE TABLE IF NOT EXISTS `vi_restaurant` (
   `restaurant_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `address` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `map` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `description` text CHARACTER SET utf8,
+  `website` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `cuisine` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `street` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `city` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `state` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `zip` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `manager` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `phone` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `fax` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `owner` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `owner_phone` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `owner_email` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `mileage` float DEFAULT NULL,
   `pickup` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `curbside` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `catering_pickup_only` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `minimum_delivery` float DEFAULT NULL,
+  `delivery` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `catering_pickup` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `catering_delivery` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `delivery_minimum` float DEFAULT NULL,
   `delivery_charge` float DEFAULT NULL,
+  `catering_delivery_minimum` float DEFAULT NULL,
+  `catering_delivery_charge` float DEFAULT NULL,
   `services` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `image` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
+  `date_mon` tinyint(1) DEFAULT '0',
+  `date_mon_start` int(11) DEFAULT NULL,
+  `date_mon_end` int(11) DEFAULT NULL,
+  `date_tue` tinyint(1) DEFAULT '0',
+  `date_tue_start` int(11) DEFAULT NULL,
+  `date_tue_end` int(11) DEFAULT NULL,
+  `date_wed` tinyint(1) DEFAULT '0',
+  `date_wed_start` int(11) DEFAULT NULL,
+  `date_wed_end` int(11) DEFAULT NULL,
+  `date_thu` tinyint(1) DEFAULT '0',
+  `date_thu_start` int(11) DEFAULT NULL,
+  `date_thu_end` int(11) DEFAULT NULL,
+  `date_fri` tinyint(1) DEFAULT '0',
+  `date_fri_start` int(11) DEFAULT NULL,
+  `date_fri_end` int(11) DEFAULT NULL,
+  `date_sat` tinyint(1) DEFAULT '0',
+  `date_sat_start` int(11) DEFAULT NULL,
+  `date_sat_end` int(11) DEFAULT NULL,
+  `date_sun` tinyint(1) DEFAULT '0',
+  `date_sun_start` int(11) DEFAULT NULL,
+  `date_sun_end` int(11) DEFAULT NULL,
   PRIMARY KEY (`restaurant_id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
@@ -463,9 +487,9 @@ CREATE TABLE IF NOT EXISTS `vi_restaurant` (
 -- Dumping data for table `vi_restaurant`
 --
 
-INSERT INTO `vi_restaurant` (`restaurant_id`, `name`, `address`, `map`, `description`, `mileage`, `pickup`, `curbside`, `catering_pickup_only`, `minimum_delivery`, `delivery_charge`, `services`, `image`) VALUES
-(1, 'Apple Spice Junction - Audubon', '(Italian, Pizza)<br />2017 Camino Del Este<br />San Diego, CA 92108<br />', NULL, 'Apple Spice Junction offers box lunch delivery, corporate catering and deli dining. Sandwich selections feature freshly-baked breads, fine meats and cheeses and crisp vegetables. Homemade soups, healthy salads and fresh bakery treats round out the box lunch menu, while breakfast offerings range from pastries and fruit to gourmet eggs and seasoned potatoes. Whether you need a caterer for a business event or family party, or just want to stop in for a sandwich and a bowl of soup, Apple Spice Junction means "good food when you need it."', 1.15, '45 min', NULL, '1 day', 50, 15, 'Catering- Delivery,Delivery', 'media/userfiles/images/restaurant/Apple-Spice.gif'),
-(2, 'Xpress Pizza and Grill', '(Pizza, Sandwiches)<br/>217 Bridge Street <br/>Phoenixville, PA 19460', NULL, 'We serve Phoenixville and surrounding areas with the best pizza in town, made with fresh ingredients. Our menu also include a variety of delicious choices such as Stromboli, Quesadilla, Sandwiches and Appetizers, with something for everyone.', 4.52, '20 min', NULL, '6 hours', 15, 2, 'Delivery,Catering- Delivery', 'media/userfiles/images/restaurant/img.jpg');
+INSERT INTO `vi_restaurant` (`restaurant_id`, `name`, `address`, `map`, `description`, `website`, `cuisine`, `street`, `city`, `state`, `zip`, `manager`, `phone`, `fax`, `owner`, `owner_phone`, `owner_email`, `mileage`, `pickup`, `curbside`, `delivery`, `catering_pickup`, `catering_delivery`, `delivery_minimum`, `delivery_charge`, `catering_delivery_minimum`, `catering_delivery_charge`, `services`, `image`, `date_mon`, `date_mon_start`, `date_mon_end`, `date_tue`, `date_tue_start`, `date_tue_end`, `date_wed`, `date_wed_start`, `date_wed_end`, `date_thu`, `date_thu_start`, `date_thu_end`, `date_fri`, `date_fri_start`, `date_fri_end`, `date_sat`, `date_sat_start`, `date_sat_end`, `date_sun`, `date_sun_start`, `date_sun_end`) VALUES
+(1, 'Apple Spice Junction - Audubon', '(Italian, Pizza)<br />2017 Camino Del Este<br />San Diego, CA 92108<br />', NULL, 'Apple Spice Junction offers box lunch delivery, corporate catering and deli dining. Sandwich selections feature freshly-baked breads, fine meats and cheeses and crisp vegetables. Homemade soups, healthy salads and fresh bakery treats round out the box lunch menu, while breakfast offerings range from pastries and fruit to gourmet eggs and seasoned potatoes. Whether you need a caterer for a business event or family party, or just want to stop in for a sandwich and a bowl of soup, Apple Spice Junction means "good food when you need it."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1.15, '45 min', NULL, NULL, '1 day', NULL, 50, 15, NULL, NULL, 'Catering- Delivery,Delivery', 'media/userfiles/images/restaurant/Apple-Spice.gif', 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL),
+(2, 'Xpress Pizza and Grill', '(Pizza, Sandwiches)<br/>217 Bridge Street <br/>Phoenixville, PA 19460', NULL, 'We serve Phoenixville and surrounding areas with the best pizza in town, made with fresh ingredients. Our menu also include a variety of delicious choices such as Stromboli, Quesadilla, Sandwiches and Appetizers, with something for everyone.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4.52, '20 min', NULL, NULL, '6 hours', NULL, 15, 2, NULL, NULL, 'Delivery,Catering- Delivery', 'media/userfiles/images/restaurant/img.jpg', 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -473,7 +497,6 @@ INSERT INTO `vi_restaurant` (`restaurant_id`, `name`, `address`, `map`, `descrip
 -- Table structure for table `vi_scontent`
 --
 
-DROP TABLE IF EXISTS `vi_scontent`;
 CREATE TABLE IF NOT EXISTS `vi_scontent` (
   `scontent_id` int(11) NOT NULL AUTO_INCREMENT,
   `scontent_category_id` int(11) DEFAULT NULL,
@@ -516,7 +539,6 @@ INSERT INTO `vi_scontent` (`scontent_id`, `scontent_category_id`, `enabled`, `pu
 -- Table structure for table `vi_scontent_category`
 --
 
-DROP TABLE IF EXISTS `vi_scontent_category`;
 CREATE TABLE IF NOT EXISTS `vi_scontent_category` (
   `scontent_category_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
@@ -539,7 +561,6 @@ INSERT INTO `vi_scontent_category` (`scontent_category_id`, `name`, `enabled`, `
 -- Table structure for table `vi_scontent_lang`
 --
 
-DROP TABLE IF EXISTS `vi_scontent_lang`;
 CREATE TABLE IF NOT EXISTS `vi_scontent_lang` (
   `scontent_lang_id` int(11) NOT NULL AUTO_INCREMENT,
   `scontent_id` int(11) NOT NULL,
@@ -589,7 +610,6 @@ INSERT INTO `vi_scontent_lang` (`scontent_lang_id`, `scontent_id`, `lang_id`, `e
 -- Table structure for table `vi_user`
 --
 
-DROP TABLE IF EXISTS `vi_user`;
 CREATE TABLE IF NOT EXISTS `vi_user` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `group_id` int(11) NOT NULL,
@@ -629,7 +649,7 @@ INSERT INTO `vi_user` (`user_id`, `group_id`, `username`, `email`, `full_name`, 
 (1, 1, 'admin', 'nguoiao007@gmail.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', 1284310752, 1, 1289925446, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (3, 2, 'client1', 'client1@test.com', 'First Name2 wgeg', 'a165dd3c2e98d5d607181d0b87a4c66b', 1286424420, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
 (4, 2, 'client2', 'client2@test.com', 'First Name2 Last Name2', '2c66045d4e4a90814ce9280272e510ec', 1286441213, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 3, 'hoaitan', 'hoaitan_it@yahoo.com', 'Nguyen Hoai Tan', 'e40880fd26194bedaa390ea7a0b3c4e7', 1289861130, 1, 1289930207, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'British Columbia', '12345', '123', '456', '7890', 2, 12, 1987, 1, 52, 'Ho Chi Minh', 1),
+(5, 3, 'hoaitan', 'hoaitan_it@yahoo.com', 'Nguyen Hoai Tan', 'e40880fd26194bedaa390ea7a0b3c4e7', 1289861130, 1, 1290671062, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'British Columbia', '12345', '123', '456', '7890', 2, 12, 1987, 1, 52, 'Ho Chi Minh', 1),
 (6, 3, 'hoaitan2', 'hoaitan2@yahoo.com', 'Nguyen Hoai Tan', 'ca48157e9805d0578cc9923333112a9c', 1289861404, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Manitoba', '1234', '123', '456', '7890', 2, 12, 1987, 1, 53, 'cat', 1),
 (7, 3, 'hoaitan3', 'hoaitan3@yahoo.com', 'Nguyen Hoai Tan', '0cbb154f441fcd8d8af563519586c67e', 1289861880, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Alberta', '1234', '123', '456', '7890', 11, 12, 1987, 1, 52, 'Ho Chi Minh', 0),
 (8, 3, 'hoaitan4', 'hoaitan4@yahoo.com', 'Nguyen Hoai Tan', '70db9384969255aa93c549e3aa0c6b0f', 1289862575, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Newfoundland', '1234', '123', '456', '7890', 11, 11, 1987, 1, 52, 'Ho Chi Minh', 1);
@@ -640,7 +660,6 @@ INSERT INTO `vi_user` (`user_id`, `group_id`, `username`, `email`, `full_name`, 
 -- Table structure for table `vi_user_expand`
 --
 
-DROP TABLE IF EXISTS `vi_user_expand`;
 CREATE TABLE IF NOT EXISTS `vi_user_expand` (
   `user_expand_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
