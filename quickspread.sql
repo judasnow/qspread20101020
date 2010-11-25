@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 25, 2010 at 09:38 AM
+-- Generation Time: Nov 25, 2010 at 05:07 PM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `vi_category` (
   `category_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `vi_category`
@@ -37,7 +37,9 @@ CREATE TABLE IF NOT EXISTS `vi_category` (
 
 INSERT INTO `vi_category` (`category_id`, `name`) VALUES
 (1, 'cuisine'),
-(2, 'security_question');
+(2, 'security_question'),
+(3, 'lead_time_normal'),
+(4, 'lead_time_catering');
 
 -- --------------------------------------------------------
 
@@ -52,7 +54,7 @@ CREATE TABLE IF NOT EXISTS `vi_category_value` (
   `sorting` int(11) DEFAULT '1',
   PRIMARY KEY (`category_value_id`),
   KEY `category_id` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=55 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=95 ;
 
 --
 -- Dumping data for table `vi_category_value`
@@ -112,7 +114,47 @@ INSERT INTO `vi_category_value` (`category_value_id`, `category_id`, `name`, `so
 (51, 2, 'What is your mother''s maiden name?', 1),
 (52, 2, 'What city where you born in?', 1),
 (53, 2, 'What is your pet''s name?', 1),
-(54, 2, 'What is your father''s middle name?', 1);
+(54, 2, 'What is your father''s middle name?', 1),
+(55, 3, '10 min', 1),
+(56, 3, '15 min', 2),
+(57, 3, '20 min', 3),
+(58, 3, '30 min', 4),
+(59, 3, '45 min', 5),
+(60, 3, '1 hour', 6),
+(61, 3, '1 hour 15', 7),
+(62, 3, '1 hour 30', 8),
+(63, 3, '1 hour 45', 9),
+(64, 3, '2 hours', 10),
+(65, 3, '3 hours', 11),
+(66, 3, '4 hours', 12),
+(67, 3, '6 hours', 13),
+(68, 3, '12 hours', 14),
+(69, 3, '18 hours', 15),
+(70, 3, '1 day', 16),
+(71, 3, '36 hours', 17),
+(72, 3, '2 days', 18),
+(73, 3, '3 days', 19),
+(74, 4, '15 min', 1),
+(75, 4, '30 min', 2),
+(76, 4, '45 min', 3),
+(77, 4, '1 hour', 4),
+(78, 4, '1 hour 15', 5),
+(79, 4, '1 hour 30', 6),
+(80, 4, '1 hour 45', 7),
+(81, 4, '2 hours', 8),
+(82, 4, '3 hours', 9),
+(83, 4, '4 hours', 10),
+(84, 4, '6 hours', 11),
+(85, 4, '12 hours', 12),
+(86, 4, '18 hours', 13),
+(87, 4, '1 day', 14),
+(88, 4, '36 hours', 15),
+(89, 4, '2 days', 16),
+(90, 4, '3 days', 17),
+(91, 4, '4 days', 18),
+(92, 4, '5 days', 19),
+(93, 4, '6 days', 20),
+(94, 4, '7 days', 21);
 
 -- --------------------------------------------------------
 
@@ -432,7 +474,6 @@ INSERT INTO `vi_permission` (`permission_id`, `name`, `module`, `description`, `
 CREATE TABLE IF NOT EXISTS `vi_restaurant` (
   `restaurant_id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
-  `address` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `map` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `description` text CHARACTER SET utf8,
   `website` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
@@ -455,8 +496,10 @@ CREATE TABLE IF NOT EXISTS `vi_restaurant` (
   `catering_delivery` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `delivery_minimum` float DEFAULT NULL,
   `delivery_charge` float DEFAULT NULL,
+  `delivery_limit_hour` tinyint(1) DEFAULT '0',
   `catering_delivery_minimum` float DEFAULT NULL,
   `catering_delivery_charge` float DEFAULT NULL,
+  `catering_delivery_limit_hour` tinyint(1) DEFAULT '0',
   `services` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `image` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `date_mon` tinyint(1) DEFAULT '0',
@@ -487,9 +530,9 @@ CREATE TABLE IF NOT EXISTS `vi_restaurant` (
 -- Dumping data for table `vi_restaurant`
 --
 
-INSERT INTO `vi_restaurant` (`restaurant_id`, `name`, `address`, `map`, `description`, `website`, `cuisine`, `street`, `city`, `state`, `zip`, `manager`, `phone`, `fax`, `owner`, `owner_phone`, `owner_email`, `mileage`, `pickup`, `curbside`, `delivery`, `catering_pickup`, `catering_delivery`, `delivery_minimum`, `delivery_charge`, `catering_delivery_minimum`, `catering_delivery_charge`, `services`, `image`, `date_mon`, `date_mon_start`, `date_mon_end`, `date_tue`, `date_tue_start`, `date_tue_end`, `date_wed`, `date_wed_start`, `date_wed_end`, `date_thu`, `date_thu_start`, `date_thu_end`, `date_fri`, `date_fri_start`, `date_fri_end`, `date_sat`, `date_sat_start`, `date_sat_end`, `date_sun`, `date_sun_start`, `date_sun_end`) VALUES
-(1, 'Apple Spice Junction - Audubon', '(Italian, Pizza)<br />2017 Camino Del Este<br />San Diego, CA 92108<br />', NULL, 'Apple Spice Junction offers box lunch delivery, corporate catering and deli dining. Sandwich selections feature freshly-baked breads, fine meats and cheeses and crisp vegetables. Homemade soups, healthy salads and fresh bakery treats round out the box lunch menu, while breakfast offerings range from pastries and fruit to gourmet eggs and seasoned potatoes. Whether you need a caterer for a business event or family party, or just want to stop in for a sandwich and a bowl of soup, Apple Spice Junction means "good food when you need it."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1.15, '45 min', NULL, NULL, '1 day', NULL, 50, 15, NULL, NULL, 'Catering- Delivery,Delivery', 'media/userfiles/images/restaurant/Apple-Spice.gif', 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL),
-(2, 'Xpress Pizza and Grill', '(Pizza, Sandwiches)<br/>217 Bridge Street <br/>Phoenixville, PA 19460', NULL, 'We serve Phoenixville and surrounding areas with the best pizza in town, made with fresh ingredients. Our menu also include a variety of delicious choices such as Stromboli, Quesadilla, Sandwiches and Appetizers, with something for everyone.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4.52, '20 min', NULL, NULL, '6 hours', NULL, 15, 2, NULL, NULL, 'Delivery,Catering- Delivery', 'media/userfiles/images/restaurant/img.jpg', 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL);
+INSERT INTO `vi_restaurant` (`restaurant_id`, `name`, `map`, `description`, `website`, `cuisine`, `street`, `city`, `state`, `zip`, `manager`, `phone`, `fax`, `owner`, `owner_phone`, `owner_email`, `mileage`, `pickup`, `curbside`, `delivery`, `catering_pickup`, `catering_delivery`, `delivery_minimum`, `delivery_charge`, `delivery_limit_hour`, `catering_delivery_minimum`, `catering_delivery_charge`, `catering_delivery_limit_hour`, `services`, `image`, `date_mon`, `date_mon_start`, `date_mon_end`, `date_tue`, `date_tue_start`, `date_tue_end`, `date_wed`, `date_wed_start`, `date_wed_end`, `date_thu`, `date_thu_start`, `date_thu_end`, `date_fri`, `date_fri_start`, `date_fri_end`, `date_sat`, `date_sat_start`, `date_sat_end`, `date_sun`, `date_sun_start`, `date_sun_end`) VALUES
+(1, 'Apple Spice Junction - Audubon', NULL, 'Apple Spice Junction offers box lunch delivery, corporate catering and deli dining. Sandwich selections feature freshly-baked breads, fine meats and cheeses and crisp vegetables. Homemade soups, healthy salads and fresh bakery treats round out the box lunch menu, while breakfast offerings range from pastries and fruit to gourmet eggs and seasoned potatoes. Whether you need a caterer for a business event or family party, or just want to stop in for a sandwich and a bowl of soup, Apple Spice Junction means "good food when you need it."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1.15, '45 min', NULL, NULL, '1 day', NULL, 50, 15, 0, NULL, NULL, 0, 'Catering- Delivery,Delivery', 'media/userfiles/images/restaurant/Apple-Spice.gif', 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL),
+(2, 'Xpress Pizza and Grill', NULL, 'We serve Phoenixville and surrounding areas with the best pizza in town, made with fresh ingredients. Our menu also include a variety of delicious choices such as Stromboli, Quesadilla, Sandwiches and Appetizers, with something for everyone.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4.52, '20 min', NULL, NULL, '6 hours', NULL, 15, 2, 0, NULL, NULL, 0, 'Delivery,Catering- Delivery', 'media/userfiles/images/restaurant/img.jpg', 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 

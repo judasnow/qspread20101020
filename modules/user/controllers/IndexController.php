@@ -121,10 +121,11 @@ class user_IndexController extends Vi_Controller_Action
         $objCountry = new Models_Country();
         $this->view->allProvinces = $objCountry->getAllProvinces();
         /**
-         * Get security question
+         * Get some list
          */
         $objCat = new Models_Category();
-        $this->view->allQuestions = $objCat->getAllValues('security_question');
+        $this->view->leadTimeNormal = $objCat->getAllValues('lead_time_normal');
+        $this->view->leadTimeCatering = $objCat->getAllValues('lead_time_catering');
 //        echo '<pre>';print_r($this->view->allProvinces);die;
         /**
          * Article - Term of Use
