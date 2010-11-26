@@ -33,8 +33,17 @@ function submit_search(){
 	frm.submit();
 }
 
+function fbs_click(address){	
+    u = 'http://nyhederne.tv2.dk/article.php/id-35170936:clinton-er-f%C3%A6rdig-som-stemmej%C3%A6ger.html';
+    t = document.title;
+    o = 'toolbar=0,status=0,width=626,height=436';
+    window.open('{{$APP_BASE_URL}}restaurant/map?address='+address, 'sharer', o);
+    
+    return false;
+}  
 </script>
 <!-- end autocomplete -->
+<script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAfC0VI1TK8TYdshSdnHDNSxRj8XIJxol65Pr1PoVJbiw1L5MubxQzaLoL5T5ECViyoO6PVtMdT4Wlog" type="text/javascript"></script>
 <div id="main">
         <div class="w201 float_left">
         	<div class="top1 m20t"></div>
@@ -165,8 +174,8 @@ function submit_search(){
 							<td class="bd1b p10t p5b" style="padding-left:5px;" valign="top">
 								<b>{{$item.name}}</b>
 								<p class="fs11">
-									{{$item.address}}
-									<span class="color_1"><a href="#">Map</a> </span>
+									{{$item.address}}<br/>
+									<span class="color_1"><a href="#" onclick="return fbs_click('{{$item.address}}')">Map</a> </span>									
 									<br/>
 									<a href="{{$APP_BASE_URL}}restaurant/meal?id={{$item.restaurant_id}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_select.png" alt="" /></a>									
 								</p>
