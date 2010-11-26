@@ -77,10 +77,7 @@
     </div>
     <!-- end: #Main-->
     
-    
-<!-- LOGIN DIV -->
-{{sticker name=login}}
-<!-- END LOGIN -->
+   
 	
 	
 	

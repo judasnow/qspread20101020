@@ -51,9 +51,6 @@
 {{$content}}
  <!-- end: #Main >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>> END MODULE <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< -->
 
-<!-- LOGIN DIV -->
-{{sticker name=login}}
-<!-- END LOGIN -->
 </div>
 <!-- end: #Page_margin --> <!-- begin: #Main_bot --> {{sticker
 name=bottom_menu}} <!-- end: #Main_bot --> <!-- begin: #Footer -->
