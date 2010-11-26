@@ -113,8 +113,8 @@ function fbs_click(address){
 								<input type="radio" class="mid" value="pickup" onclick="load_data(this.value);" {{$mark_pickup}} />
 								<span class="mid">Pick up</span>
 								<div class="p5t">
-									<input type="radio" class="mid" />
-									<span class="mid">Delevery</span>
+									<input type="radio" class="mid" value="delivery" onclick="load_data(this.value);" {{$mark_delivery}} />
+									<span class="mid">Delivery</span>
 								</div>
 							</div>
 							<div class="float_left m20l fs11">
@@ -126,7 +126,7 @@ function fbs_click(address){
 								</div>
 							</div>
 							<div class="float_left m20l fs11">
-								<input type="radio" class="mid" />
+								<input type="radio" class="mid" value="catering_delivery" onclick="load_data(this.value);" {{$mark_catering_delivery}} />
 								<span class="mid">Catering Delivery</span>
 							</div>							
 							<!-- PAGINATION -->

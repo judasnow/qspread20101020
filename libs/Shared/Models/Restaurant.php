@@ -61,7 +61,8 @@ class Models_Restaurant extends Vi_Model
     {
         $select = $this->select()
                 ->setIntegrityCheck(false)
-                ->from(array('r' => $this->_name))                
+                ->from(array('r' => $this->_name))
+                ->where('enabled=1')                
                 ->order($order)
                 ->limit($count, $offset);
                 
@@ -77,7 +78,7 @@ class Models_Restaurant extends Vi_Model
         	$query .= " AND (r.address LIKE '%".$arrData['city']."%')";
         if ( isset($arrData['zip']) )
         	$query .= " JOIN vi_country c ON (c.postal_code = ".$arrData['zip'].") AND (r.address LIKE '%c.city%')";
-        	
+        $query .= " AND r.enabled=1 ";	
         $query .= " LIMIT $offset,$count";
     
     	return $this->_db->fetchAll($query);

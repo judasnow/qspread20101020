@@ -40,6 +40,16 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    	$this->view->mark_catering_pickup = 'checked';
 	    	$str_lead_time_title = 'Catering Pickup';
 	    }
+		elseif (strcmp($mark,'delivery')==0) 	
+	    {
+	    	$this->view->mark_delivery = 'checked';
+	    	$str_lead_time_title = 'Delivery';
+	    }
+		elseif (strcmp($mark,'catering_delivery')==0) 	
+	    {
+	    	$this->view->mark_catering_delivery = 'checked';
+	    	$str_lead_time_title = 'Catering Delivery';
+	    }
 	    
 	    /**
 	     * Get condition for search
@@ -80,7 +90,7 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    /**
 	     * Get data from database
 	     */
-	    
+	    $arr_condition["enabled = ? "] = 1;
 	    $objRestaurant = new Models_Restaurant();	 
 	    $restaurants = $objRestaurant->getByColumnName($arr_condition, 
 			    											array('name ASC'), 
