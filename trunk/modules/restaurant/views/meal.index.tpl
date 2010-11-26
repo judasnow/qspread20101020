@@ -1,3 +1,14 @@
+<script type="text/javascript">
+function fbs_click(address){	
+    u = 'http://nyhederne.tv2.dk/article.php/id-35170936:clinton-er-f%C3%A6rdig-som-stemmej%C3%A6ger.html';
+    t = document.title;
+    o = 'toolbar=0,status=0,width=626,height=436';
+    window.open('{{$APP_BASE_URL}}restaurant/map?address='+address, 'sharer', o);
+    
+    return false;
+}  
+</script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAfC0VI1TK8TYdshSdnHDNSxRj8XIJxol65Pr1PoVJbiw1L5MubxQzaLoL5T5ECViyoO6PVtMdT4Wlog" type="text/javascript"></script>
 <div id="main">
       <div class="w201 float_left">
         <div class="top1 m20t"></div>
@@ -88,10 +99,10 @@
         </div>               
 -->        
         <p class="float_left m10r"><img src="{{$LAYOUT_HELPER_URL}}front/img/img.jpg" alt="" /></p>
-        <span class="fs14"><b>Wok-N-Roll</b></span><br />
-        1908 Mass Ave.<br />
-        Cambridge, MA 02140 <span class="color_1"><a href="#">Map</a> </span><br />
-        The best Chinese food in Porter Square...and all of Cambridge!<br />
+        <span class="fs14"><b>{{$arr_restaurant.name}}</b></span><br />
+        {{$arr_restaurant.street}}<br />
+        {{$arr_restaurant.city}} {{$arr_restaurant.state}} <span class="color_1"><a href="#" onclick="return fbs_click('{{$address_restaurant}}')">Map</a> </span><br />
+        {{$arr_restaurant.description}}<br />
 <!--         
         <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_ecit.png" alt="" /></a>
 -->                 

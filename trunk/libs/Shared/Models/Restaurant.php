@@ -69,6 +69,16 @@ class Models_Restaurant extends Vi_Model
         return $this->fetchAll($select)->toArray();
     }
     
+	public function getAllRestaurantById($id)
+    {
+        $select = $this->select()
+                ->setIntegrityCheck(false)
+                ->from(array('r' => $this->_name))
+                ->where('restaurant_id='.$id);               
+                               
+        return $this->fetchRow($select)->toArray();
+    }
+    
     public function getRestaurantByData($arrData, $count = null, $offset = null){      	
         $query = "  SELECT r.*
     				FROM vi_restaurant r
