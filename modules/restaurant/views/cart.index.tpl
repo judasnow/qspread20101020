@@ -100,7 +100,7 @@
                             <td class="center top"><br /></td>
                             <td class="center top"></td>
                             <td class="p10t" color_1 fs14">
-                            <a href="{{$APP_BASE_URL}}restaurant/ship?order_id={{$order_id}}">
+                            <a href="{{$APP_BASE_URL}}restaurant/ship">
                             	<img src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" />
                             </a>
                             </td>
