@@ -92,7 +92,9 @@
         1908 Mass Ave.<br />
         Cambridge, MA 02140 <span class="color_1"><a href="#">Map</a> </span><br />
         The best Chinese food in Porter Square...and all of Cambridge!<br />
-        <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_ecit.png" alt="" /></a>         
+<!--         
+        <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_ecit.png" alt="" /></a>
+-->                 
         <div class="clear_left"></div>
         <br />
         <div id="na_2">
@@ -103,7 +105,10 @@
         </div>
 
         <div class="float_left fs14 p20t p10t m20l"><b>Menu Serving From 11:30 AM to 10:30 PM on Thursday</b></div>
-        <a href="#" class="float_right m10r"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_add.png" alt="" class="mid m5t"/></a> <br class="clear" />
+<!--         
+        <a href="#" class="float_right m10r"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_add.png" alt="" class="mid m5t"/></a>
+-->         
+        <br class="clear" />
         <div class="top2"></div>
         <div class="cen2">
           <div class="cen_2">
@@ -118,7 +123,10 @@
                 <tr>
                   <td class="bd1b p10t p5b"><p><b>{{$item.name}}</b>(Italian, Pizza) </p>
                     <p>{{$item.description}}<br />
-                      <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_ecit.png" alt="" /></a> <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_delete.png" alt="" /></a> </p></td>
+<!--                     
+                      <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_ecit.png" alt="" /></a> <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_delete.png" alt="" /></a>
+-->                       
+                    </p></td>
                   <td class="bd1b p10t p5b top">${{$item.price}}</td>
                   <td class="bd1b p10t p5b top"><a href="{{$APP_BASE_URL}}restaurant/cart?meal_id={{$item.meal_id}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_select.png" alt="" /></a></td>
                 </tr>
