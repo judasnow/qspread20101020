@@ -7,6 +7,7 @@ class restaurant_CartController extends Vi_Controller_Action
 	 */
 	public function indexAction()
 	{		  
+		 $this->view->headTitle('Cart information');
 		 //-- begin add information into cart
 		 $meal_id = $this->_getParam('meal_id', false); 
 		

@@ -7,6 +7,7 @@ class restaurant_MealController extends Vi_Controller_Action
 	 */
 	public function indexAction()
 	{
+		$this->view->headTitle('Meal information');
 		//-- begin get meal
 		 $restaurant_id = $this->_getParam('id', false);  
 		 $objCountry = new Models_Meal();
