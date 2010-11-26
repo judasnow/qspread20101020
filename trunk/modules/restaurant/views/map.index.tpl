@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="description" content="Davis & Co. Realtors, specializing in San Francisco Peninsula real estate, invites you to search the MLS for properties" />
+<meta name="keywords" content="davis &amp; co., realtors, real estate, san francisco peninsula, mountain view, home search" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Map Location</title>
+<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+
+<link href="/layouts/default/helpers//carenkelly/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+<link rel="stylesheet" media="screen" href="/layouts/default/helpers//carenkelly/css/screen.css">
+
+<script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAfC0VI1TK8TYdshSdnHDNSxRj8XIJxol65Pr1PoVJbiw1L5MubxQzaLoL5T5ECViyoO6PVtMdT4Wlog" type="text/javascript"></script> 
+<script type="text/javascript"> 
+ 
+    var address = '{{$address}}';
+ 
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(34, 0), 1);
+
+        geocoder = new GClientGeocoder();
+      }
+    }
+
+ 
+    function showAddress() {
+        initialize();
+      if (geocoder) {
+        geocoder.getLatLng(
+          address,
+          function(point) {
+            if (!point) {
+            	map.setCenter(new GLatLng(34, 0), 1);
+              alert(address + " not found");
+            } else {
+                map.setMapType(G_HYBRID_MAP);
+                map.addControl(new GLargeMapControl());
+                map.addControl(new GScaleControl());
+                map.addControl(new GMapTypeControl());
+
+                          map.setCenter(point, 14);
+              var marker = new GMarker(point);
+                          
+              map.addOverlay(marker);
+              marker.openInfoWindowHtml('<br/>' + address);
+            }
+          }
+        );
+      }
+    }    
+    </script> 
+    
+
+<style>
+#subnav a.selected {
+background:none repeat scroll 0 0 transparent;
+color:green;
+}
+</style>
+</head>
+<body onload="showAddress()" onunload="GUnload()">
+<!-- begin: #Page -->
+
+<div id="mainsite">  
+
+      <div style="padding-left:220px"><a href="index.html"><img src="/layouts/default/helpers//carenkelly/images/logo.jpg" alt="" border="0" /></a></div>
+
+        <p>&nbsp;</p>
+
+        <div id="main_container">            
+            
+            <!-- START CONTENT -->
+            <div id="content">
+                <div id="map_canvas" style="width: 100%; height: 558px"></div> 
+            </div>            
+            
+        </div>
+    </div>
+<!-- end: #Page -->
+</body>
+</html>
