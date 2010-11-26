@@ -17,7 +17,7 @@ class bottom_menuSticker extends Vi_Sticker
                     'id' => 1
                     ),
             2 => array(
-                    'url' => Vi_Registry::getBaseUrl(),
+                    'url' => Vi_Registry::getBaseUrl() . 'restaurant?mark=pickup',
                     'name' => 'Browse Restaurants',
                     'id' => 'home'
                     ),
@@ -58,7 +58,7 @@ class bottom_menuSticker extends Vi_Sticker
                     'id' => 2
                     ),
             1 => array(
-                    'url' => Vi_Registry::getBaseUrl(),
+                    'url' => Vi_Registry::getBaseUrl() . 'restaurant-owner-register.html',
                     'name' => 'Restaurant Owners',
                     'id' => 'restaurant_owners'
                     ),

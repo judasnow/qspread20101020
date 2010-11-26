@@ -23,6 +23,11 @@ $(document).ready(function (){
                 <input type="text" value="User name" name="username" onclick="this.value='';"/><br />
                 <input type="password" value="Password" name="password" onclick="this.value='';" onfocus="this.value='';"/><br />
                 <input type="image" name="submit" src="{{$LAYOUT_HELPER_URL}}front/img/btn_login.jpg" style="width: 68px;height: 27px; padding:0px;;" />
+                
+                <div style="float: right; padding-right: 20px;">
+                <a href="#">Forgot password</a><br/>
+                <a href="{{$BASE_URL}}register.html">Register new account</a>
+                </div>
                 </div>
             </form>
         </div>

@@ -12,8 +12,45 @@ function makeSameAbove(id)
     $("#date" + id + "_end").val($("#date" + pid + "_end").val());
 	
 }
+
+$().ready(function() {
+    // validate signup form on keyup and submit
+    $("#register").validate({
+        rules: {
+            'data[owner]': "required",
+            'data[owner_phone]': "required",
+            'data[name]': "required",
+            'data[website]': "required",
+            'data[cuisine]': "required",
+            'data[street]': "required",
+            'data[city]': "required",
+            'data[zip]': "required",
+            'data[manager]': "required",
+            'data[phone]': "required",
+            'data[fax]': "required",
+            'data[owner_email]': {
+                required: true,
+                email: true
+            }
+        },
+        messages: {
+            'data[owner]': "",
+            'data[owner_phone]': "",
+            'data[name]': "",
+            'data[website]': "",
+            'data[cuisine]': "",
+            'data[street]': "",
+            'data[city]': "",
+            'data[zip]': "",
+            'data[manager]': "",
+            'data[phone]': "",
+            'data[fax]': "",
+            'data[owner_email]': ""
+        }
+    }); 
+});
 </script>
-<form method="POST">
+<form method="POST" name="register" id="register">
             <div class="bg_howitwork">
                 <p class="title1">Sign Up Now</p>
                 <p class="p5t">Enter your information below to become a QuickSpread Restaurant Partner</p>
@@ -47,7 +84,11 @@ function makeSameAbove(id)
                 <input name="data[city]" type="text" value="" class="w270" /><br />
                 
                 <label class="w155">State:<span class="red">*</span></label>
-                <input name="data[state]" type="text" value="" class="w70" style="margin-right:20px;" />
+                <select name="data[state]" style="width: 168px;" >
+                        {{foreach from=$allProvinces item=item}}
+                        <option {{if $item.province==$data.state}} selected="selected" {{/if}} value="{{$item.province}}">{{$item.province}}</option>
+                        {{/foreach}}
+                </select>
                 
                 <span class="w175 right">ZIP:<span class="red">*</span></span>
                 <input name="data[zip]" type="text" value="" class="w70" /><br />
@@ -68,7 +109,7 @@ function makeSameAbove(id)
                 
                 <p class="p15t color_2"><b>Hours of Operation</b></p>               
                 
-                <label class="w155"><input type="checkbox" value="1" class="mid m20r" style="border:none;" name="data[date_mon]" /> Mon:</label>
+                <label class="w155"><input checked="checked" type="checkbox" value="1" class="mid m20r" style="border:none;" name="data[date_mon]" /> Mon:</label>
                 <input type="text" value="8:00" class="w50" name="data[date_mon_start]" id="date1_start"/> 
                 - 
                 <input type="text" value="20:00" class="w50" name="data[date_mon_end]" id="date1_end"/>
