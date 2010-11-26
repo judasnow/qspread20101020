@@ -37,7 +37,7 @@
 						<div class="">
                 <p class="color_2 uper"><b>Shipping Address</b></p>
                 <div class="input_form">   
-                	<form id="register" name="register" action="{{$APP_BASE_URL}}restaurant/info?order_id={{$order_id}}" method="post">                 
+                	<form id="register" name="register" action="{{$APP_BASE_URL}}restaurant/info" method="post">                 
 	                    <label class="w130 m10r right">Full Name:<span class="red">*</span></label>
 	                    <input type="text" value="" class="w230" id="data[full_name]" name="data[full_name]" /><br />
 	                    <label class="w130 m10r right">Address:<span class="red">*</span></label>
