@@ -77,7 +77,5 @@ class default_IndexController extends Vi_Controller_Action
 	     */
 	    $objContent = new Models_ScontentLang();
 	    $this->view->article = $objContent->getContent(17);
-	    
-	    
 	}
 }
