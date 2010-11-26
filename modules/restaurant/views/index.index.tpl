@@ -113,12 +113,12 @@ function submit_search(){
 								<span class="mid">Curbside</span>
 								<div class="p5t">
 									<input type="radio" class="mid"  value="catering_pickup_only" onclick="load_data(this.value);" {{$mark_catering_pickup_only}}/>
-									<span class="mid">Catering Pickup Only</span>
+									<span class="mid">Catering Pickup</span>
 								</div>
 							</div>
 							<div class="float_left m20l fs11">
 								<input type="radio" class="mid" />
-								<span class="mid">Catering Delivery Only</span>
+								<span class="mid">Catering Delivery</span>
 							</div>							
 							<!-- PAGINATION -->
 							{{if $countAllPages > 1}}
@@ -165,7 +165,7 @@ function submit_search(){
 							<td class="bd1b p10t p5b" style="padding-left:5px;" valign="top">
 								<b>{{$item.name}}</b>
 								<p class="fs11">
-									({{$item.address}}
+									{{$item.address}}
 									<span class="color_1"><a href="#">Map</a> </span>
 									<br/>
 									<a href="{{$APP_BASE_URL}}restaurant/meal?id={{$item.restaurant_id}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_select.png" alt="" /></a>									
@@ -173,7 +173,7 @@ function submit_search(){
 							</td>
 							<td class="bd1b p10t p5b center top">{{$item.mileage}}</td>
 							<td class="bd1b p10t p5b center top"><b>{{$lead_time}}</b><br />~ {{$item.$mark}} </td>
-							<td class="bd1b p10t p5b top">${{$item.minimum_delivery}}</td>
+							<td class="bd1b p10t p5b top">${{$item.delivery_minimum}}</td>
 							<td class="bd1b p10t p5b top">${{$item.delivery_charge}}</td>
 							<td class="bd1b p10t p5b top">
 								<img src="img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span>
