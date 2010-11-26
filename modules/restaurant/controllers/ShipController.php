@@ -7,6 +7,7 @@ class restaurant_ShipController extends Vi_Controller_Action
 	 */
 	public function indexAction()
 	{
+		$this->view->headTitle('Ship information');
 		$order_id = $this->_getParam('order_id', false); 
 		$this->view->order_id = $order_id;
 		
