@@ -112,7 +112,7 @@ function submit_search(){
 								<input type="radio" class="mid"  value="curbside" onclick="load_data(this.value);" {{$mark_curbside}}/>
 								<span class="mid">Curbside</span>
 								<div class="p5t">
-									<input type="radio" class="mid"  value="catering_pickup_only" onclick="load_data(this.value);" {{$mark_catering_pickup_only}}/>
+									<input type="radio" class="mid"  value="catering_pickup" onclick="load_data(this.value);" {{$mark_catering_pickup}}/>
 									<span class="mid">Catering Pickup</span>
 								</div>
 							</div>

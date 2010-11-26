@@ -34,10 +34,10 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    	$this->view->mark_curbside = 'checked';
 	    	$str_lead_time_title = 'Curbside';
 	    }
-	    elseif (strcmp($mark,'catering_pickup_only')==0) 	
+	    elseif (strcmp($mark,'catering_pickup')==0) 	
 	    {
-	    	$this->view->mark_catering_pickup_only = 'checked';
-	    	$str_lead_time_title = 'Catering Pickup Only';
+	    	$this->view->mark_catering_pickup = 'checked';
+	    	$str_lead_time_title = 'Catering Pickup';
 	    }
 	    
 	    /**
