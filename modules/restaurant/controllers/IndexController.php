@@ -56,10 +56,12 @@ class restaurant_IndexController extends Vi_Controller_Action
 	     */
 	    $arr_condition = array();
 	    if ( false != $mark ){
-	    	$arr_condition["{$mark} != ?"] = Zend_DB::NULL_EMPTY_STRING;
+//	    	$arr_condition["{$mark} != ?"] = Zend_DB::NULL_EMPTY_STRING;
+	    	$arr_con["mark"] = $mark;	    	
 	    }
 	    if ( false != $find){
-	    	$arr_condition["name LIKE ? "] = $find."%";
+//	    	$arr_condition["name LIKE ? "] = $find."%";
+	    	$arr_con["name"] = $find;	
 	    }
 		if (null != @$condition['zip']) {
 	    	/**
@@ -67,37 +69,39 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    	 */
 	    	$objCountry = new Models_Country();
 	    	$city_from_code = $objCountry->getCityByCode($condition['zip']);
-	    	$arr_condition["address LIKE ? "] = "%".$city_from_code[0]['city']."%";
+//	    	$arr_condition["address LIKE ? "] = "%".$city_from_code[0]['city']."%";
 	    	$arr_con['city'] = $city_from_code[0]['city'];
 	    	$arr_con['zip'] = $condition['zip'];
+	    	$arr_con['address'] = $city_from_code[0]['city'];
 	    }
 		else if ( false != $searchword){//-- searchword: city
-	    	$arr_condition["address LIKE ? "] = "%".$searchword."%";
+//	    	$arr_condition["address LIKE ? "] = "%".$searchword."%";
+	    	$arr_con["address"] = $searchword;	
 	    }
 	    
 		if ((null != @$conditions['cuisine']) && ($conditions['cuisine'] > 0)) {
 	    	/**
 	    	 * Condition here
 	    	 */			
-			$arr_con['cuisine_id'] = $conditions['cuisine'];		
-	    	$objRestaurant = new Models_Restaurant();
-	    	$restaurants = $objRestaurant->getRestaurantByData($arr_con,$numRowPerPage,($currentPage - 1) * $numRowPerPage);	    
-	    	$count = count($restaurants);	
+			$arr_con['cuisine_id'] 	= $conditions['cuisine'];
+			if ( null != @$conditions['time'] )
+				$arr_con['time'] 		= $conditions['time'];	
+			if ( null != @$conditions['date'] )	
+				$arr_con['date'] 		= strtolower(substr($conditions['date'],-3));	    	
 	    }
-	    else{
-	    
-//	    echo "<pre>";print_r($arr_condition);die;
-	    /**
-	     * Get data from database
-	     */
-	    $arr_condition["enabled = ? "] = 1;
-	    $objRestaurant = new Models_Restaurant();	 
-	    $restaurants = $objRestaurant->getByColumnName($arr_condition, 
-			    											array('name ASC'), 
-			    											$numRowPerPage,
-		                                                   ($currentPage - 1) * $numRowPerPage)->toArray(); 
-	    $count = count($objRestaurant->getByColumnName($arr_condition));
-	    }
+	    $objRestaurant = new Models_Restaurant();
+    	$restaurants = $objRestaurant->getRestaurantByData($arr_con,$numRowPerPage,($currentPage - 1) * $numRowPerPage);	    
+    	$count = count($restaurants);	
+//	    else{  
+//
+//	    $arr_condition["enabled = ? "] = 1;
+//	    $objRestaurant = new Models_Restaurant();	 
+//	    $restaurants = $objRestaurant->getByColumnName($arr_condition, 
+//			    											array('name ASC'), 
+//			    											$numRowPerPage,
+//		                                                   ($currentPage - 1) * $numRowPerPage)->toArray(); 
+//	    $count = count($objRestaurant->getByColumnName($arr_condition));
+//	    }
 	    
 	    $this->view->lead_time = $str_lead_time_title;
 	    $this->view->mark = $mark;

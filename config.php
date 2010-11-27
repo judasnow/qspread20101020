@@ -79,5 +79,6 @@ return array (
   
   'forgotPasswordExpiredTime' => 86400,
         
-  'websiteName' => 'QuickSpread'
+  'websiteName' => 'QuickSpread',
+  'taxFee' => '0.1'
 );
