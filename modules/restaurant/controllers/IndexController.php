@@ -120,11 +120,12 @@ class restaurant_IndexController extends Vi_Controller_Action
 		/**
 		 * Begin get time
 		 */		
-		$arr_time[]= '12:15 AM';
-		$arr_time[]= '12:30 AM';
-		$arr_time[]= '12:45 AM';
+//		$arr_time[]= '12:15 AM';
+//		$arr_time[]= '12:30 AM';
+//		$arr_time[]= '12:45 AM';
 				
-		for( $i = 1; $i<12; $i++ ){
+//		for( $i = 1; $i<12; $i++ ){
+		for( $i = 5; $i<24; $i++ ){
 			for( $j=1;$j<5;$j++ ){
 				if ( $j==1 )
 					$format = '00';
@@ -134,28 +135,29 @@ class restaurant_IndexController extends Vi_Controller_Action
 					$format = '30';
 				else if ( $j==4 )
 					$format = '45';
-				$arr_time[] = $i.":".$format." AM";
+//				$arr_time[] = $i.":".$format." AM";
+				$arr_time[] = $i.":".$format;
 			}			
 		}
 		
-		$arr_time[] = '12:00 PM';
-		$arr_time[] = '12:15 PM';
-		$arr_time[] = '12:30 PM';
-		$arr_time[] = '12:45 PM';
+//		$arr_time[] = '12:00 PM';
+//		$arr_time[] = '12:15 PM';
+//		$arr_time[] = '12:30 PM';
+//		$arr_time[] = '12:45 PM';
 					
-		for( $i = 1; $i<13; $i++ ){
-			for( $j=1;$j<5;$j++ ){
-				if ( $j==1 )
-					$format = '00';
-				else if ( $j==2 )
-					$format = '15';
-				else if ( $j==3 )
-					$format = '30';
-				else if ( $j==4 )
-					$format = '45';
-				$arr_time[] = $i.":".$format." PM";
-			}			
-		}
+//		for( $i = 1; $i<13; $i++ ){
+//			for( $j=1;$j<5;$j++ ){
+//				if ( $j==1 )
+//					$format = '00';
+//				else if ( $j==2 )
+//					$format = '15';
+//				else if ( $j==3 )
+//					$format = '30';
+//				else if ( $j==4 )
+//					$format = '45';
+//				$arr_time[] = $i.":".$format." PM";
+//			}			
+//		}
 		
 		$this->view->arr_time = $arr_time;
 		$this->view->zip = null != @$condition['zip']?$condition['zip']:'';

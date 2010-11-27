@@ -26,11 +26,39 @@ class default_IndexController extends Vi_Controller_Action
 //	    ))->toArray();
 //	    echo "<pre>";print_r($cuisines);die;
 	    
-	    $arr_time = array();
-	    $arr_time[] = "5:30 AM";
-	    $arr_time[] = "5:45 AM";
-	    for( $i=6; $i<12; $i++){
-	    	for( $j=1;$j<5;$j++ ){
+//	    $arr_time = array();
+//	    $arr_time[] = "5:30 AM";
+//	    $arr_time[] = "5:45 AM";
+//	    for( $i=6; $i<12; $i++){
+//	    	for( $j=1;$j<5;$j++ ){
+//				if ( $j==1 )
+//					$format = '00';
+//				else if ( $j==2 )
+//					$format = '15';
+//				else if ( $j==3 )
+//					$format = '30';
+//				else if ( $j==4 )
+//					$format = '45';
+//				$arr_time[] = $i.":".$format." AM";
+//			}				    	
+//	    }
+//	    
+//		for( $i=1; $i<12; $i++){
+//	    	for( $j=1;$j<5;$j++ ){
+//				if ( $j==1 )
+//					$format = '00';
+//				else if ( $j==2 )
+//					$format = '15';
+//				else if ( $j==3 )
+//					$format = '30';
+//				else if ( $j==4 )
+//					$format = '45';
+//				$arr_time[] = $i.":".$format." PM";
+//			}				    	
+//	    }
+
+		for( $i = 5; $i<24; $i++ ){
+			for( $j=1;$j<5;$j++ ){
 				if ( $j==1 )
 					$format = '00';
 				else if ( $j==2 )
@@ -39,23 +67,9 @@ class default_IndexController extends Vi_Controller_Action
 					$format = '30';
 				else if ( $j==4 )
 					$format = '45';
-				$arr_time[] = $i.":".$format." AM";
-			}				    	
-	    }
-	    
-		for( $i=1; $i<12; $i++){
-	    	for( $j=1;$j<5;$j++ ){
-				if ( $j==1 )
-					$format = '00';
-				else if ( $j==2 )
-					$format = '15';
-				else if ( $j==3 )
-					$format = '30';
-				else if ( $j==4 )
-					$format = '45';
-				$arr_time[] = $i.":".$format." PM";
-			}				    	
-	    }
+				$arr_time[] = $i.":".$format;
+			}			
+		}
 	    
 	    /**
 	     * Begin get date and month
