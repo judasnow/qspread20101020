@@ -35,7 +35,7 @@ class restaurant_CartController extends Vi_Controller_Action
 		 	 }		 	
 		 	 //-- end calculate sum
 		 	 
-		 	 $_SESSION['cart'][$order_id]['tax'] 		= $_SESSION['cart'][$order_id]['subtotal']*0.01;
+		 	 $_SESSION['cart'][$order_id]['tax'] 		= $_SESSION['cart'][$order_id]['subtotal']*Vi_Registry::getConfig('taxFee');
 		 	 $_SESSION['cart'][$order_id]['shipping'] 	= 10;
 		 	 $_SESSION['cart'][$order_id]['ordertotal'] = $_SESSION['cart'][$order_id]['subtotal']+$_SESSION['cart'][$order_id]['tax']+$_SESSION['cart'][$order_id]['shipping'];
 		 	 
