@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 26, 2010 at 08:28 AM
+-- Generation Time: Nov 27, 2010 at 02:42 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -505,30 +505,30 @@ CREATE TABLE IF NOT EXISTS `vi_restaurant` (
   `services` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `image` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `date_mon` tinyint(1) DEFAULT '0',
-  `date_mon_start` int(11) DEFAULT NULL,
-  `date_mon_end` int(11) DEFAULT NULL,
+  `date_mon_start` varchar(11) DEFAULT NULL,
+  `date_mon_end` varchar(11) DEFAULT NULL,
   `date_tue` tinyint(1) DEFAULT '0',
-  `date_tue_start` int(11) DEFAULT NULL,
-  `date_tue_end` int(11) DEFAULT NULL,
+  `date_tue_start` varchar(11) DEFAULT NULL,
+  `date_tue_end` varchar(11) DEFAULT NULL,
   `date_wed` tinyint(1) DEFAULT '0',
-  `date_wed_start` int(11) DEFAULT NULL,
-  `date_wed_end` int(11) DEFAULT NULL,
+  `date_wed_start` varchar(11) DEFAULT NULL,
+  `date_wed_end` varchar(11) DEFAULT NULL,
   `date_thu` tinyint(1) DEFAULT '0',
-  `date_thu_start` int(11) DEFAULT NULL,
-  `date_thu_end` int(11) DEFAULT NULL,
+  `date_thu_start` varchar(11) DEFAULT NULL,
+  `date_thu_end` varchar(11) DEFAULT NULL,
   `date_fri` tinyint(1) DEFAULT '0',
-  `date_fri_start` int(11) DEFAULT NULL,
-  `date_fri_end` int(11) DEFAULT NULL,
+  `date_fri_start` varchar(11) DEFAULT NULL,
+  `date_fri_end` varchar(11) DEFAULT NULL,
   `date_sat` tinyint(1) DEFAULT '0',
-  `date_sat_start` int(11) DEFAULT NULL,
-  `date_sat_end` int(11) DEFAULT NULL,
+  `date_sat_start` varchar(11) DEFAULT NULL,
+  `date_sat_end` varchar(11) DEFAULT NULL,
   `date_sun` tinyint(1) DEFAULT '0',
-  `date_sun_start` int(11) DEFAULT NULL,
-  `date_sun_end` int(11) DEFAULT NULL,
-  `enabled` tinyint(1) NOT NULL DEFAULT '1',
+  `date_sun_start` varchar(11) DEFAULT NULL,
+  `date_sun_end` varchar(11) DEFAULT NULL,
+  `enabled` tinyint(1) DEFAULT '1',
   `created_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`restaurant_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `vi_restaurant`
@@ -537,8 +537,7 @@ CREATE TABLE IF NOT EXISTS `vi_restaurant` (
 INSERT INTO `vi_restaurant` (`restaurant_id`, `name`, `map`, `description`, `website`, `cuisine`, `street`, `city`, `state`, `zip`, `manager`, `phone`, `fax`, `owner`, `owner_phone`, `owner_email`, `mileage`, `pickup`, `curbside`, `delivery`, `catering_pickup`, `catering_delivery`, `delivery_minimum`, `delivery_charge`, `delivery_limit_hour`, `catering_delivery_minimum`, `catering_delivery_charge`, `catering_delivery_limit_hour`, `services`, `image`, `date_mon`, `date_mon_start`, `date_mon_end`, `date_tue`, `date_tue_start`, `date_tue_end`, `date_wed`, `date_wed_start`, `date_wed_end`, `date_thu`, `date_thu_start`, `date_thu_end`, `date_fri`, `date_fri_start`, `date_fri_end`, `date_sat`, `date_sat_start`, `date_sat_end`, `date_sun`, `date_sun_start`, `date_sun_end`, `enabled`, `created_date`) VALUES
 (1, 'Apple Spice Junction - Audubon', NULL, 'Apple Spice Junction offers box lunch delivery, corporate catering and deli dining. Sandwich selections feature freshly-baked breads, fine meats and cheeses and crisp vegetables. Homemade soups, healthy salads and fresh bakery treats round out the box lunch menu, while breakfast offerings range from pastries and fruit to gourmet eggs and seasoned potatoes. Whether you need a caterer for a business event or family party, or just want to stop in for a sandwich and a bowl of soup, Apple Spice Junction means "good food when you need it."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1.15, '45 min', NULL, NULL, '1 day', NULL, 50, 15, 0, NULL, NULL, 0, 'Catering- Delivery,Delivery', 'media/userfiles/images/restaurant/Apple-Spice.gif', 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
 (2, 'Xpress Pizza and Grill', NULL, 'We serve Phoenixville and surrounding areas with the best pizza in town, made with fresh ingredients. Our menu also include a variety of delicious choices such as Stromboli, Quesadilla, Sandwiches and Appetizers, with something for everyone.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4.52, '20 min', NULL, NULL, '6 hours', NULL, 15, 2, 0, NULL, NULL, 0, 'Delivery,Catering- Delivery', 'media/userfiles/images/restaurant/img.jpg', 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
-(3, 'Vietnamese Restaurant', NULL, NULL, 'www.test.com', 'Cuisine', '123 Street', 'Ho Chi Minh', 'Alberta', '1234', 'Nguyen Hoai Tan', '1234567890', '1234567890', 'Nguyen Hoai Tan', '1234567890', 'nguoiao007@gmail.com', NULL, '10 min', '15 min', '20 min', '1 hour', '1 hour', 10, 10, 1, 10, 10, 1, NULL, NULL, 1, 28800, 72000, 1, 28800, 72000, 1, 28800, 72000, 1, 28800, 72000, 1, 28800, 72000, 1, 28800, 72000, 1, 28800, 72000, 0, 1290758225),
-(4, 'Vietnamese Restaurant', NULL, NULL, 'www.test.com', 'Cuisine', '123 Street', 'Ho Chi Minh', 'Alberta', '1234', 'Nguyen Hoai Tan', '1234567890', '1234567890', 'Nguyen Hoai Tan', '1234567890', 'nguoiao007@gmail.com', NULL, '10 min', '15 min', '20 min', '1 hour', '1 hour', 10, 10, 1, 10, 10, 1, NULL, NULL, 1, 28800, 72000, 1, 28800, 72000, 1, 28800, 72000, 1, 28800, 72000, 1, 28800, 72000, 1, 28800, 72000, 1, 28800, 72000, 0, 1290758225);
+(5, 'Nguyen Hoai Tan', NULL, NULL, 'hoaitan.com', 'Cuisine', '123 Street', 'Ho Chi Minh', 'Alberta', '1234', 'Nguyen Hoai Tan', '1234567890', '1234567890', 'Nguyen Hoai Tan', '1234567890', 'nguoiao007@gmail.com', NULL, '10 min', '15 min', '20 min', '30 min', '1 hour', 20, 10, 1, 20, 10, 1, NULL, NULL, 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 0, 1290825697);
 
 -- --------------------------------------------------------
 

@@ -177,32 +177,65 @@ class user_IndexController extends Vi_Controller_Action
                     unset($newRes["date_{$item}_end"]);
                 } else {
                     /**
-                     * Change string to unixtime
+                     * Change correct time
                      */
                     if (null == @$newRes["date_{$item}_start"]) {
-                        $newRes["date_{$item}_start"] = 0;//0 hours
+                        $newRes["date_{$item}_start"] = '00:00';//0 hours
                     } else {
                         $tmp = explode(':', $newRes["date_{$item}_start"]);
-                        if (null == $tmp[0]) {
+                        /**
+                         * Hour
+                         */
+                        if (null == @$tmp[0]) {
                             $tmp[0] = 0;
                         }
-                        if (null == $tmp[1]) {
+                        $tmp[0] = '00' . abs(intval($tmp[0]));
+                        $tmp[0] = substr($tmp[0], -2, 2);
+                        if (23 < intval($tmp[0])) {
+                            $tmp[0] = '00';
+                        }
+                        /**
+                         * Minute
+                         */
+                        if (null == @$tmp[1]) {
                             $tmp[1] = 0;
                         }
-                        $newRes["date_{$item}_start"] = $tmp[0]*3600 + $tmp[1]*60;
+                        $tmp[1] = '00' . abs(intval($tmp[1]));
+                        $tmp[1] = substr($tmp[1], -2, 2);
+                        if (59 < intval($tmp[1])) {
+                            $tmp[1] = '00';
+                        }
+                        
+                        $newRes["date_{$item}_start"] = $tmp[0] . ':' . $tmp[1];
                     }
                     
                     if (null == @$newRes["date_{$item}_end"]) {
                         $newRes["date_{$item}_end"] = 24*3600 - 60;//23:59:59 hours
                     } else {
                         $tmp = explode(':', $newRes["date_{$item}_end"]);
-                        if (null == $tmp[0]) {
+                        /**
+                         * Hour
+                         */
+                        if (null == @$tmp[0]) {
                             $tmp[0] = 23;
                         }
-                        if (null == $tmp[1]) {
+                        $tmp[0] = '00' . abs(intval($tmp[0]));
+                        $tmp[0] = substr($tmp[0], -2, 2);
+                        if (23 < intval($tmp[0])) {
+                            $tmp[0] = '23';
+                        }
+                        /**
+                         * Minute
+                         */
+                        if (null == @$tmp[1]) {
                             $tmp[1] = 59;
                         }
-                        $newRes["date_{$item}_end"] = $tmp[0]*3600 + $tmp[1]*60;
+                        $tmp[1] = '00' . abs(intval($tmp[1]));
+                        $tmp[1] = substr($tmp[1], -2, 2);
+                        if (59 < intval($tmp[1])) {
+                            $tmp[1] = '59';
+                        }
+                        $newRes["date_{$item}_end"] = $tmp[0] . ':' . $tmp[1];
                     }
                 }
             }
