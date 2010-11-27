@@ -81,9 +81,9 @@ function submit_form(){
             </div>
             
             
-            <div class="bg_tt m10t"><img src="{{$LAYOUT_HELPER_URL}}front/img/tt_1.png" alt="" /></div>
-            <div class="bg_tt m15t"><img src="{{$LAYOUT_HELPER_URL}}front/img/tt_2.png" alt="" /></div>
-            <div class="bg_tt m15t"><img src="{{$LAYOUT_HELPER_URL}}front/img/tt_3.png" alt="" /></div>
+            <div class="bg_tt m10t"><a href="{{$BASE_URL}}restaurant?mark=pickup"><img src="{{$LAYOUT_HELPER_URL}}front/img/tt_1.png" alt="" /></a></div>
+            <div class="bg_tt m15t"><a href="{{$BASE_URL}}page/refer-a-restaurant.html"><img src="{{$LAYOUT_HELPER_URL}}front/img/tt_2.png" alt="" /></a></div>
+            <div class="bg_tt m15t"><a href="{{$BASE_URL}}restaurant-owner-register.html"><img src="{{$LAYOUT_HELPER_URL}}front/img/tt_3.png" alt="" /></a></div>
             <div class="bg_2 m15t">
                 <img src="{{$LAYOUT_HELPER_URL}}front/img/tt_4.png" alt="" /><br /><br /><br />
                 <div class="float_left m10t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_top.png" alt="" /></div>
