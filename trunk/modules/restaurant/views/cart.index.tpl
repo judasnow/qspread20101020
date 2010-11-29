@@ -152,7 +152,7 @@
                             <td class="center top"><br /></td>
                             <td class="center top"></td>
                             <td class="p10t" color_1 fs14">
-                            <a href="{{$APP_BASE_URL}}restaurant/ship">
+                            <a href="{{$APP_BASE_URL}}restaurant/ship?mark={{$mark}}&time={{$time}}&date={{$date}}">
                             	<img src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" />
                             </a>
                             </td>

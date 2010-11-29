@@ -50,9 +50,9 @@ class restaurant_CartController extends Vi_Controller_Action
 		 //-- end add information into cart	
 		 $this->view->order_id = $order_id;	
 		 
-		 $this->view->mark = $this->_getParam('mark', false); ;
-		 $this->view->date = $this->_getParam('date', false); ;
-		 $this->view->time = $this->_getParam('time', false); ;
+		 $this->view->mark = $this->_getParam('mark', false);
+		 $this->view->date = $this->_getParam('date', false);
+		 $this->view->time = $this->_getParam('time', false);
 	}	
 } 
 
