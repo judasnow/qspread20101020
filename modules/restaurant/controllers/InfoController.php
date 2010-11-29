@@ -167,6 +167,10 @@ class restaurant_InfoController extends Vi_Controller_Action
         $cardNumber{10} = 'X';
         $cardNumber{11} = 'X';
         $this->view->cardNumber = $cardNumber;
+        
+        $this->view->mark = $this->_getParam('mark', false);
+		$this->view->date = $this->_getParam('date', false);
+		$this->view->time = $this->_getParam('time', false);
 	}	
 } 
 
