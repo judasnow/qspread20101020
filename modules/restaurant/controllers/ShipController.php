@@ -55,6 +55,10 @@ class restaurant_ShipController extends Vi_Controller_Action
 		
 		$this->view->cartErrorMsg = @$_SESSION['card_error_msg'];
 		$_SESSION['card_error_msg'] = null; 
+		
+		$this->view->mark = $this->_getParam('mark', false);
+		$this->view->date = $this->_getParam('date', false);
+		$this->view->time = $this->_getParam('time', false);
 	}
 	
 	
