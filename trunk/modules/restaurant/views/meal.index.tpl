@@ -144,7 +144,7 @@ function fbs_click(address){
                 </tr>
                 {{foreach from=$arr_meal item=item}}
                 <tr>
-                  <td class="bd1b p10t p5b"><p><b>{{$item.name}}</b>(Italian, Pizza) </p>
+                  <td class="bd1b p10t p5b"><p><b>{{$item.name}}</b>&nbsp;({{$item.meal_country}}) </p>
                     <p>{{$item.description}}<br />
 <!--                     
                       <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_ecit.png" alt="" /></a> <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_delete.png" alt="" /></a>
