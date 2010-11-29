@@ -145,8 +145,8 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 		/**
 	 		 * Clear session
 	 		 */
-	 		$_SESSION['cart'] = '';
-	 		$_SESSION['cart_customer'] = '';
+	 		session_unset($_SESSION['cart']);
+            session_unset($_SESSION['cart_customer']);
 	 		/**
 	 		 * Redirec to success page
 	 		 */
