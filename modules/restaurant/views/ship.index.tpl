@@ -37,6 +37,15 @@
 						</div>
 						<br/>
 						<div class="">
+						
+						<!-- ERROR -->
+						{{if $cartErrorMsg}}
+						<p class="red"><b>Error</b>: {{$cartErrorMsg}}</p>
+						<br/>
+						{{/if}}
+						<!-- END ERROR -->
+						
+						
                 <p class="color_2 uper"><b>Shipping Address</b></p>
                 <div class="input_form bd1b">   
                 	                
@@ -55,7 +64,7 @@
 	                    <label class="w130 m10r right">State:<span class="red">*</span></label>
 	                    <select class="w235" id="data[state]" name="data[state]">
 	                    	{{foreach from=$arr_province item=item}}	
-	                    	<option {{if $data.state == $item.province}} selected="selected" {{/if}} value="{{$item.province}}">{{$item.province}}</option>
+	                    	<option {{if $data.state == $item.province}} selected="selected" {{/if}} value="{{$item.province_code}}">{{$item.province}}</option>
 	                    	{{/foreach}}
 	                    </select><br />
 	                    

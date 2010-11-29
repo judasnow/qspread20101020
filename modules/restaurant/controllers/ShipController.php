@@ -12,7 +12,8 @@ class restaurant_ShipController extends Vi_Controller_Action
 		$this->view->order_id = $order_id;
 		
 		$obj_country = new Models_Country();
-		$arr_province = $obj_country->getAllProvinces();
+		$arr_province = $obj_country->getAllProvincesWithCode();
+//		echo '<pre>';print_r($arr_province);die;
 		
 		$this->view->arr_province = $arr_province;
 		
@@ -51,6 +52,9 @@ class restaurant_ShipController extends Vi_Controller_Action
 		    $years[] = $i;
 		}
 		$this->view->years = $years;
+		
+		$this->view->cartErrorMsg = @$_SESSION['card_error_msg'];
+		$_SESSION['card_error_msg'] = null; 
 	}
 	
 	
