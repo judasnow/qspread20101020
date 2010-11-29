@@ -6,7 +6,7 @@
 <meta content="text/html; charset=UTF-8" http-equiv="content-type">
 <meta name="description" content="" lang="vi-VI">
 <meta name="keywords" content="web" lang="vi-VI">
-<link rel="Shortcut Icon" href="{{$BASE_URL}}general/icons/site/vi.ico">
+<link rel="Shortcut Icon" href="{{$BASE_URL}}favicon.ico">
 {{$headLink}} {{$headStyle}} <script type="text/javascript"
     src="{{$LAYOUT_HELPER_URL}}front/js/jquery.min.js"></script> <script
     type="text/javascript"
