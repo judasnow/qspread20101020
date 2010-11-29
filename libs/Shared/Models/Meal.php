@@ -48,9 +48,9 @@ class Models_Meal extends Vi_Model
     
     
     public function getAllMealByResId($restaurant_id, $count = null, $offset = null){    	
-        $query = "  SELECT m.*
-    				FROM ".$this->_prefix."meal m
-    				WHERE m.restaurant_id = $restaurant_id     					     				
+        $query = "  SELECT m.*, cv.name as meal_country
+    				FROM ".$this->_prefix."meal m, ".$this->_prefix."category_value cv
+    				WHERE m.restaurant_id = $restaurant_id AND m.category_value_id = cv.category_value_id     					     				
     	";   
         if ( null != $count )
         	$query .= " LIMIT $offset,$count";
