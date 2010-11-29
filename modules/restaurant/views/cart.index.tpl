@@ -1,3 +1,14 @@
+<script type="text/javascript">
+function update_cart(meal_id){
+	var frm = document.form_cart;
+//	txt_quantity = "quantity_"+meal_id;
+	quantity = frm."quantity_"+meal_id.value;
+	alert(quantity);
+	url = "&quantity_"+meal_id+"="+quantity;
+	frm.action += url;
+	frm.submit();
+}
+</script>
 <div id="main">
         <div class="w201 float_left">
         	<div class="top1 m20t"></div>
@@ -87,6 +98,7 @@
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In viverra pretium ultrices. Morbi eget quam nisl. Integer fringilla nibh quis nisl interdum eu facilisis mauris interdum. Aenean eu nibh enim. Donec placerat bibendum elementum. Quisque congue sapien in sem imperdiet blandit. Aliquam erat volutpat.  </p><br />
 							
 						</div>
+						<form name="form_cart" method="post" action="{{$APP_BASE_URL}}restaurant/cart?meal_id={{$meal_id}}&mark={{$mark}}&time={{$time}}&date={{$date}}">
 				        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                           <tr>
                             <td width="8%" class="color_1 p5t p5b bd1b"><b>Dish</b></td>
@@ -103,12 +115,12 @@
                             <td class="bd1b p10t p5b"><b>{{$item.name}}</b>
                                 <p class="fs11"> {{$item.description}}<br />
                               </p></td>
-                            <td class="bd1b p10t p5b center top"><input name="text" type="text" class="w50 center" value="{{$item.quantity}}" />
+                            <td class="bd1b p10t p5b center top"><input type="text" class="w50 center" value="{{$item.quantity}}" name="quantity_{{$item.meal_id}}" id="quantity_{{$item.meal_id}}" />
                                 <br /></td>
                             <td class="bd1b p10t p5b center top">${{$item.price}}</td>
                             <td class="bd1b p10t p5b top">${{$item.total_money}}</td>
                             <td class="bd1b p10t p5b top">
-                            	<a class="color_2" href="#">update</a>
+                            	<a class="color_2" href="#" onclick="update_cart({{$item.meal_id}});">update</a>
                             	<a class="color_2" href="#">remove</a>
                             </td>
                           </tr> 
@@ -159,6 +171,7 @@
                             <td class="top"><a class="color_2" href="#"></a></td>
                           </tr>
                         </table>
+                        </form>
                	  </div>
             	</div>
             </div>
