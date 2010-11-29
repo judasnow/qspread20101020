@@ -122,8 +122,8 @@ function fbs_click(address){
         <br />
         <div id="na_2">
           <ul>            
-            <li class="current"><a href="find.html"><span>General menu</span></a></li>
-            <li><a href="howitwork.html"><span>Catering</span></a></li>
+            <li {{if $type eq 0 }} class="current" {{/if}} ><a href="{{$APP_BASE_URL}}restaurant/meal?id={{$res_id}}&mark={{$mark}}&date={{$date}}&time={{$time}}"><span>General menu</span></a></li>
+            <li {{if $type eq 1 }} class="current" {{/if}} ><a href="{{$APP_BASE_URL}}restaurant/meal?id={{$res_id}}&mark={{$mark}}&date={{$date}}&time={{$time}}&type=1"><span>Catering</span></a></li>
           </ul>
         </div>
 
@@ -191,17 +191,17 @@ function fbs_click(address){
               <div class="float_right">
                 <ul class="list_3">
                 	{{if $prevPage}}
-						<li><a href="?page={{$prevPage}}&mark={{$mark}}&date={{$date}}&time={{$time}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="" /></a></li>
+						<li><a href="?page={{$prevPage}}&id={{$res_id}}&mark={{$mark}}&date={{$date}}&time={{$time}}&type={{$type}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="" /></a></li>
 					{{/if}}
 					{{foreach from=$prevPages item=item}}
-						<li><a href="?page={{$item}}&mark={{$mark}}&date={{$date}}&time={{$time}}">{{$item}}</a></li>
+						<li><a href="?page={{$item}}&id={{$res_id}}&mark={{$mark}}&date={{$date}}&time={{$time}}&type={{$type}}">{{$item}}</a></li>
 					{{/foreach}}
 						<li><a href="#" class="current" title="{{$currentPage}}">{{$currentPage}}</a></li>
 					{{foreach from=$nextPages item=item}}
-						<li><a href="?page={{$item}}&mark={{$mark}}&date={{$date}}&time={{$time}}">{{$item}}</a></li>
+						<li><a href="?page={{$item}}&id={{$res_id}}&mark={{$mark}}&date={{$date}}&time={{$time}}&type={{$type}}">{{$item}}</a></li>
 					{{/foreach}}
 					{{if $nextPage}}
-						<li><a href="?page={{$nextPage}}&mark={{$mark}}&date={{$date}}&time={{$time}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="" /></a></li>
+						<li><a href="?page={{$nextPage}}&id={{$res_id}}&mark={{$mark}}&date={{$date}}&time={{$time}}&type={{$type}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="" /></a></li>
 					{{/if}}
 				</ul>
               </div>

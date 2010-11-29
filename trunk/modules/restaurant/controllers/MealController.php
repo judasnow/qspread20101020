@@ -11,6 +11,8 @@ class restaurant_MealController extends Vi_Controller_Action
 		$this->view->headTitle('Meal information');
 		$restaurant_id = $this->_getParam('id', false); 
 		
+		$type = $this->_getParam('type', 0); 
+		
 		$numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
         $numRowPerPage = 1;
         $currentPage = $this->_getParam("page",1);
@@ -23,9 +25,9 @@ class restaurant_MealController extends Vi_Controller_Action
 		
 		//-- begin get meal		 
 		$objCountry = new Models_Meal();
-		$arrMeal = $objCountry->getAllMealByResId($restaurant_id,$numRowPerPage,($currentPage - 1) * $numRowPerPage);			 
+		$arrMeal = $objCountry->getAllMealByResId($restaurant_id, $type, $numRowPerPage,($currentPage - 1) * $numRowPerPage);			 
 		$this->view->arr_meal = $arrMeal;
-		$count = count($objCountry->getAllMealByResId($restaurant_id));	
+		$count = count($objCountry->getAllMealByResId($restaurant_id, $type));	
 		//-- end get meal
 		
 		/**
@@ -46,6 +48,9 @@ class restaurant_MealController extends Vi_Controller_Action
 		$this->view->mark = $mark;
 		$this->view->date = $date;
 		$this->view->time = $time;
+		
+		$this->view->type = $type;
+		$this->view->res_id = $restaurant_id;
 	}
 } 
 
