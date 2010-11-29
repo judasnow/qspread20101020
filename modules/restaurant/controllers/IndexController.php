@@ -72,11 +72,12 @@ class restaurant_IndexController extends Vi_Controller_Action
 //	    	$arr_condition["address LIKE ? "] = "%".$city_from_code[0]['city']."%";
 	    	$arr_con['city'] = $city_from_code[0]['city'];
 	    	$arr_con['zip'] = $condition['zip'];
-	    	$arr_con['address'] = $city_from_code[0]['city'];
+//	    	$arr_con['address'] = $city_from_code[0]['city'];
 	    }
 		else if ( false != $searchword){//-- searchword: city
 //	    	$arr_condition["address LIKE ? "] = "%".$searchword."%";
-	    	$arr_con["address"] = $searchword;	
+//	    	$arr_con["address"] = $searchword;	
+	    	$arr_con["city"] = $searchword;
 	    }
 	    
 		if ((null != @$conditions['cuisine']) && ($conditions['cuisine'] > 0)) {
@@ -91,7 +92,8 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    }
 	    $objRestaurant = new Models_Restaurant();
     	$restaurants = $objRestaurant->getRestaurantByData($arr_con,$numRowPerPage,($currentPage - 1) * $numRowPerPage);	    
-    	$count = count($restaurants);	
+    	$count = count($objRestaurant->getRestaurantByData($arr_con));
+    	
 //	    else{  
 //
 //	    $arr_condition["enabled = ? "] = 1;
@@ -166,8 +168,12 @@ class restaurant_IndexController extends Vi_Controller_Action
 		$this->view->arr_time = $arr_time;
 		$this->view->zip = null != @$condition['zip']?$condition['zip']:'';
 		$this->view->city = $searchword;
-		$this->view->time = null != @$conditions['time']?$conditions['time']:'';
-		$this->view->date = null != @$conditions['date']?$conditions['date']:'';		
+		
+		$date = $this->_getParam('date', false); 
+		$time = $this->_getParam('time', false); 
+		
+		$this->view->time = null != @$conditions['time']?$conditions['time']:((false !=$time)?$time:'');
+		$this->view->date = null != @$conditions['date']?$conditions['date']:((false !=$date)?$date:'');		
 		
 	    /**
 	     * Pagination

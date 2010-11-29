@@ -65,7 +65,7 @@ class Models_Restaurant extends Vi_Model
                 ->where('enabled=1')                
                 ->order($order)
                 ->limit($count, $offset);
-                
+          
         return $this->fetchAll($select)->toArray();
     }
     
@@ -77,7 +77,7 @@ class Models_Restaurant extends Vi_Model
                 ->where('restaurant_id='.$id);               
                                
         return $this->fetchRow($select)->toArray();
-    }
+    }	
     
     public function getRestaurantByData($arrData, $count = null, $offset = null){      	
         $query = "  SELECT r.*
@@ -87,19 +87,20 @@ class Models_Restaurant extends Vi_Model
         if ( isset($arrData['cuisine_id']) )
         	$query .= " JOIN vi_meal m ON (r.restaurant_id = m.restaurant_id) AND (m.meal_id =	".$arrData['cuisine_id'].")";
         if ( isset($arrData['city']) )
-        	$query .= " AND (r.address LIKE '%".$arrData['city']."%')";
+        	$query .= " AND (r.city LIKE '%".$arrData['city']."%')";
         if ( isset($arrData['mark']) )
         	$query .= " AND (r.{$arrData['mark']} != ".Zend_DB::NULL_EMPTY_STRING.")";
         if ( isset($arrData['name']) )
         	$query .= " AND (r.name LIKE '".$arrData['name']."%')";
-        if ( isset($arrData['address']) )
-        	$query .= " AND (r.address LIKE '%".$arrData['address']."%')";
+//        if ( isset($arrData['address']) )
+//        	$query .= " AND (r.address LIKE '%".$arrData['address']."%')";
         if ( isset($arrData['date']) && isset($arrData['time']) )
         	$query .= " AND ((r.date_".$arrData['date']."_start <= ".$arrData['time']." AND (r.date_".$arrData['date']."_end >= ".$arrData['time'].")";
         if ( isset($arrData['zip']) )
         	$query .= " JOIN vi_country c ON (c.postal_code = ".$arrData['zip'].") AND (r.address LIKE '%c.city%')";
         $query .= " AND r.enabled=1 ";	
-        $query .= " LIMIT $offset,$count";
+       	if ( null != $count )
+        	$query .= " LIMIT $offset,$count";
     
 //        print $query;die;
     	return $this->_db->fetchAll($query);
