@@ -1,3 +1,5 @@
+<form method="POST">
+
 <div id="main">
         <div class="w201 float_left">
         	<div class="top1 m20t"></div>
@@ -34,6 +36,7 @@
 						<div class="bd1b">
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In viverra pretium ultrices. Morbi eget quam nisl. Integer fringilla nibh quis nisl interdum eu facilisis mauris interdum. Aenean eu nibh enim. Donec placerat bibendum elementum. Quisque congue sapien in sem imperdiet blandit. Aliquam erat volutpat.  </p><br />							
 						</div>
+						<br/>
 			<div class="c50l">
                 <p class="color_2 uper"><b>Shipping Address</b></p>
                 <div class="input_form">                    
@@ -56,8 +59,8 @@
 			<div class="c50l">
                 <p class="color_2 uper"><b>Payment method</b></p>
                 <div class="input_form">
-                    <label class="w130 m10r right">American Express:</label>
-                    <span class="color_2">31231321321313</span>
+                    <label class="w130 m10r right">{{$cardType}}:</label>
+                    <span class="color_2">{{$cardNumber}}</span>
                     <br class="clear"/>
 				</div> 
 				<br class="clear" />
@@ -125,7 +128,11 @@
                       </p></td>
                       <td class="center top"><br /></td>
                       <td class="center top"></td>
-                      <td class="p10t" color_1 fs14"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" /></td>
+                      <td class="p10t" color_1 fs14">
+                      
+                      <input type="image" name="submit" src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" />
+                      
+                      </td>
                       
                     </tr>
                   </table>
@@ -136,3 +143,7 @@
         </div>
         <div class="clear"></div>
     </div>
+    
+    
+ <input type="hidden" name="confirm" value="1"></input>   
+ </form>   
