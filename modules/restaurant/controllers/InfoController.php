@@ -3,6 +3,8 @@ include_once 'libs/Shared/Models/Meal.php';
 include_once 'libs/Shared/Models/Order.php';
 include_once 'libs/Shared/Models/OrderDetail.php';
 include_once 'libs/Shared/Models/ScontentLang.php';
+include_once 'libs/Shared/Models/User.php';
+include_once 'libs/Shared/Models/Mail.php';
 class restaurant_InfoController extends Vi_Controller_Action
 {
 	/**
@@ -32,6 +34,18 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 	$this->view->address 	= $data_info['address'];
 	 	$this->view->zip_code	= $data_info['zip_code'];
 	 	$this->view->phone		= $data_info['phone1'].".".$data_info['phone2'].".".$data_info['phone3'];
+        
+        $this->view->cardType = $_SESSION['cart_customer']['card_type'];
+        $cardNumber = $_SESSION['cart_customer']['card_number'];
+        $cardNumber{4} = 'X';
+        $cardNumber{5} = 'X';
+        $cardNumber{6} = 'X';
+        $cardNumber{7} = 'X';
+        $cardNumber{8} = 'X';
+        $cardNumber{9} = 'X';
+        $cardNumber{10} = 'X';
+        $cardNumber{11} = 'X';
+        $this->view->cardNumber = $cardNumber;
 	 	
 	 	$error = '';
 	 	/**
@@ -141,12 +155,106 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 		/**
 	 		 * Send email to admin and user
 	 		 */
-	 		
+            $objUser = new Models_User();
+            $objMail = new Models_Mail();
+            $data = $arr_order;
+            $data['card_type'] = $this->view->cardType;
+            $data['card_number'] = $this->view->cardNumber;
+//            echo '<pre>';print_r($data);die;
+
+            $cartDetail = "
+            <table>
+                <tr>
+                    <td>SHIPPING ADDRESS</td>
+                    <td>PAYMENT METHOD</td>
+                </tr> 
+                <tr>
+                   <td>
+                       <table>
+                           <tr>
+                               <td align='right'>Full Name:</td>
+                               <td>{$data['full_name']}</td>
+                           </tr>
+                           <tr>
+                               <td align='right'>Address:</td>
+                               <td>{$data['address']}</td>
+                           </tr>
+                           <tr>
+                               <td align='right'>Zip/Postal Code:</td>
+                               <td>{$data['zip_code']}</td>
+                           </tr>
+                           <tr>
+                               <td align='right'>Phone:</td>
+                               <td>{$data['phone']}</td>
+                           </tr>
+                       </table>
+                   </td>
+                   <td>
+                       <br/>
+                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       {$data['card_type']}: {$data['card_number']} 
+                   </td>
+                </tr>
+            </table>
+            
+            <table border='0'>
+                <tr>
+                    <td>Dish</td>
+                    <td></td>
+                    <td>Quanlity</td>
+                    <td>Price</td>
+                    <td>Total</td>
+                </tr> ";
+                       
+             foreach ($_SESSION['cart'][$order_id] as $meal) {   
+                 if (null == $meal['meal_id']) {
+                     continue;
+                 }
+                 $cartDetail .= "
+                 <tr>
+                    <td>
+                        <img src='#'>
+                    </td>
+                    <td>
+                        <b>{$meal['name']}</b>
+                        <br/>
+                        <p>{$meal['description']}</p>
+                    </td>
+                    <td>{$meal['quantity']}</td>
+                    <td>$ " . number_format($meal['price'], 2)."</td>
+                    <td>$ " . number_format($meal['total_money'], 2)."</td>
+                </tr>"; 
+             }
+             $cartDetail .= "   
+                <tr>
+                    <td colspan='4' align='right'> Subtotal </td>
+                    <td>$ " . number_format($data['sub_total'], 2)."</td>
+                </tr>
+                <tr>
+                    <td colspan='4' align='right'> Tax </td>
+                    <td>$ " . number_format($data['sales_tax'], 2)."</td>
+                </tr>
+                <tr>
+                    <td colspan='4' align='right'> Shipping fee </td>
+                    <td><b>$ " . number_format($data['shipping_fee'], 2)."</b></td>
+                </tr>
+                <tr>
+                    <td colspan='4' align='right'> Order total </td>
+                    <td>$ " . number_format($data['order_total'], 2)."</td>
+                </tr>
+            </table>
+            ";
+             
+            $data['card_detail'] = $cartDetail;
+//            echo '<pre>';print_r($data);die;
+            
+            $admin = $objUser->getByUserName('admin');
+            $objMail->sendHtmlMail('meal_order', $data, array($admin['email'], $data_info['email']));
 	 		/**
 	 		 * Clear session
 	 		 */
-	 		session_unset($_SESSION['cart']);
-            session_unset($_SESSION['cart_customer']);
+	 		unset($_SESSION['cart']);
+            unset($_SESSION['cart_customer']);
 	 		/**
 	 		 * Redirec to success page
 	 		 */
@@ -155,18 +263,6 @@ class restaurant_InfoController extends Vi_Controller_Action
             return;
 	 		
 	 	}
-	 	
-	 	$this->view->cardType = $_SESSION['cart_customer']['card_type'];
-	 	$cardNumber = $_SESSION['cart_customer']['card_number'];
-	 	$cardNumber{4} = 'X';
-        $cardNumber{5} = 'X';
-        $cardNumber{6} = 'X';
-        $cardNumber{7} = 'X';
-        $cardNumber{8} = 'X';
-        $cardNumber{9} = 'X';
-        $cardNumber{10} = 'X';
-        $cardNumber{11} = 'X';
-        $this->view->cardNumber = $cardNumber;
         
         $this->view->mark = $this->_getParam('mark', false);
 		$this->view->date = $this->_getParam('date', false);
