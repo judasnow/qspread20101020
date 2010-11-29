@@ -20,9 +20,12 @@ function fbs_click(address){
               </div>
               <div class="input_form bd1b p10b">
                 <div>
+<!--                 
                   <input type="radio" class="mid float_left m5r" />
-                  <span class="mid">Pick up</span> <br class="clear_left"/>
+-->                  
+                  <span class="mid">{{$mark}}</span> <br class="clear_left"/>
                 </div>
+<!--                
                 <div>
                   <input type="radio" class="mid float_left m5r" />
                   <span class="mid">Delivery - $50 min</span> <br class="clear_left"/>
@@ -35,21 +38,30 @@ function fbs_click(address){
                   <input type="radio" class="mid float_left m5r" />
                   <span class="mid">Catering Pick up</span> <br class="clear_left"/>
                 </div>
+-->                 
               </div>
               <div class="input_form p20b">
                 <p class="p10b"><b>Date and time</b></p>
-                <label class="w30">Date</label>
+                <label class="w30">Date: </label>
+                <label class="w130">&nbsp;{{$date}}</label>                
+<!--                
                 <select class="w130">
                   <option></option>
                 </select>
+-->                
                 <br />
-                <label class="w30">Time</label>
+                <label class="w30">Time: </label>
+                <label class="w130">&nbsp;{{$time}}</label>                
+<!--                 
                 <select class="w130">
                   <option></option>
                 </select>
+-->                
                 <br />
+<!--                 
                 <div class="center color_2 uper p10t"> <a href="#"><b>Select a menu item<br />
                   to add it to your order</b></a> </div>
+-->                  
               </div>
             </div>
           </div>
@@ -115,7 +127,7 @@ function fbs_click(address){
           </ul>
         </div>
 
-        <div class="float_left fs14 p20t p10t m20l"><b>Menu Serving From 11:30 AM to 10:30 PM on Thursday</b></div>
+        <div class="float_left fs14 p20t p10t m20l"><b>Menu Serving From {{$time_start}} to {{$time_end}} on {{$date_cut}}</b></div>
 <!--         
         <a href="#" class="float_right m10r"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_add.png" alt="" class="mid m5t"/></a>
 -->         
@@ -175,15 +187,25 @@ function fbs_click(address){
                 <li><a href="#">z</a></li>
               </ul>
 -->              
+			  {{if $countAllPages > 1}}
               <div class="float_right">
                 <ul class="list_3">
-					<li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="" /></a></li>
-					<li><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="" /></a></li>
+                	{{if $prevPage}}
+						<li><a href="?page={{$prevPage}}&mark={{$mark}}&date={{$date}}&time={{$time}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="" /></a></li>
+					{{/if}}
+					{{foreach from=$prevPages item=item}}
+						<li><a href="?page={{$item}}&mark={{$mark}}&date={{$date}}&time={{$time}}">{{$item}}</a></li>
+					{{/foreach}}
+						<li><a href="#" class="current" title="{{$currentPage}}">{{$currentPage}}</a></li>
+					{{foreach from=$nextPages item=item}}
+						<li><a href="?page={{$item}}&mark={{$mark}}&date={{$date}}&time={{$time}}">{{$item}}</a></li>
+					{{/foreach}}
+					{{if $nextPage}}
+						<li><a href="?page={{$nextPage}}&mark={{$mark}}&date={{$date}}&time={{$time}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="" /></a></li>
+					{{/if}}
 				</ul>
               </div>
+              {{/if}}
               <div class="clear"></div>
             </div>
           </div>
