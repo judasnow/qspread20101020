@@ -2,6 +2,7 @@
 include_once 'libs/Shared/Models/Meal.php';
 include_once 'libs/Shared/Models/Order.php';
 include_once 'libs/Shared/Models/OrderDetail.php';
+include_once 'libs/Shared/Models/ScontentLang.php';
 class restaurant_InfoController extends Vi_Controller_Action
 {
 	/**
@@ -18,12 +19,22 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 	$this->view->ordertotal 		= $_SESSION['cart'][$order_id]['ordertotal'];
 	 	
 	 	$data_info = $this->_getParam('data', false);
+	 	$confirm   = $this->_getParam('confirm', false) ;
+	 	/**
+	 	 * Remember customer's infomation
+	 	 */
+	 	if (false !== $data_info) {
+	 	   $_SESSION['cart_customer'] = $data_info;
+	 	}
+	 	$data_info = $_SESSION['cart_customer'];
+	 	
 	 	$this->view->full_name 	= $data_info['full_name'];
 	 	$this->view->address 	= $data_info['address'];
 	 	$this->view->zip_code	= $data_info['zip_code'];
 	 	$this->view->phone		= $data_info['phone1'].".".$data_info['phone2'].".".$data_info['phone3'];
-	 	if ( false != $data_info ){ 
+	 	if ( false != $confirm ){ 
 	 		//-- begin save into db: vi_order and vi_order_detail
+	 		
 	 		$arr_order = array(
 //	 			'order_id'		=>	$order_id,
 	 			'sub_total'		=>	$_SESSION['cart'][$order_id]['subtotal'],
@@ -59,7 +70,34 @@ class restaurant_InfoController extends Vi_Controller_Action
 		 		}
 	 		}
 	 		//-- end save into db: vi_order and vi_order_detail
+	 		
+	 		/**
+	 		 * Send email to admin and user
+	 		 */
+	 		/**
+	 		 * Clear session
+	 		 */
+	 		$_SESSION['card'] = '';
+	 		$_SESSION['cart_customer'] = '';
+	 		/**
+	 		 * Redirec to success page
+	 		 */
+            $objContent = new Models_ScontentLang();
+            $this->_redirect($objContent->getUrlWithoutAppBaseUrl(20));
+	 		
 	 	}
+	 	
+	 	$this->view->cardType = $_SESSION['cart_customer']['card_type'];
+	 	$cardNumber = $_SESSION['cart_customer']['card_number'];
+	 	$cardNumber{4} = 'X';
+        $cardNumber{5} = 'X';
+        $cardNumber{6} = 'X';
+        $cardNumber{7} = 'X';
+        $cardNumber{8} = 'X';
+        $cardNumber{9} = 'X';
+        $cardNumber{10} = 'X';
+        $cardNumber{11} = 'X';
+        $this->view->cardNumber = $cardNumber;
 	}	
 } 
 
