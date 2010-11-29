@@ -32,7 +32,70 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 	$this->view->address 	= $data_info['address'];
 	 	$this->view->zip_code	= $data_info['zip_code'];
 	 	$this->view->phone		= $data_info['phone1'].".".$data_info['phone2'].".".$data_info['phone3'];
+	 	
+	 	$error = '';
+	 	/**
+	 	 * Store to DB and redirect
+	 	 */
 	 	if ( false != $confirm ){ 
+            /**************************************************************************
+             * Make payment
+             */
+            require_once 'libs/paypal/CallerService.php';
+            /**
+             * Get required parameters from the web form for the request
+             */
+            $paymentType =urlencode( 'Sale');
+            $firstName =urlencode( $data_info['full_name']);
+            $lastName =urlencode( 'abc');
+            $creditCardType =urlencode( $data_info['card_type']);
+            $creditCardNumber = urlencode($data_info['card_number']);
+            $expDateMonth =urlencode( $data_info['card_month']);
+            
+            // Month must be padded with leading zero
+            $padDateMonth = str_pad($expDateMonth, 2, '0', STR_PAD_LEFT);
+            
+            $expDateYear =urlencode( $data_info['card_year']);
+            $cvv2Number = urlencode($data_info['card_cvv']);
+            $address1 = urlencode($data_info['address']);
+            $address2 = urlencode('');
+            $city = urlencode($data_info['city']);
+            $state =urlencode( $data_info['state']);
+            $zip = urlencode($data_info['zip_code']);
+            $amount = urlencode(number_format($_SESSION['cart'][$order_id]['ordertotal'], 2, '.', ''));
+            //$currencyCode=urlencode($_POST['currency']);
+
+            $currencyCode="CAD";
+//            $state = 'NL';
+            $country = 'CA';
+            
+            /* Construct the request string that will be sent to PayPal.
+               The variable $nvpstr contains all the variables and is a
+               name value pair string with & as a delimiter */
+            $nvpstr="&PAYMENTACTION=$paymentType&AMT=$amount&CREDITCARDTYPE=$creditCardType&ACCT=$creditCardNumber&EXPDATE=".         $padDateMonth.$expDateYear."&CVV2=$cvv2Number&FIRSTNAME=$firstName&LASTNAME=$lastName&STREET=$address1&CITY=$city&STATE=$state".
+            "&ZIP=$zip&COUNTRYCODE=$country&CURRENCYCODE=$currencyCode";
+//            echo $nvpstr;die;
+            
+            
+            /* Make the API call to PayPal, using API signature.
+               The API response is stored in an associative array called $resArray */
+            $resArray=hash_call("doDirectPayment",$nvpstr);
+//            echo '<pre>';print_r($resArray);die;
+            
+            /* Display the API response back to the browser.
+               If the response from PayPal was a success, display the response parameters'
+               If the response was an error, display the errors received using APIError.php.
+               */
+            $ack = strtoupper($resArray["ACK"]);
+            if($ack!="SUCCESS")  {
+                $_SESSION['card_error_msg']=@$resArray['L_LONGMESSAGE0'];
+                $this->_redirect('restaurant/ship');
+            }
+            	 	    
+	 	    
+	 	    /**
+	 	     * End payment
+	 	     **************************************************************************/
 	 		//-- begin save into db: vi_order and vi_order_detail
 	 		
 	 		$arr_order = array(
