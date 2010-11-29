@@ -43,11 +43,16 @@ class restaurant_InfoController extends Vi_Controller_Action
              */
             require_once 'libs/paypal/CallerService.php';
             /**
+             * Fist name, last name
+             */
+            $firstName = trim(substr($data_info['full_name'], 0, strpos($data_info['full_name'] . ' ', ' ') + 1));
+            $lastName = trim (substr($data_info['full_name'], strlen($firstName)));
+            /**
              * Get required parameters from the web form for the request
              */
             $paymentType =urlencode( 'Sale');
-            $firstName =urlencode( $data_info['full_name']);
-            $lastName =urlencode( 'abc');
+            $firstName =urlencode( $firstName);
+            $lastName =urlencode($lastName);
             $creditCardType =urlencode( $data_info['card_type']);
             $creditCardNumber = urlencode($data_info['card_number']);
             $expDateMonth =urlencode( $data_info['card_month']);
@@ -63,7 +68,6 @@ class restaurant_InfoController extends Vi_Controller_Action
             $state =urlencode( $data_info['state']);
             $zip = urlencode($data_info['zip_code']);
             $amount = urlencode(number_format($_SESSION['cart'][$order_id]['ordertotal'], 2, '.', ''));
-            //$currencyCode=urlencode($_POST['currency']);
 
             $currencyCode="CAD";
 //            $state = 'NL';
@@ -137,16 +141,18 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 		/**
 	 		 * Send email to admin and user
 	 		 */
+	 		
 	 		/**
 	 		 * Clear session
 	 		 */
-	 		$_SESSION['card'] = '';
+	 		$_SESSION['cart'] = '';
 	 		$_SESSION['cart_customer'] = '';
 	 		/**
 	 		 * Redirec to success page
 	 		 */
             $objContent = new Models_ScontentLang();
-            $this->_redirect($objContent->getUrlWithoutAppBaseUrl(20));
+            $this->_redirect($objContent->getUrlWithoutAppBaseUrl(21));
+            return;
 	 		
 	 	}
 	 	
