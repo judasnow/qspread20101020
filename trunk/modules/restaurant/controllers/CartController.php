@@ -10,7 +10,7 @@ class restaurant_CartController extends Vi_Controller_Action
 		 $this->view->headTitle('Cart information');
 		 //-- begin add information into cart
 		 $meal_id = $this->_getParam('meal_id', false); 
-		
+		 
 		 $order_id = session_id();		 
 		 if ( false != $meal_id ){
 		 	 if ( isset($_SESSION['cart'][$order_id][$meal_id]['meal_id']) && $_SESSION['cart'][$order_id][$meal_id]['meal_id']==$meal_id ){
@@ -49,6 +49,10 @@ class restaurant_CartController extends Vi_Controller_Action
 		 	$this->view->session_cart = '';	
 		 //-- end add information into cart	
 		 $this->view->order_id = $order_id;	
+		 
+		 $this->view->mark = $this->_getParam('mark', false); ;
+		 $this->view->date = $this->_getParam('date', false); ;
+		 $this->view->time = $this->_getParam('time', false); ;
 	}	
 } 
 
