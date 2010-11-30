@@ -112,6 +112,100 @@ class user_IndexController extends Vi_Controller_Action
     }
     
 
+    public function editAction()
+    {
+        $this->view->headTitle('Edit account');
+    
+        if (false == Vi_Registry::getLoggedInUserId()) {
+            $this->_redirect('register.html');
+        }
+        
+        /**
+         * Get all provice CODE
+         */
+        $objCountry = new Models_Country();
+        $this->view->allProvinces = $objCountry->getAllProvinces();
+        /**
+         * Get security question
+         */
+        $objCat = new Models_Category();
+        $this->view->allQuestions = $objCat->getAllValues('security_question');
+//        echo '<pre>';print_r($this->view->allProvinces);die;
+        /**
+         * Article - Term of Use
+         */
+        $objContent = new Models_ScontentLang();
+        $this->view->articleUrl = $objContent->getUrl(10);
+        
+        /**
+         * Get data
+         */
+        $data = $this->_getParam('data', false);
+        $errors = array();
+        if (false != $data) {
+        
+            /**
+             * Insert new user
+             */
+            $objUser = new Models_User();
+            $objUserExp = new Models_UserExpand();
+            $newUser = array(
+                            'group_id'        => 3,
+                            'full_name'       => $data['full_name'],
+                            'password'        => $data['password'],
+                            'repeat_password' => $data['retype_password'],
+                            'company' => $data['company'],
+                            'address' => $data['address'],
+                            'suite_apt_note' => $data['suite_apt_note'],
+                            'city' => $data['city'],
+                            'state' => $data['state'],
+                            'zipcode' => $data['zipcode'],
+                            'phone1' => $data['phone1'],
+                            'phone2' => $data['phone2'],
+                            'phone3' => $data['phone3'],
+                            'birthday_date' => $data['birthday_date'],
+                            'birthday_month' => $data['birthday_month'],
+                            'birthday_year' => $data['birthday_year'],
+                            'gender' => $data['gender'],
+                            'security_question' => $data['security_question'],
+                            'security_answer' => $data['security_answer'],
+                            'send_discount_code' => ('1' == @$data['send_discount_code'])?1:0,
+                        );
+//            $errors = $objUser->validate($newUser);
+            $errors = array();
+//            echo '<pre>';print_r($_SESSION);die;
+            if (empty($errors)) {
+                if (null != $newUser['password']) {
+                    $newUser['password'] = md5($newUser['password']);
+                    /**
+                     * TODO Read date format from language table
+                     */
+                    unset($newUser['repeat_password']);
+                } else {
+                    /**
+                     * Don't change password
+                     */
+                    unset($newUser['password']);
+                    unset($newUser['repeat_password']);
+                }
+                unset($newUser['email']);
+                unset($newUser['username']);
+                try {
+                    $id = $objUser->update($newUser, array('user_id=?' => Vi_Registry::getLoggedInUserId()));
+                    $this->view->updateSuccess = true;
+                } catch (Exception $e) {
+                    $errors = array('main' => Vi_Language::translate('Can not insert into database now'));
+                }
+            }
+        }
+        
+        $data = Vi_Registry::getLoggedInUser()->toArray();
+        
+        $this->view->data = $data;
+        $this->view->errors = $errors;
+    }
+    
+
     public function restaurantRegisterAction()
     {
         /**
