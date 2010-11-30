@@ -105,4 +105,12 @@ class Models_Restaurant extends Vi_Model
 //        print $query;die;
     	return $this->_db->fetchAll($query);
     }
+    
+	public function getShipFeeFromMealId($meal_id){      	
+        $query = "  SELECT r.delivery_charge, r.catering_delivery_charge
+    				FROM vi_meal m, vi_restaurant r
+    				WHERE (m.meal_id = $meal_id) AND (m.restaurant_id = r.restaurant_id)  				    				
+    	";       
+    	return $this->_db->fetchRow($query);
+    }
 }

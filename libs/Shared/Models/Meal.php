@@ -65,5 +65,5 @@ class Models_Meal extends Vi_Model
     				WHERE m.meal_id = $meal_id    				
     	";
     	return $this->_db->fetchRow($query);
-    }
+    }  
 }
