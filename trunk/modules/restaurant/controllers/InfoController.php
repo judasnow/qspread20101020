@@ -13,10 +13,12 @@ class restaurant_InfoController extends Vi_Controller_Action
 	public function indexAction()
 	{
 		$this->view->headTitle('Cart information');
+		$order_id = session_id();
 		
-		if ( !isset($_SESSION['cart'][$order_id]) )
-			header('Location: /quickspread/');
-		$order_id = session_id(); 
+		if ( !isset($_SESSION['cart'][$order_id]) ) {
+			$this->_redirect('');
+		}
+		 
 		$this->view->session_cart 		= $_SESSION['cart'][$order_id];
 		$this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
 	 	$this->view->tax 				= $_SESSION['cart'][$order_id]['tax'];
