@@ -129,9 +129,11 @@ function update_cart_temp(meal_id){
                           {{/if}}
                           {{/foreach}}   
                           <tr>
-                            <td colspan="2" rowspan="3" class=" ">
+                            <td colspan="2" rowspan="3" class=" ">&nbsp;
+<!--                             
                             	<strong>Available Discounts</strong> - only one can be use per order  <br />        
                             	<input type="radio" class="mid float_left m5r" /><b class="float_left m5r">Promo/Coupon Code:</b><input type="input" class="input_tr float_left"/>  <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_apply.png" alt="" /></a>
+-->                            	
                                                </td>
                             <td class="top"><br /></td>
                             <td class="center top">Subtotal</td>

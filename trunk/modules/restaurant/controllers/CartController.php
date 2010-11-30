@@ -1,5 +1,6 @@
 <?php
 include_once 'libs/Shared/Models/Meal.php';
+include_once 'libs/Shared/Models/Restaurant.php';
 class restaurant_CartController extends Vi_Controller_Action
 {
 	/**
@@ -11,6 +12,7 @@ class restaurant_CartController extends Vi_Controller_Action
 		 //-- begin add information into cart
 		 $meal_id 	= $this->_getParam('meal_id', false); 
 		 $quantity 	= $this->_getParam('quantity', false);
+		 $mark 		= $this->_getParam('mark', false);
 		 $state		= $this->_getParam('state', 0); //-- state=0: delete meal in session cart
 		
 		 $order_id = session_id();	
@@ -56,7 +58,20 @@ class restaurant_CartController extends Vi_Controller_Action
 			 	 //-- end calculate sum
 			 	 
 			 	 $_SESSION['cart'][$order_id]['tax'] 		= $_SESSION['cart'][$order_id]['subtotal']*Vi_Registry::getConfig('taxFee');
-			 	 $_SESSION['cart'][$order_id]['shipping'] 	= 10;
+			 	 //-- begin get shipping fee for catering delivery and catering
+			 	 if ( strcmp($mark,'catering_delivery')==0 || strcmp($mark,'delivery')==0 ){
+			 	 	$objRestaurant = new Models_Restaurant();
+			 	 	$arrRestaurant = $objRestaurant->getShipFeeFromMealId($meal_id);
+			 	 	if ( strcmp($mark,'delivery_charge')==0 )
+			 	 		$shippingFee = $arrRestaurant['delivery_charge'];
+			 	 	else
+			 	 		$shippingFee = $arrRestaurant['catering_delivery_charge'];
+			 	 	$_SESSION['cart'][$order_id]['shipping'] 	= $shippingFee;
+			 	 }
+			 	 else{
+			 	 	$_SESSION['cart'][$order_id]['shipping'] 	= 0;
+			 	 }
+			 	 //-- end get shipping fee for catering delivery and catering
 			 	 $_SESSION['cart'][$order_id]['ordertotal'] = $_SESSION['cart'][$order_id]['subtotal']+$_SESSION['cart'][$order_id]['tax']+$_SESSION['cart'][$order_id]['shipping'];
 			 	 
 				 $this->view->session_cart 		= $_SESSION['cart'][$order_id];
@@ -71,7 +86,7 @@ class restaurant_CartController extends Vi_Controller_Action
 		 //-- end add information into cart	
 		 $this->view->order_id = $order_id;	
 		 $this->view->meal_id = $meal_id;	
-		 $this->view->mark = $this->_getParam('mark', false);
+		 $this->view->mark = $mark;
 		 $this->view->date = $this->_getParam('date', false);
 		 $this->view->time = $this->_getParam('time', false);		 
 	}	
