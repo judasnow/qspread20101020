@@ -83,10 +83,12 @@ class Models_Restaurant extends Vi_Model
         $query = "  SELECT r.*
     				FROM vi_restaurant r     				    				    				
     	";
+        if ( isset($arrData['zip']) )
+        	$query .= " JOIN vi_country c ON (c.postal_code = '".$arrData['zip']."') AND (r.city LIKE '%c.city%')";
         if ( isset($arrData['cuisine_id']) )
         	$query .= " JOIN vi_meal m ON (r.restaurant_id = m.restaurant_id) AND (m.meal_id =	".$arrData['cuisine_id'].")";
         else
-        	$query .= " WHERE true ";
+        	$query .= " WHERE true ";       
         if ( isset($arrData['city']) )
         	$query .= " AND (r.city LIKE '%".$arrData['city']."%')";
         if ( isset($arrData['mark']) )
@@ -97,8 +99,7 @@ class Models_Restaurant extends Vi_Model
 //        	$query .= " AND (r.address LIKE '%".$arrData['address']."%')";
         if ( isset($arrData['date']) && isset($arrData['time']) && (strcmp($arrData['time'],'asap') != 0 ) )
         	$query .= " AND ((r.date_".$arrData['date']."_start <= ".$arrData['time']." AND (r.date_".$arrData['date']."_end >= ".$arrData['time'].")";
-        if ( isset($arrData['zip']) )
-        	$query .= " JOIN vi_country c ON (c.postal_code = ".$arrData['zip'].") AND (r.address LIKE '%c.city%')";
+        
         $query .= " AND r.enabled=1 ";	
        	if ( null != $count )
         	$query .= " LIMIT $offset,$count";
