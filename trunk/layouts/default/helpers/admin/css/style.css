@@ -809,3 +809,7 @@ div.wysiwyg iframe { border: 0; margin: 5px 0 0 0; clear: left; width: 97.5% !im
 .blue {color: blue;}
 .hidden {display:none;}
 .center {text-align: center;}
+
+form input.error {
+    border-color: red;
+}   

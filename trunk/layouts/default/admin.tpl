@@ -92,6 +92,17 @@
 					</ul>
 				</li>
 				
+                <li> 
+                    <a href="#" class="nav-top-item {{if $menu[0]=='restaurant'}}current{{/if}}">
+                    Restaurants
+                    </a>
+                    <ul>
+                        <li><a href="{{$BASE_URL}}restaurant-owner-register.html" target="_blank">New Restaurant</a></li>
+                        <li><a href="{{$APP_BASE_URL}}restaurant/admin/pending" class="{{if $menu[1]=='pending'}}current{{/if}}">Pending Restaurants</a></li>
+                        <li><a href="{{$APP_BASE_URL}}restaurant/admin/manager" class="{{if $menu[1]=='manager'}}current{{/if}}">Restaurant Manager</a></li>
+                    </ul>
+                </li>
+				
 				<li> 
                     <a href="#" class="nav-top-item {{if $menu[0]=='scontent'}}current{{/if}}">
                     Contents

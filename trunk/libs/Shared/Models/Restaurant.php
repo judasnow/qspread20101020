@@ -106,6 +106,46 @@ class Models_Restaurant extends Vi_Model
     	return $this->_db->fetchAll($query);
     }
     
+    /**
+     * Get all restaurants (admin)
+     */
+    public function getAllApprovedRestaurants($condition = array(), $order = null, $count = null, $offset = null)
+    {
+        $select = $this->select()
+                ->setIntegrityCheck(false)
+                ->from(array('r' => $this->_name))
+                ->where('approved=1')
+                ->order($order)
+                ->limit($count, $offset);
+        /**
+         * Conditions
+         */
+        if (null != @$condition['name']) {
+            $select->where($this->getAdapter()->quoteInto('r.name LIKE ?', "%{$condition['name']}%"));
+        }
+        
+        return $this->fetchAll($select)->toArray();
+    }
+    
+
+    public function getAllPendingRestaurants($condition = array(), $order = null, $count = null, $offset = null)
+    {
+        $select = $this->select()
+                ->setIntegrityCheck(false)
+                ->from(array('r' => $this->_name))
+                ->where('approved=0')
+                ->order($order)
+                ->limit($count, $offset);
+        /**
+         * Conditions
+         */
+        if (null != @$condition['name']) {
+            $select->where($this->getAdapter()->quoteInto('r.name LIKE ?', "%{$condition['name']}%"));
+        }
+        
+        return $this->fetchAll($select)->toArray();
+    }
+  
 	public function getShipFeeFromMealId($meal_id){      	
         $query = "  SELECT r.delivery_charge, r.catering_delivery_charge
     				FROM vi_meal m, vi_restaurant r
@@ -113,4 +153,6 @@ class Models_Restaurant extends Vi_Model
     	";       
     	return $this->_db->fetchRow($query);
     }
+
+    
 }
