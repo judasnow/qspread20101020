@@ -1,21 +1,25 @@
-            <h2>Restaurant Manager</h2>
+            <div style="float:left;">
+                <h2>Meal Manager</h2>
+           </div>     
+           <div style="float:right;padding-right:35px;padding-top:8px;">
+                <a href="{{$APP_BASE_URL}}restaurant/admin/new-meal/rid/{{$rid}}"><img style="vertical-align: middle;" src="{{$LAYOUT_HELPER_URL}}admin/images/icons/add_16.png"> Add new meal</a>
+           </div>
             
              <!-- End .shortcut-buttons-set -->
             
             <div class="clear"></div> <!-- End .clear -->
-           
             
             <div class="content-box"><!-- Start Content Box -->
                 
                 <div class="content-box-header">
                     
                     <div style="float:left;">
-                        <a name="listofrestaurant"><h3>List of Restaurants</h3></a>
+                        <a name="listofmeal"><h3>List of Meals</h3></a>
                    </div>     
                    <div style="float:right;padding-right:20px;padding-top:5px;">
-                        <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}restaurant/admin/manager">
+                        <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}restaurant/admin/meal-manager/rid/{{$rid}}">
                             
-                          Restaurant's Name:  <input class="text-input small-input" type="text" name="condition[name]" id="restaurantname" value="{{$condition.name}}"/>
+                          Meal's Name:  <input class="text-input small-input" type="text" name="condition[name]" id="mealname" value="{{$condition.name}}"/>
                             
                             <input class="button" type="submit" value="Search" />
                         </form>
@@ -31,29 +35,29 @@
                        
                        
                         <!-- MESSAGE HERE -->
-                        {{if $allRestaurants|@count <= 0}}
+                        {{if $allMeals|@count <= 0}}
                         <div class="notification information png_bg">
                             <a href="#" class="close"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
                             <div>
-                                No restaurant with above condition.
+                                No meal with above condition.
                             </div>
                         </div>
                         {{/if}}
                         
-                        {{if $restaurantMessage|@count > 0 && $restaurantMessage.success == true}}
+                        {{if $mealMessage|@count > 0 && $mealMessage.success == true}}
                         <div class="notification success png_bg">
                             <a href="#" class="close"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
                             <div>
-                                {{$restaurantMessage.message}}
+                                {{$mealMessage.message}}
                             </div>
                         </div>
                         {{/if}}
                         
-                        {{if $restaurantMessage|@count > 0 && $restaurantMessage.success == false}}
+                        {{if $mealMessage|@count > 0 && $mealMessage.success == false}}
                         <div class="notification error png_bg">
                             <a href="#" class="close"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
                             <div>
-                                {{$restaurantMessage.message}}
+                                {{$mealMessage.message}}
                             </div>
                         </div>
                         {{/if}}
@@ -63,16 +67,15 @@
                         
                         
                         
-                        {{if $allRestaurants|@count > 0}}
+                        {{if $allMeals|@count > 0}}
                         <table>
                             <thead>
                                 <tr>
                                    <th><input class="check-all" type="checkbox" /></th>
                                    <th>Name</th>
-                                   <th>Address</th>
-                                   <th>Manager</th>
-                                   <th>Phone</th>
-                                   <th>Fax</th>
+                                   <th>Description</th>
+                                   <th>Price</th>
+                                   <th>Type</th>
                                    <th>Enabled</th>
                                    <th>Action</th>
                                 </tr>
@@ -82,34 +85,34 @@
                          
                             <tbody>
                             
-                            {{foreach from=$allRestaurants item=item}}
+                            {{foreach from=$allMeals item=item}}
                                 <tr>
-                                    <td><input type="checkbox" value="{{$item.restaurant_id}}" name="allRestaurants"/></td>
+                                    <td><input type="checkbox" value="{{$item.meal_id}}" name="allMeals"/></td>
                                     <td>
-                                    {{if $item.image}}
-                                    <img src="{{$BASE_URL}}{{$item.image}}" style="max-width: 100px;"></img>
-                                    <br/>
-                                    {{/if}}
                                     {{$item.name}}
                                     </td>
                                     <td>
-                                        {{$item.street}} {{$item.city}} {{$item.state}} {{$item.zip}}
+                                        {{$item.description}}
                                     </td>
-                                    <td>{{$item.manager}}</td>
-                                    <td>{{$item.phone}}</td>
-                                    <td>{{$item.fax}}</td>
+                                    <td>{{$item.price|@number_format:2:'.':','}}</td>
+                                    <td>
+                                        {{if 0 == $item.type}}
+                                        General
+                                        {{else}}
+                                        Catering
+                                        {{/if}}
+                                    </td>
                                     <td class="center">
                                         {{if $item.enabled == '1'}}
-                                            <a href="{{$APP_BASE_URL}}restaurant/admin/disable/id/{{$item.restaurant_id}}" ><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/visible16x16.png"></a>
+                                            <a href="{{$APP_BASE_URL}}restaurant/admin/disable-meal/rid/{{$rid}}/id/{{$item.meal_id}}" ><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/visible16x16.png"></a>
                                         {{else}}
-                                            <a href="{{$APP_BASE_URL}}restaurant/admin/enable/id/{{$item.restaurant_id}}" ><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/invisible16x16.png"></a>
+                                            <a href="{{$APP_BASE_URL}}restaurant/admin/enable-meal/rid/{{$rid}}/id/{{$item.meal_id}}" ><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/invisible16x16.png"></a>
                                         {{/if}}
                                     </td>
                                     <td class="center">
                                         <!-- Icons -->
-                                         <a href="{{$APP_BASE_URL}}restaurant/admin/edit/id/{{$item.restaurant_id}}" title="Edit"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/pencil.png"  alt="Edit" /></a>
-                                         <a href="javascript:deleteARestaurant({{$item.restaurant_id}});" title="Delete"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross.png"  alt="Delete" /></a> 
-                                         <a href="{{$APP_BASE_URL}}restaurant/admin/meal-manager/rid/{{$item.restaurant_id}}" title="Meal manager"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/edit_list_16.png"  alt="Meal manager" /></a>
+                                         <a href="{{$APP_BASE_URL}}restaurant/admin/edit-meal/rid/{{$rid}}/id/{{$item.meal_id}}" title="Edit"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/pencil.png"  alt="Edit" /></a>
+                                         <a href="javascript:deleteAMeal({{$item.meal_id}});" title="Delete"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross.png"  alt="Delete" /></a> 
                                     </td>
                                 </tr>
                             {{/foreach}}    
@@ -123,16 +126,16 @@
                         <div class="bulk-actions align-left" style="float: left;padding-top: 14px;">
                             <select id="action">
                                 <option value=";">Choose an action...</option>
-                                <option value="deleteRestaurant();">Delete</option>
-                                <option value="enableRestaurant();">Enable</option>
-                                <option value="disableRestaurant();">Disable</option>
+                                <option value="deleteMeal();">Delete</option>
+                                <option value="enableMeal();">Enable</option>
+                                <option value="disableMeal();">Disable</option>
                             </select>
                             <a class="button" href="javascript:applySelected();">Apply to selected</a>
                         </div>
                         
                         
                         <div class="bulk-actions align-left" style="float: left;padding-top: 10px; padding-left:30px;">
-                            <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}restaurant/admin/manager">
+                            <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}restaurant/admin/meal-manager/rid/{{$rid}}">
                                 Display #
                                 <select name="displayNum" onchange="this.parentNode.submit();" style="clear: both;">
                                     <option value="5" {{if $displayNum == 5}} selected="selected" {{/if}}>5</option>
@@ -188,8 +191,8 @@
             
 <script language="javascript" type="text/javascript">
 $(document).ready(function(){
-    document.getElementById('restaurantname').select();
-    document.getElementById('restaurantname').focus();
+    document.getElementById('mealname').select();
+    document.getElementById('mealname').focus();
 });
 
 function applySelected()
@@ -198,9 +201,9 @@ function applySelected()
 	eval(task);
 }
 
-function enableRestaurant()
+function enableMeal()
 {
-    var all = document.getElementsByName('allRestaurants');
+    var all = document.getElementsByName('allMeals');
     var tmp = '';
     for (var i = 0; i < all.length; i++) {
         if (all[i].checked) {
@@ -208,14 +211,14 @@ function enableRestaurant()
         }
     }
     if ('' == tmp) {
-        alert('Please choose an restaurant');
+        alert('Please choose an meal');
     }
-    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/enable/id/' + tmp;
+    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/enable-meal/rid/{{$rid}}/id/' + tmp;
 }
 
-function disableRestaurant()
+function disableMeal()
 {
-    var all = document.getElementsByName('allRestaurants');
+    var all = document.getElementsByName('allMeals');
     var tmp = '';
     for (var i = 0; i < all.length; i++) {
         if (all[i].checked) {
@@ -223,13 +226,13 @@ function disableRestaurant()
         }
     }
     if ('' == tmp) {
-        alert('Please choose an restaurant');
+        alert('Please choose an meal');
     }
-    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/disable/id/' + tmp;
+    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/disable-meal/rid/{{$rid}}/id/' + tmp;
 }
-function deleteRestaurant()
+function deleteMeal()
 {
-    var all = document.getElementsByName('allRestaurants');
+    var all = document.getElementsByName('allMeals');
     var tmp = '';
     var count = 0;
     for (var i = 0; i < all.length; i++) {
@@ -239,24 +242,24 @@ function deleteRestaurant()
         }
     }
     if ('' == tmp) {
-        alert('Please choose an restaurant');
+        alert('Please choose an meal');
         return;
     } else {
-    	result = confirm('Are you sure you want to delete ' + count + ' restaurant(s)?');
+    	result = confirm('Are you sure you want to delete ' + count + ' meal(s)?');
         if (false == result) {
             return;
         }
     }
-    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/delete/id/' + tmp;
+    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/delete-meal/rid/{{$rid}}/id/' + tmp;
 }
 
 
-function deleteARestaurant(id)
+function deleteAMeal(id)
 {
-    result = confirm('Are you sure you want to delete this restaurant?');
+    result = confirm('Are you sure you want to delete this meal?');
     if (false == result) {
         return;
     }
-    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/delete/id/' + id;
+    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/delete-meal/rid/{{$rid}}/id/' + id;
 }
 </script>

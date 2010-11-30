@@ -170,9 +170,14 @@ function fbs_click(address){
 						  </tr>
 						  {{foreach from=$restaurants item=item}}						  
 						  <tr>
-							<td class="bd1b p10t p5b"><img src="{{$BASE_URL}}{{$item.image}}" alt="" /></td>
+							<td class="bd1b p10t p5b">
+							 {{if $item.image}}
+							 <img src="{{$BASE_URL}}{{$item.image}}" alt="" style="max-width: 120px;"/>
+							 {{/if}}
+							</td>
 							<td class="bd1b p10t p5b" style="padding-left:5px;" valign="top">
 								<b>{{$item.name}}</b>
+								<p>({{$item.cuisine}})</p>
 								<p class="fs11">
 									{{$item.address}}<br/>
 									<span class="color_1"><a href="#" onclick="return fbs_click('{{$item.address}}')">Map</a> </span>									

@@ -66,4 +66,26 @@ class Models_Meal extends Vi_Model
     	";
     	return $this->_db->fetchRow($query);
     }  
+    
+
+    public function getAllMeals($condition = array(), $order = null, $count = null, $offset = null)
+    {
+        $select = $this->select()
+                ->setIntegrityCheck(false)
+                ->from(array('m' => $this->_name))
+                ->joinLeft(array ('cl' => $this->_prefix . 'category_value'), 'cl.category_value_id = m.category_value_id', array('cuisine' => 'name'))
+                ->order($order)
+                ->limit($count, $offset);
+        /**
+         * Conditions
+         */
+        if (null != @$condition['name']) {
+            $select->where($this->getAdapter()->quoteInto('m.name LIKE ?', "%{$condition['name']}%"));
+        }
+        if (null != @$condition['restaurant_id']) {
+            $select->where('m.restaurant_id=?',  $condition['restaurant_id']);
+        }
+        
+        return $this->fetchAll($select)->toArray();
+    }
 }

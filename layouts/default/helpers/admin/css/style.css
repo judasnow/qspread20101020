@@ -812,4 +812,8 @@ div.wysiwyg iframe { border: 0; margin: 5px 0 0 0; clear: left; width: 97.5% !im
 
 form input.error {
     border-color: red;
+}
+form textarea.error {
+	border-color: red;
+    background: none;
 }   
