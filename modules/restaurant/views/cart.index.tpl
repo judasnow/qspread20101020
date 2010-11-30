@@ -123,7 +123,7 @@ function update_cart_temp(meal_id){
                             <td class="bd1b p10t p5b top">${{$item.total_money}}</td>
                             <td class="bd1b p10t p5b top">
                             	<a class="color_2" href="#" onclick="update_cart_temp({{$item.meal_id}});">update</a>
-                            	<a class="color_2" href="#">remove</a>
+                            	<a class="color_2" href="{{$APP_BASE_URL}}restaurant/cart?mark={{$mark}}&time={{$time}}&date={{$date}}&meal_id={{$item.meal_id}}&state=1">remove</a>
                             </td>
                           </tr> 
                           {{/if}}
