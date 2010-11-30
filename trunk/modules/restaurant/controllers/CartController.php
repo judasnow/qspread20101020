@@ -16,7 +16,7 @@ class restaurant_CartController extends Vi_Controller_Action
 		 $state		= $this->_getParam('state', 0); //-- state=0: delete meal in session cart
 		
 		 $order_id = session_id();	
-		 	 
+		 
 		 //-- begin delete meal in session cart
 		 if ( 0 != $state ){		 			 	
 		 	foreach ( $_SESSION['cart'][$order_id] as $key=>$value ){
