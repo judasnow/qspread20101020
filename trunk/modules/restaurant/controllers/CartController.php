@@ -43,6 +43,7 @@ class restaurant_CartController extends Vi_Controller_Action
 					 $arr_meal = $objMeal->getDataById($meal_id); 
 					 
 					 $_SESSION['cart'][$order_id][$meal_id]['meal_id'] 		= $arr_meal['meal_id'];
+					 $_SESSION['cart'][$order_id][$meal_id]['image'] 		= $arr_meal['image'];
 					 $_SESSION['cart'][$order_id][$meal_id]['name'] 		= $arr_meal['name'];
 					 $_SESSION['cart'][$order_id][$meal_id]['description'] 	= $arr_meal['description'];
 					 $_SESSION['cart'][$order_id][$meal_id]['price'] 		= $arr_meal['price'];
