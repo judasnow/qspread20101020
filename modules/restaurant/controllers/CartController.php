@@ -18,12 +18,20 @@ class restaurant_CartController extends Vi_Controller_Action
 		 $order_id = session_id();	
 		 
 		 //-- begin delete meal in session cart
-		 if ( 0 != $state ){		 			 	
+		 if ( 0 != $state ){			 		
 		 	foreach ( $_SESSION['cart'][$order_id] as $key=>$value ){
 		 		if ( $key <> $meal_id ){		 				 			
-		 			$_SESSION['cart_delete'][$order_id][$key] = $value;
-		 		}
+		 			$_SESSION['cart_delete'][$order_id][$key] = $value;		
+		 		}		 		
 		 	}
+		 	//-- begin calculate sum
+		 	 $_SESSION['cart_delete'][$order_id]['subtotal'] = 0;
+		 	 foreach($_SESSION['cart_delete'][$order_id] as $key=>$value){			 	 	
+		 	 	if ( $value['total_money'] > 0 )	 	 	
+		 	 		$_SESSION['cart_delete'][$order_id]['subtotal'] += $value['total_money'];		 	 			 	 	
+		 	 }		 	
+		 	 //-- end calculate sum
+		 	$_SESSION['cart_delete'][$order_id]['ordertotal'] = $_SESSION['cart_delete'][$order_id]['subtotal']+$_SESSION['cart'][$order_id]['tax']+$_SESSION['cart'][$order_id]['shipping'];
 		 	unset($_SESSION['cart'][$order_id]);
 		 	$_SESSION['cart'][$order_id] = $_SESSION['cart_delete'][$order_id];
 		 	unset($_SESSION['cart_delete'][$order_id]);

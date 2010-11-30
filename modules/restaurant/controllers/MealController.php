@@ -14,7 +14,7 @@ class restaurant_MealController extends Vi_Controller_Action
 		$type = $this->_getParam('type', 0); 
 		
 		$numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
-        $numRowPerPage = 1;
+//        $numRowPerPage = 1;
         $currentPage = $this->_getParam("page",1);
 
 		$mark = $this->_getParam('mark', false); 

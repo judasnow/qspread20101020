@@ -11,7 +11,7 @@ class restaurant_IndexController extends Vi_Controller_Action
 		$this->view->headTitle('Restaurant');
 		$config = Vi_Registry::getConfig();
         $numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
-        $numRowPerPage = 1;
+//        $numRowPerPage = 1;
         $currentPage = $this->_getParam("page",1);
         
 	    $condition = $this->_getParam('data', array());
