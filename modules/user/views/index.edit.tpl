@@ -57,15 +57,6 @@ $().ready(function() {
             'data[retype_password]': "",
             'data[security_answer]': "",
             'data[captcha]': ""
-        },
-        submitHandler: function(form) {
-            // Check condition
-            var c = document.getElementById('condition');
-            if (false == c.checked) {
-                alert ("Please agree 'QuickSpread.com User Agreement'");
-            } else {
-                $(form).submit();
-            }
         }
     }); 
 });
@@ -75,7 +66,7 @@ $().ready(function() {
 
     <form method="POST" name="register" id="register">
     <div id="main">
-        <p class="title1">Create Your Free Account</p>
+        <p class="title1">Edit Account</p>
         <div class="p10">
         
             {{if $errors|@count > 0}}        
