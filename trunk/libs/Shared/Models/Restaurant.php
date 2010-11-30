@@ -98,7 +98,7 @@ class Models_Restaurant extends Vi_Model
 //        if ( isset($arrData['address']) )
 //        	$query .= " AND (r.address LIKE '%".$arrData['address']."%')";
         if ( isset($arrData['date']) && isset($arrData['time']) && (strcmp($arrData['time'],'asap') != 0 ) )
-        	$query .= " AND ((r.date_".$arrData['date']."_start <= ".$arrData['time']." AND (r.date_".$arrData['date']."_end >= ".$arrData['time'].")";
+        	$query .= " AND (r.date_".$arrData['date']."_start <= '".$arrData['time']."') AND (r.date_".$arrData['date']."_end >= '".$arrData['time']."')";
         
         $query .= " AND r.enabled=1 ";	
        	if ( null != $count )
