@@ -80,5 +80,6 @@ return array (
   'forgotPasswordExpiredTime' => 86400,
         
   'websiteName' => 'QuickSpread',
-  'taxFee' => '0.1'
+  'taxFee' => '0.1',
+  'liveSite' => 'http://hoaitan.com/quickspread/'
 );

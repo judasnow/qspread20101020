@@ -205,6 +205,116 @@ class user_IndexController extends Vi_Controller_Action
         $this->view->errors = $errors;
     }
     
+    public function forgotPasswordAction()
+    {
+        $this->view->headTitle('Forgot password');
+        $email = $this->_getParam('email', false);
+        
+        $error = false;
+        if (false != $email) {
+            $objUser = new Models_User();
+            $user = $objUser->getByColumnName(array('email=?'=>$email))->toArray();
+            $user = current($user);
+            
+            if (false == $user) {
+                $error = true;
+            } else {
+                /**
+                 * Create random code
+                 */
+                $randomCode = $objUser->generateActiveCode(20);
+                $link = Vi_Registry::getConfig('liveSite') . '/user/index/id/' . $user['user_id'] . '/newPasswordAction/code/' . $randomCode;
+                /**
+                 * Update user
+                 */
+                $data = array(
+                    'forgot_password_code' => $randomCode,
+                    'forgot_password_expired_date' => time() + 24 * 3600
+                );
+                $objUserExp = new Models_UserExpand();
+                $objUserExp->update($data, array('user_id=?'=> $user['user_id']));
+                /**
+                 * Send mail
+                 */
+                $data = array(
+                        'email' => $email,
+                        'get_password_link' => $link
+                );
+                $objMail = new Models_Mail();
+                $objMail->sendHtmlMail('forgot_password', $data, $email);
+                /**
+                 * Redirect to page
+                 */
+                $objContent = new Models_ScontentLang();
+                $this->_redirect($objContent->getUrlWithoutAppBaseUrl(20));
+            }
+        }
+        $this->view->error = $error;
+        $this->view->email = $email;
+    }
+    
+    public function newPasswordAction()
+    {
+        $this->view->headTitle('New password');
+        $code = $this->_getParam('code', false);
+        $id = $this->_getParam('id', false);
+        
+        if (false == $code || false == 'id') {
+            $this->_redirect('');
+        }
+        
+        $error = false;
+        /**
+         * Check code
+         */
+        $objUserExp = new Models_UserExpand();
+        $objUser    = new Models_User();
+        $user = $objUserExp->getByColumnName(array(
+            'forgot_password_code=?' => $code,
+            'forgot_password_expired_date>?' => time(),
+            'user_id=?' => $id
+        ))->toArray();
+        if (empty($user)) {
+            $error = true;
+        } else {
+            /**
+             * Clear all active code
+             */
+            $data = array(
+                'forgot_password_code' => '',
+                'forgot_password_expired_date' => 0
+            );
+            $objUserExp->update($data, array('user_id=?'=> $id));
+            /**
+             * Create new password
+             */
+            $newPassword = $objUser->generateActiveCode(8);
+            $objUser->update(array('password'=> md5($newPassword)), array('user_id=?' => $id));
+            /**
+             * Send email
+             */
+            $user = $objUser->find($id)->toArray();
+            $user = current($user);
+            
+            $data = array(
+                'new_password' => $newPassword,
+                'username' => $user['username'],
+                'email' => $user['email'],
+                'full_name' => $user['full_name']
+            );
+            
+            $objMail = new Models_Mail();
+            $objMail->sendHtmlMail('new_password', $data, $user['email']);
+            /**
+             * Redirect to page
+             */
+            $objContent = new Models_ScontentLang();
+            $this->_redirect($objContent->getUrlWithoutAppBaseUrl(20));
+        }
+        
+        $this->view->error = $error;
+        $this->view->email = $email;
+    }
 
     public function restaurantRegisterAction()
     {
