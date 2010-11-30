@@ -1,10 +1,12 @@
 <script type="text/javascript">
-function update_cart(meal_id){
+function update_cart_temp(meal_id){
+//	alert(meal_id);
 	var frm = document.form_cart;
-//	txt_quantity = "quantity_"+meal_id;
-	quantity = frm."quantity_"+meal_id.value;
-	alert(quantity);
-	url = "&quantity_"+meal_id+"="+quantity;
+	var txt_quantity = "quantity_"+meal_id;
+	quantity = document.getElementById (txt_quantity).value;
+//	quantity = frm.txt_quantity.value;
+//	alert(quantity);
+	url = "&quantity="+quantity+"&meal_id="+meal_id;
 	frm.action += url;
 	frm.submit();
 }
@@ -98,7 +100,7 @@ function update_cart(meal_id){
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In viverra pretium ultrices. Morbi eget quam nisl. Integer fringilla nibh quis nisl interdum eu facilisis mauris interdum. Aenean eu nibh enim. Donec placerat bibendum elementum. Quisque congue sapien in sem imperdiet blandit. Aliquam erat volutpat.  </p><br />
 							
 						</div>
-						<form name="form_cart" method="post" action="{{$APP_BASE_URL}}restaurant/cart?meal_id={{$meal_id}}&mark={{$mark}}&time={{$time}}&date={{$date}}">
+						<form name="form_cart" method="post" action="{{$APP_BASE_URL}}restaurant/cart?mark={{$mark}}&time={{$time}}&date={{$date}}">
 				        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                           <tr>
                             <td width="8%" class="color_1 p5t p5b bd1b"><b>Dish</b></td>
@@ -120,7 +122,7 @@ function update_cart(meal_id){
                             <td class="bd1b p10t p5b center top">${{$item.price}}</td>
                             <td class="bd1b p10t p5b top">${{$item.total_money}}</td>
                             <td class="bd1b p10t p5b top">
-                            	<a class="color_2" href="#" onclick="update_cart({{$item.meal_id}});">update</a>
+                            	<a class="color_2" href="#" onclick="update_cart_temp({{$item.meal_id}});">update</a>
                             	<a class="color_2" href="#">remove</a>
                             </td>
                           </tr> 
