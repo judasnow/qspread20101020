@@ -9,6 +9,7 @@
  * 
  */
 require_once 'Shared/Models/Restaurant.php';
+require_once 'Shared/Models/Meal.php';
 require_once 'Shared/Models/Country.php';
 require_once 'Shared/Models/Category.php';
 class restaurant_AdminController extends Vi_Controller_Action_Admin 
@@ -59,7 +60,7 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
         /**
          * Count all restaurants
          */
-        $count = count($objRestaurant->getAllApprovedRestaurants());
+        $count = count($objRestaurant->getAllApprovedRestaurants($condition));
         /**
          * Modify all restaurants
          */
@@ -332,6 +333,7 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
         $this->view->error = $error;
         
         $this->view->headTitle('Edit Restaurant');
+        $this->view->menu = array('restaurant');
     }
     
     /*****************************************************************************
@@ -383,7 +385,7 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
         /**
          * Count all restaurants
          */
-        $count = count($objRestaurant->getAllPendingRestaurants());
+        $count = count($objRestaurant->getAllPendingRestaurants($condition));
         /**
          * Modify all restaurants
          */
@@ -434,6 +436,297 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
         $this->_redirect('restaurant/admin/pending#listofrestaurant');
     }
     
+    /****************************************************************************************************************
+     * MEAL MANAGER
+     ****************************************************************************************************************/
+
+    public function mealManagerAction()
+    {
+        $this->view->headTitle(Vi_Language::translate('Meal manager'));
+        $this->view->menu = array('restaurant');
+        
+        $config = Vi_Registry::getConfig();
+        $numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
+        $currentPage = $this->_getParam("page",1);
+        $displayNum = $this->_getParam('displayNum', false);
+        $rid = $this->_getParam('rid', false);
+        
+        if (false == $rid) {
+            $this->_redirect('restaurant/admin/manager');
+        }
+        
+        /**
+         * Get number of meal per page
+         */
+        if (false === $displayNum) {
+            $displayNum = $this->session->mealDisplayNum;
+        } else {
+            $this->session->mealDisplayNum = $displayNum;
+        }
+        if (null != $displayNum) {
+            $numRowPerPage = $displayNum;
+        }
+        /**
+         * Get condition
+         */
+        $condition = $this->_getParam('condition', false);
+        if (false === $condition) {
+            $condition = $this->session->mealCondition;
+        } else {
+            $this->session->mealCondition = $condition;
+            $currentPage = 1;
+        }
+        if (false == $condition) {
+            $condition = array();
+        }
+        $condition['restaurant_id'] = $rid;
+        /**
+         * Load all meals
+         */
+        $objMeal = new Models_Meal();
+        $allMeals = $objMeal->getAllMeals($condition, 'meal_id DESC',
+                                                   $numRowPerPage,
+                                                   ($currentPage - 1) * $numRowPerPage
+                                                  );
+        /**
+         * Count all meals
+         */
+        $count = count($objMeal->getAllMeals());
+        /**
+         * Modify all meals
+         */
+        foreach ($allMeals as &$meal) {
+            if (null != $meal['created_date']) {
+                $meal['created_date'] = date($config['dateFormat'], $meal['created_date']);
+            }
+        }
+        unset($meal);
+        /**
+         * Set values for tempalte
+         */
+        $this->setPagination($numRowPerPage, $currentPage, $count);
+        $this->view->allMeals = $allMeals;
+        $this->view->mealMessage = $this->session->mealMessage;
+        $this->session->mealMessage = null;
+        $this->view->condition = $condition;
+        $this->view->displayNum = $numRowPerPage;
+        $this->view->rid = $rid;
+    }
+    
+
+    public function deleteMealAction()
+    {
+        
+        $id = $this->_getParam('id', false);
+        $rid = $this->_getParam('rid', false);
+        
+        if (false == $rid || false == $id) {
+            $this->_redirect('restaurant/admin/manager');
+        }
+        
+        $ids = explode('_', trim($id, '_'));
+        
+        $objMeal = new Models_Meal();
+        try {
+            foreach ($ids as $id) {
+               $objMeal->delete( array('meal_id=?' => $id));
+            }
+            $this->session->mealMessage = array(
+                                               'success' => true,
+                                               'message' => Vi_Language::translate('Delete meal successfully')
+                                           );
+        } catch (Exception $e) {
+            $this->session->mealMessage = array(
+                                               'success' => false,
+                                               'message' => Vi_Language::translate('Can NOT delete this meal. Please try again')
+                                           );
+        }
+        $this->_redirect('restaurant/admin/meal-manager/rid/' . $rid . '#listofmeal');
+    }
+
+    
+    public function enableMealAction()
+    {
+        $id = $this->_getParam('id', false);
+        $rid = $this->_getParam('rid', false);
+        
+        if (false == $rid || false == $id) {
+            $this->_redirect('restaurant/admin/manager');
+        }
+        
+        $ids = explode('_', trim($id, '_'));
+        
+        $objMeal = new Models_Meal();
+        try {
+            foreach ($ids as $id) {
+               $objMeal->update(array('enabled' => 1), array('meal_id=?' => $id));
+            }
+            $this->session->mealMessage = array(
+                                               'success' => true,
+                                               'message' => Vi_Language::translate('Enable meal successfully')
+                                           );
+        } catch (Exception $e) {
+            $this->session->mealMessage = array(
+                                               'success' => false,
+                                               'message' => Vi_Language::translate('Can NOT enable this meal. Please try again')
+                                           );
+        }
+        $this->_redirect('restaurant/admin/meal-manager/rid/' . $rid . '#listofmeal');
+    }
+
+    
+    
+    public function disableMealAction()
+    {
+        
+        $id = $this->_getParam('id', false);
+        $rid = $this->_getParam('rid', false);
+        
+        if (false == $rid || false == $id) {
+            $this->_redirect('restaurant/admin/manager');
+        }
+        
+        $ids = explode('_', trim($id, '_'));
+        
+        $objMeal = new Models_Meal();
+        try {
+            foreach ($ids as $id) {
+               $objMeal->update(array('enabled' => 0), array('meal_id=?' => $id));
+            }
+            $this->session->mealMessage = array(
+                                               'success' => true,
+                                               'message' => Vi_Language::translate('Disable meal successfully')
+                                           );
+        } catch (Exception $e) {
+            $this->session->mealMessage = array(
+                                               'success' => false,
+                                               'message' => Vi_Language::translate('Can NOT disable this meal. Please try again')
+                                           );
+        }
+        $this->_redirect('restaurant/admin/meal-manager/rid/' . $rid . '#listofmeal');
+    }
+
+    public function newMealAction()
+    {
+        $rid = $this->_getParam('rid', false);
+        
+        if (false == $rid) {
+            $this->_redirect('restaurant/admin/manager');
+        }
+        /**
+         * Get all provice CODE
+         */
+        $objCountry = new Models_Country();
+        $this->view->allProvinces = $objCountry->getAllProvinces();
+        /**
+         * Get some list
+         */
+        $objCat = new Models_Category();
+        $this->view->leadTimeNormal = $objCat->getAllValues('lead_time_normal');
+        $this->view->leadTimeCatering = $objCat->getAllValues('lead_time_catering');
+//        echo '<pre>';print_r($this->view->allProvinces);die;
+        
+        /**
+         * Get data
+         */
+        $objMeal = new Models_Meal();
+        $data = $this->_getParam('data', false);
+        $error = '';
+        
+        if (false != $data) {
+            /**
+             * Insert new meal
+             */
+            $newMeal = $data;
+            $newMeal['restaurant_id'] = $rid;
+            $newMeal['price'] = number_format($newMeal['price'], 2, '.', '');
+//            echo '<pre>';print_r($newMeal);die;
+
+            $objMeal->insert($newMeal);
+            $this->session->mealMessage = array(
+                                               'success' => true,
+                                               'message' => Vi_Language::translate('Add new meal successfully')
+                                           );
+            $this->_redirect('restaurant/admin/meal-manager/rid/' . $rid . '#listofmeal');
+
+        } 
+        
+        $cuisines = $objCat->getAllValues('cuisine');
+        $this->view->cuisines = $cuisines;
+        
+        $this->view->data = $data;
+        $this->view->error = $error;
+        
+        $this->view->headTitle('New Meal');
+        $this->view->menu = array('restaurant');
+    }
+    
+
+    public function editMealAction()
+    {
+        $rid = $this->_getParam('rid', false);
+        
+        if (false == $rid) {
+            $this->_redirect('restaurant/admin/manager');
+        }
+        /**
+         * Get all provice CODE
+         */
+        $objCountry = new Models_Country();
+        $this->view->allProvinces = $objCountry->getAllProvinces();
+        /**
+         * Get some list
+         */
+        $objCat = new Models_Category();
+        $this->view->leadTimeNormal = $objCat->getAllValues('lead_time_normal');
+        $this->view->leadTimeCatering = $objCat->getAllValues('lead_time_catering');
+//        echo '<pre>';print_r($this->view->allProvinces);die;
+        
+        /**
+         * Get data
+         */
+        $objMeal = new Models_Meal();
+        $data = $this->_getParam('data', false);
+        $id = $this->_getParam('id', false);
+        $error = '';
+        
+        if (false != $data) {
+            /**
+             * Insert new meal
+             */
+            $newMeal = $data;
+            
+            $newMeal['price'] = number_format($newMeal['price'], 2, '.', '');
+//            echo '<pre>';print_r($newMeal);die;
+
+            $objMeal->update($newMeal, array('meal_id=?' => $id));
+            $this->session->mealMessage = array(
+                                               'success' => true,
+                                               'message' => Vi_Language::translate('Edit meal successfully')
+                                           );
+            $this->_redirect('restaurant/admin/meal-manager/rid/' . $rid . '#listofmeal');
+
+        } else {
+            /**
+             * Loading data
+             */
+            $data = $objMeal->find($id)->toArray();
+            $data = current($data);
+            
+            if (false == $data) {
+                $this->_redirect('restaurant/admin/meal-manager/rid/' . $rid);
+            }
+        }
+        
+        $cuisines = $objCat->getAllValues('cuisine');
+        $this->view->cuisines = $cuisines;
+        
+        $this->view->data = $data;
+        $this->view->error = $error;
+        
+        $this->view->headTitle('Edit Meal');
+        $this->view->menu = array('restaurant');
+    }
 
     
     private function _getImagePath($path)

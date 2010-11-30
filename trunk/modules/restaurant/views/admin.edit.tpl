@@ -23,7 +23,6 @@ $().ready(function() {
             'data[owner]': "required",
             'data[owner_phone]': "required",
             'data[name]': "required",
-            'data[website]': "required",
             'data[street]': "required",
             'data[city]': "required",
             'data[zip]': "required",
@@ -39,7 +38,6 @@ $().ready(function() {
             'data[owner]': "",
             'data[owner_phone]': "",
             'data[name]': "",
-            'data[website]': "",
             'data[street]': "",
             'data[city]': "",
             'data[zip]': "",
@@ -150,7 +148,7 @@ function clearImage()
                                     <p><label class="w155">Restaurant Name:<span class="red">*</span></label>
                                     <input name="data[name]" type="text" value="{{$data.name}}" class="text-input small-input" /></p>
                                     
-                                    <p><label class="w155">Restaurant Website:<span class="red">*</span></label>
+                                    <p><label class="w155">Restaurant Website:</label>
                                     <input name="data[website]" type="text" value="{{$data.website}}" class="text-input small-input" /></p>
                                     
                                     <p><label class="w155">Cuisine:<span class="red">*</span></label>
@@ -191,6 +189,10 @@ function clearImage()
                                     <p><label class="w155">Fax Number:<span class="red">*</span></label>
                                     <input name="data[fax]" type="text" value="{{$data.fax}}" class="text-input small-input" /></p>
                                     
+                                    <p>
+                                        <label>Description:</label>
+                                        <textarea class="text-input textarea" id="textarea" name="data[description]" cols="79" rows="5">{{$data.description}}</textarea>
+                                    </p>
                                     
                                     
                                     

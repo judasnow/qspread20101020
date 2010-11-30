@@ -20,7 +20,6 @@ $().ready(function() {
             'data[owner]': "required",
             'data[owner_phone]': "required",
             'data[name]': "required",
-            'data[website]': "required",
             'data[cuisine]': "required",
             'data[street]': "required",
             'data[city]': "required",
@@ -37,7 +36,6 @@ $().ready(function() {
             'data[owner]': "",
             'data[owner_phone]': "",
             'data[name]': "",
-            'data[website]': "",
             'data[cuisine]': "",
             'data[street]': "",
             'data[city]': "",
@@ -71,7 +69,7 @@ $().ready(function() {
                 <label class="w155">Restaurant Name:<span class="red">*</span></label>
                 <input name="data[name]" type="text" value="" class="w270" /><br />
                 
-                <label class="w155">Restaurant Website:<span class="red">*</span></label>
+                <label class="w155">Restaurant Website:</label>
                 <input name="data[website]" type="text" value="" class="w270" /><br />
                 
                 <label class="w155">Cuisine:<span class="red">*</span></label>
