@@ -13,5 +13,7 @@ class top_menuSticker extends Vi_Sticker
 	    
 	    $this->view->loggedUser = $loggedUser;
 	    $this->view->isLoggedIn = $isLoggedIn;
+	    
+	    $this->view->fqaUrl = Vi_Registry::getContentUrl(15);
 	}
 }
