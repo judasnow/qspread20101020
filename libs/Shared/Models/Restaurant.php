@@ -80,13 +80,14 @@ class Models_Restaurant extends Vi_Model
     }	
     
     public function getRestaurantByData($arrData, $count = null, $offset = null){      	
-        $query = "  SELECT r.*
-    				FROM vi_restaurant r     				    				    				
+        $query = "  SELECT r.*, m.name as cuisine_name
+    				FROM vi_restaurant r   
+    				JOIN vi_category_value m ON (r.cuisine 	 = m.category_value_id)  				    				    				
     	";
         if ( isset($arrData['zip']) )
         	$query .= " JOIN vi_country c ON (c.postal_code = '".$arrData['zip']."') AND (r.city LIKE '%c.city%')";
-        if ( isset($arrData['cuisine_id']) )
-        	$query .= " JOIN vi_meal m ON (r.restaurant_id = m.restaurant_id) AND (m.meal_id =	".$arrData['cuisine_id'].")";
+//        if ( isset($arrData['cuisine_id']) )
+//        	$query .= " JOIN vi_meal m ON (r.restaurant_id = m.restaurant_id) AND (m.meal_id =	".$arrData['cuisine_id'].")";
         else
         	$query .= " WHERE true ";       
         if ( isset($arrData['city']) )
