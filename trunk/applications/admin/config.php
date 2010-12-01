@@ -4,7 +4,8 @@ return array (
         'permission' => 'permission',
 		'scontent' => 'scontent',
         'word' => 'word',
-        'mail' => 'mail'
+        'mail' => 'mail',
+        'order' => 'order'
       ),
   'layoutCollection' => 'default',
   'defaultLayout' => 'admin',

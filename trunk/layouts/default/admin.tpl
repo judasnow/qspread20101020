@@ -102,6 +102,12 @@
                         <li><a href="{{$APP_BASE_URL}}restaurant/admin/manager" class="{{if $menu[1]=='manager'}}current{{/if}}">Restaurant Manager</a></li>
                     </ul>
                 </li>
+                
+                <li>
+                    <a href="{{$APP_BASE_URL}}/order/admin/manager" class="nav-top-item no-submenu {{if $menu[0]=='order'}}current{{/if}}">
+                        Orders
+                    </a>       
+                </li>
 				
 				<li> 
                     <a href="#" class="nav-top-item {{if $menu[0]=='scontent'}}current{{/if}}">
