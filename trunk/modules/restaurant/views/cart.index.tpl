@@ -6,7 +6,7 @@ function update_cart_temp(meal_id){
 	quantity = document.getElementById (txt_quantity).value;
 //	quantity = frm.txt_quantity.value;
 //	alert(quantity);
-	url = "&quantity="+quantity+"&meal_id="+meal_id;
+	url = "?quantity="+quantity+"&meal_id="+meal_id;
 	frm.action += url;
 	frm.submit();
 }
