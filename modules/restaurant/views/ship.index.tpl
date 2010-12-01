@@ -1,4 +1,4 @@
-<form id="register" name="register" action="{{$APP_BASE_URL}}restaurant/info?mark={{$mark}}&date={{$date}}&time={{$time}}" method="post"> 
+<form id="register" name="register" action="{{$APP_BASE_URL}}restaurant/info" method="post"> 
 <div id="main">
         <div class="w201 float_left">
         	<div class="top1 m20t"></div>

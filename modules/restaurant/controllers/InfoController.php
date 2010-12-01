@@ -18,12 +18,15 @@ class restaurant_InfoController extends Vi_Controller_Action
 		if ( !isset($_SESSION['cart'][$order_id]) ) {
 			$this->_redirect('');
 		}
-		 
+		
 		$this->view->session_cart 		= $_SESSION['cart'][$order_id];
 		$this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
 	 	$this->view->tax 				= $_SESSION['cart'][$order_id]['tax'];
 	 	$this->view->shipping 			= $_SESSION['cart'][$order_id]['shipping'];
 	 	$this->view->ordertotal 		= $_SESSION['cart'][$order_id]['ordertotal'];
+	 	$this->view->mark 				= strtoupper($_SESSION['cart'][$order_id]['order_service']);
+		$this->view->date 				= $_SESSION['cart'][$order_id]['date'];
+		$this->view->time 				= $_SESSION['cart'][$order_id]['time'];
 	 	
 	 	$data_info = $this->_getParam('data', false);
 	 	$confirm   = $this->_getParam('confirm', false) ;
@@ -126,7 +129,10 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 			'sub_total'		=>	$_SESSION['cart'][$order_id]['subtotal'],
 	 			'sales_tax'		=>	$_SESSION['cart'][$order_id]['tax'],
 	 			'shipping_fee'	=>	$_SESSION['cart'][$order_id]['shipping'],
-	 			'order_total'	=>	$_SESSION['cart'][$order_id]['ordertotal'],
+	 			'order_total'	=>	$_SESSION['cart'][$order_id]['ordertotal'],	 		
+	 			'date'			=>	$_SESSION['cart'][$order_id]['date'],
+	 			'time'			=>	$_SESSION['cart'][$order_id]['time'],
+	 			'order_service'	=>	$_SESSION['cart'][$order_id]['order_service'],	 		
 	 			'full_name'		=>	$data_info['full_name'],
 	 			'address'		=>	$data_info['address'],
 	 			'suite'			=>	$data_info['note'],
@@ -267,11 +273,7 @@ class restaurant_InfoController extends Vi_Controller_Action
             $this->_redirect($objContent->getUrlWithoutAppBaseUrl(21));
             return;
 	 		
-	 	}
-        
-        $this->view->mark = $this->_getParam('mark', false);
-		$this->view->date = $this->_getParam('date', false);
-		$this->view->time = $this->_getParam('time', false);
+	 	}              
 	}	
 } 
 

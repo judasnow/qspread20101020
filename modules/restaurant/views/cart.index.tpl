@@ -100,7 +100,7 @@ function update_cart_temp(meal_id){
 							<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In viverra pretium ultrices. Morbi eget quam nisl. Integer fringilla nibh quis nisl interdum eu facilisis mauris interdum. Aenean eu nibh enim. Donec placerat bibendum elementum. Quisque congue sapien in sem imperdiet blandit. Aliquam erat volutpat.  </p><br />
 							
 						</div>
-						<form name="form_cart" method="post" action="{{$APP_BASE_URL}}restaurant/cart?mark={{$mark}}&time={{$time}}&date={{$date}}">
+						<form name="form_cart" method="post" action="{{$APP_BASE_URL}}restaurant/cart">
 				        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                           <tr>
                             <td width="8%" class="color_1 p5t p5b bd1b"><b>Dish</b></td>
@@ -111,7 +111,7 @@ function update_cart_temp(meal_id){
                             <td width="6%" class="color_1 p5t p5b bd1b"><b>Edit</b></td>
                           </tr>                                                   
                           {{foreach from=$session_cart item=item key=key}} 
-                          {{if isset($item.name) }}                        
+                          {{if isset($item.name) }}                                                
                           <tr>
                             <td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img_restaurant_menu.jpg" alt="" width="58" height="57" /></td>
                             <td class="bd1b p10t p5b"><b>{{$item.name}}</b>
@@ -123,7 +123,7 @@ function update_cart_temp(meal_id){
                             <td class="bd1b p10t p5b top">${{$item.total_money}}</td>
                             <td class="bd1b p10t p5b top">
                             	<a class="color_2" href="#" onclick="update_cart_temp({{$item.meal_id}});">update</a>
-                            	<a class="color_2" href="{{$APP_BASE_URL}}restaurant/cart?mark={{$mark}}&time={{$time}}&date={{$date}}&meal_id={{$item.meal_id}}&state=1">remove</a>
+                            	<a class="color_2" href="{{$APP_BASE_URL}}restaurant/cart?meal_id={{$item.meal_id}}&state=1">remove</a>
                             </td>
                           </tr> 
                           {{/if}}
@@ -168,7 +168,7 @@ function update_cart_temp(meal_id){
                             <td class="center top"><br /></td>
                             <td class="center top"></td>
                             <td class="p10t" color_1 fs14">
-                            <a href="{{$APP_BASE_URL}}restaurant/ship?mark={{$mark}}&time={{$time}}&date={{$date}}">
+                            <a href="{{$APP_BASE_URL}}restaurant/ship">
                             	<img src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" />
                             </a>
                             </td>

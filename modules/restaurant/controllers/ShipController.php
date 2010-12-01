@@ -8,7 +8,7 @@ class restaurant_ShipController extends Vi_Controller_Action
 	public function indexAction()
 	{
 		$this->view->headTitle('Ship information');
-		$order_id = $this->_getParam('order_id', false); 
+		$order_id = session_id();//$this->_getParam('order_id', false); 
 		$this->view->order_id = $order_id;
 		
 		$obj_country = new Models_Country();
@@ -55,10 +55,9 @@ class restaurant_ShipController extends Vi_Controller_Action
 		
 		$this->view->cartErrorMsg = @$_SESSION['card_error_msg'];
 		$_SESSION['card_error_msg'] = null; 
-		
-		$this->view->mark = $this->_getParam('mark', false);
-		$this->view->date = $this->_getParam('date', false);
-		$this->view->time = $this->_getParam('time', false);
+		$this->view->mark = strtoupper($_SESSION['cart'][$order_id]['order_service']);
+		$this->view->date = $_SESSION['cart'][$order_id]['date'];
+		$this->view->time = $_SESSION['cart'][$order_id]['time'];
 	}
 	
 	
