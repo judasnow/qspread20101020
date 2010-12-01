@@ -238,7 +238,9 @@ class user_IndexController extends Vi_Controller_Action
                  */
                 $data = array(
                         'email' => $email,
-                        'get_password_link' => $link
+                        'get_password_link' => $link,
+                        'username' => $user['username'],
+                        'full_name' => $user['full_name']
                 );
                 $objMail = new Models_Mail();
                 $objMail->sendHtmlMail('forgot_password', $data, $email);
@@ -246,7 +248,7 @@ class user_IndexController extends Vi_Controller_Action
                  * Redirect to page
                  */
                 $objContent = new Models_ScontentLang();
-                $this->_redirect($objContent->getUrlWithoutAppBaseUrl(20));
+                $this->_redirect($objContent->getUrlWithoutAppBaseUrl(22));
             }
         }
         $this->view->error = $error;
@@ -309,11 +311,10 @@ class user_IndexController extends Vi_Controller_Action
              * Redirect to page
              */
             $objContent = new Models_ScontentLang();
-            $this->_redirect($objContent->getUrlWithoutAppBaseUrl(20));
+            $this->_redirect($objContent->getUrlWithoutAppBaseUrl(23));
         }
         
         $this->view->error = $error;
-        $this->view->email = $email;
     }
 
     public function restaurantRegisterAction()
