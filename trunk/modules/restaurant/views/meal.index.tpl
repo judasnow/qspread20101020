@@ -152,6 +152,17 @@ function fbs_click(address){
 -->         
         <br class="clear" />
         <div class="top2"></div>
+<!--         
+        <div id="overlay" style="display: block;color:red;font-size:16px;font-weight:bold;opacity:0.85;padding-top:30px;position:absolute;text-align:center;z-index:1010;">        	
+        	This Menu is not available for your selected order time.<br/>
+			To order from this menu please choose a new order time.<br/>
+			Next available order time is {{$time_start}} AM<br/>
+			<a href="#" onclick="closeLoginForm();">Click here</a>        	 
+        </div>
+        <div id="div_meal" style="display: none;">
+        	<a href="#" onclick="closeLoginForm();">Click here</a>
+        </div>   
+ -->           
         <div class="cen2">
           <div class="cen_2">
             <div class="p10">
@@ -230,7 +241,30 @@ function fbs_click(address){
             </div>
           </div>
         </div>
+        
+        
         <div class="bot2"></div>
       </div>
       <div class="clear"></div>
     </div>
+    
+<script type="text/javascript">
+function openLoginForm()
+{
+    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('div_meal').style.display = 'block';
+}
+function closeLoginForm()
+{
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('div_meal').style.display = 'none';
+}
+
+{{if $loginError === true}}
+$(document).ready(function (){
+    openLoginForm();
+    document.getElementById('loginMessage').style.display = '';
+});
+{{/if}}
+
+</script>
