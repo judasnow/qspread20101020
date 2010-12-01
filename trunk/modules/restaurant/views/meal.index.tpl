@@ -23,7 +23,7 @@ function fbs_click(address){
 <!--                 
                   <input type="radio" class="mid float_left m5r" />
 -->                  
-                  <span class="mid">{{$mark}}</span> <br class="clear_left"/>
+                  <span class="mid color_1">{{$mark}}</span> <br class="clear_left"/>
                 </div>
 <!--                
                 <div>
@@ -43,7 +43,7 @@ function fbs_click(address){
               <div class="input_form p20b">
                 <p class="p10b"><b>Date and time</b></p>
                 <label class="w30">Date: </label>
-                <label class="w130">&nbsp;{{$date}}</label>                
+                <label class="w130 color_1">&nbsp;{{$date}}</label>                
 <!--                
                 <select class="w130">
                   <option></option>
@@ -51,7 +51,7 @@ function fbs_click(address){
 -->                
                 <br />
                 <label class="w30">Time: </label>
-                <label class="w130">&nbsp;{{$time}}</label>                
+                <label class="w130 color_1">&nbsp;{{$time}}</label>                
 <!--                 
                 <select class="w130">
                   <option></option>
@@ -63,6 +63,25 @@ function fbs_click(address){
                   to add it to your order</b></a> </div>
 -->                  
               </div>
+              {{ if isset($subtotal) }}
+              <div class="p10t">
+	                <div class="bd1b p5b"><b>Order information</b></div>
+	              </div>
+	              <div class="input_form bd1b p10b">
+	                <div>		   
+	                  Subtotal:              
+	                  <span class="mid color_1">${{$subtotal}}</span> <br class="clear_left"/>			                 
+	                  Sales tax:
+	                  <span class="mid color_1">${{$tax}}</span> <br class="clear_left"/>			                 
+	                  Shipping fee:
+	                  <span class="mid color_1">${{$shipping}}</span> <br class="clear_left"/>			                 
+	                  Order total:
+	                  <span class="mid color_1">${{$ordertotal}}</span> <br class="clear_left"/>
+	                  <br/>	
+	                  <a href="{{$APP_BASE_URL}}restaurant/ship"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_checkout.png"></img></a>		                 
+	                </div>			        
+	              </div>
+	          {{ /if }}	
             </div>
           </div>
         </div>

@@ -98,7 +98,7 @@ class restaurant_CartController extends Vi_Controller_Action
 		 $this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
 		 $this->view->tax 				= $_SESSION['cart'][$order_id]['tax'];
 		 $this->view->shipping 			= $_SESSION['cart'][$order_id]['shipping'];
-		 $this->view->ordertotal 		= $_SESSION['cart'][$order_id]['ordertotal'];
+		 $this->view->ordertotal 		= $_SESSION['cart'][$order_id]['ordertotal'];		 
 		 //-- end add information into cart	
 		 $this->view->order_id = $order_id;	
 		 $this->view->meal_id = $meal_id;	

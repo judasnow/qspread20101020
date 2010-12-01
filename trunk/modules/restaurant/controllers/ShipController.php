@@ -58,6 +58,15 @@ class restaurant_ShipController extends Vi_Controller_Action
 		$this->view->mark = strtoupper($_SESSION['cart'][$order_id]['order_service']);
 		$this->view->date = $_SESSION['cart'][$order_id]['date'];
 		$this->view->time = $_SESSION['cart'][$order_id]['time'];
+		
+		
+		$order_id = session_id();
+		if ( isset($_SESSION['cart'][$order_id]) ){
+			$this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
+			$this->view->tax 				= $_SESSION['cart'][$order_id]['tax'];
+			$this->view->shipping 			= $_SESSION['cart'][$order_id]['shipping'];
+			$this->view->ordertotal 		= $_SESSION['cart'][$order_id]['ordertotal'];
+		}
 	}
 	
 	
