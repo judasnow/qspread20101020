@@ -178,7 +178,15 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    /**
 	     * Pagination
 	     */
-        $this->setPagination($numRowPerPage, $currentPage, $count);        
+        $this->setPagination($numRowPerPage, $currentPage, $count);     
+
+		$order_id = session_id();
+		if ( isset($_SESSION['cart'][$order_id]) ){
+			$this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
+			$this->view->tax 				= $_SESSION['cart'][$order_id]['tax'];
+			$this->view->shipping 			= $_SESSION['cart'][$order_id]['shipping'];
+			$this->view->ordertotal 		= $_SESSION['cart'][$order_id]['ordertotal'];
+		}
 	}
 	
 	function autocompleteCityAction()

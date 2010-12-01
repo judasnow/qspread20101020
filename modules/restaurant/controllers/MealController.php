@@ -51,6 +51,14 @@ class restaurant_MealController extends Vi_Controller_Action
 		
 		$this->view->type = $type;
 		$this->view->res_id = $restaurant_id;
+		
+		$order_id = session_id();
+		if ( isset($_SESSION['cart'][$order_id]) ){
+			$this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
+			$this->view->tax 				= $_SESSION['cart'][$order_id]['tax'];
+			$this->view->shipping 			= $_SESSION['cart'][$order_id]['shipping'];
+			$this->view->ordertotal 		= $_SESSION['cart'][$order_id]['ordertotal'];
+		}
 	}
 } 
 
