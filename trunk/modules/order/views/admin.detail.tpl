@@ -78,6 +78,11 @@
                                     <label style="min-width: 150px;">Order Type:</label>
                                         {{$order.order_service}}
                                 </p>
+                                
+                                <p>
+                                <br/>
+                                <input class="button" type="button" value="&laquo; Back" onclick="javascript:history.back();"/>
+                                </p>
                             </fieldset>
                             
                             
@@ -165,7 +170,6 @@
                         <table>
                             <thead>
                                 <tr>
-                                   <th><input class="check-all" type="checkbox" /></th>
                                    <th>Name</th>
                                    <th>Description</th>
                                    <th>Quantity</th>
@@ -180,7 +184,6 @@
                             
                             {{foreach from=$allMeals item=item}}
                                 <tr>
-                                    <td><input type="checkbox" value="{{$item.meal_id}}" name="allMeals"/></td>
                                     <td>
                                     {{$item.name}}
                                     </td>
