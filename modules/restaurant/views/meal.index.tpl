@@ -139,7 +139,7 @@ function fbs_click(address){
               <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                 <tr>
                   <td width="70%" class="color_1 p5t p5b bd1b"><b>Restaurant name</b></td>
-                  <td width="20%" class="color_1 p5t p5b bd1b"><b>Delivery charge</b></td>
+                  <td width="20%" class="color_1 p5t p5b bd1b"><b>Price</b></td>
                   <td width="10%" class="color_1 p5t p5b bd1b"><b>Active</b></td>
                 </tr>
                 {{foreach from=$arr_meal item=item}}
