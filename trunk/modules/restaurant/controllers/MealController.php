@@ -45,7 +45,7 @@ class restaurant_MealController extends Vi_Controller_Action
 		$this->view->date_cut 		= strtoupper($date_cut);
 		//-- end get restaurant
 		
-		$this->view->mark = $mark;
+		$this->view->mark = strtoupper($mark);
 		$this->view->date = $date;
 		$this->view->time = $time;
 		
