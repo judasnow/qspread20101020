@@ -210,10 +210,14 @@ function fbs_click(address){
 							<td class="bd1b p10t p5b top">${{$item.delivery_minimum}}</td>
 							<td class="bd1b p10t p5b top">${{$item.delivery_charge}}</td>
 							<td class="bd1b p10t p5b top">
+<!-- 							
 								<img src="img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">Curbside </span>
+-->								
+								{{ if count($item.arr_service) > 0 }}
 								{{foreach from=$item.arr_service item=item}}																					
 								<p class="p5t"><img src="{{$LAYOUT_HELPER_URL}}front/img/icon_4.png" alt="" class="mid" />&nbsp; <span class="mid">{{$item}} </span></p>
-								{{/foreach}}		
+								{{/foreach}}
+								{{ /if }}		
 							</td>
 						  </tr>
 						  {{/foreach}}						  

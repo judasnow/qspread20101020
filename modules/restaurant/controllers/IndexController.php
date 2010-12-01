@@ -110,10 +110,13 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    $this->view->alphabet = GetAlphabet();
 	    
 	    foreach ( $restaurants as $key=>$value ){
-	    	$arr_services = explode(',',$value['services']);
-	    	$restaurants[$key]['arr_service'] = $arr_services;
+	    	if ( !empty($value['services']) ){
+		    	$arr_services = explode(',',$value['services']);
+		    	$restaurants[$key]['arr_service'] = $arr_services;
+	    	}
 	    	$restaurants[$key]['address'] = $value['street']." ".$value['city']." ".$value['state'];
 	    }	      
+	   
 	    $this->view->restaurants = $restaurants;
 	    /**
 	     * Begin get date and month
