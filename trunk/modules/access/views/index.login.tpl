@@ -25,7 +25,7 @@ $(document).ready(function (){
                 <input type="image" name="submit" src="{{$LAYOUT_HELPER_URL}}front/img/btn_login.jpg" style="width: 68px;height: 27px; padding:0px;;" />
                 
                 <div style="float: right; padding-right: 20px;">
-                <a href="#">Forgot password</a><br/>
+                <a href="{{$BASE_URL}}user/index/forgot-password">Forgot password</a><br/>
                 <a href="{{$BASE_URL}}register.html">Register new account</a>
                 </div>
                 </div>
