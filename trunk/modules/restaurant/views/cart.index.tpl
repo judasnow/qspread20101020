@@ -111,7 +111,7 @@ function update_cart_temp(meal_id){
                             <td width="6%" class="color_1 p5t p5b bd1b"><b>Edit</b></td>
                           </tr>                                                   
                           {{foreach from=$session_cart item=item key=key}} 
-                          {{if isset($item.name) }}                                                
+                          {{if is_numeric($key) }}                                                
                           <tr>
                             <td class="bd1b p10t p5b"><img src="{{$LAYOUT_HELPER_URL}}front/img/img_restaurant_menu.jpg" alt="" width="58" height="57" /></td>
                             <td class="bd1b p10t p5b"><b>{{$item.name}}</b>
