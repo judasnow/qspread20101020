@@ -45,4 +45,25 @@ class Models_Order extends Vi_Model
         $this->_name = $this->_prefix . 'order';
         return parent::__construct($config); 
     }   
+    
+
+    public function getAllOrders($condition = array(), $order = null, $count = null, $offset = null)
+    {
+        $select = $this->select()
+                ->setIntegrityCheck(false)
+                ->from(array('o' => $this->_name))
+                ->order($order)
+                ->limit($count, $offset);
+        /**
+         * Conditions
+         */
+        if (null != @$condition['full_name']) {
+            $select->where($this->getAdapter()->quoteInto('o.full_name LIKE ?', "%{$condition['full_name']}%"));
+        }
+        if (null != @$condition['status']) {
+            $select->where('status = ?', $condition['status']);
+        }
+        
+        return $this->fetchAll($select)->toArray();
+    }
 }

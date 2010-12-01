@@ -140,7 +140,8 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 			'state'			=> 	$data_info['state'],
 	 			'zip_code'		=> 	$data_info['zip_code'],
 	 			'phone'			=> 	$data_info['phone1'].".".$data_info['phone2'].".".$data_info['phone3'],
-	 			'email'			=> 	$data_info['email']
+	 			'email'			=> 	$data_info['email'],
+	 		    'created_date'  =>  time()
 	 		);
 	 		
 	 		$objOrder = new Models_Order();
@@ -169,6 +170,10 @@ class restaurant_InfoController extends Vi_Controller_Action
             $objUser = new Models_User();
             $objMail = new Models_Mail();
             $data = $arr_order;
+            
+            $config = Vi_Registry::getConfig();
+            $data['created_date'] = date($config['dateFormat'], $data['created_date']);
+            
             $data['card_type'] = $this->view->cardType;
             $data['card_number'] = $this->view->cardNumber;
 //            echo '<pre>';print_r($data);die;

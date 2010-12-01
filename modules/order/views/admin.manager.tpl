@@ -1,25 +1,21 @@
-            <div style="float:left;">
-                <h2>Meal Manager</h2>
-           </div>     
-           <div style="float:right;padding-right:35px;padding-top:8px;">
-                <a href="{{$APP_BASE_URL}}restaurant/admin/new-meal/rid/{{$rid}}"><img style="vertical-align: middle;" src="{{$LAYOUT_HELPER_URL}}admin/images/icons/add_16.png"> Add new meal</a>
-           </div>
+            <h2>Order Manager</h2>
             
              <!-- End .shortcut-buttons-set -->
             
             <div class="clear"></div> <!-- End .clear -->
+           
             
             <div class="content-box"><!-- Start Content Box -->
                 
                 <div class="content-box-header">
                     
                     <div style="float:left;">
-                        <a name="listofmeal"><h3>List of Meals</h3></a>
+                        <a name="listoforder"><h3>List of Orders</h3></a>
                    </div>     
                    <div style="float:right;padding-right:20px;padding-top:5px;">
-                        <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}restaurant/admin/meal-manager/rid/{{$rid}}">
+                        <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}order/admin/manager">
                             
-                          Meal's Name:  <input class="text-input small-input" type="text" name="condition[name]" id="mealname" value="{{$condition.name}}"/>
+                          Customer:  <input class="text-input small-input" type="text" name="condition[full_name]" id="ordername" value="{{$condition.name}}"/>
                             
                             <input class="button" type="submit" value="Search" />
                         </form>
@@ -35,29 +31,29 @@
                        
                        
                         <!-- MESSAGE HERE -->
-                        {{if $allMeals|@count <= 0}}
+                        {{if $allOrders|@count <= 0}}
                         <div class="notification information png_bg">
                             <a href="#" class="close"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
                             <div>
-                                No meal with above condition.
+                                No order with above condition.
                             </div>
                         </div>
                         {{/if}}
                         
-                        {{if $mealMessage|@count > 0 && $mealMessage.success == true}}
+                        {{if $orderMessage|@count > 0 && $orderMessage.success == true}}
                         <div class="notification success png_bg">
                             <a href="#" class="close"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
                             <div>
-                                {{$mealMessage.message}}
+                                {{$orderMessage.message}}
                             </div>
                         </div>
                         {{/if}}
                         
-                        {{if $mealMessage|@count > 0 && $mealMessage.success == false}}
+                        {{if $orderMessage|@count > 0 && $orderMessage.success == false}}
                         <div class="notification error png_bg">
                             <a href="#" class="close"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
                             <div>
-                                {{$mealMessage.message}}
+                                {{$orderMessage.message}}
                             </div>
                         </div>
                         {{/if}}
@@ -67,16 +63,18 @@
                         
                         
                         
-                        {{if $allMeals|@count > 0}}
+                        {{if $allOrders|@count > 0}}
                         <table>
                             <thead>
                                 <tr>
                                    <th><input class="check-all" type="checkbox" /></th>
-                                   <th>Name</th>
-                                   <th>Description</th>
-                                   <th>Price</th>
-                                   <th>Type</th>
-                                   <th>Enabled</th>
+                                   <th>Customer</th>
+                                   <th>Address</th>
+                                   <th>Total</th>
+                                   <th>Time</th>
+                                   <th>Order Type</th>
+                                   <th>Created Date</th>
+                                   <th>Status</th>
                                    <th>Action</th>
                                 </tr>
                                 
@@ -85,34 +83,40 @@
                          
                             <tbody>
                             
-                            {{foreach from=$allMeals item=item}}
+                            {{foreach from=$allOrders item=item}}
                                 <tr>
-                                    <td><input type="checkbox" value="{{$item.meal_id}}" name="allMeals"/></td>
+                                    <td><input type="checkbox" value="{{$item.order_id}}" name="allOrders"/></td>
                                     <td>
-                                    {{$item.name}}
+                                        {{$item.full_name}}<br/>
+                                        <br/>
+                                        Email: <a href="mailto:{{$item.email}};">{{$item.email}}</a><br/>
+                                        Phone: {{$item.phone}}
                                     </td>
                                     <td>
-                                        {{$item.description}}
+                                        {{$item.address}}<br/>
+                                        {{$item.city}} {{$item.state}} {{$item.zip_code}}<br/>
+                                        Suite#/Apt.#/Note: {{$item.suite}}
                                     </td>
-                                    <td>${{$item.price|@number_format:2:'.':','}}</td>
+                                    <td>${{$item.order_total|number_format:2}}</td>
                                     <td>
-                                        {{if 0 == $item.type}}
-                                        General
+                                        {{$item.time}}<br/>
+                                        {{$item.date}}
+                                    </td>
+                                    <td>{{$item.order_service}}</td>
+                                    <td>{{$item.created_date}}</td>
+                                    <td>
+                                        {{if $item.status == 1}}
+                                        <span style="color: red">Paid</span>
                                         {{else}}
-                                        Catering
+                                        Finished
                                         {{/if}}
-                                    </td>
-                                    <td class="center">
-                                        {{if $item.enabled == '1'}}
-                                            <a href="{{$APP_BASE_URL}}restaurant/admin/disable-meal/rid/{{$rid}}/id/{{$item.meal_id}}" ><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/visible16x16.png"></a>
-                                        {{else}}
-                                            <a href="{{$APP_BASE_URL}}restaurant/admin/enable-meal/rid/{{$rid}}/id/{{$item.meal_id}}" ><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/invisible16x16.png"></a>
-                                        {{/if}}
+                                        <br/>
+                                        (<a href="{{$APP_BASE_URL}}order/admin/change-status/id/{{$item.order_id}}">change</a>)
                                     </td>
                                     <td class="center">
                                         <!-- Icons -->
-                                         <a href="{{$APP_BASE_URL}}restaurant/admin/edit-meal/rid/{{$rid}}/id/{{$item.meal_id}}" title="Edit"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/pencil.png"  alt="Edit" /></a>
-                                         <a href="javascript:deleteAMeal({{$item.meal_id}});" title="Delete"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross.png"  alt="Delete" /></a> 
+                                         <a href="javascript:deleteAOrder({{$item.order_id}});" title="Delete"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross.png"  alt="Delete" /></a> 
+                                         <a href="{{$APP_BASE_URL}}order/admin/detail/id/{{$item.order_id}}" title="Meal manager"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/edit_list_16.png"  alt="Meal manager" /></a>
                                     </td>
                                 </tr>
                             {{/foreach}}    
@@ -126,16 +130,14 @@
                         <div class="bulk-actions align-left" style="float: left;padding-top: 14px;">
                             <select id="action">
                                 <option value=";">Choose an action...</option>
-                                <option value="deleteMeal();">Delete</option>
-                                <option value="enableMeal();">Enable</option>
-                                <option value="disableMeal();">Disable</option>
+                                <option value="deleteOrder();">Delete</option>
                             </select>
                             <a class="button" href="javascript:applySelected();">Apply to selected</a>
                         </div>
                         
                         
                         <div class="bulk-actions align-left" style="float: left;padding-top: 10px; padding-left:30px;">
-                            <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}restaurant/admin/meal-manager/rid/{{$rid}}">
+                            <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}order/admin/manager">
                                 Display #
                                 <select name="displayNum" onchange="this.parentNode.submit();" style="clear: both;">
                                     <option value="5" {{if $displayNum == 5}} selected="selected" {{/if}}>5</option>
@@ -191,8 +193,8 @@
             
 <script language="javascript" type="text/javascript">
 $(document).ready(function(){
-    document.getElementById('mealname').select();
-    document.getElementById('mealname').focus();
+    document.getElementById('ordername').select();
+    document.getElementById('ordername').focus();
 });
 
 function applySelected()
@@ -201,38 +203,9 @@ function applySelected()
 	eval(task);
 }
 
-function enableMeal()
+function deleteOrder()
 {
-    var all = document.getElementsByName('allMeals');
-    var tmp = '';
-    for (var i = 0; i < all.length; i++) {
-        if (all[i].checked) {
-             tmp = tmp + '_' + all[i].value;
-        }
-    }
-    if ('' == tmp) {
-        alert('Please choose an meal');
-    }
-    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/enable-meal/rid/{{$rid}}/id/' + tmp;
-}
-
-function disableMeal()
-{
-    var all = document.getElementsByName('allMeals');
-    var tmp = '';
-    for (var i = 0; i < all.length; i++) {
-        if (all[i].checked) {
-             tmp = tmp + '_' + all[i].value;
-        }
-    }
-    if ('' == tmp) {
-        alert('Please choose an meal');
-    }
-    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/disable-meal/rid/{{$rid}}/id/' + tmp;
-}
-function deleteMeal()
-{
-    var all = document.getElementsByName('allMeals');
+    var all = document.getElementsByName('allOrders');
     var tmp = '';
     var count = 0;
     for (var i = 0; i < all.length; i++) {
@@ -242,24 +215,24 @@ function deleteMeal()
         }
     }
     if ('' == tmp) {
-        alert('Please choose an meal');
+        alert('Please choose an order');
         return;
     } else {
-    	result = confirm('Are you sure you want to delete ' + count + ' meal(s)?');
+    	result = confirm('Are you sure you want to delete ' + count + ' order(s)?');
         if (false == result) {
             return;
         }
     }
-    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/delete-meal/rid/{{$rid}}/id/' + tmp;
+    window.location.href = '{{$APP_BASE_URL}}order/admin/delete/id/' + tmp;
 }
 
 
-function deleteAMeal(id)
+function deleteAOrder(id)
 {
-    result = confirm('Are you sure you want to delete this meal?');
+    result = confirm('Are you sure you want to delete this order?');
     if (false == result) {
         return;
     }
-    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/delete-meal/rid/{{$rid}}/id/' + id;
+    window.location.href = '{{$APP_BASE_URL}}order/admin/delete/id/' + id;
 }
 </script>
