@@ -86,7 +86,7 @@ function fbs_click(address){
 							</select><br />
 							<label class="w30">Time</label>
 							<select class="form_text3" id="ctl00_cBody_Backet_datetimeuc_ddlTime" onchange="javascript:setTimeout('__doPostBack(\'ctl00$cBody$Backet$datetimeuc$ddlTime\',\'\')', 0)" name="ctl00$cBody$Backet$datetimeuc$ddlTime">
-								<option value="asap">ASAP</option>
+								<option value="ASAP">ASAP</option>
 								{{foreach from=$arr_time item=item}}	
 								<option value="{{$item}}" {{if $time eq $item }} selected {{/if}} >{{$item}}</option>
 								{{/foreach}}							
