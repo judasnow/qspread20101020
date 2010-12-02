@@ -90,9 +90,9 @@ class restaurant_IndexController extends Vi_Controller_Action
 			if ( null != @$conditions['date'] )	
 				$arr_con['date'] 		= strtolower(substr($conditions['date'],-3));	    	
 	    }
-	    $objRestaurant = new Models_Restaurant();
-    	$restaurants = $objRestaurant->getRestaurantByData($arr_con,$numRowPerPage,($currentPage - 1) * $numRowPerPage);	    
-    	$count = count($objRestaurant->getRestaurantByData($arr_con));
+	    $objRestaurant 	= new Models_Restaurant();
+    	$restaurants 	= $objRestaurant->getRestaurantByData($arr_con,$numRowPerPage,($currentPage - 1) * $numRowPerPage);	    
+    	$count 			= count($objRestaurant->getRestaurantByData($arr_con));
     	
 //	    else{  
 //

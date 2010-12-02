@@ -39,10 +39,10 @@ class restaurant_MealController extends Vi_Controller_Action
 		$objRestaurant = new Models_Restaurant();
 		$arrRestaurant = $objRestaurant->getAllRestaurantById($restaurant_id);	
 		$this->view->address_restaurant = $arrRestaurant['street']." ".$arrRestaurant['city']." ".$arrRestaurant['state'];
-		$this->view->arr_restaurant = $arrRestaurant;
-		$this->view->time_start 	= $arrRestaurant["date_{$date_cut}_start"];
-		$this->view->time_end 		= $arrRestaurant["date_{$date_cut}_end"];
-		$this->view->date_cut 		= strtoupper($date_cut);
+		$this->view->arr_restaurant 	= $arrRestaurant;
+		$this->view->time_start 		= $arrRestaurant["date_{$date_cut}_start"];
+		$this->view->time_end 			= $arrRestaurant["date_{$date_cut}_end"];
+		$this->view->date_cut 			= strtoupper($date_cut);
 		//-- end get restaurant
 		
 		$this->view->mark = strtoupper($mark);
@@ -51,7 +51,20 @@ class restaurant_MealController extends Vi_Controller_Action
 		
 		$this->view->type = $type;
 		$this->view->res_id = $restaurant_id;
-		
+		//-- begin compare time choose
+		if ( strcmp($time,'asap') == 0 ){
+			$time_test 	= strtotime(date('H:m'));
+			$time_open 	= strtotime($arrRestaurant["date_{$date_cut}_start"]);
+			$time_close = strtotime($arrRestaurant["date_{$date_cut}_end"]);
+			if ( ($time_test > $time_open) && ($time_test < $time_close) ){
+				$test_time_choose = 1;
+			}
+			else{
+				$test_time_choose = 0;
+			}
+		}
+		$this->view->test_time_choose = $test_time_choose;
+		//-- end compare time choose
 		$order_id = session_id();
 		if ( isset($_SESSION['cart'][$order_id]) ){
 			$this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
