@@ -108,12 +108,47 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    $this->view->lead_time = $str_lead_time_title;
 	    $this->view->mark = $mark;
 	    $this->view->alphabet = GetAlphabet();
+	    $strServices = "";
 	    
 	    foreach ( $restaurants as $key=>$value ){
-	    	if ( !empty($value['services']) ){
-		    	$arr_services = explode(',',$value['services']);
-		    	$restaurants[$key]['arr_service'] = $arr_services;
+//	    	if ( !empty($value['services']) ){
+//		    	$arr_services = explode(',',$value['services']);
+//		    	$restaurants[$key]['arr_service'] = $arr_services;
+//	    	}
+			$strServices = "";
+	    	if ( !empty($value['pickup']) ){
+	    		if ( !empty($strServices) )
+		    		$strServices .= ',Pickup';	
+		    	else
+		    		$strServices .= 'Pickup';		    	
 	    	}
+	    	if ( !empty($value['curbside']) ){
+	    		if ( !empty($strServices) )
+		    		$strServices .= ',Curbside';	
+		    	else
+		    		$strServices .= 'Curbside';		    	
+	    	}
+	    	if ( !empty($value['delivery']) ){
+	    		if ( !empty($strServices) )
+		    		$strServices .= ',Delivery';	
+		    	else
+		    		$strServices .= 'Delivery';		    	
+	    	}
+	    	if ( !empty($value['catering_pickup']) ){
+	    		if ( !empty($strServices) )
+		    		$strServices .= ',Catering Pickup';	
+		    	else
+		    		$strServices .= 'Catering Pickup';		    	
+	    	}
+	    	if ( !empty($value['catering_delivery']) ){
+		    	if ( !empty($strServices) )
+		    		$strServices .= ',Catering Delivery';	
+		    	else
+		    		$strServices .= 'Catering Delivery';		    	
+	    	}
+	    	$arr_services = explode(',',$strServices);
+		    $restaurants[$key]['arr_service'] = $arr_services;
+		    
 	    	$restaurants[$key]['address'] = $value['street']." ".$value['city']." ".$value['state'];
 	    }	      
 	   
