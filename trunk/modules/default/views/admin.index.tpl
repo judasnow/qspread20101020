@@ -9,31 +9,27 @@
                 </span></a></li>
                 
                 -->  
-                <li><a class="shortcut-button" href="{{$APP_BASE_URL}}user/admin/registration-user-manager"><span>
+                <li><a class="shortcut-button" href="{{$APP_BASE_URL}}user/admin/user-manager"><span>
                     <img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/group_48.png" alt="icon" /><br />
-                    Register User Manager
+                    User Manager
                 </span></a></li>
                
                  
-                <li><a class="shortcut-button" href="{{$APP_BASE_URL}}page/admin/manager"><span>
+                <li><a class="shortcut-button" href="{{$APP_BASE_URL}}scontent/admin/manager"><span>
                     <img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/paper_content_pencil_48.png" alt="icon" /><br />
-                    Edit Pages
+                    Content Manager
                 </span></a></li>
                 
-                <li><a class="shortcut-button" href="{{$APP_BASE_URL}}crush/admin/upload"><span>
+                <li><a class="shortcut-button" href="{{$APP_BASE_URL}}restaurant/admin/manager"><span>
                     <img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/image_add_48.png" alt="icon" /><br />
-                    Upload Crush Item
+                    Restaurant Manager
                 </span></a></li>
                 
-                <li><a class="shortcut-button" href="{{$APP_BASE_URL}}order/admin/credit-manager"><span>
+                <li><a class="shortcut-button" href="{{$APP_BASE_URL}}order/admin/manager"><span>
                     <img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/dolor.png" alt="icon" /><br />
-                    Credit Order Manager
+                    Order Manager
                 </span></a></li>
                 
-                <li><a class="shortcut-button" href="{{$APP_BASE_URL}}notification/admin/matches-manager" rel="modal"><span>
-                    <img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/comment_48.png" alt="icon" /><br />
-                    Matches Manager
-                </span></a></li>
                 
             </ul><!-- End .shortcut-buttons-set -->
             

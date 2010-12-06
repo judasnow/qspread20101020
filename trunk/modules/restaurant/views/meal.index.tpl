@@ -8,7 +8,7 @@ function fbs_click(address){
     return false;
 }  
 </script>
-<script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAfC0VI1TK8TYdshSdnHDNSxRj8XIJxol65Pr1PoVJbiw1L5MubxQzaLoL5T5ECViyoO6PVtMdT4Wlog" type="text/javascript"></script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAfC0VI1TK8TYdshSdnHDNSxSeGj8z-4c3Gkvm2sCURIKgXVhMtBRfYmT9EDfSCVyiP26LwRJpOXAiBg" type="text/javascript"></script>
 <div id="main">
       <div class="w201 float_left">
         <div class="top1 m20t"></div>
