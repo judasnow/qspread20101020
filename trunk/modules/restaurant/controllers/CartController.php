@@ -16,6 +16,7 @@ class restaurant_CartController extends Vi_Controller_Action
 		 $state		= $this->_getParam('state', 0); //-- state=0: delete meal in session cart
 		 $date 		= $this->_getParam('date', false);
 		 $time 		= $this->_getParam('time', false);
+		 $res_id	= $this->_getParam('res_id', false);
 		
 		 $order_id = session_id();	
 		
@@ -61,7 +62,7 @@ class restaurant_CartController extends Vi_Controller_Action
 			 	 }
 			 	 $_SESSION['cart'][$order_id][$meal_id]['total_money'] 	= $_SESSION['cart'][$order_id][$meal_id]['price']*$_SESSION['cart'][$order_id][$meal_id]['quantity'];
 			 	 $_SESSION['cart'][$order_id]['subtotal']				= 0;
-			 	 $_SESSION['cart'][$order_id]['restaurant_id']			= $arr_meal['restaurant_id'];
+			 	 $_SESSION['cart'][$order_id]['restaurant_id']			= $res_id;
 			 	 //-- begin calculate sum
 			 	 foreach($_SESSION['cart'][$order_id] as $key=>$value){			 	 	
 			 	 	if ( $value['total_money'] > 0 )	 	 	

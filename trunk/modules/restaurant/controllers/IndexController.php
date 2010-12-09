@@ -219,7 +219,7 @@ class restaurant_IndexController extends Vi_Controller_Action
         $this->setPagination($numRowPerPage, $currentPage, $count);     
 
 		$order_id = session_id();
-		if ( isset($_SESSION['cart'][$order_id]) ){
+		if ( isset($_SESSION['cart'][$order_id]) ){			
 			$this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
 			$this->view->tax 				= $_SESSION['cart'][$order_id]['tax'];
 			$this->view->shipping 			= $_SESSION['cart'][$order_id]['shipping'];

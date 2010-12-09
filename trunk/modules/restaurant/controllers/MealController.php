@@ -63,7 +63,8 @@ class restaurant_MealController extends Vi_Controller_Action
 				$test_time_choose = 0;
 			}
 		}
-		$this->view->test_time_choose = $test_time_choose;
+		$this->view->test_time_choose 	= $test_time_choose;
+		$this->view->res_id				= $restaurant_id;
 		//-- end compare time choose
 		$order_id = session_id();
 		if ( isset($_SESSION['cart'][$order_id]) ){
