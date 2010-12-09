@@ -179,47 +179,56 @@ class restaurant_InfoController extends Vi_Controller_Action
 //            echo '<pre>';print_r($data);die;
 
             $cartDetail = "
-            <table>
+            <table width='90%'>
                 <tr>
-                    <td>SHIPPING ADDRESS</td>
-                    <td>PAYMENT METHOD</td>
+                    <td width='55%'></td>
+                    <td width='15%'></td>
+                    <td width='15%'></td>
+                    <td width='15%'></td>
+                </tr>
+                <tr>
+                    <td style='color: #442006; font-weight: bold;'>SHIPPING ADDRESS</td>
+                    <td colspan='3'  style='color: #442006; font-weight: bold;'>PAYMENT METHOD</td>
                 </tr> 
                 <tr>
                    <td>
-                       <table>
+                       <br/>
+                       <table width='400px;'>
+
                            <tr>
-                               <td align='right'>Full Name:</td>
-                               <td>{$data['full_name']}</td>
+                               <td width='30%' align='right' style='background-color: #EEEEEE;'>Full Name:</td>
+                               <td width='70%' style='color: #442006;'>{$data['full_name']}</td>
                            </tr>
                            <tr>
-                               <td align='right'>Address:</td>
-                               <td>{$data['address']}</td>
+                               <td align='right' style='background-color: #EEEEEE;'>Address:</td>
+                               <td style='color: #442006;'>{$data['address']}</td>
+
                            </tr>
                            <tr>
-                               <td align='right'>Zip/Postal Code:</td>
-                               <td>{$data['zip_code']}</td>
+                               <td align='right' style='background-color: #EEEEEE;'>Postal Code:</td>
+                               <td style='color: #442006;'>{$data['zip_code']}</td>
                            </tr>
                            <tr>
-                               <td align='right'>Phone:</td>
-                               <td>{$data['phone']}</td>
+                               <td align='right' style='background-color: #EEEEEE;'>Phone:</td>
+
+                               <td style='color: #442006;'>{$data['phone']}</td>
                            </tr>
                        </table>
-                   </td>
-                   <td>
                        <br/>
-                       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                       {$data['card_type']}: {$data['card_number']} 
+                       
                    </td>
+                   <td  colspan='3' >
+                       <span  style='color: #442006;'>{$data['card_type']}: {$data['card_number']} </span>
+                   </td>
+
                 </tr>
-            </table>
-            
-            <table border='0'>
-                <tr>
-                    <td>Dish</td>
-                    <td></td>
-                    <td>Quanlity</td>
-                    <td>Price</td>
-                    <td>Total</td>
+                
+                
+                <tr style='background-color: #DDDDDD;'>
+                    <td style='color: #AD5B21; font-weight: bold;'> Dish</td>
+                    <td style='color: #AD5B21; font-weight: bold;'> Quanlity</td>
+                    <td style='color: #AD5B21; font-weight: bold;'> Price</td>
+                    <td style='color: #AD5B21; font-weight: bold;'> Total</td>
                 </tr> ";
                        
              foreach ($_SESSION['cart'][$order_id] as $meal) {   
@@ -228,35 +237,39 @@ class restaurant_InfoController extends Vi_Controller_Action
                  }
                  $cartDetail .= "
                  <tr>
-                    <td>
-                        <img src='#'>
-                    </td>
-                    <td>
+                    <td style='border-bottom: 1px solid #DDDDDD;'>
                         <b>{$meal['name']}</b>
+
                         <br/>
                         <p>{$meal['description']}</p>
                     </td>
-                    <td>{$meal['quantity']}</td>
-                    <td>$ " . number_format($meal['price'], 2)."</td>
-                    <td>$ " . number_format($meal['total_money'], 2)."</td>
+                    <td style='border-bottom: 1px solid #DDDDDD;'>{$meal['quantity']}</td>
+                    <td style='border-bottom: 1px solid #DDDDDD;'>$ " . number_format($meal['price']*1.0, 2)."</td>
+                    <td style='border-bottom: 1px solid #DDDDDD;'>$ " . number_format($meal['total_money']*1.0, 2)."</td>
                 </tr>"; 
              }
              $cartDetail .= "   
                 <tr>
-                    <td colspan='4' align='right'> Subtotal </td>
+                    <td colspan='2'> </td>
+                    <td> Subtotal </td>
                     <td>$ " . number_format($data['sub_total'], 2)."</td>
+
                 </tr>
                 <tr>
-                    <td colspan='4' align='right'> Tax </td>
+                    <td colspan='2'> </td>
+                    <td> Tax </td>
                     <td>$ " . number_format($data['sales_tax'], 2)."</td>
                 </tr>
                 <tr>
-                    <td colspan='4' align='right'> Shipping fee </td>
-                    <td><b>$ " . number_format($data['shipping_fee'], 2)."</b></td>
+                    <td colspan='2'> </td>
+                    <td> Shipping fee </td>
+
+                    <td>$ " . number_format($data['shipping_fee'], 2)."</td>
                 </tr>
                 <tr>
-                    <td colspan='4' align='right'> Order total </td>
-                    <td>$ " . number_format($data['order_total'], 2)."</td>
+                    <td colspan='2'> </td>
+                    <td> Order total </td>
+                    <td  style='color: #AD5B21; font-weight: bold;'>$ " . number_format($data['order_total'], 2)."</td>
                 </tr>
             </table>
             ";
