@@ -126,19 +126,24 @@ function submit_form(){
             <div class="bg_b"></div>
             <div class="bg_t m15t"></div>
             <div class="bg_c">
-                <div class="bg_cen">
+                <div class="bg_cen" style="min-height: 200px;">
                     <ul class="list_1 p10t">
-                        <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_1.jpg" alt="" /></a></li>
-                        <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_2.jpg" alt="" /></a></li>
-                        <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_3.jpg" alt="" /></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
+                        <li><a href="#"></a></li>
                         <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_4.png" alt="" /></a></li>
                     </ul>
+                    <img src="{{$LAYOUT_HELPER_URL}}front/img/logo_1.jpg" alt="" />
+                    <img src="{{$LAYOUT_HELPER_URL}}front/img/logo_3.jpg" alt="" />
+                    <img src="{{$LAYOUT_HELPER_URL}}front/img/logo_2.jpg" alt="" />
+                    <!-- 
                     <ul class="list_1 p20t p20b">
                         <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_1.jpg" alt="" /></a></li>
                         <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_2.jpg" alt="" /></a></li>
                         <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_3.jpg" alt="" /></a></li>
                         <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_4.png" alt="" /></a></li>
-                    </ul>                  
+                    </ul>    
+                     -->              
                 </div>
             </div>
             <div class="bg_b"></div>
