@@ -116,7 +116,7 @@
                     <br class="clear" />
                     <label class="w130 m10r right">Address:</label>
                     <span class="color_2">{{$address}}</span><br class="clear" />                    
-                    <label class="w130 m10r right">Zip/Postal Code:</label>
+                    <label class="w130 m10r right">Postal Code:</label>
                     <span class="color_2">{{$zip_code}}</span><br class="clear" />
                     <label class="w130 m10r right">Phone:</label>
                     <span class="color_2">{{$phone}}</span><br class="clear" />

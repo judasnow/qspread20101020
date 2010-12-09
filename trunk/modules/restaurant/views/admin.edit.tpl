@@ -177,7 +177,7 @@ function clearImage()
                                     </select>
                                     </p>
                                     
-                                    <p><label class="w155">ZIP:<span class="red">*</span></label>
+                                    <p><label class="w155">Postal code:<span class="red">*</span></label>
                                     <input name="data[zip]" type="text" value="{{$data.zip}}" class="text-input small-input" /></p>
                                     
                                     <p><label class="w155">Manager's Name:<span class="red">*</span></label>

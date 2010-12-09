@@ -125,7 +125,7 @@ $().ready(function() {
                         {{/foreach}}
                     </select><br />
                     
-                    <label class="w130 m10r right">Zip/Postal Code:<span class="red">*</span></label>
+                    <label class="w130 m10r right">Postal Code:<span class="red">*</span></label>
                     <input name="data[zipcode]" type="text" value="{{$data.zipcode}}" class="w230" /><br />
                     
                     <label class="w130 m10r right">Phone:(XXX-XXX-XXXX)<span class="red">*</span></label>

@@ -72,7 +72,7 @@ function fbs_click(address){
 						</div>
 -->						
 						<div class="input_form bd1b p20b">
-							<label class="w30">Zip</label>
+							<label class="w30">Postal code</label>
 							<input type="text" value="{{$zip}}" class="w50" name="data[zip]" id="data[zip]" /><span class="color_1"><b> OR</b></span>	<br />								
 							<label class="w30">City</label>
 							<input type="text" value="{{$city}}" class="w130" name="searchword" id="searchword" /><br />						
