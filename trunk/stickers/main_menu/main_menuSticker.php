@@ -27,11 +27,6 @@ class main_menuSticker extends Vi_Sticker
                     'name' => 'Coropporate Accounts',
                     'id' => 2
                     ),
-            3 => array(
-                    'url' => Vi_Registry::getContentUrl(3),
-                    'name' => 'Philanthropy',
-                    'id' => 3
-                    ),
             4 => array(
                     'url' => Vi_Registry::getContentUrl(4),
                     'name' => 'Refer a Restaurant',
