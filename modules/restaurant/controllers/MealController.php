@@ -9,8 +9,15 @@ class restaurant_MealController extends Vi_Controller_Action
 	public function indexAction()
 	{
 		$this->view->headTitle('Meal information');
-		$restaurant_id = $this->_getParam('id', false); 
+		$restaurant_id 		= $this->_getParam('id', false); 
+		$restaurant_id_ses 	= $this->_getParam('res_id_ses', false); 
 		
+		$order_id = session_id();
+		
+		if ( false != $restaurant_id_ses ){			
+			unset($_SESSION['cart'][$order_id]);
+		}
+			
 		$type = $this->_getParam('type', 0); 
 		
 		$numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
@@ -66,13 +73,32 @@ class restaurant_MealController extends Vi_Controller_Action
 		$this->view->test_time_choose 	= $test_time_choose;
 		$this->view->res_id				= $restaurant_id;
 		//-- end compare time choose
-		$order_id = session_id();
+		
 		if ( isset($_SESSION['cart'][$order_id]) ){
 			$this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
 			$this->view->tax 				= $_SESSION['cart'][$order_id]['tax'];
 			$this->view->shipping 			= $_SESSION['cart'][$order_id]['shipping'];
 			$this->view->ordertotal 		= $_SESSION['cart'][$order_id]['ordertotal'];
 		}
+	}
+	public function otherRestaurantAction()
+	{
+		$this->view->headTitle('Restaurant information');
+		$restaurant_id = $this->_getParam('id', false); 
+		$mark = $this->_getParam('mark', false); 
+		$date = $this->_getParam('date', false); 
+		$time = $this->_getParam('time', false); 
+		$res_id_ses = $this->_getParam('res_id_ses', false);
+		
+		$objRestaurant = new Models_Restaurant();
+		$arr_restaurant = $objRestaurant->getAllRestaurantById($restaurant_id);
+		
+		$this->view->restaurant_name 	= $arr_restaurant['name'];
+		$this->view->restaurant_id		= $restaurant_id;
+		$this->view->mark 				= strtoupper($mark);
+		$this->view->date 				= $date;
+		$this->view->time 				= strtoupper($time);
+		$this->view->res_id_ses			= $res_id_ses;
 	}
 } 
 
