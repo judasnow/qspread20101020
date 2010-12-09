@@ -224,6 +224,7 @@ class restaurant_IndexController extends Vi_Controller_Action
 			$this->view->tax 				= $_SESSION['cart'][$order_id]['tax'];
 			$this->view->shipping 			= $_SESSION['cart'][$order_id]['shipping'];
 			$this->view->ordertotal 		= $_SESSION['cart'][$order_id]['ordertotal'];
+			$this->view->res_id_ses 		= $_SESSION['cart'][$order_id]['restaurant_id'];
 		}
 	}
 	

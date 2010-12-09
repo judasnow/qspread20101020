@@ -204,7 +204,15 @@ function fbs_click(address){
 									{{$item.address}}<br/>
 									<span class="color_1"><a href="#" onclick="return fbs_click('{{$item.address}}')">Map</a> </span>									
 									<br/>
-									<a href="{{$APP_BASE_URL}}restaurant/meal?id={{$item.restaurant_id}}&mark={{$mark}}&date={{$date}}&time={{$time}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_select.png" alt="" /></a>									
+									{{ if isset($res_id_ses) && ($item.restaurant_id != $res_id_ses) }}
+										<a href="{{$APP_BASE_URL}}restaurant/meal/other-restaurant?id={{$item.restaurant_id}}&res_id_ses={{$res_id_ses}}&mark={{$mark}}&date={{$date}}&time={{$time}}">
+											<img src="{{$LAYOUT_HELPER_URL}}front/img/btn_select.png" alt="" />
+										</a>		
+									{{ else }}
+										<a href="{{$APP_BASE_URL}}restaurant/meal?id={{$item.restaurant_id}}&mark={{$mark}}&date={{$date}}&time={{$time}}">
+											<img src="{{$LAYOUT_HELPER_URL}}front/img/btn_select.png" alt="" />
+										</a>	
+									{{ /if }}							
 								</p>
 							</td>
 							<td class="bd1b p10t p5b center top">{{$item.mileage}}</td>
