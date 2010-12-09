@@ -82,13 +82,13 @@ $().ready(function() {
                 <input name="data[city]" type="text" value="" class="w270" /><br />
                 
                 <label class="w155">State:<span class="red">*</span></label>
-                <select name="data[state]" style="width: 168px;" >
+                <select name="data[state]" style="width: 121px;" >
                         {{foreach from=$allProvinces item=item}}
                         <option {{if $item.province==$data.state}} selected="selected" {{/if}} value="{{$item.province}}">{{$item.province}}</option>
                         {{/foreach}}
                 </select>
                 
-                <span class="w175 right">ZIP:<span class="red">*</span></span>
+                <span class="w175 right">Postal code:<span class="red">*</span></span>
                 <input name="data[zip]" type="text" value="" class="w70" /><br />
                 
                 <label class="w155">Manager's Name:<span class="red">*</span></label>

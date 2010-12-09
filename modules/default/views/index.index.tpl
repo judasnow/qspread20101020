@@ -1,5 +1,6 @@
 <!-- begin autocomplete --> 
 <script src="{{$LAYOUT_HELPER_URL}}front/autocomplete/jquery.autocomplete.js" type="text/javascript"></script>
+<script src="{{$LAYOUT_HELPER_URL}}front/js/jquery.cycle.lite.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="{{$LAYOUT_HELPER_URL}}front/autocomplete/styles.css" type="text/css" media="screen" />
 <script type="text/javascript">
   //<![CDATA[
@@ -27,6 +28,14 @@ function submit_form(){
 	var frm = document.form_submit;
 	frm.submit();
 }
+
+/*
+$(document).ready(function() {
+    $('.slideshow').cycle({
+        fx: 'scrollDown' // choose your transition type, ex: fade, scrollUp, shuffle, etc...
+    });
+});
+*/
 </script>
 <!-- end autocomplete -->
 <div id="main">
@@ -37,12 +46,12 @@ function submit_form(){
             <form method="POST" action="{{$APP_BASE_URL}}restaurant?mark=pickup" name="form_submit" id="form_submit">
                 <img src="{{$LAYOUT_HELPER_URL}}front/img/tt_find.png" alt="" />
                 <div class="input_form">
-                    <label class="w55">by zip</label>
+                    <label style="width: 120px;">by Postal code</label>
                     <input type="text" value="" class="w50" name="data[zip]" id="data[zip]"/>
                     <span class="color_1"><b>OR</b></span><br />
-                    <label class="w55">by city</label>
+                    <label style="width: 120px;">by City and Province</label>
                     <input type="text" value="" class="w130" name="searchword" id="searchword" /><br />
-                    <br />
+                    
                     <label>Choose Cuisine (optional)</label><br class="clear_left" />
                     <select class="w215" name="condition[cuisine]">   
                     	<option value="0">All Cuisines</option>                 
@@ -51,7 +60,7 @@ function submit_form(){
                         {{/foreach}}
                         
                     </select><br />
-                    <div class="w110 float_left">
+                    <div class="w110 float_left" style="width: 120px;">
                         <label>Time</label><br class="clear_left" />
                         <select class="w70" name="condition[time]">
                             <option value="asap">ASAP</option>
@@ -109,7 +118,7 @@ function submit_form(){
                     <div class="p10t p10b">
                         <div class="w155 float_left m10l">
                             <span class="fs30 color_2">1.</span>
-                            Select your zip code or city to search hundreds of great restaurants and menus.
+                            Select your postal code or city to search hundreds of great restaurants and menus.
                         </div>
                         <div class="w155 float_left m50l">
                             <span class="fs30 color_2">2.</span>
@@ -128,22 +137,23 @@ function submit_form(){
             <div class="bg_c">
                 <div class="bg_cen" style="min-height: 200px;">
                     <ul class="list_1 p10t">
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
-                        <li><a href="#"></a></li>
+                        <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_1.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_2.jpg" alt="" /></a></li>
+                        <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_3.jpg" alt="" /></a></li>
                         <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_4.png" alt="" /></a></li>
                     </ul>
-                    <img src="{{$LAYOUT_HELPER_URL}}front/img/logo_1.jpg" alt="" />
-                    <img src="{{$LAYOUT_HELPER_URL}}front/img/logo_3.jpg" alt="" />
-                    <img src="{{$LAYOUT_HELPER_URL}}front/img/logo_2.jpg" alt="" />
-                    <!-- 
+                   <!-- <div class="slideshow">
+                        <img src="{{$LAYOUT_HELPER_URL}}front/img/logo_1.jpg" alt="" />
+                        <img src="{{$LAYOUT_HELPER_URL}}front/img/logo_3.jpg" alt="" />
+                        <img src="{{$LAYOUT_HELPER_URL}}front/img/logo_2.jpg" alt="" />
+                    </div> --> 
+                     
                     <ul class="list_1 p20t p20b">
                         <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_1.jpg" alt="" /></a></li>
                         <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_2.jpg" alt="" /></a></li>
                         <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_3.jpg" alt="" /></a></li>
                         <li><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/logo_4.png" alt="" /></a></li>
-                    </ul>    
-                     -->              
+                    </ul>                 
                 </div>
             </div>
             <div class="bg_b"></div>

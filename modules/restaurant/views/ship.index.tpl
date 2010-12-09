@@ -139,7 +139,7 @@
 	                    	{{/foreach}}
 	                    </select><br />
 	                    
-	                    <label class="w130 m10r right">Zip/Postal Code:<span class="red">*</span></label>
+	                    <label class="w130 m10r right">Postal Code:<span class="red">*</span></label>
 	                    <input type="text" value="{{$data.zip_code}}" class="w230" id="data[zip_code]" name="data[zip_code]" /><br />
 	                    
 	                    <label class="w130 m10r right">Phone:(XXX-XXX-XXXX)<span class="red">*</span></label>
