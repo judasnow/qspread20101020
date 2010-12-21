@@ -389,6 +389,15 @@ class Vi_Initializer
                                                      ),
                                                      array()
                                                 );
+            $route5  = new Zend_Controller_Router_Route_Regex(
+                                                     'restaurant/([0-9]*)/(.*)',
+                                                     array(
+                                                        'module'     => 'scontent',
+                                                        'controller' => 'index',
+                                                        'action'     => 'index'
+                                                     ),
+                                                     array(1 =>'id', 2 => 'friendlyPart')
+                                                );
         } else {
 //            $route  = new Zend_Controller_Router_Route_Regex(
 //                                                     'content/([\w_-]*)(.*)',
@@ -404,6 +413,7 @@ class Vi_Initializer
         $router->addRoute('contact', $route2);
         $router->addRoute('register', $route3);
         $router->addRoute('restaurant-register', $route4);
+        $router->addRoute('restaurant', $route5);
     }
     /**
      * Initialize Controller paths 
