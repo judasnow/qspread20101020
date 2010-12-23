@@ -7,7 +7,7 @@ class restaurant_IndexController extends Vi_Controller_Action
 	 * List all restaurant after search
 	 */
 	public function indexAction()
-	{
+	{ 
 		$this->view->headTitle('Restaurant');
 		$config = Vi_Registry::getConfig();
         $numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
@@ -16,7 +16,7 @@ class restaurant_IndexController extends Vi_Controller_Action
         
 	    $condition = $this->_getParam('data', array());
 	    $find = $this->_getParam('find', false);
-	    $mark = $this->_getParam('mark', false);
+	    $mark = $_SESSION['mark'] = isset($_SESSION['mark'])? $_SESSION['mark']: $mark = $this->_getParam('mark', 'pickup');
 	    $searchword = $this->_getParam('searchword', false);
 	    $conditions = $this->_getParam('condition', array());
 	    
@@ -207,11 +207,14 @@ class restaurant_IndexController extends Vi_Controller_Action
 		$this->view->zip = null != @$condition['zip']?$condition['zip']:'';
 		$this->view->city = $searchword;
 		
-		$date = $this->_getParam('date', false); 
-		$time = $this->_getParam('time', false); 
+		$date = isset($_SESSION['date'])?$_SESSION['date']:$this->_getParam('date', false); 
+		$time = isset($_SESSION['time'])?$_SESSION['time']:$this->_getParam('time', false); 
 		
-		$this->view->time = null != @$conditions['time']?$conditions['time']:((false !=$time)?$time:'');
-		$this->view->date = null != @$conditions['date']?$conditions['date']:((false !=$date)?$date:'');		
+		$_SESSION['date'] = null != @$conditions['date']?$conditions['date']:((false !=$time)?$time:'');
+		$_SESSION['time'] = null != @$conditions['time']?$conditions['time']:((false !=$date)?$date:'');
+		
+		$this->view->time = $_SESSION['date'];
+		$this->view->date = $_SESSION['time'];		
 		
 	    /**
 	     * Pagination
@@ -219,12 +222,12 @@ class restaurant_IndexController extends Vi_Controller_Action
         $this->setPagination($numRowPerPage, $currentPage, $count);     
 
 		$order_id = session_id();
-		if ( isset($_SESSION['cart'][$order_id]) ){			
+		if ( isset($_SESSION['cart'][$order_id]) ){					
 			$this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
 			$this->view->tax 				= $_SESSION['cart'][$order_id]['tax'];
 			$this->view->shipping 			= $_SESSION['cart'][$order_id]['shipping'];
 			$this->view->ordertotal 		= $_SESSION['cart'][$order_id]['ordertotal'];
-			$this->view->res_id_ses 		= $_SESSION['cart'][$order_id]['restaurant_id'];
+			$this->view->res_id_ses 		= $_SESSION['cart'][$order_id]['restaurant_id'];						
 		}
 	}
 	

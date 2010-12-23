@@ -8,11 +8,13 @@ function fbs_click(address){
     return false;
 }
 function Complete_Order(){	
-	window.location.href = "{{$APP_BASE_URL}}restaurant/meal?id={{$res_id_ses}}&mark={{$mark}}&date={{$date}}&time={{$time}}";
+//	window.location.href = "{{$APP_BASE_URL}}restaurant/meal?id={{$res_id_ses}}&mark={{$mark}}&date={{$date}}&time={{$time}}";
+	window.location.href = "{{$APP_BASE_URL}}restaurant/{{$res_id_ses}}/meal";
 }
 function Cancel_Order(){
 	if( confirm('Are you sure you want to CANCEL your order?') == true) 
-		window.location.href = "{{$APP_BASE_URL}}restaurant/meal?id={{$restaurant_id}}&res_id_ses={{$res_id_ses}}&mark={{$mark}}&date={{$date}}&time={{$time}}";
+//		window.location.href = "{{$APP_BASE_URL}}restaurant/meal?id={{$restaurant_id}}&res_id_ses={{$res_id_ses}}&mark={{$mark}}&date={{$date}}&time={{$time}}";
+		window.location.href = "{{$APP_BASE_URL}}cancel_res/{{$restaurant_id}}/{{$res_id_ses}}";
 }
 </script>
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAfC0VI1TK8TYdshSdnHDNSxSeGj8z-4c3Gkvm2sCURIKgXVhMtBRfYmT9EDfSCVyiP26LwRJpOXAiBg" type="text/javascript"></script>

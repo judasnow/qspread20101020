@@ -8,11 +8,12 @@ class restaurant_MealController extends Vi_Controller_Action
 	 */
 	public function indexAction()
 	{
+		$order_id = session_id();
+		
 		$this->view->headTitle('Meal information');
 		$restaurant_id 		= $this->_getParam('id', false); 
-		$restaurant_id_ses 	= $this->_getParam('res_id_ses', false); 
-		
-		$order_id = session_id();
+		$restaurant_id_ses 	= $this->_getParam('res_id_ses', false); //$_SESSION['cart'][$order_id]['restaurant_id'];
+			
 		
 		if ( false != $restaurant_id_ses ){			
 			unset($_SESSION['cart'][$order_id]);
@@ -24,9 +25,9 @@ class restaurant_MealController extends Vi_Controller_Action
 //        $numRowPerPage = 1;
         $currentPage = $this->_getParam("page",1);
 
-		$mark = $this->_getParam('mark', false); 
-		$date = $this->_getParam('date', false); 
-		$time = $this->_getParam('time', false); 
+		$mark = isset($_SESSION['mark'])?$_SESSION['mark']:false;//$this->_getParam('mark', false); 
+		$date = isset($_SESSION['date'])?$_SESSION['date']:false;//$this->_getParam('date', false); 
+		$time = isset($_SESSION['time'])?$_SESSION['time']:false;//$this->_getParam('time', false); 
 		
 		$date_cut = strtolower(substr($date,-3));
 		
@@ -83,12 +84,13 @@ class restaurant_MealController extends Vi_Controller_Action
 	}
 	public function otherRestaurantAction()
 	{
+		$order_id = session_id();
 		$this->view->headTitle('Restaurant information');
 		$restaurant_id = $this->_getParam('id', false); 
-		$mark = $this->_getParam('mark', false); 
-		$date = $this->_getParam('date', false); 
-		$time = $this->_getParam('time', false); 
-		$res_id_ses = $this->_getParam('res_id_ses', false);
+		$mark = $_SESSION['mark'];//$this->_getParam('mark', false); 
+		$date = $_SESSION['date'];//$this->_getParam('date', false); 
+		$time = $_SESSION['time'];//$this->_getParam('time', false); 
+		$res_id_ses = $_SESSION['cart'][$order_id]['restaurant_id'];//$this->_getParam('res_id_ses', false);
 		
 		$objRestaurant = new Models_Restaurant();
 		$arr_restaurant = $objRestaurant->getAllRestaurantById($restaurant_id);

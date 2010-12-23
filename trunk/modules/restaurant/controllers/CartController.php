@@ -12,10 +12,10 @@ class restaurant_CartController extends Vi_Controller_Action
 		 //-- begin add information into cart
 		 $meal_id 	= $this->_getParam('meal_id', false); 
 		 $quantity 	= $this->_getParam('quantity', false);
-		 $mark 		= $this->_getParam('mark', false);
+		 $mark 		= $_SESSION['mark'];//$this->_getParam('mark', false);
 		 $state		= $this->_getParam('state', 0); //-- state=0: delete meal in session cart
-		 $date 		= $this->_getParam('date', false);
-		 $time 		= $this->_getParam('time', false);
+		 $date 		= $_SESSION['date'];//$this->_getParam('date', false);
+		 $time 		= $_SESSION['time'];//$this->_getParam('time', false);
 		 $res_id	= $this->_getParam('res_id', false);
 		
 		 $order_id = session_id();	
@@ -95,6 +95,7 @@ class restaurant_CartController extends Vi_Controller_Action
 		 $_SESSION['cart'][$order_id]['date'] 			= $date;
 		 $_SESSION['cart'][$order_id]['time'] 			= $time;
 		 $_SESSION['cart'][$order_id]['order_service'] 	= $mark;
+		
 		
 //		 echo "<pre>";print_r($_SESSION['cart'][$order_id]);echo "</pre>";
 		 $this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
