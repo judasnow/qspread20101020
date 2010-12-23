@@ -43,7 +43,7 @@ $(document).ready(function() {
         
            
             <div class="bg_1">
-            <form method="POST" action="{{$APP_BASE_URL}}restaurant?mark=pickup" name="form_submit" id="form_submit">
+            <form method="POST" action="{{$APP_BASE_URL}}restaurant" name="form_submit" id="form_submit">
                 <img src="{{$LAYOUT_HELPER_URL}}front/img/tt_find.png" alt="" />
                 <div class="input_form">
                     <label style="width: 120px;">by Postal code</label>

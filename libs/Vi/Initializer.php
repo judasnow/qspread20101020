@@ -392,11 +392,38 @@ class Vi_Initializer
             $route5  = new Zend_Controller_Router_Route_Regex(
                                                      'restaurant/([0-9]*)/(.*)',
                                                      array(
-                                                        'module'     => 'scontent',
-                                                        'controller' => 'index',
+                                                        'module'     => 'restaurant',
+                                                        'controller' => 'meal',
                                                         'action'     => 'index'
                                                      ),
                                                      array(1 =>'id', 2 => 'friendlyPart')
+                                                );
+            $route6  = new Zend_Controller_Router_Route_Regex(
+                                                     'other-restaurant/([0-9]*)/(.*)',
+                                                     array(
+                                                        'module'     => 'restaurant',
+                                                        'controller' => 'meal',
+                                                        'action'     => 'other-restaurant'
+                                                     ),
+                                                     array(1 =>'id', 2 => 'friendlyPart')
+                                                );
+            $route7  = new Zend_Controller_Router_Route_Regex(
+                                                     'cart/([0-9]*)/([0-9]*)',
+                                                     array(
+                                                        'module'     => 'restaurant',
+                                                        'controller' => 'cart',
+                                                        'action'     => 'index'
+                                                     ),
+                                                     array(1 =>'res_id', 2 =>'meal_id')
+                                                );
+           $route8  = new Zend_Controller_Router_Route_Regex(
+                                                     'cancel_res/([0-9]*)/([0-9]*)',
+                                                     array(
+                                                        'module'     => 'restaurant',
+                                                        'controller' => 'meal',
+                                                        'action'     => 'index'
+                                                     ),
+                                                     array(1 =>'id', 2 =>'res_id_ses')
                                                 );
         } else {
 //            $route  = new Zend_Controller_Router_Route_Regex(
@@ -414,6 +441,9 @@ class Vi_Initializer
         $router->addRoute('register', $route3);
         $router->addRoute('restaurant-register', $route4);
         $router->addRoute('restaurant', $route5);
+        $router->addRoute('other-restaurant', $route6);
+        $router->addRoute('cart', $route7);
+        $router->addRoute('cancel_res', $route8);
     }
     /**
      * Initialize Controller paths 
