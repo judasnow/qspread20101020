@@ -1,7 +1,8 @@
 <script type="text/javascript">
 function load_data(value){
 	var frm = document.form_filter;
-	frm.action = "{{$APP_BASE_URL}}restaurant?mark="+value+"&date={{$date}}&time={{$time}}";
+//	frm.action = "{{$APP_BASE_URL}}restaurant?mark="+value+"&date={{$date}}&time={{$time}}";
+	frm.action = "{{$APP_BASE_URL}}mark_restaurant/"+value;	
 	frm.submit();
 }
 </script>
@@ -52,7 +53,7 @@ function fbs_click(address){
             <div class="cen1">
             	<div class="cen_1">
                 	<div class="p10">
-                		<form onsubmit="return sub_search();" id="searchForm" action="{{$APP_BASE_URL}}restaurant?mark=pickup&date={{$date}}&time={{$time}}" method="post" name="searchForm">
+                		<form onsubmit="return sub_search();" id="searchForm" action="{{$APP_BASE_URL}}restaurant" method="post" name="searchForm">
 						<img src="{{$LAYOUT_HELPER_URL}}front/img/tt_yourorder.jpg" alt="" />
 						<div class="p10t">
 							<div class="float_left"><b>Location</b></div>
@@ -95,8 +96,8 @@ function fbs_click(address){
 							</select>	
 <!-- 													
 							<div class="center"><a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_checkout.png" alt="" /></a></div>
--->							
-						</div>
+-->														
+						</div>						
 						</form>
 						
 						{{ if isset($subtotal) }}
@@ -236,11 +237,11 @@ function fbs_click(address){
 						  </tr>
 						  {{/foreach}}						  
 						</table>
-						<a href="{{$APP_BASE_URL}}restaurant?mark={{$mark}}&date={{$date}}&time={{$time}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_all.jpg" alt="" class="float_left p7t m5r" /></a>
+						<a href="{{$APP_BASE_URL}}restaurant"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_all.jpg" alt="" class="float_left p7t m5r" /></a>
 						<ul class="list_4 float_left p5t">
 							<li></li>
 							{{foreach from=$alphabet item=item}}	
-								<li><a href="{{$APP_BASE_URL}}restaurant?mark={{$mark}}&find={{$item}}&date={{$date}}&time={{$time}}">{{$item}}</a></li>
+								<li><a href="{{$APP_BASE_URL}}find_restaurant/{{$item}}">{{$item}}</a></li>
 							{{/foreach}}	
 						</ul>
 						
