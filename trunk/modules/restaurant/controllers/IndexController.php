@@ -16,7 +16,13 @@ class restaurant_IndexController extends Vi_Controller_Action
         
 	    $condition = $this->_getParam('data', array());
 	    $find = $this->_getParam('find', false);
-	    $mark = $_SESSION['mark'] = $this->_getParam('mark', 'pickup');//isset($_SESSION['mark'])? $_SESSION['mark']: $this->_getParam('mark', false);
+	   
+	    if(strpos($_SERVER["REDIRECT_URL"], 'mark_restaurant' )){ 
+	    	$mark = $_SESSION['mark'] = $this->_getParam('mark', 'pickup');//isset($_SESSION['mark'])? $_SESSION['mark']: $this->_getParam('mark', false);
+	    }
+	    else{
+	    	$mark = $_SESSION['mark'] = isset($_SESSION['mark'])? $_SESSION['mark']: $this->_getParam('mark', false);
+	    }
 	    $searchword = $this->_getParam('searchword', false);
 	    $conditions = $this->_getParam('condition', array());
 	    
