@@ -257,12 +257,12 @@ function fbs_click(address){
 function openLoginForm()
 {
     document.getElementById('overlay').style.display = 'block';
-    document.getElementById('div_meal').style.display = 'block';
+//    document.getElementById('div_meal').style.display = 'block';
 }
 function closeLoginForm()
 {
     document.getElementById('overlay').style.display = 'none';
-    document.getElementById('div_meal').style.display = 'none';
+//    document.getElementById('div_meal').style.display = 'none';
 }
 
 {{if $loginError === true}}
