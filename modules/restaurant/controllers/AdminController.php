@@ -640,6 +640,11 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
             $newMeal = $data;
             $newMeal['restaurant_id'] = $rid;
             $newMeal['price'] = number_format($newMeal['price'], 2, '.', '');
+            
+            if (null != $newMeal['image']) {
+                $newMeal['image'] = $this->getImagePath($newMeal['image']);
+                $newMeal['image_thumb'] = $this->getThumbnailImagePath($newMeal['image']);
+            }
 //            echo '<pre>';print_r($newMeal);die;
 
             $objMeal->insert($newMeal);
@@ -697,6 +702,11 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
             $newMeal = $data;
             
             $newMeal['price'] = number_format($newMeal['price'], 2, '.', '');
+            
+            if (null != $newMeal['image']) {
+                $newMeal['image'] = $this->getImagePath($newMeal['image']);
+                $newMeal['image_thumb'] = $this->getThumbnailImagePath($newMeal['image']);
+            }
 //            echo '<pre>';print_r($newMeal);die;
 
             $objMeal->update($newMeal, array('meal_id=?' => $id));
