@@ -167,19 +167,23 @@ function fbs_click(address){
             <div class="p10">
               <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                 <tr>
-                  <td width="70%" class="color_1 p5t p5b bd1b"><b>Restaurant name</b></td>
+                  <td width="10%" class="color_1 p5t p5b bd1b"><b>Meal name</b></td>
+                  <td width="60%" class="color_1 p5t p5b bd1b"></td>
                   <td width="20%" class="color_1 p5t p5b bd1b"><b>Price</b></td>
                   <td width="10%" class="color_1 p5t p5b bd1b"><b>Active</b></td>
                 </tr>
                 {{foreach from=$arr_meal item=item}}
                 <tr>
-                  <td class="bd1b p10t p5b"><p><b>{{$item.name}}</b></p>
-                  <br />
-                    <p>{{$item.description}}
-<!--                     
-                      <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_ecit.png" alt="" /></a> <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_delete.png" alt="" /></a>
--->                       
-                    </p></td>
+                  <td class="bd1b p10t p5b" style="vertical-align: top; text-align: center; padding: 10px 5px;">
+                      {{if $item.image_thumb}}
+                         <img alt="{{$item.name}}" src="{{$BASE_URL}}{{$item.image_thumb}}" style="max-width: 100px;">
+                      {{/if}}
+                  </td>
+                  <td class="bd1b p10t p5b" style="vertical-align: top;">
+                      <p><b>{{$item.name}}</b></p>
+                      <br />
+                       <p>{{$item.description}}</p>
+                  </td>
                   <td class="bd1b p10t p5b top">${{$item.price}}</td>
                   <td class="bd1b p10t p5b top">
 <!--                   
