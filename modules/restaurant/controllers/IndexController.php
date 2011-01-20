@@ -217,11 +217,11 @@ class restaurant_IndexController extends Vi_Controller_Action
 		$date = isset($_SESSION['date'])?$_SESSION['date']:$this->_getParam('date', false); 
 		$time = isset($_SESSION['time'])?$_SESSION['time']:$this->_getParam('time', false); 
 		
-		$_SESSION['date'] = null != @$conditions['date']?$conditions['date']:((false !=$time)?$time:'');
-		$_SESSION['time'] = null != @$conditions['time']?$conditions['time']:((false !=$date)?$date:'');
+		$_SESSION['date'] = null != @$conditions['date']?$conditions['date']:((false !=$date)?$date:'');
+		$_SESSION['time'] = null != @$conditions['time']?$conditions['time']:((false !=$time)?$time:'');
 		
-		$this->view->time = $_SESSION['date'];
-		$this->view->date = $_SESSION['time'];		
+		$this->view->time = $_SESSION['time'];
+		$this->view->date = $_SESSION['date'];		
 		
 	    /**
 	     * Pagination
