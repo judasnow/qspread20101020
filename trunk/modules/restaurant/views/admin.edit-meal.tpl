@@ -86,6 +86,30 @@ function clearImage()
                                     <p><label class="w155">Meal Name:<span class="red">*</span></label>
                                     <input name="data[name]" type="text" value="{{$data.name}}" class="text-input small-input" /></p>
                                     
+                                    
+                                    
+                                    <!-- MEAL's IMAGE -->
+                                    <label class="w155">Image:</label>
+                                    <div style="float: left; margin: 10px;" id ="image_div">
+                                    
+                                            <input type="hidden" id="chooseImage_input" name="data[image]" value="{{$BASE_URL}}{{$data.image}}">
+                                            <div id="chooseImage_div" style="{{if !$data.image}} display:none{{/if}}">
+                                                <img src="{{$BASE_URL}}{{$data.image}}" id="chooseImage_img" style="max-width: 150px; border:dashed thin;"></img><br/>
+                                            </div>
+                                            <div id="chooseImage_noImage_div" style="width: 150px; border: thin dashed; text-align: center; padding:70px 0px; {{if $data.image}} display:none{{/if}} ">
+                                                No image
+                                            </div>
+                                            <br/>
+                                            <a href="javascript:chooseImage();">Choose image</a>
+                                            | 
+                                            <a href="javascript:clearImage();">Delete</a>
+                                    </div>     
+                                    <br style="clear: both;"/>  
+                                    <br/>  
+                                    <!-- END IMAGE -->
+                                    
+                                    
+                                    
                                     <p>
                                         <label>Description:<span class="red">*</span></label>
                                         <textarea class="text-input textarea" id="textarea" name="data[description]" cols="79" rows="5">{{$data.description}}</textarea>

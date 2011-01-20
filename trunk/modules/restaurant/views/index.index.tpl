@@ -185,17 +185,17 @@ function fbs_click(address){
 						  <tr>
 							<td width="16%" class="color_1 p5t p5b bd1b"><b>Restaurant name</b></td>
 							<td width="25%" class="color_1 p5t p5b bd1b">&nbsp;</td>
-							<td width="11%" class="color_1 p5t p5b bd1b center"><b>Mileage</b></td>
+							<!-- <td width="11%" class="color_1 p5t p5b bd1b center"><b>Mileage</b></td> -->
 							<td width="14%" class="color_1 p5t p5b bd1b center"><b>Lead time</b></td>
-							<td width="11%" class="color_1 p5t p5b bd1b"><b>Minimum delivery</b></td>
-							<td width="11%" class="color_1 p5t p5b bd1b"><b>Delivery charge</b></td>
-							<td width="12%" class="color_1 p5t p5b bd1b"><b>Service</b></td>
+							<td width="13%" class="color_1 p5t p5b bd1b"><b>Minimum delivery</b></td>
+							<td width="12%" class="color_1 p5t p5b bd1b"><b>Delivery charge</b></td>
+							<td width="20%" class="color_1 p5t p5b bd1b"><b>Service</b></td>
 						  </tr>
 						  {{foreach from=$restaurants item=item}}						  
 						  <tr>
-							<td class="bd1b p10t p5b">
+							<td class="bd1b p10t p5b" style="vertical-align: top; text-align: center;">
 							 {{if $item.image}}
-							 <img src="{{$BASE_URL}}{{$item.image}}" alt="" style="max-width: 120px;"/>
+							 <img src="{{$BASE_URL}}{{$item.image}}" alt="" style="max-width: 100px;"/>
 							 {{/if}}
 							</td>
 							<td class="bd1b p10t p5b" style="padding-left:5px;" valign="top">
@@ -220,7 +220,7 @@ function fbs_click(address){
 									{{ /if }}							
 								</p>
 							</td>
-							<td class="bd1b p10t p5b center top">{{$item.mileage}}</td>
+							<!-- <td class="bd1b p10t p5b center top">{{$item.mileage}}</td> -->
 							<td class="bd1b p10t p5b center top"><b>{{$lead_time}}</b><br />~ {{$item.$mark}} </td>
 							<td class="bd1b p10t p5b top">${{$item.delivery_minimum}}</td>
 							<td class="bd1b p10t p5b top">${{$item.delivery_charge}}</td>

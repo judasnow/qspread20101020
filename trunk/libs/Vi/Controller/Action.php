@@ -348,4 +348,23 @@ class Vi_Controller_Action extends Zend_Controller_Action {
         $this->view->countAllPages = $countAllPage;                                      
 	}
 	
+    
+	/**
+	 * Get relative image path
+	 * @param string $path
+	 * 
+	 * @return string
+	 * @example: media/userfiles/images/restaurant/img.jpg
+	 */
+    public function getImagePath($path)
+    {
+        return substr($path, strlen(Vi_Registry::getBaseUrl()));
+    }
+    
+
+    public function getThumbnailImagePath($path)
+    {
+        return 'media/userfiles/_thumbs/Images/' . substr($path, strlen('media/userfiles/images/'));
+    }
+	
 }

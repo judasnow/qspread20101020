@@ -87,9 +87,12 @@
                             
                             {{foreach from=$allMeals item=item}}
                                 <tr>
-                                    <td><input type="checkbox" value="{{$item.meal_id}}" name="allMeals"/></td>
                                     <td>
-                                    {{$item.name}}
+                                        <input type="checkbox" value="{{$item.meal_id}}" name="allMeals"/>
+                                    </td>
+                                    <td>
+                                        {{$item.name}}<br/>
+                                        {{if $item.image_thumb}}<img alt="{{$item.name}}" src="{{$BASE_URL}}{{$item.image_thumb}}" style="max-width: 100px; padding-top: 5px;">{{/if}}
                                     </td>
                                     <td>
                                         {{$item.description}}
