@@ -21,11 +21,11 @@ class restaurant_IndexController extends Vi_Controller_Action
 	    	$mark = $_SESSION['mark'] = $this->_getParam('mark', 'pickup');//isset($_SESSION['mark'])? $_SESSION['mark']: $this->_getParam('mark', false);
 	    }
 	    else{
-	    	$mark = $_SESSION['mark'] = isset($_SESSION['mark'])? $_SESSION['mark']: $this->_getParam('mark', false);
+	    	$mark = $_SESSION['mark'] = isset($_SESSION['mark'])&&!empty($_SESSION['mark'])? $_SESSION['mark']: $this->_getParam('mark', 'pickup');	    	
 	    }
 	    $searchword = $this->_getParam('searchword', false);
 	    $conditions = $this->_getParam('condition', array());
-	    
+	   
 	    
 		 /**
 	     * Set variables for template
@@ -96,6 +96,7 @@ class restaurant_IndexController extends Vi_Controller_Action
 			if ( null != @$conditions['date'] )	
 				$arr_con['date'] 		= strtolower(substr($conditions['date'],-3));	    	
 	    }
+	    $arr_con = isset($arr_con)?$arr_con:array();
 	    $objRestaurant 	= new Models_Restaurant();
     	$restaurants 	= $objRestaurant->getRestaurantByData($arr_con,$numRowPerPage,($currentPage - 1) * $numRowPerPage);	    
     	$count 			= count($objRestaurant->getRestaurantByData($arr_con));
