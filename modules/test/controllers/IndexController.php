@@ -7,9 +7,9 @@ class test_IndexController extends Vi_Controller_Action
 		 * Display tempalte
 		 */
 	    $this->view->headTitle('Test module');
-	    /**
-	     * Get POST params
-	     */	    
-	    $params = $this->_getAllParams();	    
+
+	    $str = 'restaurant/This is title///111----221412';
+	    
+	    echo $this->makeURLSafeString($str);die;
 	}
 }
