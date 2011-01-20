@@ -97,7 +97,7 @@ class restaurant_MealController extends Vi_Controller_Action
 		
 		$objRestaurant = new Models_Restaurant();
 		$arr_restaurant = $objRestaurant->getAllRestaurantById($restaurant_id);
-		
+					
 		$this->view->restaurant_name 	= $arr_restaurant['name'];
 		$this->view->restaurant_id		= $restaurant_id;
 		$this->view->mark 				= strtoupper($mark);
