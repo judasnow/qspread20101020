@@ -378,7 +378,7 @@ class Vi_Controller_Action extends Zend_Controller_Action {
     public function makeURLSafeString($string)
     {
         $string = strtolower($string); // Makes everything lowercase (just looks tidier).
-        $string = preg_replace('/[^a-z0-9]+/', '-', $string); // Replaces all non-alphanumeric characters with a hyphen.
+        $string = preg_replace('$[^a-z0-9/]+$', '-', $string); // Replaces all non-alphanumeric characters with a hyphen.
         $string = preg_replace('/[-]{2,}/', '-', $string); // Replaces one or more occurrences of a hyphen, with a single one.
         $string = trim($string, '-'); // This ensures that our string doesn't start or end with a hyphen.
         
