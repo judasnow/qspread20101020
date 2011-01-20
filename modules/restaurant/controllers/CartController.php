@@ -64,8 +64,9 @@ class restaurant_CartController extends Vi_Controller_Action
 			 	 $_SESSION['cart'][$order_id]['subtotal']				= 0;
 			 	 $_SESSION['cart'][$order_id]['restaurant_id']			= $res_id;
 			 	 //-- begin calculate sum
-			 	 foreach($_SESSION['cart'][$order_id] as $key=>$value){			 	 	
-			 	 	if ( $value['total_money'] > 0 )	 	 	
+			 	
+			 	 foreach($_SESSION['cart'][$order_id] as $key=>$value){				 	 		 	
+			 	 	if ( ($value['total_money'] > 0) && (is_numeric($key)) )	 	 	
 			 	 		$_SESSION['cart'][$order_id]['subtotal'] += $value['total_money'];		 	 			 	 	
 			 	 }		 	
 			 	 //-- end calculate sum
