@@ -108,7 +108,7 @@ class restaurant_CartController extends Vi_Controller_Action
 		 $this->view->meal_id = $meal_id;	
 		 $this->view->mark = strtoupper($mark);
 		 $this->view->date = $date;
-		 $this->view->time = $time;		 
+		 $this->view->time = strtoupper($time);		 
 	}	
 } 
 

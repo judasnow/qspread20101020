@@ -208,13 +208,13 @@ function fbs_click(address){
 									{{ if isset($res_id_ses) && ($item.restaurant_id != $res_id_ses) }}										
 <!-- 										<a href="{{$APP_BASE_URL}}restaurant/meal/other-restaurant?id={{$item.restaurant_id}}&res_id_ses={{$res_id_ses}}">
  -->										
- 											<a href="{{$APP_BASE_URL}}other-restaurant/{{$item.restaurant_id}}/meal">
+ 											<a href="{{$APP_BASE_URL}}other-restaurant/{{$item.restaurant_id}}/{{$item.alias}}">
 											<img src="{{$LAYOUT_HELPER_URL}}front/img/btn_select.png" alt="" />
 										</a>		
 									{{ else }}
 <!-- 										<a href="{{$APP_BASE_URL}}restaurant/meal?id={{$item.restaurant_id}}">
  -->
- 											<a href="{{$APP_BASE_URL}}restaurant/{{$item.restaurant_id}}/meal">
+ 											<a href="{{$APP_BASE_URL}}restaurant/{{$item.restaurant_id}}/{{$item.alias}}">
 											<img src="{{$LAYOUT_HELPER_URL}}front/img/btn_select.png" alt="" />
 										</a>	
 									{{ /if }}							
