@@ -73,9 +73,9 @@ function fbs_click(address){
 						</div>
 -->						
 						<div class="input_form bd1b p20b">
-							<label class="w30">Postal code</label>&nbsp;&nbsp;&nbsp;&nbsp;
+							<label style="width: 80px;">by Postal</label>
 							<input type="text" value="{{$zip}}" class="w50" name="data[zip]" id="data[zip]" /><span class="color_1"><b> OR</b></span>	<br />								
-							<label class="w30">City</label>
+							<label>by City and Province</label>
 							<input type="text" value="{{$city}}" class="w130" name="searchword" id="searchword" /><br />						
 							<a href="#" onclick="submit_search();"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_go.jpg" alt="" /></a>
 						</div>
@@ -193,7 +193,7 @@ function fbs_click(address){
 						  </tr>
 						  {{foreach from=$restaurants item=item}}						  
 						  <tr>
-							<td class="bd1b p10t p5b" style="vertical-align: top; text-align: center;">
+							<td class="bd1b p10t p5b" style="text-align: center;">
 							 {{if $item.image}}
 							 <img src="{{$BASE_URL}}{{$item.image}}" alt="" style="max-width: 100px;"/>
 							 {{/if}}
