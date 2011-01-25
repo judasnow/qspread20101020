@@ -1,4 +1,12 @@
+<link rel="stylesheet" href="{{$LAYOUT_HELPER_URL}}front/prettyphoto/css/prettyPhoto.css" type="text/css" media="screen" title="prettyPhoto main stylesheet" charset="utf-8" />
+<script src="{{$LAYOUT_HELPER_URL}}front/prettyphoto/js/jquery.prettyPhoto.js" type="text/javascript" charset="utf-8"></script>
+
 <script type="text/javascript">
+
+$(document).ready(function(){
+    $(".meal a[rel^='prettyPhoto']").prettyPhoto({animationSpeed:'fast',slideshow:10000,theme: 'facebook'});
+});
+
 function fbs_click(address){	
     u = 'http://nyhederne.tv2.dk/article.php/id-35170936:clinton-er-f%C3%A6rdig-som-stemmej%C3%A6ger.html';
     t = document.title;
@@ -89,54 +97,11 @@ function fbs_click(address){
       </div>      
 
       <div class="w692 float_right m20t po_re">
-<!--       
-        <div class="bg_popup p10">
-          <div class="bd1b p5b w600"> <img src="{{$LAYOUT_HELPER_URL}}front/img/text_fire.png" alt="" class="float_left"/>
-            <div class="float_right l_title"> <b>Quality:</b> &nbsp;&nbsp;
-              <input style="input"/>
-              &nbsp;&nbsp;&nbsp; <b>Price:</b> &nbsp;&nbsp;<span>$40.0</span> </div>
-            <div class="clear"></div>
-          </div>
-          <div class="w600"> <br />
-            <div class="p5b"><b>Choose form</b></div>
-            <div>
-              <input type="radio" class="mid float_left m5r" />
-              <span class="mid">Cup ($3.50)</span> <br class="clear_left"/>
-            </div>
-            <div>
-              <input type="radio" class="mid float_left m5r" />
-              <span class="mid">Pint ($4.95)</span> <br class="clear_left"/>
-            </div>
-            <div>
-              <input type="radio" class="mid float_left m5r" />
-              <span class="mid">Quart ($7.95)</span> <br class="clear_left"/>
-            </div>
-            <br />
-            <div class="p5b"><b>Choose form</b></div>
-            <div>
-              <input type="checkbox" class="mid float_left m5r" />
-              <span class="mid">Bread bowl $(0.75)</span> </div>
-            <br />
-            <div class="p5b"><b>Special intruction(e.g sauce on the side)</b><br />
-              <span style="font-size:9px"> Please note any price altering intructions entered below will be change to your credit card after your order is processed(extre cheese.ect) </span>
-              <textarea class="text_choose"></textarea>
-              <br />
-              <label class="float_left p10t m5r"><strong>For whom</strong></label>
-              <input type="text" style="width:533px;height:20px;margin-top:5px;"/>
-              <div class="float_right m10t"> <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_additem.png" alt="" /></a> <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_cancel.png" alt="" /></a> </div>
-              <div class="clear"></div>
-            </div>
-          </div>
-        </div>               
--->        
         <p class="float_left m10r"><img src="{{$BASE_URL}}{{$arr_restaurant.image}}" alt="" /></p>
         <span class="fs14"><b>{{$arr_restaurant.name}}</b></span><br />
         {{$arr_restaurant.street}}<br />
         {{$arr_restaurant.city}} {{$arr_restaurant.state}} <span class="color_1"><a href="#" onclick="return fbs_click('{{$address_restaurant}}')">Map</a> </span><br />
         {{$arr_restaurant.description}}<br />
-<!--         
-        <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_ecit.png" alt="" /></a>
--->                 
         <div class="clear_left"></div>
         <br />
         <div id="na_2">
@@ -164,7 +129,7 @@ function fbs_click(address){
         <!-- end layer cover -->    
         <div class="cen2">
           <div class="cen_2">
-            <div class="p10">
+            <div class="p10 meal">
               <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                 <tr>
                   <td width="10%" class="color_1 p5t p5b bd1b"><b>Meal name</b></td>
@@ -176,7 +141,7 @@ function fbs_click(address){
                 <tr>
                   <td class="bd1b p10t p5b" style="vertical-align: top; text-align: center; padding: 10px 5px;">
                       {{if $item.image_thumb}}
-                         <img alt="{{$item.name}}" src="{{$BASE_URL}}{{$item.image_thumb}}" style="max-width: 100px;">
+                         <a href="{{$BASE_URL}}{{$item.image}}" rel="prettyPhoto" title="{{$item.name|@addslashes}} (${{$item.price}})"><img alt="{{$item.name|@addslashes}}" src="{{$BASE_URL}}{{$item.image_thumb}}" style="max-width: 100px;"></a>
                       {{/if}}
                   </td>
                   <td class="bd1b p10t p5b" style="vertical-align: top;">
@@ -185,48 +150,14 @@ function fbs_click(address){
                        <p>{{$item.description}}</p>
                   </td>
                   <td class="bd1b p10t p5b top">${{$item.price}}</td>
+                  
                   <td class="bd1b p10t p5b top">
-<!--                   
-                  	<a href="{{$APP_BASE_URL}}restaurant/cart?res_id={{$res_id}}&meal_id={{$item.meal_id}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_select.png" alt="" />
- -->                  	
  					<a href="{{$APP_BASE_URL}}cart/{{$res_id}}/{{$item.meal_id}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/btn_select.png" alt="" />
                   	</a>
                   </td>
                 </tr>
                 {{/foreach}}	                
               </table>
-<!--              
-              <a href="#"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_all.jpg" alt="" class="float_left p7t m5r" /></a>
-              <ul class="list_4 float_left p5t">
-                <li></li>
-                <li><a href="#">a</a></li>
-                <li><a href="#">b</a></li>
-                <li><a href="#">c</a></li>
-                <li><a href="#">d</a></li>
-                <li><a href="#">e</a></li>
-                <li><a href="#">f</a></li>
-                <li><a href="#">g</a></li>
-                <li><a href="#">h</a></li>
-                <li><a href="#">i</a></li>
-                <li><a href="#">j</a></li>
-                <li><a href="#">k</a></li>
-                <li><a href="#">l</a></li>
-                <li><a href="#">m</a></li>
-                <li><a href="#">n</a></li>
-                <li><a href="#">o</a></li>
-                <li><a href="#">p</a></li>
-                <li><a href="#">q</a></li>
-                <li><a href="#">r</a></li>
-                <li><a href="#">s</a></li>
-                <li><a href="#">t</a></li>
-                <li><a href="#">u</a></li>
-                <li><a href="#">v</a></li>
-                <li><a href="#">w</a></li>
-                <li><a href="#">v</a></li>
-                <li><a href="#">y</a></li>
-                <li><a href="#">z</a></li>
-              </ul>
--->              
 			  {{if $countAllPages > 1}}
               <div class="float_right">
                 <ul class="list_3">
