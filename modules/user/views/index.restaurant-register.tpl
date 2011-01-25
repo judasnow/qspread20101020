@@ -52,8 +52,23 @@ $().ready(function() {
             <div class="bg_howitwork">
                 <p class="title1">Sign Up Now</p>
                 <p class="p5t">Enter your information below to become a QuickSpread Restaurant Partner</p>
-                <p class="p15t color_2"><b>Contact Information </b></p>
+                
+                
+                
+                <p class="p15t color_2"><b>Account Information </b></p>
                 <div class="input_form">
+                
+                <label class="w155">Username:<span class="red">*</span></label>
+                <input name="user[username]" type="text" value="" class="w270" /><br />
+                
+                <label class="w155">Password:<span class="red">*</span></label>
+                <input name="user[password]" type="text" value="" class="w270" /><br />
+                 <label class="w155"> </label>(More than 6 characters)<br/>
+                
+                <label class="w155">Confirm Password:<span class="red">*</span></label>
+                <input name="user[retype_password]" type="text" value="" class="w270" /><br />
+                
+                
                 
                 <label class="w155">Owner's Name:<span class="red">*</span></label>
                 <input name="data[owner]" type="text" value="" class="w270" /><br />
@@ -63,6 +78,9 @@ $().ready(function() {
                 
                 <label class="w155">Owner's Email Address:<span class="red">*</span></label>
                 <input name="data[owner_email]" type="text" value="" class="w270" /><br />
+                
+                
+                
                 
                 <p class="p15t color_2"><b>Restaurant Information</b></p>             
                   
