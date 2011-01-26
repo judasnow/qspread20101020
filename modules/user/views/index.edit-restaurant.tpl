@@ -150,7 +150,8 @@ $().ready(function() {
                 
                 <label class="w155">Fax Number:<span class="red">*</span></label>
                 <input name="data[fax]" type="text" value="{{$data.fax}}" class="w270" /><br />
-                
+                <label class="w155">Description:</label>
+                <textarea name="data[description]" cols="79" rows="5">{{$data.description}}</textarea>
                 
                 
                 

@@ -101,6 +101,7 @@ function fbs_click(address){
         <span class="fs14"><b>{{$arr_restaurant.name}}</b></span><br />
         {{$arr_restaurant.street}}<br />
         {{$arr_restaurant.city}} {{$arr_restaurant.state}} <span class="color_1"><a href="#" onclick="return fbs_click('{{$address_restaurant}}')">Map</a> </span><br />
+        <br/>
         {{$arr_restaurant.description}}<br />
         <div class="clear_left"></div>
         <br />
@@ -135,7 +136,7 @@ function fbs_click(address){
                   <td width="10%" class="color_1 p5t p5b bd1b"><b>Meal name</b></td>
                   <td width="60%" class="color_1 p5t p5b bd1b"></td>
                   <td width="20%" class="color_1 p5t p5b bd1b"><b>Price</b></td>
-                  <td width="10%" class="color_1 p5t p5b bd1b"><b>Active</b></td>
+                  <td width="10%" class="color_1 p5t p5b bd1b"><b>Action</b></td>
                 </tr>
                 {{foreach from=$arr_meal item=item}}
                 <tr>
