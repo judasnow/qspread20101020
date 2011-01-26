@@ -12,6 +12,7 @@ require_once 'Shared/Models/Country.php';
 require_once 'Shared/Models/Group.php';
 require_once 'Shared/Models/User.php';
 require_once 'Shared/Models/UserExpand.php';
+require_once 'Shared/Models/Restaurant.php';
 
 class user_AdminController extends Vi_Controller_Action_Admin 
 {
@@ -152,7 +153,6 @@ class user_AdminController extends Vi_Controller_Action_Admin
                 unset($newUser['repeat_password']);
                 
             }
-        
             if ($newUser['email'] == $oldUser['email']) {
                 $exclude[] = 'email';
                 unset($newUser['email']);
@@ -174,6 +174,17 @@ class user_AdminController extends Vi_Controller_Action_Admin
                 try {
                     $objUser->update($newUser, array('user_id=?' => $id));
                     $objUserExp->update($newUserExp, array('user_expand_id=?'=> $oldUser['user_expand_id']));
+                    /**
+                     * Set owner email for restaurant
+                     */
+                    if (isset($newUser['email'])) {
+                        $objRes = new Models_Restaurant();
+                        $objRes->update(array('owner_email' => $newUser['email']), array('user_id=?' => $id));
+                    }
+                    if (isset($newUser['full_name'])) {
+                        $objRes = new Models_Restaurant();
+                        $objRes->update(array('owner' => $newUser['full_name']), array('user_id=?' => $id));
+                    }
                     /**
                      * Reload current login user
                      */

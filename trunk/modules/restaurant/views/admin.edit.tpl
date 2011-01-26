@@ -20,7 +20,6 @@ $().ready(function() {
     // validate signup form on keyup and submit
     $("#register").validate({
         rules: {
-            'data[owner]': "required",
             'data[owner_phone]': "required",
             'data[name]': "required",
             'data[street]': "required",
@@ -31,7 +30,6 @@ $().ready(function() {
             'data[fax]': "required"
         },
         messages: {
-            'data[owner]': "",
             'data[owner_phone]': "",
             'data[name]': "",
             'data[street]': "",
@@ -115,8 +113,8 @@ function clearImage()
                             
                                     <p class="p15t green"><b>Contact Information </b></p>
                                     
-                                    <p><label class="w155">Owner's Name:<span class="red">*</span></label>
-                                    <input name="data[owner]" type="text" value="{{$data.owner}}" class="text-input small-input" /></p>
+                                    <p><label class="w155">Owner's Name:</label>
+                                    {{$data.owner}}  (<a href="{{$APP_BASE_URL}}user/admin/edit-user/id/{{$user.user_id}}">Edit name</a>)</p>
                                     
                                     <p><label class="w155">Owner's Phone Number:<span class="red">*</span></label>
                                     <input name="data[owner_phone]" type="text" value="{{$data.owner_phone}}" class="text-input small-input" /></p>
