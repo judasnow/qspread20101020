@@ -336,15 +336,34 @@ class user_IndexController extends Vi_Controller_Action
          * Get data
          */
         $objRes = new Models_Restaurant();
+        $objUser = new Models_User();
+        $objUserExp = new Models_UserExpand();
+        /**
+         * Clear all draft user
+         */
+        $objUser->delete(array('is_draft=?' => 1, 'created_date<?' => time() - 24*3600));
+        
         $data = $this->_getParam('data', false);
+        $user = $this->_getParam('user', false);
         $condition = $this->_getParam('condition', false);
         $error = '';
         
         /**
          * Insert restaurant
          */
-        if ('1' == $condition && null != $this->session->newRes && is_array($this->session->newRes)) {
-            $objRes->insert($this->session->newRes);
+        if ('1' == $condition && null != $this->session->newRes && is_array($this->session->newRes)
+        && null != $this->session->newUserId) {
+            /**
+             * Insert restaurant
+             */
+            $res = $this->session->newRes;
+            $res['user_id'] = $this->session->newUserId;
+            
+            $objRes->insert($res);
+            /**
+             * Make real user
+             */
+            $objUser->update(array('is_draft' => 0, 'enabled' => 1), array('user_id=?'=>$this->session->newUserId));
             /**
              * Send email
              */
@@ -359,6 +378,7 @@ class user_IndexController extends Vi_Controller_Action
              * Clear data
              */
             $this->session->newRes = null;
+            $this->session->newUserId = null;
             /**
              * Redirect to thankyou page
              */
@@ -366,6 +386,54 @@ class user_IndexController extends Vi_Controller_Action
             $this->_redirect($objContent->getUrlWithoutAppBaseUrl(20));
         }
         
+        /**
+         * Check new account
+         */
+        $errors = array();
+        if (false != $data && false != $user) {
+            $newUser = array(
+                            'group_id'        => 2,
+                            'username'        => $user['username'],
+                            'email'           => $data['owner_email'],
+                            'full_name'       => $data['owner'],
+                            'password'        => $user['password'],
+                            'repeat_password' => $user['retype_password'],
+                            'company'         => $data['name'],
+                            'created_date'    => time(),
+                            'enabled'         => 0,
+                            'send_discount_code' => 0,
+                            'is_draft' => 1,
+                            'is_restaurant' => 1
+                        );
+            $errors = $objUser->validate($newUser);
+            if (true === $errors) {
+                $newUser['password'] = md5($newUser['password']);
+                /**
+                 * TODO Read date format from language table
+                 */
+                unset($newUser['repeat_password']);
+                /**
+                 * Insert draft user
+                 */
+                $id = $objUser->insert($newUser);
+                $newUserExp = array(
+                                    'user_id'    => $id,
+                                );
+                $objUserExp->insert($newUserExp);
+                
+                $this->session->newUserId = $id;
+            } else {
+                /**
+                 * Error, display template
+                 */
+                $this->view->user = $user;
+                $this->view->data = $data;
+                $this->view->errors = $errors;
+                $this->view->headTitle('Restaurant Owner Register');
+                $this->setLayout('front2');
+                return;
+            }
+        }
         
         if (false != $data) {
             /**
