@@ -95,8 +95,19 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
         $ids = explode('_', trim($id, '_'));
         
         $objRestaurant = new Models_Restaurant();
+        $objUser = new Models_User();
         try {
             foreach ($ids as $id) {
+                /**
+                 * Also delete account
+                 */
+                $res = $objRestaurant->find($id)->toArray();
+                $res = current($res);
+                
+                if (null != @$res['user_id']) {
+                    $objUser->delete(array('user_id=?' => $res['user_id']));
+                }
+                
                $objRestaurant->delete( array('restaurant_id=?' => $id));
             }
             $this->session->restaurantMessage = array(
