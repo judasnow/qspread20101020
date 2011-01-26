@@ -568,4 +568,188 @@ class user_IndexController extends Vi_Controller_Action
         $objContent = new Models_ScontentLang();
         $this->view->article = $objContent->getContent(19);
     }
+    
+    public function editRestaurantAction()
+    {
+        /**
+         * Get all provice CODE
+         */
+        $objCountry = new Models_Country();
+        $this->view->allProvinces = $objCountry->getAllProvinces();
+        /**
+         * Get some list
+         */
+        $objCat = new Models_Category();
+        $this->view->leadTimeNormal = $objCat->getAllValues('lead_time_normal');
+        $this->view->leadTimeCatering = $objCat->getAllValues('lead_time_catering');
+//        echo '<pre>';print_r($this->view->allProvinces);die;
+        
+        /**
+         * Get data
+         */
+        $objRes = new Models_Restaurant();
+        $objUser = new Models_User();
+        $objUserExp = new Models_UserExpand();
+        
+        $data = $this->_getParam('data', false);
+        $user = $this->_getParam('user', false);
+        $condition = $this->_getParam('condition', false);
+        
+        
+        if (false != $data && false != $user) {
+            /**
+             * Update restaurant
+             */
+            $newRes = $data;
+            /**
+             * Modify date
+             */
+            $dateArr = array('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'); 
+            foreach ($dateArr as $item) {
+                if ('1' != @$newRes["date_{$item}"]) {
+                    unset($newRes["date_{$item}_start"]);
+                    unset($newRes["date_{$item}_end"]);
+                } else {
+                    /**
+                     * Change correct time
+                     */
+                    if (null == @$newRes["date_{$item}_start"]) {
+                        $newRes["date_{$item}_start"] = '00:00';//0 hours
+                    } else {
+                        $tmp = explode(':', $newRes["date_{$item}_start"]);
+                        /**
+                         * Hour
+                         */
+                        if (null == @$tmp[0]) {
+                            $tmp[0] = 0;
+                        }
+                        $tmp[0] = '00' . abs(intval($tmp[0]));
+                        $tmp[0] = substr($tmp[0], -2, 2);
+                        if (23 < intval($tmp[0])) {
+                            $tmp[0] = '00';
+                        }
+                        /**
+                         * Minute
+                         */
+                        if (null == @$tmp[1]) {
+                            $tmp[1] = 0;
+                        }
+                        $tmp[1] = '00' . abs(intval($tmp[1]));
+                        $tmp[1] = substr($tmp[1], -2, 2);
+                        if (59 < intval($tmp[1])) {
+                            $tmp[1] = '00';
+                        }
+                        
+                        $newRes["date_{$item}_start"] = $tmp[0] . ':' . $tmp[1];
+                    }
+                    
+                    if (null == @$newRes["date_{$item}_end"]) {
+                        $newRes["date_{$item}_end"] = 24*3600 - 60;//23:59:59 hours
+                    } else {
+                        $tmp = explode(':', $newRes["date_{$item}_end"]);
+                        /**
+                         * Hour
+                         */
+                        if (null == @$tmp[0]) {
+                            $tmp[0] = 23;
+                        }
+                        $tmp[0] = '00' . abs(intval($tmp[0]));
+                        $tmp[0] = substr($tmp[0], -2, 2);
+                        if (23 < intval($tmp[0])) {
+                            $tmp[0] = '23';
+                        }
+                        /**
+                         * Minute
+                         */
+                        if (null == @$tmp[1]) {
+                            $tmp[1] = 59;
+                        }
+                        $tmp[1] = '00' . abs(intval($tmp[1]));
+                        $tmp[1] = substr($tmp[1], -2, 2);
+                        if (59 < intval($tmp[1])) {
+                            $tmp[1] = '59';
+                        }
+                        $newRes["date_{$item}_end"] = $tmp[0] . ':' . $tmp[1];
+                    }
+                }
+            }
+            
+            /**
+             * Modify data
+             */
+            if ('1' != @$newRes['check']['pickup']) {
+                unset($newRes['pickup']);
+            }
+            if ('1' != @$newRes['check']['curbside']) {
+                unset($newRes['curbside']);
+            }
+            if ('1' != @$newRes['check']['delivery']) {
+                unset($newRes['delivery']);
+                unset($newRes['delivery_limit_hour']);
+                unset($newRes['delivery_charge']);
+                unset($newRes['delivery_minimum']);
+            }
+            if ('1' != @$newRes['check']['catering_pickup']) {
+                unset($newRes['catering_pickup']);
+            }
+            if ('1' != @$newRes['check']['catering_delivery']) {
+                unset($newRes['catering_delivery']);
+                unset($newRes['catering_delivery_limit_hour']);
+                unset($newRes['catering_delivery_charge']);
+                unset($newRes['catering_delivery_minimum']);
+            }
+            /**
+             * Remove tempory data
+             */
+            unset($newRes['check']);
+            unset($newRes['owner_email']);
+//            echo '<pre>';print_r($newRes);die;
+            
+            $objRes->update($newRes, array('restaurant_id=?' => Vi_Registry::getRestaurantIdFromLoggedUser()));
+            
+            /**
+             * Update new password
+             */
+            $newUser = $user;
+//            echo '<pre>';print_r($newUser);die;
+            if (null != $newUser['password'] && $newUser['password'] == $newUser['retype_password']) {
+                $newUser['password'] = md5($newUser['password']);
+                /**
+                 * TODO Read date format from language table
+                 */
+                unset($newUser['retype_password']);
+            } else {
+                /**
+                 * Don't change password
+                 */
+                unset($newUser['password']);
+                unset($newUser['retype_password']);
+            }
+            unset($newUser['email']);
+            unset($newUser['username']);
+            $newUser['company'] = $data['name'];
+            $newUser['full_name'] = $data['owner'];
+            
+            $objUser->update($newUser, array('user_id=?' => Vi_Registry::getLoggedInUserId()));
+            $this->view->updateSuccess = true;
+        }
+        /**
+         * Reload user and restaurant
+         */
+        
+        $user = Vi_Registry::getLoggedInUser()->toArray();
+        $data = $objRes->getByColumnName(array('user_id=?' => $user['user_id']))->toArray();
+        $data = current($data);
+        
+        $this->view->user = $user;
+        $this->view->data = $data;
+        $this->view->error = $error;
+        
+        
+        $cuisines = $objCat->getAllValues('cuisine');
+        $this->view->cuisines = $cuisines;
+        
+        $this->view->headTitle('Restaurant Owner Register');
+//        $this->setLayout('front2');
+    }
 }

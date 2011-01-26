@@ -237,4 +237,22 @@ class Vi_Registry extends Zend_Registry
         
         return $objContent->getUrl($id);
     }
+    
+    public static function getRestaurantFromLoggedUser()
+    {
+        require_once 'Shared/Models/Restaurant.php';
+        $objRes = new Models_Restaurant();
+        
+        $userId = self::getLoggedInUserId();
+        if (null == $userId) {
+            return array();
+        }
+        return $objRes->getByColumnName(array('user_id=?' => $userId))->current();
+    }
+    
+    public static function getRestaurantIdFromLoggedUser()
+    {
+        $res =  self::getRestaurantFromLoggedUser();
+        return @$res['restaurant_id'];
+    }
 }
