@@ -17,8 +17,15 @@
 <div class="float_right">
     <ul class="na_1">
         <li><a href="{{$BASE_URL}}"  {{if $menuId == 'home'}} class="current" {{/if}} style="border:none;">Home</a></li>
+        
+        {{if '1' == $loggedUser.is_restaurant}}
+        <li><a href="{{$APP_BASE_URL}}user/index/edit">My Restaurant</a></li>
+        <li><a href="myorder.html">Meal Manager</a></li>
+        <li><a href="myorder.html">Order Manager</a></li>
+        {{else}}
         <li><a href="{{$APP_BASE_URL}}user/index/edit">My Account</a></li>
-        <!-- <li><a href="myorder.html">My Orders</a></li> -->
+        {{/if}}
+        
         <li><a href="{{$APP_BASE_URL}}access/index/logout">Signout</a></li>
         <li><a  {{if $menuId == 15}} class="current" {{/if}}  href="{{$fqaUrl}}">FAQ</a></li>
     </ul>
