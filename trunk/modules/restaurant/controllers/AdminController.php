@@ -12,6 +12,7 @@ require_once 'Shared/Models/Restaurant.php';
 require_once 'Shared/Models/Meal.php';
 require_once 'Shared/Models/Country.php';
 require_once 'Shared/Models/Category.php';
+require_once 'Shared/Models/User.php';
 class restaurant_AdminController extends Vi_Controller_Action_Admin 
 {
 
@@ -191,6 +192,7 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
          * Get data
          */
         $objRes = new Models_Restaurant();
+        $objUser = new Models_User();
         $data = $this->_getParam('data', false);
         $id = $this->_getParam('id', false);
         $error = '';
@@ -307,6 +309,16 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
 //            echo '<pre>';print_r($newRes);die;
 
             $objRes->update($newRes, array('restaurant_id=?' => $id));
+//            /**
+//             * Update user if activating user
+//             */
+//            if ('1' == $newRes['enabled'] && false != $this->_getParam('user_id', false)) {
+//                /**
+//                 * Active user
+//                 */
+//                $objUser->update(array('enabled' => 1), array('user_id=?' => $this->_getParam('user_id', false)));
+//            }
+            
             $this->session->restaurantMessage = array(
                                                'success' => true,
                                                'message' => Vi_Language::translate('Edit restaurant successfully')
@@ -323,6 +335,11 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
             if (false == $data) {
                 $this->_redirect('restaurant/admin/manager');
             }
+            /**
+             * Load user
+             */
+            $user = $objUser->find($data['user_id'])->toArray();
+            $user = current($user);
         }
         $this->view->isNumberCuisine = is_numeric($data['cuisine']);
         
@@ -331,6 +348,7 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
         
         $this->view->data = $data;
         $this->view->error = $error;
+        $this->view->user = $user;
         
         $this->view->headTitle('Edit Restaurant');
         $this->view->menu = array('restaurant');

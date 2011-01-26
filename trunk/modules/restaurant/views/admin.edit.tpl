@@ -28,11 +28,7 @@ $().ready(function() {
             'data[zip]': "required",
             'data[manager]': "required",
             'data[phone]': "required",
-            'data[fax]': "required",
-            'data[owner_email]': {
-                required: true,
-                email: true
-            }
+            'data[fax]': "required"
         },
         messages: {
             'data[owner]': "",
@@ -43,8 +39,7 @@ $().ready(function() {
             'data[zip]': "",
             'data[manager]': "",
             'data[phone]': "",
-            'data[fax]': "",
-            'data[owner_email]': ""
+            'data[fax]': ""
         }
     }); 
 });
@@ -111,6 +106,12 @@ function clearImage()
                         </div>
                         {{/if}}
                             <!-- Restaurant's fields -->
+                            <p class="p15t green"><b>Account Information </b></p>
+                                    
+                                    <p><label class="w155">Username:</label>
+                                    <b>{{$user.username}}</b> (<i>{{if '1' == $user.enabled}}Enabled{{else}}<span style="color: red;">Disabled</span>{{/if}}</i>, <a href="{{$APP_BASE_URL}}user/admin/edit-user/id/{{$user.user_id}}">Edit account</a>)</p>
+                                    <br/>
+                                    
                             
                                     <p class="p15t green"><b>Contact Information </b></p>
                                     
@@ -120,8 +121,8 @@ function clearImage()
                                     <p><label class="w155">Owner's Phone Number:<span class="red">*</span></label>
                                     <input name="data[owner_phone]" type="text" value="{{$data.owner_phone}}" class="text-input small-input" /></p>
                                     
-                                    <p><label class="w155">Owner's Email Address:<span class="red">*</span></label>
-                                    <input name="data[owner_email]" type="text" value="{{$data.owner_email}}" class="text-input small-input" /></p>
+                                    <p><label class="w155">Owner's Email Address:</label>
+                                    {{$data.owner_email}}  (<a href="{{$APP_BASE_URL}}user/admin/edit-user/id/{{$user.user_id}}">Edit email</a>)</p>
                                     
                                     <br/>
                                     <p class="p15t green"><b>Restaurant Information</b></p>    
@@ -375,7 +376,7 @@ function clearImage()
                             
                     </div>  <!-- End #tab1 --> 
                     
-                      
+                  <input type="hidden" name="user_id" value="{{$user.user_id}}"></input>    
                   </form>
                 </div> <!-- End .content-box-content -->
                 
