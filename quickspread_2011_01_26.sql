@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 29, 2010 at 09:39 AM
+-- Generation Time: Jan 26, 2011 at 09:29 AM
 -- Server version: 5.1.36
 -- PHP Version: 5.3.0
 
@@ -329,19 +329,23 @@ CREATE TABLE IF NOT EXISTS `vi_meal` (
   `category_value_id` int(11) DEFAULT NULL,
   `type` tinyint(1) NOT NULL DEFAULT '0' COMMENT '0:general_menu, 1:catering',
   `image` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`meal_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `image_thumb` varchar(255) DEFAULT NULL,
+  `enabled` tinyint(1) DEFAULT '1',
+  `created_date` int(11) DEFAULT NULL,
+  PRIMARY KEY (`meal_id`),
+  KEY `restaurant_id` (`restaurant_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `vi_meal`
 --
 
-INSERT INTO `vi_meal` (`meal_id`, `name`, `description`, `price`, `parent`, `restaurant_id`, `category_value_id`, `type`, `image`) VALUES
-(1, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 0.75, 0, 1, 1, 0, NULL),
-(2, 'Fire Roasted Vegetable  ', 'Fire Roasted Vegetable\r\n ', 3.5, 1, 1, 1, 0, NULL),
-(3, 'Chicken Tortilla Soup', ' Served with sour cream and chips.', 3.5, 1, 1, 1, 0, NULL),
-(4, 'Amy''s Special Recipe Chili', ' Served with two kinds of cheese and fresh baked bread.', 3.59, 1, 1, 1, 0, NULL),
-(5, 'Garden Fresh Salads', 'Served with fresh baked bread and your choice of Ranch, Lite Ranch, Italian, Lite Italian, Bleu Cheese, Fat-free Raspberry Vinaigrette, Balsamic Vinaigrette, Thousand Island, Poppy Seed or Sesame Ginger on the side. Add a cookie for 0.50. Upgrade to Executive Salad that includes an added tasty cheesecake treat for $2.00.', 2, 0, 1, 2, 0, NULL);
+INSERT INTO `vi_meal` (`meal_id`, `name`, `description`, `price`, `parent`, `restaurant_id`, `category_value_id`, `type`, `image`, `image_thumb`, `enabled`, `created_date`) VALUES
+(1, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 0.75, 0, 1, 1, 0, NULL, NULL, 1, NULL),
+(2, 'Fire Roasted Vegetable  ', 'Fire Roasted Vegetable\r\n ', 3.5, 1, 1, 1, 0, 'media/userfiles/images/meal/meal2.jpg', 'media/userfiles/_thumbs/Images/meal/meal2.jpg', 1, NULL),
+(3, 'Chicken Tortilla Soup', ' Served with sour cream and chips.', 3.5, 1, 1, 1, 0, 'media/userfiles/images/meal/meal3.jpg', 'media/userfiles/_thumbs/Images/meal/meal3.jpg', 1, NULL),
+(4, 'Amy''s Special Recipe Chili', ' Served with two kinds of cheese and fresh baked bread.', 3.59, 1, 2, 1, 0, NULL, NULL, 1, NULL),
+(5, 'Garden Fresh Salads', 'Served with fresh baked bread and your choice of Ranch, Lite Ranch, Italian, Lite Italian, Bleu Cheese, Fat-free Raspberry Vinaigrette, Balsamic Vinaigrette, Thousand Island, Poppy Seed or Sesame Ginger on the side. Add a cookie for 0.50. Upgrade to Executive Salad that includes an added tasty cheesecake treat for $2.00.', 10.12, 0, 1, 2, 1, 'media/userfiles/images/meal/meal.jpg', 'media/userfiles/_thumbs/Images/meal/meal.jpg', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -389,32 +393,44 @@ CREATE TABLE IF NOT EXISTS `vi_order` (
   `phone` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
+  `time` varchar(11) DEFAULT NULL,
+  `date` varchar(11) DEFAULT NULL,
+  `order_service` varchar(255) DEFAULT NULL,
+  `status` tinyint(1) DEFAULT '1' COMMENT '1: paid: 2: finished',
+  `created_date` int(11) DEFAULT NULL,
   PRIMARY KEY (`order_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=19 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `vi_order`
 --
 
-INSERT INTO `vi_order` (`order_id`, `sub_total`, `sales_tax`, `shipping_fee`, `order_total`, `full_name`, `address`, `suite`, `city`, `state`, `zip_code`, `phone`, `email`, `user_id`) VALUES
-(1, 0.75, 0.0075, 10, 10.7575, 'Nguyen Hoai Tan', '123 Ho Chi Minh', '', 'Ho Chi Minh', 'Alberta', '1234', '123.456.7890', 'nguoiao007@gmail.com', NULL),
-(2, 0.75, 0.075, 10, 10.825, 'Nguyen Hoai Tan', '123 Ho Chi Minh', '', 'Ho Chi Minh', 'British Columbia', '1234', '000.000.0000', 'nguoiao007@gmail.com', NULL),
-(3, 4.25, 0.425, 10, 14.675, 'Nguyen Hoai Tan', 'Lac Long Quan 123', '123', 'Ho Chi Minh', 'British Columbia', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(4, 4.25, 0.425, 10, 14.675, 'Nguyen Hoai Tan', 'Lac Long Quan 123', '123', 'Ho Chi Minh', 'British Columbia', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(5, 4.25, 0.425, 10, 14.675, 'Nguyen Hoai Tan', 'Lac Long Quan 123', '123', 'Ho Chi Minh', 'British Columbia', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(6, 0.75, 0.075, 10, 10.825, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(7, 0.75, 0.075, 10, 10.825, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(8, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'BC', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(9, 2.25, 0.225, 10, 12.475, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'BC', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(10, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'BC', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(11, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'BC', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(12, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(13, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(14, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(15, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(16, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(17, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL),
-(18, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL);
+INSERT INTO `vi_order` (`order_id`, `sub_total`, `sales_tax`, `shipping_fee`, `order_total`, `full_name`, `address`, `suite`, `city`, `state`, `zip_code`, `phone`, `email`, `user_id`, `time`, `date`, `order_service`, `status`, `created_date`) VALUES
+(1, 0.75, 0.0075, 10, 10.7575, 'Nguyen Hoai Tan', '123 Ho Chi Minh', '', 'Ho Chi Minh', 'Alberta', '1234', '123.456.7890', 'nguoiao007@gmail.com', NULL, NULL, NULL, NULL, 1, NULL),
+(2, 0.75, 0.075, 10, 10.825, 'Nguyen Hoai Tan', '123 Ho Chi Minh', '', 'Ho Chi Minh', 'British Columbia', '1234', '000.000.0000', 'nguoiao007@gmail.com', NULL, NULL, NULL, NULL, 1, NULL),
+(3, 4.25, 0.425, 10, 14.675, 'Nguyen Hoai Tan', 'Lac Long Quan 123', '123', 'Ho Chi Minh', 'British Columbia', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(4, 4.25, 0.425, 10, 14.675, 'Nguyen Hoai Tan', 'Lac Long Quan 123', '123', 'Ho Chi Minh', 'British Columbia', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(5, 4.25, 0.425, 10, 14.675, 'Nguyen Hoai Tan', 'Lac Long Quan 123', '123', 'Ho Chi Minh', 'British Columbia', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(6, 0.75, 0.075, 10, 10.825, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(7, 0.75, 0.075, 10, 10.825, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(8, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'BC', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(9, 2.25, 0.225, 10, 12.475, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'BC', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(10, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'BC', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(11, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'BC', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(12, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(13, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(14, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(15, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(16, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(17, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(18, 1.5, 0.15, 10, 11.65, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(19, 5.25, 0.525, 0, 5.775, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, NULL, NULL, NULL, 1, NULL),
+(20, 4.25, 0.425, 0, 4.675, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, 'asap', 'Dec 1st - W', 'pickup', 1, NULL),
+(21, 31.95, 3.195, 0, 35.145, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'BC', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, 'asap', 'Dec 1st - W', 'PICKUP', 1, NULL),
+(22, 50.49, 5.049, 0, 55.539, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'BC', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, 'asap', 'Dec 1st - W', 'PICKUP', 1, 1291192894),
+(23, 12.75, 1.275, 0, 14.025, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, 'ASAP', 'Dec 9th - T', 'PICKUP', 1, 1291881865),
+(24, 12.75, 1.275, 0, 14.025, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, 'ASAP', 'Dec 9th - T', 'PICKUP', 1, 1291881919),
+(25, 17.34, 1.734, 0, 19.074, 'Nguyen Hoai Tan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'AB', '12345', '123.456.7890', 'hoaitan_it@yahoo.com', NULL, '', '', 'PICKUP', 1, 1291884566);
 
 -- --------------------------------------------------------
 
@@ -432,7 +448,7 @@ CREATE TABLE IF NOT EXISTS `vi_order_detail` (
   `price` float DEFAULT NULL,
   `total` float DEFAULT NULL,
   PRIMARY KEY (`order_detail_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=22 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=59 ;
 
 --
 -- Dumping data for table `vi_order_detail`
@@ -459,7 +475,44 @@ INSERT INTO `vi_order_detail` (`order_detail_id`, `meal_id`, `order_id`, `name`,
 (18, 1, 15, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 2, 0.75, 1.5),
 (19, 1, 16, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 2, 0.75, 1.5),
 (20, 1, 17, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 2, 0.75, 1.5),
-(21, 1, 18, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 2, 0.75, 1.5);
+(21, 1, 18, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 2, 0.75, 1.5),
+(22, 1, 19, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 7, 0.75, 5.25),
+(23, 0, 19, 'D', 'D', 0, 0, 0),
+(24, 0, 19, 'a', 'a', 0, 0, 0),
+(25, 0, 19, 'p', 'p', 0, 0, 0),
+(26, 1, 20, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 1, 0.75, 0.75),
+(27, 0, 20, 'D', 'D', 0, 0, 0),
+(28, 0, 20, 'a', 'a', 0, 0, 0),
+(29, 0, 20, 'p', 'p', 0, 0, 0),
+(30, 2, 20, 'Fire Roasted Vegetable  ', 'Fire Roasted Vegetable\r\n ', 1, 3.5, 3.5),
+(31, 3, 21, 'Chicken Tortilla Soup', ' Served with sour cream and chips.', 4, 3.5, 14),
+(32, 0, 21, 'D', 'D', 0, 0, 0),
+(33, 0, 21, 'a', 'a', 0, 0, 0),
+(34, 0, 21, 'P', 'P', 0, 0, 0),
+(35, 4, 21, 'Amy''s Special Recipe Chili', ' Served with two kinds of cheese and fresh baked bread.', 5, 3.59, 17.95),
+(36, 1, 22, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 10, 0.75, 7.5),
+(37, 0, 22, 'D', 'D', 0, 0, 0),
+(38, 0, 22, 'a', 'a', 0, 0, 0),
+(39, 0, 22, 'P', 'P', 0, 0, 0),
+(40, 4, 22, 'Amy''s Special Recipe Chili', ' Served with two kinds of cheese and fresh baked bread.', 11, 3.59, 39.49),
+(41, 3, 22, 'Chicken Tortilla Soup', ' Served with sour cream and chips.', 1, 3.5, 3.5),
+(42, 1, 23, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 11, 0.75, 8.25),
+(43, 1, 23, '1', '1', 1, 1, 1),
+(44, 0, 23, 'D', 'D', 0, 0, 0),
+(45, 0, 23, 'A', 'A', 0, 0, 0),
+(46, 0, 23, 'P', 'P', 0, 0, 0),
+(47, 2, 23, 'Fire Roasted Vegetable  ', 'Fire Roasted Vegetable\r\n ', 1, 3.5, 3.5),
+(48, 1, 24, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 11, 0.75, 8.25),
+(49, 1, 24, '1', '1', 1, 1, 1),
+(50, 0, 24, 'D', 'D', 0, 0, 0),
+(51, 0, 24, 'A', 'A', 0, 0, 0),
+(52, 0, 24, 'P', 'P', 0, 0, 0),
+(53, 2, 24, 'Fire Roasted Vegetable  ', 'Fire Roasted Vegetable\r\n ', 1, 3.5, 3.5),
+(54, 1, 25, 'Homemade Soup', 'Served with our fresh baked bread or add a bread bowl for 0.75.', 11, 0.75, 8.25),
+(55, 2, 25, '2', '2', 2, 2, 2),
+(56, 0, 25, 'P', 'P', 0, 0, 0),
+(57, 2, 25, 'Fire Roasted Vegetable  ', 'Fire Roasted Vegetable\r\n ', 1, 3.5, 3.5),
+(58, 4, 25, 'Amy''s Special Recipe Chili', ' Served with two kinds of cheese and fresh baked bread.', 1, 3.59, 3.59);
 
 -- --------------------------------------------------------
 
@@ -518,6 +571,7 @@ INSERT INTO `vi_permission` (`permission_id`, `name`, `module`, `description`, `
 
 CREATE TABLE IF NOT EXISTS `vi_restaurant` (
   `restaurant_id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) DEFAULT NULL,
   `name` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `map` varchar(255) CHARACTER SET utf8 DEFAULT NULL,
   `description` text CHARACTER SET utf8,
@@ -570,17 +624,18 @@ CREATE TABLE IF NOT EXISTS `vi_restaurant` (
   `date_sun_end` varchar(11) DEFAULT NULL,
   `enabled` tinyint(1) DEFAULT '1',
   `created_date` int(11) DEFAULT NULL,
-  PRIMARY KEY (`restaurant_id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
+  `approved` tinyint(1) NOT NULL DEFAULT '0',
+  PRIMARY KEY (`restaurant_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=13 ;
 
 --
 -- Dumping data for table `vi_restaurant`
 --
 
-INSERT INTO `vi_restaurant` (`restaurant_id`, `name`, `map`, `description`, `website`, `cuisine`, `street`, `city`, `state`, `zip`, `manager`, `phone`, `fax`, `owner`, `owner_phone`, `owner_email`, `mileage`, `pickup`, `curbside`, `delivery`, `catering_pickup`, `catering_delivery`, `delivery_minimum`, `delivery_charge`, `delivery_limit_hour`, `catering_delivery_minimum`, `catering_delivery_charge`, `catering_delivery_limit_hour`, `services`, `image`, `date_mon`, `date_mon_start`, `date_mon_end`, `date_tue`, `date_tue_start`, `date_tue_end`, `date_wed`, `date_wed_start`, `date_wed_end`, `date_thu`, `date_thu_start`, `date_thu_end`, `date_fri`, `date_fri_start`, `date_fri_end`, `date_sat`, `date_sat_start`, `date_sat_end`, `date_sun`, `date_sun_start`, `date_sun_end`, `enabled`, `created_date`) VALUES
-(1, 'Apple Spice Junction - Audubon', NULL, 'Apple Spice Junction offers box lunch delivery, corporate catering and deli dining. Sandwich selections feature freshly-baked breads, fine meats and cheeses and crisp vegetables. Homemade soups, healthy salads and fresh bakery treats round out the box lunch menu, while breakfast offerings range from pastries and fruit to gourmet eggs and seasoned potatoes. Whether you need a caterer for a business event or family party, or just want to stop in for a sandwich and a bowl of soup, Apple Spice Junction means "good food when you need it."', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1.15, '45 min', NULL, NULL, '1 day', NULL, 50, 15, 0, NULL, NULL, 0, 'Catering- Delivery,Delivery', 'media/userfiles/images/restaurant/Apple-Spice.gif', 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
-(2, 'Xpress Pizza and Grill', NULL, 'We serve Phoenixville and surrounding areas with the best pizza in town, made with fresh ingredients. Our menu also include a variety of delicious choices such as Stromboli, Quesadilla, Sandwiches and Appetizers, with something for everyone.', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4.52, '20 min', NULL, NULL, '6 hours', NULL, 15, 2, 0, NULL, NULL, 0, 'Delivery,Catering- Delivery', 'media/userfiles/images/restaurant/img.jpg', 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 0, NULL, NULL, 1, NULL),
-(5, 'Nguyen Hoai Tan', NULL, NULL, 'hoaitan.com', 'Cuisine', '123 Street', 'Ho Chi Minh', 'Alberta', '1234', 'Nguyen Hoai Tan', '1234567890', '1234567890', 'Nguyen Hoai Tan', '1234567890', 'nguoiao007@gmail.com', NULL, '10 min', '15 min', '20 min', '30 min', '1 hour', 20, 10, 1, 20, 10, 1, NULL, NULL, 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 0, 1290825697);
+INSERT INTO `vi_restaurant` (`restaurant_id`, `user_id`, `name`, `map`, `description`, `website`, `cuisine`, `street`, `city`, `state`, `zip`, `manager`, `phone`, `fax`, `owner`, `owner_phone`, `owner_email`, `mileage`, `pickup`, `curbside`, `delivery`, `catering_pickup`, `catering_delivery`, `delivery_minimum`, `delivery_charge`, `delivery_limit_hour`, `catering_delivery_minimum`, `catering_delivery_charge`, `catering_delivery_limit_hour`, `services`, `image`, `date_mon`, `date_mon_start`, `date_mon_end`, `date_tue`, `date_tue_start`, `date_tue_end`, `date_wed`, `date_wed_start`, `date_wed_end`, `date_thu`, `date_thu_start`, `date_thu_end`, `date_fri`, `date_fri_start`, `date_fri_end`, `date_sat`, `date_sat_start`, `date_sat_end`, `date_sun`, `date_sun_start`, `date_sun_end`, `enabled`, `created_date`, `approved`) VALUES
+(1, 3, 'Vietnamese Pho', NULL, 'Sandwich selections feature freshly-baked breads, fine meats and cheeses and crisp vegetables. Homemade soups, healthy salads and fresh bakery treats round out the box lunch menu, while breakfast offerings range from pastries and fruit to gourmet eggs and seasoned potatoes. Whether you need a caterer for a business event or family party, or just want to stop in for a sandwich and a bowl of soup, Apple Spice Junction means "good food when you need it."', '', '50', '123 Street', 'Calgary', 'British Columbia', 'T3R1P6', 'Nguyen Hoai Tan', '1234567890', '1234567890', 'Nguyen Hoai Tan', '1234567890', 'res@hoaitan.com', 1.15, '45 min', '10 min', '10 min', '1 day', '15 min', 50, 15, 1, 100, 30, 1, 'Catering- Delivery,Delivery', 'media/userfiles/images/restaurant/Apple-Spice.gif', 1, '00:00', '23:59', 1, '00:00', '23:59', 1, '00:00', '23:59', 1, '00:00', '23:59', 1, '00:00', '23:59', 1, '00:00', '23:59', 1, '00:00', '23:59', 1, NULL, 1),
+(2, 4, 'Vietnamese Rice', NULL, 'We serve Phoenixville and surrounding areas with the best pizza in town, made with fresh ingredients. Our menu also include a variety of delicious choices such as Stromboli, Quesadilla, Sandwiches and Appetizers, with something for everyone.', 'hoaitan.com', '1', '123 Fonda Court SE', 'Calgary', 'Alberta', 'T2A5S3', 'Nguyen Hoai Tan', '1234567890', '1234567890', 'Restaurant 2', '1234567890', 'res2@hoaitan.com', 4.52, '10 min', '10 min', '20 min', '1 hour', '1 hour', 15, 10, 1, 30, 10, 1, 'Delivery,Catering- Delivery', 'media/userfiles/images/restaurant/img.jpg', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, '08:00', '20:00', 1, NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -682,7 +737,7 @@ CREATE TABLE IF NOT EXISTS `vi_scontent_lang` (
 INSERT INTO `vi_scontent_lang` (`scontent_lang_id`, `scontent_id`, `lang_id`, `enabled`, `title`, `category_alias`, `alias`, `url`, `intro_text`, `full_text`, `hit`, `last_view_date`, `param`, `meta_data`) VALUES
 (11, 1, 1, 1, 'How it works', '', 'how-it-works', 'how-it-works', '', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>HOW TO PLACE AN ORDER AT QUICKSPEAD.COM</strong></span><br />\r\n	<br />\r\n	Get the food you crave without waiting on the phone, waiting in line, or waiting to pay.<img alt="" src="/quickspread/media/userfiles/images/bg_howitwork.jpg" style="width: 312px; height: 290px; float: right;" /><br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>1. Sign Up or log In</strong></span><br />\r\n	Creating an account is free<br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>2. Choose a Restaurant</strong></span><br />\r\n	Search by restaurant name, cuisine or delivery preference.<br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>3. Place Your Order</strong></span><br />\r\n	Select the items you want.<br />\r\n	Indicate a delivery or pickup time.<br />\r\n	Include any special instructions.<br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>4. Your Food is Prepared</strong></span><br />\r\n	Once your order is sent to the restaurant, you receive a confirmation email.<br />\r\n	Your meal will be ready for pickup or curdside takeaway at the restaurant.<br />\r\n	If you opted for delivery, the restaurant brings your food to you.<br />\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>5. Enjoy Your Meal!</strong></span><br />\r\n	Should you fail to receive a confirmation email, or have general questions about your order,<br />\r\n	please contact our customer service team at 1-866-545-8808, and they&#39;ll get you squared away.</p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	<a href="/quickspread/register.html"><img alt="" src="/quickspread/media/userfiles/images/bt_setup.jpg" style="width: 179px; height: 34px;" /></a></p>\r\n', 0, 0, NULL, NULL),
 (12, 2, 1, 1, 'Corporate Accounts', '', 'corporate-accounts', 'corporate-accounts', '', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>CORPORATE ACCOUNTS</strong></span><br />\r\n	<br />\r\n	LiveOnTheGo is fast, free and easy. We simplify the process of ordering meals at work, whether it is for an individual or the entire office. Our corporate accounts save you time and money by dramatically cutting down the administrative, billing and management work associated with placing corporate orders. Our revolutionary online system allows you to place individual and group orders, monitor the status of pending orders, and generate detailed reports for your records and accounting needs.</p>\r\n<p>\r\n	<br />\r\n	<span style="color: rgb(128, 0, 0);"><strong>Benefits</strong></span></p>\r\n<p>\r\n	<br />\r\n	<strong>Save 30-40% Compared with Delivery Services</strong><br />\r\n	<br />\r\n	LiveOnTheGo is free to use, there is no markup on food prices and we offer an efficient pickup option with no delivery fees. Also, you can assign a maximum order amount for each employee so you are sure to stay within your budget.</p>\r\n<p>\r\n	<strong>Save Time</strong><br />\r\n	<br />\r\n	You will never have to wait on the phone to order or wait in line to pick up and pay for your meals again. Plus, our reordering feature lets you reorder meals in a few seconds and with curbside pickup you don&#39;t even need to leave your car.</p>\r\n<p>\r\n	<br />\r\n	<strong>iPhone and Blackberry Integration</strong><br />\r\n	<br />\r\n	Our free iPhone and Blackberry sites let you order and reorder meals right from your mobile phone. So no matter where you are you can place and pay for your order with just a few clicks.</p>\r\n<p>\r\n	<strong>Remove the Hassle of Placing Orders</strong><br />\r\n	<br />\r\n	Our array of management and reordering tools help administrators and catering managers place orders of any size faster and more efficiently.</p>\r\n<p>\r\n	<strong>Maintain Detailed Accounting Records</strong><br />\r\n	<br />\r\n	Our reports allow you to track expenses by employee, project or client code.</p>\r\n<p>\r\n	<strong>Explore Your Choices</strong><br />\r\n	<br />\r\n	We have the best local eateries, from quick service to fine dining.</p>\r\n<p>\r\n	<strong>Secure Transactions</strong><br />\r\n	<br />\r\n	Only your designated administrators have access to your company profile and all transactions occur over secure channel.</p>\r\n<p>\r\n	<strong>Eliminate Catering Waste</strong><br />\r\n	<br />\r\n	With our Meeting Maker system everyone can order individual meals. You don&#39;t have to deal with the additional expense and leftover food from catering platters that go to waste.</p>\r\n', 0, 0, NULL, NULL),
-(13, 3, 1, 1, 'Philanthropy', '', 'philanthropy', 'philanthropy', '', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>PHILANTHROPY</strong></span></p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare orci eget urna suscipit porttitor. Cras fermentum suscipit sodales. Suspendisse viverra lacinia mollis. Aenean dignissim magna posuere lacus adipiscing faucibus. Nulla facilisi. Vestibulum in commodo odio. Donec sollicitudin, tellus vitae egestas ultricies, urna diam pulvinar elit, luctus pharetra dolor justo porta justo. Praesent accumsan quam ac ipsum semper ut luctus sem mollis. Curabitur vehicula dui sem. Proin euismod ante lectus. Maecenas egestas facilisis leo at scelerisque.<br />\r\n	<br />\r\n	Suspendisse erat lectus, sollicitudin ac malesuada id, condimentum sit amet leo. Nullam rhoncus leo vitae nisi consectetur scelerisque. Donec ac ante metus, vitae eleifend risus. In at mollis sem. Curabitur odio risus, facilisis sit amet venenatis pharetra, convallis eget elit. In gravida, risus eu sollicitudin condimentum, nunc ante aliquam lacus, eu egestas neque arcu a nisl. Maecenas non neque sapien. Integer vitae purus sit amet elit condimentum posuere. Aliquam ultricies dictum massa, id tincidunt libero aliquet in. Nam leo justo, tincidunt tempus porttitor a, sollicitudin at eros. Sed pretium, magna ut lacinia laoreet, est ante posuere neque, non molestie mi arcu fermentum enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur eget nisl velit. Suspendisse sed magna vitae tellus imperdiet molestie. Praesent pharetra, orci a venenatis auctor, lacus neque tristique lacus, vel consequat nisi risus et mauris. Suspendisse id sapien in lacus venenatis hendrerit vel nec dui. Suspendisse euismod rutrum lectus id volutpat. Quisque massa dui, dictum iaculis molestie quis, porta ut metus. Donec convallis tincidunt arcu eu rhoncus.<br />\r\n	<br />\r\n	Mauris dui ligula, accumsan vel volutpat ut, elementum in metus. Integer nibh lacus, tincidunt id aliquam sit amet, laoreet a orci. Nam tristique accumsan enim id ultrices. Suspendisse sit amet scelerisque tellus. Vivamus est metus, elementum sed euismod convallis, dapibus vitae nisl. Mauris dapibus iaculis ante, ac vehicula velit tincidunt quis. Etiam a tortor nunc, ut luctus massa. Praesent venenatis, lacus sit amet iaculis volutpat, quam metus mollis augue, id porttitor nisl erat eu nibh. Duis turpis nunc, dapibus non hendrerit sit amet, pretium in risus. Nullam pulvinar, dolor ut congue sollicitudin, est justo accumsan enim, sit amet rutrum purus erat nec lacus.<br />\r\n	<br />\r\n	Pellentesque a viverra enim. Cras ac libero ac dui faucibus facilisis quis id arcu. Suspendisse nec erat augue. Curabitur laoreet nunc et felis mollis dignissim. Maecenas dapibus enim tincidunt quam rhoncus porttitor. Aliquam erat volutpat. Pellentesque viverra tristique sollicitudin. Phasellus a erat a neque semper mattis at sed orci. Suspendisse quis ultricies velit. Aenean eu libero in urna ullamcorper porta. Suspendisse rutrum aliquam diam vitae gravida. Vestibulum in risus dolor, vitae aliquet justo. Ut diam nulla, aliquam a fermentum sed, cursus tempor nisl.<br />\r\n	<br />\r\n	Nunc auctor, ligula porta condimentum pharetra, tortor risus bibendum nisl, pharetra adipiscing eros mauris eget libero. Donec in blandit ligula. Aliquam ut lectus rutrum leo varius pharetra. Nullam tristique odio a lacus accumsan vitae convallis nisi malesuada. Duis eu odio at est dapibus malesuada. Donec rutrum elit eget diam tincidunt bibendum. Mauris metus orci, molestie et pellentesque in, volutpat eget nibh. Nullam sed tempor dui. Cras diam erat, porttitor vitae tempus eu, aliquet nec justo. Proin mollis dui non nisl convallis tincidunt. Vestibulum pellentesque blandit lorem, sed condimentum purus vulputate ac. Curabitur condimentum lorem felis, quis suscipit urna. Suspendisse dignissim dolor et erat volutpat et dictum felis molestie.</p>\r\n', 0, 0, NULL, NULL),
+(13, 3, 1, 1, 'Share the Bounty', '', 'share-the-bounty', 'share-the-bounty', '', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>SHARE THE BOUNTY</strong></span></p>\r\n<p>\r\n	&nbsp;</p>\r\n<p>\r\n	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare orci eget urna suscipit porttitor. Cras fermentum suscipit sodales. Suspendisse viverra lacinia mollis. Aenean dignissim magna posuere lacus adipiscing faucibus. Nulla facilisi. Vestibulum in commodo odio. Donec sollicitudin, tellus vitae egestas ultricies, urna diam pulvinar elit, luctus pharetra dolor justo porta justo. Praesent accumsan quam ac ipsum semper ut luctus sem mollis. Curabitur vehicula dui sem. Proin euismod ante lectus. Maecenas egestas facilisis leo at scelerisque.<br />\r\n	<br />\r\n	Suspendisse erat lectus, sollicitudin ac malesuada id, condimentum sit amet leo. Nullam rhoncus leo vitae nisi consectetur scelerisque. Donec ac ante metus, vitae eleifend risus. In at mollis sem. Curabitur odio risus, facilisis sit amet venenatis pharetra, convallis eget elit. In gravida, risus eu sollicitudin condimentum, nunc ante aliquam lacus, eu egestas neque arcu a nisl. Maecenas non neque sapien. Integer vitae purus sit amet elit condimentum posuere. Aliquam ultricies dictum massa, id tincidunt libero aliquet in. Nam leo justo, tincidunt tempus porttitor a, sollicitudin at eros. Sed pretium, magna ut lacinia laoreet, est ante posuere neque, non molestie mi arcu fermentum enim. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Curabitur eget nisl velit. Suspendisse sed magna vitae tellus imperdiet molestie. Praesent pharetra, orci a venenatis auctor, lacus neque tristique lacus, vel consequat nisi risus et mauris. Suspendisse id sapien in lacus venenatis hendrerit vel nec dui. Suspendisse euismod rutrum lectus id volutpat. Quisque massa dui, dictum iaculis molestie quis, porta ut metus. Donec convallis tincidunt arcu eu rhoncus.<br />\r\n	<br />\r\n	Mauris dui ligula, accumsan vel volutpat ut, elementum in metus. Integer nibh lacus, tincidunt id aliquam sit amet, laoreet a orci. Nam tristique accumsan enim id ultrices. Suspendisse sit amet scelerisque tellus. Vivamus est metus, elementum sed euismod convallis, dapibus vitae nisl. Mauris dapibus iaculis ante, ac vehicula velit tincidunt quis. Etiam a tortor nunc, ut luctus massa. Praesent venenatis, lacus sit amet iaculis volutpat, quam metus mollis augue, id porttitor nisl erat eu nibh. Duis turpis nunc, dapibus non hendrerit sit amet, pretium in risus. Nullam pulvinar, dolor ut congue sollicitudin, est justo accumsan enim, sit amet rutrum purus erat nec lacus.<br />\r\n	<br />\r\n	Pellentesque a viverra enim. Cras ac libero ac dui faucibus facilisis quis id arcu. Suspendisse nec erat augue. Curabitur laoreet nunc et felis mollis dignissim. Maecenas dapibus enim tincidunt quam rhoncus porttitor. Aliquam erat volutpat. Pellentesque viverra tristique sollicitudin. Phasellus a erat a neque semper mattis at sed orci. Suspendisse quis ultricies velit. Aenean eu libero in urna ullamcorper porta. Suspendisse rutrum aliquam diam vitae gravida. Vestibulum in risus dolor, vitae aliquet justo. Ut diam nulla, aliquam a fermentum sed, cursus tempor nisl.<br />\r\n	<br />\r\n	Nunc auctor, ligula porta condimentum pharetra, tortor risus bibendum nisl, pharetra adipiscing eros mauris eget libero. Donec in blandit ligula. Aliquam ut lectus rutrum leo varius pharetra. Nullam tristique odio a lacus accumsan vitae convallis nisi malesuada. Duis eu odio at est dapibus malesuada. Donec rutrum elit eget diam tincidunt bibendum. Mauris metus orci, molestie et pellentesque in, volutpat eget nibh. Nullam sed tempor dui. Cras diam erat, porttitor vitae tempus eu, aliquet nec justo. Proin mollis dui non nisl convallis tincidunt. Vestibulum pellentesque blandit lorem, sed condimentum purus vulputate ac. Curabitur condimentum lorem felis, quis suscipit urna. Suspendisse dignissim dolor et erat volutpat et dictum felis molestie.</p>\r\n', 0, 0, NULL, NULL),
 (14, 4, 1, 1, 'Refer a Restaurant', '', 'refer-a-restaurant', 'refer-a-restaurant', '', '<div id="main">\r\n	<div class="col1">\r\n		<p class="title1">\r\n			Get $25 in Free Food Every Time One of Your Favorite</p>\r\n		<p class="p20t">\r\n			<b>Restaurants Signs Up with QuickS[read.com Don&#39;t see your favorite restaurant on QuickSpread.com? Here&#39;s a way to get them to sign up, so you can enjoy the convenience of ordering from them online through QuickSpread.com. Plus, now you can get $25 in free food!</b></p>\r\n	</div>\r\n	<div class="col2">\r\n		<div class="bg_t">\r\n			&nbsp;</div>\r\n		<div class="bg_c">\r\n			<div class="bg_cen">\r\n				<p class="title1 p20l">\r\n					Follow these three easy steps:</p>\r\n				<div class="m25t">\r\n					<img alt="" class="m20l" src="/quickspread/img/icon_10.jpg" /> <img alt="" class="m20l" src="/quickspread/img/icon_1.png" /> <img alt="" class="m20l" src="/quickspread/img/icon_11.jpg" /> <img alt="" class="m20l" src="/quickspread/img/icon_1.png" /> <img alt="" class="m20l" src="/quickspread/img/icon_12.jpg" /></div>\r\n				<div class="p10t p10b">\r\n					<div class="w155 float_left m10l">\r\n						<span class="fs30 color_2">1.</span><span class="color_2 fs14"><b>Print the flyer</b></span><br />\r\n						Just click the button below. Make sure to write in your user name or e-mail address so we can give you credit.</div>\r\n					<div class="w155 float_left m50l">\r\n						<span class="fs30 color_2">2.</span><span class="color_2 fs14"><b>Bring it in</b></span><br />\r\n						Take the flyers to your favorite restaurants and hand them to the manager or owner so they can find out how to become a QuickSpread.com restaurant partner.</div>\r\n					<div class="w155 float_left m50l">\r\n						<span class="fs30 color_2">3.</span><span class="color_2 fs14"><b>Get $25 in FREE food</b></span><br />\r\n						As a referral bonus, you&#39;ll receive $25 off your next meal at each of your favorite restaurants when they become QuickSpread.com partners.</div>\r\n					<div class="clear_left">\r\n						&nbsp;</div>\r\n				</div>\r\n			</div>\r\n		</div>\r\n		<div class="bg_b">\r\n			&nbsp;</div>\r\n	</div>\r\n	<div class="clear">\r\n		&nbsp;</div>\r\n</div>\r\n', 0, 0, NULL, NULL),
 (15, 5, 1, 1, 'Refer a friend', '', 'refer-a-friend', 'refer-a-friend', '', '\r\n    <div id="main">\r\n        <div class="col1">\r\n        	<p class="title1">Refer a Friend and You''ll Both be Rewarded</p>\r\n            <p class="p20t"><b>Earn a $5 referral credit for each friend you refer. Plus your friends will save $5 on their first order of $10 or more. Start earning referral credits now, there is no limit to the number of friends you can refer.</b></p>\r\n            <p class="p20t fs11">*Restrictions apply. Your referred customer must make a minimum purchase of $10. You and your referred customer will each receive a $5 credit. Only one credit may be used for each order. Does not apply to tip, delivery charge or sales tax. Cannot be combined with any other offers. In order to receive credit you must have an active account in good standing, as determined solely by LiveOnTheGo. Credit not redeemable for cash. May not be applied to previous transactions. LiveOnTheGo reserves the sole right to modify, suspend or cancel this referral program at any time without notice.</p>\r\n        </div>\r\n        <div class="col2">\r\n            <div class="bg_t"></div>\r\n            <div class="bg_c">\r\n            	<div class="bg_cen">\r\n                	<p class="title1 p20l">Follow these three easy steps:</p>\r\n                    <div class="m25t">\r\n                    	<img src="/quickspread/img/icon_7.jpg" alt="" class="m20l" />\r\n                        <img src="/quickspread/img/icon_1.png" alt="" class="m20l" />\r\n                        <img src="/quickspread/img/icon_8.jpg" alt="" class="m20l" />\r\n                        <img src="/quickspread/img/icon_1.png" alt="" class="m20l" />\r\n                        <img src="/quickspread/img/icon_9.jpg" alt="" class="m20l" />\r\n                    </div>\r\n                    <div class="p10t p10b">\r\n                    	<div class="w155 float_left m10l">\r\n                            <span class="fs30 color_2">1.</span><span class="color_2 fs14"><b>Sign up for a free QuickSpread  account</b></span><br />\r\n                            Just click the button below to set up your free LiveOnTheGo account and you will be on your\r\n                        </div>\r\n                        <div class="w155 float_left m50l">\r\n                            <span class="fs30 color_2">2.</span><span class="color_2 fs14"><b>Send your friends an invitationto save $5 on their 1st order</b></span><br />\r\n                            Once you are logged in go to the refer a friend section and use the referral form to show your friends what they have\r\n                        </div>\r\n                        <div class="w155 float_left m50l">\r\n                            <span class="fs30 color_2">3.</span><span class="color_2 fs14"><b>Get a $5 referral credit for each friend you refer</b></span><br />\r\n                            You can use your $5 referral credit when ordering from any LiveOnTheGo.com restaurant. No limit on the number of friends you can refer.\r\n                        </div>\r\n                        <div class="clear_left"></div>\r\n                    </div>\r\n                </div>\r\n            </div>\r\n            <div class="bg_b"></div>\r\n            \r\n        </div>\r\n        <div class="clear"></div>\r\n    </div>', 0, 0, NULL, NULL),
 (16, 6, 1, 1, 'About us', '', 'about-us', 'about-us', '<br />', '<p>\r\n	<span style="color: rgb(128, 0, 0);"><strong>ABOUT US</strong></span><br />\r\n	<br />\r\n	LiveOnTheGo.com is a free and convenient online service that allows users to order and pay for take out food in advance via the Web, iPhone or iPod Touch from favorite local restaurants and have it ready when they want it &mdash; with no waiting on the phone, no waiting in line and no waiting to pay.<br />\r\n	<br />\r\n	Founded in 2006 in Costa Mesa, California, LiveOnTheGo.com came out of personal need - for a quick cup of coffee after a long night&#39;s work.<br />\r\n	<br />\r\n	One of the co-founders of LiveOnTheGo.com had burned the midnight oil working on a business transaction. On his way to an early morning meeting the next day, he was in desperate need of a cup of coffee. But he didn&#39;t have time to stop at his local coffee house, park and then wait in line to order, pay and pickup his drink.<br />\r\n	<br />\r\n	Later that day, when talking to a colleague (the other co - founder of LiveOnTheGo.com), he mentioned what happened that morning, asking &quot;Wouldn&#39;t it be great if we could order and pay for coffee in advance, and have it ready when we want?&quot; Although this colleague was not a coffee drinker, he saw the bigger potential.<br />\r\n	<br />\r\n	The two joined together to create LiveOnTheGo.com, the online service that makes it easy for people to order and pay for food online without waiting on the phone, waiting in line or waiting to pay. They hope you enjoy the service as much as they do.</p>\r\n<br />', 0, 0, NULL, NULL),
@@ -734,22 +789,24 @@ CREATE TABLE IF NOT EXISTS `vi_user` (
   `security_question` int(11) DEFAULT NULL,
   `security_answer` varchar(255) DEFAULT NULL,
   `send_discount_code` tinyint(4) DEFAULT NULL,
+  `is_draft` int(11) DEFAULT '0',
+  `is_restaurant` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`user_id`),
   KEY `Ref_01` (`group_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `vi_user`
 --
 
-INSERT INTO `vi_user` (`user_id`, `group_id`, `username`, `email`, `full_name`, `password`, `created_date`, `enabled`, `last_login_date`, `avartar`, `company`, `address`, `suite_apt_note`, `city`, `state`, `zipcode`, `phone1`, `phone2`, `phone3`, `birthday_date`, `birthday_month`, `birthday_year`, `gender`, `security_question`, `security_answer`, `send_discount_code`) VALUES
-(1, 1, 'admin', 'nguoiao007@gmail.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', 1284310752, 1, 1291023264, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 2, 'client1', 'client1@test.com', 'First Name2 wgeg', 'a165dd3c2e98d5d607181d0b87a4c66b', 1286424420, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 2, 'client2', 'client2@test.com', 'First Name2 Last Name2', '2c66045d4e4a90814ce9280272e510ec', 1286441213, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(5, 3, 'hoaitan', 'hoaitan_it@yahoo.com', 'Nguyen Hoai Tan', 'e40880fd26194bedaa390ea7a0b3c4e7', 1289861130, 1, 1291019044, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'British Columbia', '12345', '123', '456', '7890', 2, 12, 1987, 1, 52, 'Ho Chi Minh', 1),
-(6, 3, 'hoaitan2', 'hoaitan2@yahoo.com', 'Nguyen Hoai Tan', 'ca48157e9805d0578cc9923333112a9c', 1289861404, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Manitoba', '1234', '123', '456', '7890', 2, 12, 1987, 1, 53, 'cat', 1),
-(7, 3, 'hoaitan3', 'hoaitan3@yahoo.com', 'Nguyen Hoai Tan', '0cbb154f441fcd8d8af563519586c67e', 1289861880, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Alberta', '1234', '123', '456', '7890', 11, 12, 1987, 1, 52, 'Ho Chi Minh', 0),
-(8, 3, 'hoaitan4', 'hoaitan4@yahoo.com', 'Nguyen Hoai Tan', '70db9384969255aa93c549e3aa0c6b0f', 1289862575, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Newfoundland', '1234', '123', '456', '7890', 11, 11, 1987, 1, 52, 'Ho Chi Minh', 1);
+INSERT INTO `vi_user` (`user_id`, `group_id`, `username`, `email`, `full_name`, `password`, `created_date`, `enabled`, `last_login_date`, `avartar`, `company`, `address`, `suite_apt_note`, `city`, `state`, `zipcode`, `phone1`, `phone2`, `phone3`, `birthday_date`, `birthday_month`, `birthday_year`, `gender`, `security_question`, `security_answer`, `send_discount_code`, `is_draft`, `is_restaurant`) VALUES
+(1, 1, 'admin', 'nguoiao007@gmail.com', 'Admin', 'e10adc3949ba59abbe56e057f20f883e', 1284310752, 1, 1296016125, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0),
+(3, 2, 'res', 'res@hoaitan.com', 'Nguyen Hoai Tan', 'e10adc3949ba59abbe56e057f20f883e', 1286424420, 1, 1296033804, NULL, 'Vietnamese Pho', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1),
+(4, 2, 'res2', 'res2@hoaitan.com', 'Restaurant 2', '2c66045d4e4a90814ce9280272e510ec', 1286441213, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 1),
+(5, 3, 'hoaitan', 'hoaitan_it@yahoo.com', 'Nguyen Hoai Tan', 'e40880fd26194bedaa390ea7a0b3c4e7', 1289861130, 1, 1296030895, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'British Columbia', '12345', '123', '456', '7890', 2, 12, 1987, 1, 52, 'Ho Chi Minh', 1, 0, 0),
+(6, 3, 'hoaitan2', 'hoaitan2@yahoo.com', 'Nguyen Hoai Tan', 'ca48157e9805d0578cc9923333112a9c', 1289861404, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Manitoba', '1234', '123', '456', '7890', 2, 12, 1987, 1, 53, 'cat', 1, 0, 0),
+(7, 3, 'hoaitan3', 'hoaitan3@yahoo.com', 'Nguyen Hoai Tan', '0cbb154f441fcd8d8af563519586c67e', 1289861880, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Alberta', '1234', '123', '456', '7890', 11, 12, 1987, 1, 52, 'Ho Chi Minh', 0, 0, 0),
+(8, 3, 'hoaitan4', 'hoaitan4@yahoo.com', 'Nguyen Hoai Tan', '70db9384969255aa93c549e3aa0c6b0f', 1289862575, 1, NULL, NULL, 'Hoaitan', 'Lac Long Quan', '123', 'Ho Chi Minh', 'Newfoundland', '1234', '123', '456', '7890', 11, 11, 1987, 1, 52, 'Ho Chi Minh', 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -767,7 +824,7 @@ CREATE TABLE IF NOT EXISTS `vi_user_expand` (
   `admin_note` tinytext,
   PRIMARY KEY (`user_expand_id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `vi_user_expand`
@@ -807,11 +864,23 @@ ALTER TABLE `vi_mail_lang`
   ADD CONSTRAINT `Ref_03` FOREIGN KEY (`lang_id`) REFERENCES `vi_lang` (`lang_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Constraints for table `vi_meal`
+--
+ALTER TABLE `vi_meal`
+  ADD CONSTRAINT `vi_meal_ibfk_1` FOREIGN KEY (`restaurant_id`) REFERENCES `vi_restaurant` (`restaurant_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Constraints for table `vi_message`
 --
 ALTER TABLE `vi_message`
   ADD CONSTRAINT `vi_message_ibfk_1` FOREIGN KEY (`from_user_id`) REFERENCES `vi_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `vi_message_ibfk_2` FOREIGN KEY (`to_user_id`) REFERENCES `vi_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `vi_restaurant`
+--
+ALTER TABLE `vi_restaurant`
+  ADD CONSTRAINT `vi_restaurant_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `vi_user` (`user_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `vi_scontent`
