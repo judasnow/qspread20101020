@@ -75,10 +75,10 @@
 	  #na_2{ float:left; padding-top:0px; width:auto; background:none; font-family:Arial, Helvetica, sans-serif; font-size:12px; line-height:normal; color:#fff; font-stretch:condensed;}
 	  	#na_2 ul { margin:0; padding:0; list-style:none;}
 	  	#na_2 li{ list-style:none; display:inline; margin:0px 0px;}
-		#na_2 a{ float:left; cursor:hand; margin: 0 1px 0 0; padding:0 0 0 10px; text-decoration:none; background:url(../../img/na_left.png) no-repeat left top;}
+		#na_2 a{ float:left; cursor:hand; margin:0; padding:0 0 0 10px; text-decoration:none; background:url(../../img/na_left.png) no-repeat left top;}
 		#na_2 a span { float:left; display:block; padding:7px 10px 5px 0px; color:#fff; height:20px; background:url(../../img/na_right.png) no-repeat right top;}
-		#na_2 a:hover { background-position:0% -50px; background:url(../../img/nao_left.png) no-repeat left top;}
-        #na_2 a:hover span { background-position:100% -50px; color:#a5571f; background:url(../../img/nao_right.png) no-repeat right top;}
+		#na_2 ul li a:hover { background-position:0% 0px; background:url(../../img/nao_left.png) no-repeat left top;}
+        #na_2 ul li a:hover span { background-position:100% -50px; color:#a5571f; background:url(../../img/nao_right.png) no-repeat right top;}
         #na_2 .current a { background:url(../../img/nao_left.png) no-repeat left top; background-position:0% 0px; color:#a5571f;}
         #na_2 .current a span { background-position:100% -50px; color:#a5571f; background:url(../../img/nao_right.png) no-repeat right top;}
 	  

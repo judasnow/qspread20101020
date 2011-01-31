@@ -354,4 +354,12 @@
 *+html .m5b{margin-bottom:2px;}
 .form1 select{width:150px;border:1px solid #999;height:22px;}
 
+
+
+/*--------------------30-01-2010-----------------------*/
+.resevation select{width:150px;height:20px;}
+.btn_find{background:url(../../img/btn_find.png);border:none;width:119px;height:21px;margin-top:10px;}
+.find_result input{font-size:10px;}
+.m10t{margin-top:10px;}
+
 }
