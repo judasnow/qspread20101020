@@ -20,7 +20,7 @@
         
         {{if '1' == $loggedUser.is_restaurant}}
         <li><a href="{{$BASE_URL}}user/index/edit-restaurant">My Restaurant</a></li>
-        <li><a href="myorder.html">Meal Manager</a></li>
+        <li><a href="{{$BASE_URL}}restaurant/meal/manager">Meal Manager</a></li>
         <li><a href="myorder.html">Order Manager</a></li>
         {{else}}
         <li><a href="{{$APP_BASE_URL}}user/index/edit">My Account</a></li>
