@@ -105,5 +105,179 @@ class restaurant_MealController extends Vi_Controller_Action
 		$this->view->time 				= strtoupper($time);
 		$this->view->res_id_ses			= $res_id_ses;
 	}
+	
+    public function managerAction()
+    {
+        
+        $this->view->headTitle('Meal Manager');
+        $resId      = Vi_Registry::getRestaurantIdFromLoggedUser();
+        if (false == $resId) {
+            $this->_redirect('access/index/login');
+        }
+        $objRes = new Models_Restaurant();
+        $res = $objRes->find($resId)->toArray();
+        $res = current($res);
+        if (false == $res) {
+            $this->_redirect('');
+        }
+            
+        $type = $this->_getParam('type', 0); 
+        
+        $numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
+        $currentPage = $this->_getParam("page",1);
+        $objMeal = new Models_Meal();
+        /**
+         * Get all meals
+         */
+        $allMeals = $objMeal->getByColumnName(array('restaurant_id=?' => $resId, 'type=?' => $type))->toArray();
+        
+        $this->view->allMeals = $allMeals;
+        $this->view->res = $res;
+        $this->view->mealMessage = $this->session->mealMessage;
+        $this->session->mealMessage = '';
+        $this->view->type = $type;
+    }
+    
+    public function enableMealAction()
+    {
+        $id = $this->_getParam('id', false);
+        $rid = Vi_Registry::getRestaurantIdFromLoggedUser();
+        
+        if (false == $rid || false == $id) {
+            $this->_redirect('restaurant/meal/manager');
+        }
+        
+        $ids = explode('_', trim($id, '_'));
+        
+        $objMeal = new Models_Meal();
+        try {
+            foreach ($ids as $id) {
+               $objMeal->update(array('enabled' => 1), array('meal_id=?' => $id, 'restaurant_id=?' => $rid));
+            }
+            $this->session->mealMessage = true;
+        } catch (Exception $e) {
+            $this->session->mealMessage = false;
+        }
+        $this->_redirect('restaurant/meal/manager');
+    }
+
+    
+    
+    public function disableMealAction()
+    {
+        $id = $this->_getParam('id', false);
+        $rid = Vi_Registry::getRestaurantIdFromLoggedUser();
+        
+        if (false == $rid || false == $id) {
+            $this->_redirect('restaurant/meal/manager');
+        }
+        
+        $ids = explode('_', trim($id, '_'));
+        
+        $objMeal = new Models_Meal();
+        try {
+            foreach ($ids as $id) {
+               $objMeal->update(array('enabled' => 0), array('meal_id=?' => $id, 'restaurant_id=?' => $rid));
+            }
+            $this->session->mealMessage = true;
+        } catch (Exception $e) {
+            $this->session->mealMessage = false;
+        }
+        $this->_redirect('restaurant/meal/manager');
+    }
+    
+
+    public function deleteMealAction()
+    {
+        $id = $this->_getParam('id', false);
+        $rid = Vi_Registry::getRestaurantIdFromLoggedUser();
+        
+        if (false == $rid || false == $id) {
+            $this->_redirect('restaurant/meal/manager');
+        }
+        
+        $ids = explode('_', trim($id, '_'));
+        
+        $objMeal = new Models_Meal();
+        try {
+            foreach ($ids as $id) {
+               $objMeal->delete( array('meal_id=?' => $id, 'restaurant_id=?' => $rid));
+            }
+        } catch (Exception $e) {
+        }
+        $this->_redirect('restaurant/meal/manager');
+    }
+    
+    
+    public function editMealAction()
+    {
+        $rid = Vi_Registry::getRestaurantIdFromLoggedUser();
+        
+        if (false == $rid) {
+            $this->_redirect('restaurant/meal/manager');
+        }
+        
+        $objRes = new Models_Restaurant();
+        $res = $objRes->find($rid)->toArray();
+        $res = current($res);
+        if (false == $res) {
+            $this->_redirect('');
+        }
+        
+        /**
+         * Get data
+         */
+        $objMeal = new Models_Meal();
+        $data = $this->_getParam('data', false);
+        $id = $this->_getParam('id', false);
+        $error = '';
+        
+        if (false != $data) {
+            /**
+             * Insert new meal
+             */
+            $newMeal = $data;
+            
+            $newMeal['price'] = number_format($newMeal['price'], 2, '.', '');
+            
+            if (null != $newMeal['image']) {
+                $newMeal['image'] = $this->getImagePath($newMeal['image']);
+                $newMeal['image_thumb'] = $this->getThumbnailImagePath($newMeal['image']);
+            }
+//            echo '<pre>';print_r($newMeal);die;
+
+            $objMeal->update($newMeal, array('meal_id=?' => $id, 'restaurant_id=?' => $rid));
+            $this->session->mealMessage = true;
+            
+            
+            $this->_redirect('restaurant/meal/manager/type/'. $data['type']);
+
+        } else {
+            /**
+             * Loading data
+             */
+            $data = $objMeal->getByColumnName(array('meal_id=?' => $id, 'restaurant_id=?' => $rid))->toArray();
+            $data = current($data);
+            
+            if (false == $data) {
+                $this->_redirect('restaurant/meal/manager');
+            }
+        }
+        
+        
+        $this->view->data = $data;
+        $this->view->error = $error;
+        $this->view->res = $res;
+        
+        $this->view->headTitle('Edit Meal');
+        $this->view->menu = array('restaurant');
+    }
+
+    
+    private function _getImagePath($path)
+    {
+        return substr($path, strlen(Vi_Registry::getBaseUrl()));
+    }
+    
 } 
 
