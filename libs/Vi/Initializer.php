@@ -101,6 +101,16 @@ class Vi_Initializer
          */
         $appName = '';
         $baseUrl = dirname($_SERVER['SCRIPT_NAME']);
+        /**
+         * Fix error in Window if we use direct domain like domain.com
+         * and point that domain to this source. It return "\" instead of "/"
+         */
+        if ('\\' == $baseUrl) {
+            $baseUrl = '/'; 
+        }
+        /**
+         * End fix
+         */
         $uri = $_SERVER['REQUEST_URI'];
         $param = substr(rtrim($uri, '/'), strlen(rtrim($baseUrl, '/')) + 1);
         
@@ -194,6 +204,7 @@ class Vi_Initializer
         }
         Vi_Registry::set('config', $config);
         Vi_Initializer::$_config = $config;
+        
         
         /**
          * @TODO Read $langCode from COOKIE
