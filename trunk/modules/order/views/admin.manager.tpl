@@ -15,7 +15,7 @@
                    <div style="float:right;padding-right:20px;padding-top:5px;">
                         <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}order/admin/manager">
                             
-                          Customer:  <input class="text-input small-input" type="text" name="condition[full_name]" id="ordername" value="{{$condition.name}}"/>
+                          Customer:  <input class="text-input small-input" type="text" name="condition[full_name]" id="ordername" value="{{$condition.full_name}}"/>
                             
                             <input class="button" type="submit" value="Search" />
                         </form>
@@ -116,7 +116,7 @@
                                     <td class="center">
                                         <!-- Icons -->
                                          <a href="javascript:deleteAOrder({{$item.order_id}});" title="Delete"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross.png"  alt="Delete" /></a> 
-                                         <a href="{{$APP_BASE_URL}}order/admin/detail/id/{{$item.order_id}}" title="Meal manager"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/edit_list_16.png"  alt="Meal manager" /></a>
+                                         <a href="{{$APP_BASE_URL}}order/admin/detail/id/{{$item.order_id}}" title="Order detail"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/edit_list_16.png"  alt="Order detail" /></a>
                                     </td>
                                 </tr>
                             {{/foreach}}    

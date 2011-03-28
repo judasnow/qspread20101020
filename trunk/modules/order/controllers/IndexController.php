@@ -12,13 +12,24 @@ require_once 'Shared/Models/Order.php';
 require_once 'Shared/Models/OrderDetail.php';
 require_once 'Shared/Models/Meal.php';
 require_once 'Shared/Models/Restaurant.php';
-class order_AdminController extends Vi_Controller_Action_Admin 
+class order_IndexController extends Vi_Controller_Action
 {
 
     public function managerAction()
     {
+        $resId      = Vi_Registry::getRestaurantIdFromLoggedUser();
+        if (false == $resId) {
+            $this->_redirect('access/index/login');
+        }
+        $objRes = new Models_Restaurant();
+        $res = $objRes->find($resId)->toArray();
+        $res = current($res);
+        if (false == $res) {
+            $this->_redirect('');
+        }
+            
         $this->view->headTitle(Vi_Language::translate('Order manager'));
-        $this->view->menu = array('order');
+        $this->view->menu = array('order-manager');
         
         $config = Vi_Registry::getConfig();
         $numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
@@ -49,6 +60,7 @@ class order_AdminController extends Vi_Controller_Action_Admin
         if (false == $condition) {
             $condition = array();
         }
+        $condition['restaurant_id'] = $resId;
         /**
          * Load all orders
          */
@@ -84,11 +96,22 @@ class order_AdminController extends Vi_Controller_Action_Admin
 
     public function deleteAction()
     {
+        $resId      = Vi_Registry::getRestaurantIdFromLoggedUser();
+        if (false == $resId) {
+            $this->_redirect('access/index/login');
+        }
+        $objRes = new Models_Restaurant();
+        $res = $objRes->find($resId)->toArray();
+        $res = current($res);
+        if (false == $res) {
+            $this->_redirect('');
+        }
+            
         
         $id = $this->_getParam('id', false);
         
         if (false == $id) {
-            $this->_redirect('order/admin/manager');
+            $this->_redirect('order/index/manager');
         }
         
         $ids = explode('_', trim($id, '_'));
@@ -96,11 +119,11 @@ class order_AdminController extends Vi_Controller_Action_Admin
         $objOrder = new Models_Order();
         try {
             foreach ($ids as $id) {
-               $objOrder->delete( array('order_id=?' => $id));
+               $objOrder->delete( array('order_id=?' => $id, 'restaurant_id=?' => $resId));
             }
             $this->session->orderMessage = array(
                                                'success' => true,
-                                               'message' => Vi_Language::translate('Delete order successfully')
+                                               'message' => 'Order is deleted successfully'
                                            );
         } catch (Exception $e) {
             $this->session->orderMessage = array(
@@ -108,16 +131,27 @@ class order_AdminController extends Vi_Controller_Action_Admin
                                                'message' => Vi_Language::translate('Can NOT delete this order. Please try again')
                                            );
         }
-        $this->_redirect('order/admin/manager#listoforder');
+        $this->_redirect('order/index/manager#listoforder');
     }
 
     public function changeStatusAction()
     {
+        $resId      = Vi_Registry::getRestaurantIdFromLoggedUser();
+        if (false == $resId) {
+            $this->_redirect('access/index/login');
+        }
+        $objRes = new Models_Restaurant();
+        $res = $objRes->find($resId)->toArray();
+        $res = current($res);
+        if (false == $res) {
+            $this->_redirect('');
+        }
+            
         
         $id = $this->_getParam('id', false);
         
         if (false == $id) {
-            $this->_redirect('order/admin/manager');
+            $this->_redirect('order/index/manager');
         }
         
         $ids = explode('_', trim($id, '_'));
@@ -126,12 +160,15 @@ class order_AdminController extends Vi_Controller_Action_Admin
         try {
             foreach ($ids as $id) {
                $order = $objOrder->find($id)->current();
+               if ($resId != $order['restaurant_id']) {
+                   continue;
+               }
                $order->status = ($order->status == 1)?2:1;
                $order->save();
             }
             $this->session->orderMessage = array(
                                                'success' => true,
-                                               'message' => Vi_Language::translate('Update order status successfully')
+                                               'message' => 'Order status is updated successfully'
                                            );
         } catch (Exception $e) {
             $this->session->orderMessage = array(
@@ -139,11 +176,22 @@ class order_AdminController extends Vi_Controller_Action_Admin
                                                'message' => Vi_Language::translate('Can NOT update status now. Please try again')
                                            );
         }
-        $this->_redirect('order/admin/manager#listoforder');
+        $this->_redirect('order/index/manager#listoforder');
     }
     
     public function detailAction()
     {
+        $resId      = Vi_Registry::getRestaurantIdFromLoggedUser();
+        if (false == $resId) {
+            $this->_redirect('access/index/login');
+        }
+        $objRes = new Models_Restaurant();
+        $res = $objRes->find($resId)->toArray();
+        $res = current($res);
+        if (false == $res) {
+            $this->_redirect('');
+        }
+            
         $this->view->headTitle(Vi_Language::translate('Detail Order'));
         $this->view->menu = array('order');
         
@@ -154,7 +202,7 @@ class order_AdminController extends Vi_Controller_Action_Admin
         $id = $this->_getParam('id', false);
         
         if (false == $id) {
-            $this->_redirect('order/admin/manager');
+            $this->_redirect('order/index/manager');
         }
         
         /**
@@ -169,12 +217,13 @@ class order_AdminController extends Vi_Controller_Action_Admin
         $order = $objOrder->find($id)->toArray();
         $order = current($order);
         $this->view->order = $order;
+        
         /**
-         * Get restaurant
+         * Check order access permission
          */
-        $objRes = new Models_Restaurant();
-        $res = $objRes->find($order['restaurant_id'])->toArray();
-        $res = current($res);
+        if ($order['restaurant_id'] != $resId) {
+            $this->_redirect('order/index/manager');
+        }
         
         $this->view->res = $res;
         /**

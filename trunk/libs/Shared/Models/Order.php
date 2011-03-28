@@ -63,6 +63,9 @@ class Models_Order extends Vi_Model
         if (null != @$condition['status']) {
             $select->where('status = ?', $condition['status']);
         }
+        if (null != @$condition['restaurant_id']) {
+            $select->where('restaurant_id = ?', $condition['restaurant_id']);
+        }
         
         return $this->fetchAll($select)->toArray();
     }
