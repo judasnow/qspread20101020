@@ -162,19 +162,19 @@ function fbs_click(address){
 			  {{if $countAllPages > 1}}
               <div class="float_right">
                 <ul class="list_3">
-                	{{if $prevPage}}
-						<li><a href="?page={{$prevPage}}&id={{$res_id}}&type={{$type}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="" /></a></li>
-					{{/if}}
-					{{foreach from=$prevPages item=item}}
-						<li><a href="?page={{$item}}&id={{$res_id}}&type={{$type}}">{{$item}}</a></li>
-					{{/foreach}}
-						<li><a href="#" class="current" title="{{$currentPage}}">{{$currentPage}}</a></li>
-					{{foreach from=$nextPages item=item}}
-						<li><a href="?page={{$item}}&id={{$res_id}}&type={{$type}}">{{$item}}</a></li>
-					{{/foreach}}
-					{{if $nextPage}}
-						<li><a href="?page={{$nextPage}}&id={{$res_id}}&type={{$type}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="" /></a></li>
-					{{/if}}
+                    {{if $prevPage}}
+                        <li><a href="?page={{$prevPage}}&id={{$res_id}}&type={{$type}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="" /></a></li>
+                    {{/if}}
+                    {{foreach from=$prevPages item=item}}
+                        <li><a href="?page={{$item}}&id={{$res_id}}&type={{$type}}">{{$item}}</a></li>
+                    {{/foreach}}
+                        <li><a href="#" class="current" title="{{$currentPage}}">{{$currentPage}}</a></li>
+                    {{foreach from=$nextPages item=item}}
+                        <li><a href="?page={{$item}}&id={{$res_id}}&type={{$type}}">{{$item}}</a></li>
+                    {{/foreach}}
+                    {{if $nextPage}}
+                        <li><a href="?page={{$nextPage}}&id={{$res_id}}&type={{$type}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="" /></a></li>
+                    {{/if}}
 				</ul>
               </div>
               {{/if}}

@@ -245,6 +245,7 @@
 		.list_3 li{ list-style:none; display:inline; margin:0px 0px;}
 		.list_3 li a{ margin-left:0px; padding:2px 2px 2px 2px; color:#874617;}
 		.list_3 li a:hover{ color:#874617; text-decoration:underline;}
+        .list_3 li a.current{ color:#874617; text-decoration:underline;}
 	.list_4{ margin:0px 0px;}
 		.list_4 li{ list-style:none; display:inline; margin:0px 0px;}
 		.list_4 li a{ margin-left:0px; padding:0px 2px 0px 2px; text-transform:inherit; font-weight:bold; font-style:italic; color:#58351c;}
