@@ -110,7 +110,8 @@ $().ready(function() {
                 
                 
                 
-                <p class="p15t color_2"><b>Restaurant Information</b></p>             
+                <p class="p15t color_2"><b>Restaurant Information</b></p>        
+                <br/>     
                   
                 <label class="w155">Restaurant Name:<span class="red">*</span></label>
                 <input name="data[name]" type="text" value="{{$data.name}}" class="w270" /><br />
@@ -156,7 +157,8 @@ $().ready(function() {
                 
                 
                 <br/>
-                <p class="p15t color_2"><b>Hours of Operation</b></p>               
+                <p class="p15t color_2"><b>Hours of Operation</b></p>    
+                <br/>           
                 
                 <label class="w155"><input checked="checked" type="checkbox" value="1" class="mid m20r" style="border:none;" name="data[date_mon]" {{if $data.date_mon}} checked="checked" {{/if}}/> Mon:</label>
                 <input type="text" value="{{if $data.date_mon_start}}{{$data.date_mon_start}}{{else}}08:00{{/if}}" class="w50" name="data[date_mon_start]" id="date1_start"/> 
@@ -209,6 +211,7 @@ $().ready(function() {
                 
                 <br/>
                 <p class="p15t color_2"><b>Available Order Types</b></p>
+                <br/>
                 <p class="p5t"><b>Please note:</b> Five additional minutes are added to all lead times for transmission and confirmation of orde</p>
                 <br/>
                               
@@ -306,6 +309,48 @@ $().ready(function() {
                 <span style="">- Delivery Fee: $<input type="text" style="width: 30px;" maxlength="5" name="data[catering_delivery_charge]"  value="{{$data.catering_delivery_charge}}">
                                - Minimum Order: $<input type="text" style="width: 30px;" maxlength="5" name="data[catering_delivery_minimum]"   value="{{$data.catering_delivery_minimum}}"></span><br>
                 </span>
+                
+                <br/><br/>
+                
+                 <p class="p15t color_2"><b>Table Reservation</b></p> 
+                 <br/>            
+                  
+                <label class="w155">Reservation:<span class="red">*</span></label>
+                <select name="data[reser_onoff]" style="width: 121px;" >
+                        <option {{if 1==$data.reser_onoff}} selected="selected" {{/if}} value="1">On</option>
+                        <option {{if 0==$data.reser_onoff}} selected="selected" {{/if}} value="1">Off</option>
+                </select>
+                <br />
+                
+                <label class="w155">Deposit:</label>
+                <select name="data[reser_deposit_onoff]" style="width: 121px;" >
+                        <option {{if 1==$data.reser_deposit_onoff}} selected="selected" {{/if}} value="1">On</option>
+                        <option {{if 0==$data.reser_deposit_onoff}} selected="selected" {{/if}} value="1">Off</option>
+                </select>
+                &nbsp;&nbsp;&nbsp;$ <input name="data[reser_deposit]" type="text" value="{{$data.reser_deposit}}" style="width: 125px;" />
+                <br />
+                
+                <label class="w155">Seat quantity:</label>
+                <input name="data[reser_quantity]" type="text" value="{{$data.reser_quantity}}" style="width:115px;" /><br />
+                
+                <label class="w155">Period of Repast:</label>
+                
+                
+                <select name="data[reser_period]" style="width: 121px;" >
+                     <option {{if '900' == $item.name}} selected="selected" {{/if}} value="900">15 min</option>
+                     <option {{if '1800' == $item.name}} selected="selected" {{/if}} value="1800">30 min</option>
+                     <option {{if '2700' == $item.name}} selected="selected" {{/if}} value="2700">45 min</option>
+                     <option {{if '3600' == $item.name}} selected="selected" {{/if}} value="3600">1 hour</option>
+                     <option {{if '4500' == $item.name}} selected="selected" {{/if}} value="4500">1 hour 15</option>
+                     <option {{if '5400' == $item.name}} selected="selected" {{/if}} value="5400">1 hour 30</option>
+                     <option {{if '6300' == $item.name}} selected="selected" {{/if}} value="6300">1 hour 45</option>
+                     <option {{if '7200' == $item.name}} selected="selected" {{/if}} value="7200">2 hours</option>
+                     <option {{if '10800' == $item.name}} selected="selected" {{/if}} value="10800">3 hours</option>
+                     <option {{if '14400' == $item.name}} selected="selected" {{/if}} value="14400">4 hours</option>
+                     <option {{if '18000' == $item.name}} selected="selected" {{/if}} value="18000">5 hours</option>
+                </select>
+                <br />
+                
                 
                 <br style="clear:both;"/>
             

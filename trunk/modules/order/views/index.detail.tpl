@@ -113,7 +113,7 @@
             <div class="bot2"></div>
             
             <br/>
-            <a href="{{$APP_BASE_URL}}order/index/manager">Back</a>
+            <a href="{{$APP_BASE_URL}}order/index/manager"><img src="{{$LAYOUT_HELPER_URL}}front/img/bt_back.jpg"></a>
         <!-- END Meal -->
         </div>
         <div class="clear"></div>

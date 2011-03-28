@@ -141,7 +141,8 @@ class restaurant_InfoController extends Vi_Controller_Action
 	 			'zip_code'		=> 	$data_info['zip_code'],
 	 			'phone'			=> 	$data_info['phone1'].".".$data_info['phone2'].".".$data_info['phone3'],
 	 			'email'			=> 	$data_info['email'],
-	 		    'created_date'  =>  time()
+	 		    'created_date'  =>  time(),
+	 		    'restaurant_id' => $_SESSION['cart'][$order_id]['restaurant_id']
 	 		);
 	 		
 	 		$objOrder = new Models_Order();
