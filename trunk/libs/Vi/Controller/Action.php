@@ -364,7 +364,19 @@ class Vi_Controller_Action extends Zend_Controller_Action {
 
     public function getThumbnailImagePath($path)
     {
-        return 'media/userfiles/_thumbs/Images/' . substr($path, strlen('media/userfiles/images/'));
+        if (false !== strpos($path, 'media/userfiles/images/')) {
+            /**
+             * From backend
+             */
+            return 'media/userfiles/_thumbs/Images/' . substr($path, strlen('media/userfiles/images/'));
+        } else {
+            /**
+             * From frontend USER
+             */
+            $matches = '';
+            preg_match('$media/userfiles/restaurant_images/([^/]*)/(.*)$i', $path, $matches);
+            return 'media/userfiles/restaurant_images/' . @$matches[1] . '/_thumbs/Images/' . substr($path, strlen('media/userfiles/restaurant_images/' . @$matches[1] . '/images/'));
+        }
     }
 	
     /**

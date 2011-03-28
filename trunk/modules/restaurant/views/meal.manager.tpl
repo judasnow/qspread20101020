@@ -23,10 +23,10 @@
                 <br/>
                 {{/if}}
                 
-                {{if true === $mealMessage}}     
+                {{if null != $mealMessage}}     
                 <br/>   
                 <div style="padding: 10px 0; color: green; font-weight: bold; border-top: 1px solid green; border-bottom: 1px solid green;">
-                    The meal is updated successfully.
+                    {{$mealMessage}}.
                 </div>
                 <br/>
                 {{/if}}
@@ -40,7 +40,13 @@
                 </ul>
             </div>
             
-            <br class="clear_left" />
+            <div style="float: right;padding-top: 7px; padding-right: 10px;">
+                <a href="{{$BASE_URL}}restaurant/meal/new-meal">
+                    <img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/add_16.png" style="vertical-align: middle;"> Add new meal
+                </a>
+            </div>
+            
+            <br style="clear: both;"/>
             <div class="top2"></div>
             <div class="cen2">
                 <div class="cen_2">

@@ -154,7 +154,7 @@ class restaurant_MealController extends Vi_Controller_Action
             foreach ($ids as $id) {
                $objMeal->update(array('enabled' => 1), array('meal_id=?' => $id, 'restaurant_id=?' => $rid));
             }
-            $this->session->mealMessage = true;
+            $this->session->mealMessage = 'The meal is updated successfully';
         } catch (Exception $e) {
             $this->session->mealMessage = false;
         }
@@ -179,7 +179,7 @@ class restaurant_MealController extends Vi_Controller_Action
             foreach ($ids as $id) {
                $objMeal->update(array('enabled' => 0), array('meal_id=?' => $id, 'restaurant_id=?' => $rid));
             }
-            $this->session->mealMessage = true;
+            $this->session->mealMessage = 'The meal is updated successfully';
         } catch (Exception $e) {
             $this->session->mealMessage = false;
         }
@@ -205,6 +205,7 @@ class restaurant_MealController extends Vi_Controller_Action
             }
         } catch (Exception $e) {
         }
+        $this->session->mealMessage = 'The meal is deleted successfully';
         $this->_redirect('restaurant/meal/manager');
     }
     
@@ -247,7 +248,7 @@ class restaurant_MealController extends Vi_Controller_Action
 //            echo '<pre>';print_r($newMeal);die;
 
             $objMeal->update($newMeal, array('meal_id=?' => $id, 'restaurant_id=?' => $rid));
-            $this->session->mealMessage = true;
+            $this->session->mealMessage = 'The meal is updated successfully';
             
             
             $this->_redirect('restaurant/meal/manager/type/'. $data['type']);
@@ -270,8 +271,65 @@ class restaurant_MealController extends Vi_Controller_Action
         $this->view->res = $res;
         
         $this->view->headTitle('Edit Meal');
-        $this->view->menu = array('restaurant');
+        $this->view->menu = array('meal-manager');
     }
+    
+    
+    public function newMealAction()
+    {
+        $rid = Vi_Registry::getRestaurantIdFromLoggedUser();
+        
+        if (false == $rid) {
+            $this->_redirect('restaurant/meal/manager');
+        }
+        
+        $objRes = new Models_Restaurant();
+        $res = $objRes->find($rid)->toArray();
+        $res = current($res);
+        if (false == $res) {
+            $this->_redirect('');
+        }
+        
+        /**
+         * Get data
+         */
+        $objMeal = new Models_Meal();
+        $data = $this->_getParam('data', false);
+        $error = '';
+        
+        if (false != $data) {
+            /**
+             * Insert new meal
+             */
+            $newMeal = $data;
+            
+            $newMeal['price'] = number_format($newMeal['price'], 2, '.', '');
+            
+            if (null != $newMeal['image']) {
+                $newMeal['image'] = $this->getImagePath($newMeal['image']);
+                $newMeal['image_thumb'] = $this->getThumbnailImagePath($newMeal['image']);
+            }
+            $newMeal['created_date'] = time();
+            $newMeal['restaurant_id'] = $rid;
+//            echo '<pre>';print_r($newMeal);die;
+
+            $objMeal->insert($newMeal);
+            $this->session->mealMessage = 'New meal is created successfully';
+            
+            
+            $this->_redirect('restaurant/meal/manager/type/'. $data['type']);
+
+        } 
+        
+        
+        $this->view->data = $data;
+        $this->view->error = $error;
+        $this->view->res = $res;
+        
+        $this->view->headTitle('New Meal');
+        $this->view->menu = array('meal-manager');
+    }
+    
 
     
     private function _getImagePath($path)
