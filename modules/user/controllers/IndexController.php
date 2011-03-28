@@ -743,7 +743,6 @@ class user_IndexController extends Vi_Controller_Action
         
         $this->view->user = $user;
         $this->view->data = $data;
-        $this->view->error = $error;
         
         
         $cuisines = $objCat->getAllValues('cuisine');

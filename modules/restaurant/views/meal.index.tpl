@@ -109,6 +109,11 @@ function fbs_click(address){
           <ul>            
             <li {{if $type eq 0 }} class="current" {{/if}} ><a href="{{$APP_BASE_URL}}restaurant/meal?id={{$res_id}}"><span>General menu</span></a></li>
             <li {{if $type eq 1 }} class="current" {{/if}} ><a href="{{$APP_BASE_URL}}restaurant/meal?id={{$res_id}}&type=1"><span>Catering</span></a></li>
+            
+            {{if '1' == $arr_restaurant.reser_onoff}}
+            <li ><a href="{{$APP_BASE_URL}}restaurant/reservation/index/rid/{{$res_id}}"><span>Reservation</span></a></li>
+            {{/if}}
+            
           </ul>
         </div>
 

@@ -70,8 +70,7 @@ class restaurant_MealController extends Vi_Controller_Action
 			else{
 				$test_time_choose = 0;
 			}		
-		}
-		else{
+		} else{
 			$test_time_choose = 0;
 		}
 		$this->view->test_time_choose 	= $test_time_choose;
