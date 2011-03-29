@@ -337,17 +337,17 @@ $().ready(function() {
                 
                 
                 <select name="data[reser_period]" style="width: 121px;" >
-                     <option {{if '900' == $item.name}} selected="selected" {{/if}} value="900">15 min</option>
-                     <option {{if '1800' == $item.name}} selected="selected" {{/if}} value="1800">30 min</option>
-                     <option {{if '2700' == $item.name}} selected="selected" {{/if}} value="2700">45 min</option>
-                     <option {{if '3600' == $item.name}} selected="selected" {{/if}} value="3600">1 hour</option>
-                     <option {{if '4500' == $item.name}} selected="selected" {{/if}} value="4500">1 hour 15</option>
-                     <option {{if '5400' == $item.name}} selected="selected" {{/if}} value="5400">1 hour 30</option>
-                     <option {{if '6300' == $item.name}} selected="selected" {{/if}} value="6300">1 hour 45</option>
-                     <option {{if '7200' == $item.name}} selected="selected" {{/if}} value="7200">2 hours</option>
-                     <option {{if '10800' == $item.name}} selected="selected" {{/if}} value="10800">3 hours</option>
-                     <option {{if '14400' == $item.name}} selected="selected" {{/if}} value="14400">4 hours</option>
-                     <option {{if '18000' == $item.name}} selected="selected" {{/if}} value="18000">5 hours</option>
+                     <option {{if '900' == $data.reser_period}} selected="selected" {{/if}} value="900">15 min</option>
+                     <option {{if '1800' == $data.reser_period}} selected="selected" {{/if}} value="1800">30 min</option>
+                     <option {{if '2700' == $data.reser_period}} selected="selected" {{/if}} value="2700">45 min</option>
+                     <option {{if '3600' == $data.reser_period}} selected="selected" {{/if}} value="3600">1 hour</option>
+                     <option {{if '4500' == $data.reser_period}} selected="selected" {{/if}} value="4500">1 hour 15</option>
+                     <option {{if '5400' == $data.reser_period}} selected="selected" {{/if}} value="5400">1 hour 30</option>
+                     <option {{if '6300' == $data.reser_period}} selected="selected" {{/if}} value="6300">1 hour 45</option>
+                     <option {{if '7200' == $data.reser_period}} selected="selected" {{/if}} value="7200">2 hours</option>
+                     <option {{if '10800' == $data.reser_period}} selected="selected" {{/if}} value="10800">3 hours</option>
+                     <option {{if '14400' == $data.reser_period}} selected="selected" {{/if}} value="14400">4 hours</option>
+                     <option {{if '18000' == $data.reser_period}} selected="selected" {{/if}} value="18000">5 hours</option>
                 </select>
                 <br />
                 

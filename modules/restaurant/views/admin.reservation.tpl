@@ -1,150 +1,228 @@
-    <div id="main">
-        
-
-        <div class="w692" style="padding-left: 96px;">
-            <p class="title1">Order manager</p>
-            <br/>
-        
+            <h2>Reservation Manager</h2>
             
+             <!-- End .shortcut-buttons-set -->
             
-                {{if $orderMessage|@count > 0 && $orderMessage.success == true}}
-                <br/>   
-                <div style="padding: 10px 0; color: green; font-weight: bold; border-top: 1px solid green; border-bottom: 1px solid green;">
-                    {{$orderMessage.message}}
-                </div>
-                <br/>
-                {{/if}}
-                
-                {{if $orderMessage|@count > 0 && $orderMessage.success == false}}
-                <br/> 
-                <div style="padding: 10px 0; color: red; font-weight: bold; border-top: 1px solid red; border-bottom: 1px solid red;">
-                    <b>Error:</b>
-                    {{$orderMessage.message}}
-                </div>
-                <br/>
-                {{/if}}
-                
-                
+            <div class="clear"></div> <!-- End .clear -->
+           
             
-            <div style="float: right;padding: 10px;">
-                <form class="search" name="search" method="post" action="{{$BASE_URL}}order/index/manager">
+            <div class="content-box"><!-- Start Content Box -->
+                
+                <div class="content-box-header">
+                    
+                    <div style="float:left;">
+                        <a name="listoforder"><h3>List of Reservations</h3></a>
+                   </div>     
+                   <div style="float:right;padding-right:20px;padding-top:5px;">
+                        <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}order/admin/manager">
                             
-                  Customer:  <input class="text-input small-input" type="text" name="condition[full_name]" id="ordername" value="{{$condition.full_name}}"/>
-                    
-                    <input style="margin-bottom: -5px;" type="image" name="submit" value="Search" src="{{$LAYOUT_HELPER_URL}}front/img/bt_search.jpg"/>
-                </form>
-            </div>
-            
-            <br style="clear: both;"/>
-            <div class="top2"></div>
-            <div class="cen2">
-                <div class="cen_2">
-                    <div class="p10">
-                    
+                          Customer:  <input class="text-input small-input" type="text" name="condition[full_name]" id="ordername" value="{{$condition.full_name}}"/>
+                            
+                            <input class="button" type="submit" value="Search" />
+                        </form>
                         
-
-                        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
-                          <tr>
-                              <td  class="color_1 p5t p5b bd1b"><b> Customer </b></td>
-                              <td  class="color_1 p5t p5b bd1b"><b> Address </b></td>
-                              <td  class="color_1 p5t p5b bd1b"><b> Total </b></td>
-                              <td  class="color_1 p5t p5b bd1b "><b> Time </b></td>
-                              <td  class="color_1 p5t p5b bd1b "><b> Order Type </b></td>
-                              <!-- <td  class="color_1 p5t p5b bd1b center"><b>Created Date</b></td> -->
-                              <td  class="color_1 p5t p5b bd1b "><b> Status </b></td>
-                              <td  class="color_1 p5t p5b bd1b "><b> Action </b></td>
-                            </tr>
-                          
-                          
-                          {{foreach from=$allOrders item=item}}
-                            <tr>
-                              <td class="bd1b p10t p5b" style="vertical-align: top;">
-                                    {{$item.full_name}}<br/>
-                                    <br/>
-                                    Email: <a href="mailto:{{$item.email}};">{{$item.email}}</a><br/>
-                                    Phone: {{$item.phone}}
-                              </td>
-                              <td class="bd1b p10t p5b" style="vertical-align: top;">
+                   </div>
+                    
+                </div> <!-- End .content-box-header -->
+                
+                <div class="content-box-content">
+                    
+                    <div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+                        
+                       
+                       
+                        <!-- MESSAGE HERE -->
+                        {{if $allResers|@count <= 0}}
+                        <div class="notification information png_bg">
+                            <a href="#" class="close"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                            <div>
+                                No reservation with above condition.
+                            </div>
+                        </div>
+                        {{/if}}
+                        
+                        {{if $reserMessage|@count > 0 && $reserMessage.success == true}}
+                        <div class="notification success png_bg">
+                            <a href="#" class="close"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                            <div>
+                                {{$reserMessage.message}}
+                            </div>
+                        </div>
+                        {{/if}}
+                        
+                        {{if $reserMessage|@count > 0 && $reserMessage.success == false}}
+                        <div class="notification error png_bg">
+                            <a href="#" class="close"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross_grey_small.png" title="Close this notification" alt="close" /></a>
+                            <div>
+                                {{$reserMessage.message}}
+                            </div>
+                        </div>
+                        {{/if}}
+                        
+                        <!-- END MESSAGE -->
+                        
+                        
+                        
+                        
+                        {{if $allResers|@count > 0}}
+                        <table>
+                            <thead>
+                                <tr>
+                                   <th><input class="check-all" type="checkbox" /></th>
+                                   <th>Reservation Time</th>
+                                   <th>Restaurant</th>
+                                   <th>Customer</th>
+                                   <th>Deposit</th>
+                                   <th>Created Date</th>
+                                   <th>Action</th>
+                                </tr>
+                                
+                            </thead>
+                         
+                         
+                            <tbody>
+                            
+                            {{foreach from=$allResers item=item}}
+                                <tr>
+                                    <td><input type="checkbox" value="{{$item.order_id}}" name="allResers"/></td>
+                                    <td>
+                                        {{$item.full_name}}<br/>
+                                        <br/>
+                                        Email: <a href="mailto:{{$item.email}};">{{$item.email}}</a><br/>
+                                        Phone: {{$item.phone}}
+                                    </td>
+                                    <td>
                                         {{$item.address}}<br/>
                                         {{$item.city}} {{$item.state}} {{$item.zip_code}}<br/>
                                         Suite#/Apt.#/Note: {{$item.suite}}
-                              </td>
-                              <td class="bd1b p10t p5b top">${{$item.order_total|number_format:2}}</td>
-                              <td class="bd1b p10t p5b top">
+                                    </td>
+                                    <td>${{$item.order_total|number_format:2}}</td>
+                                    <td>
                                         {{$item.time}}<br/>
                                         {{$item.date}}
-                              </td>
-                              <td class="bd1b p10t p5b top">
-                                    {{$item.order_service}}
-                              </td>
-                              <!-- <td class="bd1b p10t p5b top">
-                                    {{$item.created_date}}
-                              </td> -->
-                              <td class="bd1b p10t p5b top">
-                                    
+                                    </td>
+                                    <td>{{$item.order_service}}</td>
+                                    <td>{{$item.created_date}}</td>
+                                    <td>
                                         {{if $item.status == 1}}
                                         <span style="color: red">Paid</span>
                                         {{else}}
                                         Finished
                                         {{/if}}
                                         <br/>
-                                        (<a href="{{$APP_BASE_URL}}order/index/change-status/id/{{$item.order_id}}">change</a>)
-                                    
-                              </td>
-                              <td class="bd1b p10t p5b top center">
+                                        (<a href="{{$APP_BASE_URL}}order/admin/change-status/id/{{$item.order_id}}">change</a>)
+                                    </td>
+                                    <td class="center">
                                         <!-- Icons -->
                                          <a href="javascript:deleteAOrder({{$item.order_id}});" title="Delete"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross.png"  alt="Delete" /></a> 
-                                         <a href="{{$APP_BASE_URL}}order/index/detail/id/{{$item.order_id}}" title="Order detail"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/edit_list_16.png"  alt="Order detail" /></a>
-                              </td>
-                            </tr>
-                          {{/foreach}}    
-                          
-                          
+                                         <a href="{{$APP_BASE_URL}}order/admin/detail/id/{{$item.order_id}}" title="Order detail"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/edit_list_16.png"  alt="Order detail" /></a>
+                                    </td>
+                                </tr>
+                            {{/foreach}}    
+                                
+                            
+                            </tbody>
                         </table>
                         
+                        <br/>
+                        <!-- CHOOSE ACTION -->
+                        <div class="bulk-actions align-left" style="float: left;padding-top: 14px;">
+                            <select id="action">
+                                <option value=";">Choose an action...</option>
+                                <option value="deleteOrder();">Delete</option>
+                            </select>
+                            <a class="button" href="javascript:applySelected();">Apply to selected</a>
+                        </div>
                         
-                    
-                     <!-- MESSAGE HERE -->
-                        {{if $allOrders|@count <= 0}}
-                        <tr>
-                            <td colspan="7"> <br/>No order with above condition.</td> 
-                        </tr>
-                        {{/if}}
                         
+                        <div class="bulk-actions align-left" style="float: left;padding-top: 10px; padding-left:30px;">
+                            <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}order/admin/manager">
+                                Display #
+                                <select name="displayNum" onchange="this.parentNode.submit();" style="clear: both;">
+                                    <option value="5" {{if $displayNum == 5}} selected="selected" {{/if}}>5</option>
+                                    <option value="10" {{if $displayNum == 10}} selected="selected" {{/if}}>10</option>
+                                    <option value="20" {{if $displayNum == 20}} selected="selected" {{/if}}>20</option>
+                                    <option value="50" {{if $displayNum == 50}} selected="selected" {{/if}}>50</option>
+                                    <option value="100" {{if $displayNum == 100}} selected="selected" {{/if}}>100</option>
+                                    <option value="1000000000" {{if $displayNum >= 1000000000}} selected="selected" {{/if}}>All</option>
+                                </select>
+                            </form>
+                        </div>
                         
-                     <!-- END MESSAGE -->
-                        
-                      {{if $countAllPages > 1}}
-                      <div class="float_right">
-                        <ul class="list_3">
+                        <!-- PAGINATION -->
+                        {{if $countAllPages > 1}}
+                        <div class="pagination" style="float: right;">
+                            {{if $first}}
+                            <a href="?page=1" class="number" title="First Page">&laquo; First</a>
+                            {{/if}}
                             {{if $prevPage}}
-                                <li><a href="?page={{$prevPage}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/back2.png" alt="" /></a></li>
+                            <a href="?page={{$prevPage}}" class="number" title="Previous Page">&laquo;</a>
                             {{/if}}
+                            
                             {{foreach from=$prevPages item=item}}
-                                <li><a href="?page={{$item}}">{{$item}}</a></li>
+                            <a href="?page={{$item}}" class="number" title="{{$item}}">{{$item}}</a>
                             {{/foreach}}
-                                <li><a href="#" class="current" title="{{$currentPage}}">{{$currentPage}}</a></li>
+                            
+                            <a href="#" class="number current" title="{{$currentPage}}">{{$currentPage}}</a>
+                            
                             {{foreach from=$nextPages item=item}}
-                                <li><a href="?page={{$item}}">{{$item}}</a></li>
+                            <a href="?page={{$item}}" class="number" title="{{$item}}">{{$item}}</a>
                             {{/foreach}}
+                            
                             {{if $nextPage}}
-                                <li><a href="?page={{$nextPage}}"><img src="{{$LAYOUT_HELPER_URL}}front/img/next2.png" alt="" /></a></li>
+                            <a href="?page={{$nextPage}}" class="number" title="Next Page">&raquo;</a>
                             {{/if}}
-                        </ul>
-                      </div>
-                      {{/if}}
-              
+                            {{if $last}}
+                            <a href="?page={{$countAllPages}}" class="number" title="Last Page">Last &raquo;</a>
+                            {{/if}}
+                        </div> <!-- End .pagination -->
+                        {{/if}}
+                    {{/if}}    
+                        
                         <div class="clear"></div>
-                    </div>
-                </div>
-            </div>
-            <div class="bot2"></div>
-        </div>
-        <div class="clear"></div>
-    </div>
-    
+                    </div> <!-- End #tab1 -->
+                    
+                    
+                </div> <!-- End .content-box-content -->
+                
+            </div> <!-- End .content-box -->
+            
+            
+            <div class="clear"></div>
             
 <script language="javascript" type="text/javascript">
+$(document).ready(function(){
+    document.getElementById('ordername').select();
+    document.getElementById('ordername').focus();
+});
+
+function applySelected()
+{
+    var task = document.getElementById('action').value;
+    eval(task);
+}
+
+function deleteOrder()
+{
+    var all = document.getElementsByName('allResers');
+    var tmp = '';
+    var count = 0;
+    for (var i = 0; i < all.length; i++) {
+        if (all[i].checked) {
+             tmp = tmp + '_' + all[i].value;
+             count++;
+        }
+    }
+    if ('' == tmp) {
+        alert('Please choose an order');
+        return;
+    } else {
+        result = confirm('Are you sure you want to delete ' + count + ' order(s)?');
+        if (false == result) {
+            return;
+        }
+    }
+    window.location.href = '{{$APP_BASE_URL}}order/admin/delete/id/' + tmp;
+}
 
 
 function deleteAOrder(id)
@@ -153,6 +231,6 @@ function deleteAOrder(id)
     if (false == result) {
         return;
     }
-    window.location.href = '{{$APP_BASE_URL}}order/index/delete/id/' + id;
+    window.location.href = '{{$APP_BASE_URL}}order/admin/delete/id/' + id;
 }
 </script>
