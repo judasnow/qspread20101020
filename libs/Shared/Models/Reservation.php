@@ -58,4 +58,27 @@ class Models_Reservation extends Vi_Model
         
         return $this->_db->fetchAll($sql);
     }
+    
+
+    public function getAllResers($condition = array(), $order = null, $count = null, $offset = null)
+    {
+        $select = $this->select()
+                ->setIntegrityCheck(false)
+                ->from(array('r' => $this->_name))
+                ->join(array('res' => $this->_prefix . 'restaurant'), 'r.restaurant_id = res.restaurant_id', array('name', 'street', 'city', 'state', 'phone', 'image'))
+                ->order($order)
+                ->limit($count, $offset);
+        /**
+         * Conditions
+         */
+        if (null != @$condition['full_name']) {
+            $select->where($this->getAdapter()->quoteInto('r.full_name LIKE ?', "%{$condition['full_name']}%"));
+        }
+        
+        if (null != @$condition['restaurant_id']) {
+            $select->where('restaurant_id = ?', $condition['restaurant_id']);
+        }
+        
+        return $this->fetchAll($select)->toArray();
+    }
 }

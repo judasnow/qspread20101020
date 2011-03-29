@@ -108,6 +108,12 @@
                         Orders
                     </a>       
                 </li>
+                
+                <li>
+                    <a href="{{$APP_BASE_URL}}/restaurant/admin/reservation" class="nav-top-item no-submenu {{if $menu[0]=='reservation'}}current{{/if}}">
+                        Reservation
+                    </a>       
+                </li>
 				
 				<li> 
                     <a href="#" class="nav-top-item {{if $menu[0]=='scontent'}}current{{/if}}">

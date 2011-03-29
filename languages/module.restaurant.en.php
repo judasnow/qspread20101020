@@ -12,4 +12,6 @@ return array (
   'Edit meal successfully' => '',
   'Add new meal successfully' => '',
   'Delete meal successfully' => '',
+  'Reservation manager' => '',
+  'Reservation is deleted successfully' => '',
 );
