@@ -10,10 +10,10 @@
                 <div class="content-box-header">
                     
                     <div style="float:left;">
-                        <a name="listoforder"><h3>List of Reservations</h3></a>
+                        <a name="listofreser"><h3>List of Reservations</h3></a>
                    </div>     
                    <div style="float:right;padding-right:20px;padding-top:5px;">
-                        <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}order/admin/manager">
+                        <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}restaurant/admin/reservation">
                             
                           Customer:  <input class="text-input small-input" type="text" name="condition[full_name]" id="ordername" value="{{$condition.full_name}}"/>
                             
@@ -68,10 +68,9 @@
                             <thead>
                                 <tr>
                                    <th><input class="check-all" type="checkbox" /></th>
-                                   <th>Reservation Time</th>
+                                   <th>Reservation</th>
                                    <th>Restaurant</th>
                                    <th>Customer</th>
-                                   <th>Deposit</th>
                                    <th>Created Date</th>
                                    <th>Action</th>
                                 </tr>
@@ -83,38 +82,37 @@
                             
                             {{foreach from=$allResers item=item}}
                                 <tr>
-                                    <td><input type="checkbox" value="{{$item.order_id}}" name="allResers"/></td>
+                                    <td><input type="checkbox" value="{{$item.reservation_id}}" name="allResers"/></td>
                                     <td>
-                                        {{$item.full_name}}<br/>
+                                    
+                                     <b>{{$item.time|date_format:'%a, %m/%d/%Y %I:%M %p'}}</b><br/>
                                         <br/>
-                                        Email: <a href="mailto:{{$item.email}};">{{$item.email}}</a><br/>
-                                        Phone: {{$item.phone}}
+                                      Quantity: {{$item.quantity}}<br/>
+                                      Deposit: ${{$item.deposit|number_format:2}}
                                     </td>
                                     <td>
-                                        {{$item.address}}<br/>
-                                        {{$item.city}} {{$item.state}} {{$item.zip_code}}<br/>
-                                        Suite#/Apt.#/Note: {{$item.suite}}
-                                    </td>
-                                    <td>${{$item.order_total|number_format:2}}</td>
-                                    <td>
-                                        {{$item.time}}<br/>
-                                        {{$item.date}}
-                                    </td>
-                                    <td>{{$item.order_service}}</td>
-                                    <td>{{$item.created_date}}</td>
-                                    <td>
-                                        {{if $item.status == 1}}
-                                        <span style="color: red">Paid</span>
-                                        {{else}}
-                                        Finished
+                                        {{if $item.image}}
+                                        <img src="{{$BASE_URL}}{{$item.image}}" style="max-width: 100px;"></img>
+                                        <br/>
                                         {{/if}}
-                                        <br/>
-                                        (<a href="{{$APP_BASE_URL}}order/admin/change-status/id/{{$item.order_id}}">change</a>)
+                                        {{$item.name}}
                                     </td>
+                                    <td>
+                                        <b>{{$item.full_name}}</b><br/>
+                                        <br/>
+                                        Address: {{$item.address}}<br/>
+                                        Suite#/Apt.#/Note: {{$item.note}}<br/>
+                                        City: {{$item.city}}, {{$item.state}}<br/>
+                                        Postal Code: {{$item.zip_code}}<br/>
+                                        Phone: {{$item.phone}}<br/>
+                                        Email: {{$item.email}}<br/>
+                                        <br/>
+                                        Special Requests: {{$item.special_request}}
+                                    </td>
+                                    <td>{{$item.created_date}}</td>
                                     <td class="center">
                                         <!-- Icons -->
-                                         <a href="javascript:deleteAOrder({{$item.order_id}});" title="Delete"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross.png"  alt="Delete" /></a> 
-                                         <a href="{{$APP_BASE_URL}}order/admin/detail/id/{{$item.order_id}}" title="Order detail"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/edit_list_16.png"  alt="Order detail" /></a>
+                                         <a href="javascript:deleteAReser({{$item.reservation_id}});" title="Delete"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross.png"  alt="Delete" /></a> 
                                     </td>
                                 </tr>
                             {{/foreach}}    
@@ -128,14 +126,14 @@
                         <div class="bulk-actions align-left" style="float: left;padding-top: 14px;">
                             <select id="action">
                                 <option value=";">Choose an action...</option>
-                                <option value="deleteOrder();">Delete</option>
+                                <option value="deleteReser();">Delete</option>
                             </select>
                             <a class="button" href="javascript:applySelected();">Apply to selected</a>
                         </div>
                         
                         
                         <div class="bulk-actions align-left" style="float: left;padding-top: 10px; padding-left:30px;">
-                            <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}order/admin/manager">
+                            <form class="search" name="search" method="post" action="{{$APP_BASE_URL}}restaurant/admin/reservation">
                                 Display #
                                 <select name="displayNum" onchange="this.parentNode.submit();" style="clear: both;">
                                     <option value="5" {{if $displayNum == 5}} selected="selected" {{/if}}>5</option>
@@ -201,7 +199,7 @@ function applySelected()
     eval(task);
 }
 
-function deleteOrder()
+function deleteReser()
 {
     var all = document.getElementsByName('allResers');
     var tmp = '';
@@ -213,24 +211,24 @@ function deleteOrder()
         }
     }
     if ('' == tmp) {
-        alert('Please choose an order');
+        alert('Please choose an reservation');
         return;
     } else {
-        result = confirm('Are you sure you want to delete ' + count + ' order(s)?');
+        result = confirm('Are you sure you want to delete ' + count + ' reservation(s)?');
         if (false == result) {
             return;
         }
     }
-    window.location.href = '{{$APP_BASE_URL}}order/admin/delete/id/' + tmp;
+    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/delete-reservation/id/' + tmp;
 }
 
 
-function deleteAOrder(id)
+function deleteAReser(id)
 {
-    result = confirm('Are you sure you want to delete this order?');
+    result = confirm('Are you sure you want to delete this reservation?');
     if (false == result) {
         return;
     }
-    window.location.href = '{{$APP_BASE_URL}}order/admin/delete/id/' + id;
+    window.location.href = '{{$APP_BASE_URL}}restaurant/admin/delete-reservation/id/' + id;
 }
 </script>

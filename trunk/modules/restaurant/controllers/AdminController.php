@@ -846,27 +846,27 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
         $id = $this->_getParam('id', false);
         
         if (false == $id) {
-            $this->_redirect('reser/admin/manager');
+            $this->_redirect('restaurant/admin/reservation');
         }
         
         $ids = explode('_', trim($id, '_'));
         
-        $objReser = new Models_Reser();
+        $objReser = new Models_Reservation();
         try {
             foreach ($ids as $id) {
-               $objReser->delete( array('reser_id=?' => $id));
+               $objReser->delete( array('reservation_id=?' => $id));
             }
             $this->session->reserMessage = array(
                                                'success' => true,
-                                               'message' => Vi_Language::translate('Delete reser successfully')
+                                               'message' => Vi_Language::translate('Reservation is deleted successfully')
                                            );
         } catch (Exception $e) {
             $this->session->reserMessage = array(
                                                'success' => false,
-                                               'message' => Vi_Language::translate('Can NOT delete this reser. Please try again')
+                                               'message' => Vi_Language::translate('Can NOT delete this reservation. Please try again')
                                            );
         }
-        $this->_redirect('reser/admin/manager#listofreser');
+        $this->_redirect('restaurant/admin/reservation#listofreser');
     }
     
 
