@@ -268,7 +268,7 @@
 		
 		
 		input.error {
-		border-color: red;
+		border:1px solid red;
     }	
 		
 	.register_error {
@@ -363,4 +363,17 @@
 .find_result input{font-size:10px;}
 .m10t{margin-top:10px;}
 
+/*--------------------------Hoaitan's modification-----------*/
+	.button {
+		min-width: 60px;
+		float: left;
+		margin: 0px 3px;
+		text-align: center;
+    }
+    .button_center {
+        width: 80px;    
+    }
+    .button_select {
+        font-weight: bold;   
+    }    
 }

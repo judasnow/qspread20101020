@@ -10,48 +10,22 @@
 			              </div>
 			              <div class="input_form bd1b p10b">
 			                <div>
-			<!--                 
-			                  <input type="radio" class="mid float_left m5r" />
-			-->                  
+
 			                  <span class="mid color_1">{{$mark}}</span> <br class="clear_left"/>
 			                </div>
-			<!--                
-			                <div>
-			                  <input type="radio" class="mid float_left m5r" />
-			                  <span class="mid">Delivery - $50 min</span> <br class="clear_left"/>
-			                </div>
-			                <div>
-			                  <input type="radio" class="mid float_left m5r" />
-			                  <span class="mid">Catering  Delivery $130min</span> <br class="clear_left"/>
-			                </div>
-			                <div>
-			                  <input type="radio" class="mid float_left m5r" />
-			                  <span class="mid">Catering Pick up</span> <br class="clear_left"/>
-			                </div>
-			-->                 
+
 			              </div>
 			              <div class="input_form p20b">
 			                <p class="p10b"><b>Date and time</b></p>
 			                <label class="w30">Date: </label>
 			                <label class="w130 color_1">&nbsp;{{$date}}</label>                
-			<!--                
-			                <select class="w130">
-			                  <option></option>
-			                </select>
-			-->                
+
 			                <br />
 			                <label class="w30">Time: </label>
 			                <label class="w130 color_1">&nbsp;{{$time}}</label>                
-			<!--                 
-			                <select class="w130">
-			                  <option></option>
-			                </select>
-			-->                
+
 			                <br />
-			<!--                 
-			                <div class="center color_2 uper p10t"> <a href="#"><b>Select a menu item<br />
-			                  to add it to your order</b></a> </div>
-			-->                  
+
 			              </div>
 			              {{ if isset($subtotal) }}
 			              <div class="p10t">
@@ -73,27 +47,8 @@
 				              </div>
 				          {{ /if }}	
 			            </div>
-<!--             	
-                	<div class="p10">
-						<img src="{{$LAYOUT_HELPER_URL}}front/img/tt_cart.jpg" alt="" width="83" height="11" />
-						<div class="p10t">
-							<div class="float_left"><b>Location</b></div>
-							<div class="float_right color_2"><a href="#">Add New Address</a></div><br class="clear" />
-						</div>
-						<div class="input_form bd1b p20b">							
-							<p class="color_1"><i>1045 Hong Bang, ward 12, District 6 Hochiminh City</i></p>
-						</div>
-						
-						<div class="input_form ">
-							<div class="float_left"><b>Date & Time</b></div>
-							<div class="float_right color_2"><a href="#">Edit</a></div><br class="clear" />
-							<label class="w30">Date</label>
-							<label class="w130 color_1"><i>12 Nov 2010</i></label><br class="clear" />
-							<label class="w30">Time</label>
-							<label class="w130 color_1"><i>08:00 pm</i></label><br class="clear" /><br />
-						</div>
-				  </div>
--->				  
+
+
                 </div>
             </div>
             <div class="bot1"></div>
@@ -146,22 +101,13 @@
 	                    <input type="text" value="{{if $data.phone1}}{{$data.phone1}}{{else}}000{{/if}}" class="w70" id="data[phone1]" name="data[phone1]" />
 	                    <input type="text" value="{{if $data.phone2}}{{$data.phone2}}{{else}}000{{/if}}" class="w70" id="data[phone2]" name="data[phone2]" />
 	                    <input type="text" value="{{if $data.phone3}}{{$data.phone3}}{{else}}0000{{/if}}" class="w70" id="data[phone3]" name="data[phone3]" /><br />
-<!-- 	                    
-	                    <label class="w130 m10r right">Mobile Phone:</label>
-	                    <input type="text" value="000" class="w70" />
-	                    <input type="text" value="000" class="w70" />
-	                    <input type="text" value="0000" class="w70" /><br />
-	                    <label class="w130 m10r right">Mobile Phone Carrier:</label>
-	                    <input type="text" value="" class="w230" /><br />
--->	                    
+
+              
 	                    <label class="w130 m10r right">Email:<span class="red">*</span></label>
 	                    <input type="text" value="{{$data.email}}" class="w230" id="data[email]" name="data[email]" /><br />
 						<label class="w130 m10r right">&nbsp;</label>
-<!-- 						
-						<a href="{{$APP_BASE_URL}}restaurant/info?order_id={{$order_id}}">
-	                    	<img src="{{$LAYOUT_HELPER_URL}}front/img/bt_conti.jpg" />
-	                    </a>
--->	                    
+
+           
 	                    <br />
 				</div> 
 				<br class="clear" />
@@ -259,7 +205,7 @@ $().ready(function() {
                 required: true,
                 rangelength: [15, 16]
             },
-            'data[card_cvv]': "required",          
+            'data[card_cvv]': "required"          
         },
         messages: {
             'data[full_name]': "",
@@ -271,7 +217,7 @@ $().ready(function() {
             'data[phone3]':  "",
             'data[email]': "",
             'data[card_number]': "",
-            'data[card_cvv]': "",          
+            'data[card_cvv]': ""         
         }
     }); 
 });

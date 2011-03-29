@@ -100,7 +100,7 @@ function fbs_click(address){
         <p class="float_left m10r"><img src="{{$BASE_URL}}{{$arr_restaurant.image}}" alt="" /></p>
         <span class="fs14"><b>{{$arr_restaurant.name}}</b></span><br />
         {{$arr_restaurant.street}}<br />
-        {{$arr_restaurant.city}} {{$arr_restaurant.state}} <span class="color_1"><a href="#" onclick="return fbs_click('{{$address_restaurant}}')">Map</a> </span><br />
+        {{$arr_restaurant.city}}, {{$arr_restaurant.state}} <span class="color_1"><a href="#" onclick="return fbs_click('{{$address_restaurant}}')">Map</a> </span><br />
         <br/>
         {{$arr_restaurant.description}}<br />
         <div class="clear_left"></div>

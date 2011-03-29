@@ -1,4 +1,5 @@
 <link href="{{$LAYOUT_HELPER_URL}}front/css/jquery-ui.custom.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="{{$LAYOUT_HELPER_URL}}front/js/jquery.numeric.js"></script>
 
 
 <script type="text/javascript">
@@ -17,6 +18,15 @@ $(function() {
     $( "#date" ).datepicker({
     	minDate: new Date()
      });
+    $(".integer").numeric(false);
+    $("#reservation").validate({
+        rules: {
+            'search[quantity]': "required"
+        },
+        messages: {
+            'search[quantity]': ""
+        }
+    }); 
 });
 
 </script>
@@ -31,11 +41,11 @@ $(function() {
               
               <div class="input_form p20b">
               <br/>
-                <p>Date: <span class="color_1">{{$date}}</span></p> 
+                <p>Date: <span class="color_1">{{$search.date}}</span></p> 
                 <br/>
-                <p>Time: <span class="color_1">{{$time}}</span></p> 
+                <p>Time: <span class="color_1">{{$search.unixTime|date_format:'%I:%M %p'}}</span></p> 
                 <br/>
-                <p>Party Size: <span class="color_1">{{$partySize}}</span></p> 
+                <p>Party Size: <span class="color_1">{{$search.quantity}}</span></p> 
                 
                 {{if '1' == $res.reser_deposit_onoff}}
                 <br/>
@@ -54,7 +64,7 @@ $(function() {
         <p class="float_left m10r"><img src="{{$BASE_URL}}{{$arr_restaurant.image}}" alt="" /></p>
         <span class="fs14"><b>{{$arr_restaurant.name}}</b></span><br />
         {{$arr_restaurant.street}}<br />
-        {{$arr_restaurant.city}} {{$arr_restaurant.state}} <span class="color_1"><a href="#" onclick="return fbs_click('{{$address_restaurant}}')">Map</a> </span><br />
+        {{$arr_restaurant.city}}, {{$arr_restaurant.state}} <span class="color_1"><a href="#" onclick="return fbs_click('{{$address_restaurant}}')">Map</a> </span><br />
         <br/>
         {{$arr_restaurant.description}}<br />
         <div class="clear_left"></div>
@@ -71,6 +81,7 @@ $(function() {
         
         
         <!-- SEARCH FORM -->
+        <form method="POST" name="reservation" id="reservation">
         <div class="top2"></div>
         <div class="cen2">
           <div class="cen_2">
@@ -78,25 +89,21 @@ $(function() {
               <p style="color:#300;font-size:18px;padding-bottom:10px;">Make a reservation now </p>
                 <table width="659" style="border-top:1px dotted #666">
                     <tr>
-                        <td width="156"><span style="color:#300">Date</span> <br />
+                        <td width="156"><span style="color:#300">Date</span><span class="red">*</span> <br />
                             <input type="text" id="date" name="search[date]" style="width: 148px; height: 18px;" value="{{$search.date}}">
                         </td>
-                        <td width="161"><span style="color:#300">Time</span> <br />
-                            <select>
+                        <td width="161"><span style="color:#300">Time</span><span class="red">*</span> <br />
+                            <select name="search[time]">
                                 {{foreach from=$allTimes item=item}}
-                                <option value="{{$item.time}}">{{$item.text}}</option>
+                                <option {{if $search.time == $item.time}}selected="selected"{{/if}} value="{{$item.time}}">{{$item.text}}</option>
                                 {{/foreach}}
                             </select>
                         </td>
-                        <td width="176"><span style="color:#300">Party Size</span> <br />
-                            <select>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>                             
-                            </select>
+                        <td width="176"><span style="color:#300">Party Size</span><span class="red">*</span> <br />
+                            <input class="integer" type="text" name="search[quantity]" style="width: 120px; height: 18px;" value="{{$search.quantity}}"> <span style="color:#300">people</span>
                         </td>
                         <td width="146">
-                            <input type="button" value="" class="btn_find" />
+                            <input type="submit" name="submit" value="" class="btn_find" />
                         </td>
                     </tr>
                 </table>
@@ -104,7 +111,50 @@ $(function() {
           </div>
         </div>
         <div class="bot2"></div>
+        </form>
         <!-- END SEARCH FORM -->
+        
+        
+        <!-- START RESULT -->
+        <div class="find_result m20t">
+             <div class="top2"></div>
+        <div class="cen2">
+          <div class="cen_2">
+            <div class="p10 resevation">
+              <p style="color:#300;font-size:18px;padding-bottom:10px;">Availability for {{$res.name}} </p>
+                <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
+                    
+                    <tr>
+                      <td width="25%" class="color_1 p5t p5b bd1b"><b>Date</b></td>
+                      <td width="75%" class="color_1 p5t p5b bd1b"><b>Availability (click time to reserve)</b></td>
+                    </tr>
+                    
+                    {{foreach from=$searchDateArr item=item}}
+                    <tr>
+                      <td class="bd1b p10t p5b">
+                        <p>
+                            <b>{{$item.time|date_format:'%a, %m/%d/%Y'}}</b>
+                        </p></td>
+                      <td class="bd1b p10t p5b top">
+                            {{foreach from=$item.available key=time item=item2 name=availableTime}}
+                                {{if 1==$item2 && $time > $currentTime}}
+                                <div class="button"><input onclick="window.location.href='{{$APP_BASE_URL}}restaurant/reservation/finish/rid/{{$resId}}/t/{{$time|@base64_encode}}';" class="{{if $time==$search.unixTime}} button_select{{/if}} {{if 3 == $smarty.foreach.availableTime.index}}button_center{{/if}}"  type="button" value="{{$time|date_format:'%I:%M %p'}}"/></div>
+                                {{else}}
+                                <div class="button {{if 3 == $smarty.foreach.availableTime.index}}button_center{{/if}}"><span class="{{if $time==$search.unixTime}} button_select{{/if}} " >{{$time|date_format:'%I:%M %p'}}</span></div>
+                                {{/if}}
+                            {{/foreach}}
+                      </td>
+                    </tr>
+                    {{/foreach}}
+                    
+                    
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="bot2"></div>
+        </div>
+        <!-- END RESULT -->
         
       </div>
       <div class="clear"></div>
