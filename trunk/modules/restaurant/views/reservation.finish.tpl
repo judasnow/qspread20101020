@@ -123,8 +123,8 @@ $(function() {
                         <div class="">
                         
                         <!-- ERROR -->
-                        {{if $cartErrorMsg}}
-                        <p class="red"><b>Error</b>: {{$cartErrorMsg}}</p>
+                        {{if null != $error}}
+                        <p class="red"><b>Error</b>: {{$error}}</p>
                         <br/>
                         {{/if}}
                         <!-- END ERROR -->

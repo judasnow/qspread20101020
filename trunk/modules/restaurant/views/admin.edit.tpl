@@ -352,6 +352,49 @@ function clearImage()
                                     
                                     <br/>
                                     
+                                    <p class="p15t green"><b>Table Reservation</b></p>  
+                                    <p>
+                                        <label>Reservation</label>
+                                        
+                                        <select name="data[reser_onoff]"  >
+                                                <option {{if 1==$data.reser_onoff}} selected="selected" {{/if}} value="1">On</option>
+                                                <option {{if 0==$data.reser_onoff}} selected="selected" {{/if}} value="1">Off</option>
+                                        </select>
+                                    </p>
+                                    <p>
+                                        <label>Deposit</label>
+
+                                        <select name="data[reser_deposit_onoff]" >
+                                                <option {{if 1==$data.reser_deposit_onoff}} selected="selected" {{/if}} value="1">On</option>
+                                                <option {{if 0==$data.reser_deposit_onoff}} selected="selected" {{/if}} value="1">Off</option>
+                                        </select>
+                                        &nbsp;&nbsp;&nbsp;$ <input name="data[reser_deposit]" type="text" value="{{$data.reser_deposit}}" style="width: 35px;" />
+                                        
+                                    </p>
+                                    <p>
+                                        <label>Seat quantity</label>
+                                        <input name="data[reser_quantity]" type="text" value="{{$data.reser_quantity}}" style="width:115px;" /><br />
+                                    </p>
+                                    <p>
+                                        <label>Period of Repast</label>
+
+                                            <select name="data[reser_period]" >
+                                                 <option {{if '900' == $data.reser_period}} selected="selected" {{/if}} value="900">15 min</option>
+                                                 <option {{if '1800' == $data.reser_period}} selected="selected" {{/if}} value="1800">30 min</option>
+                                                 <option {{if '2700' == $data.reser_period}} selected="selected" {{/if}} value="2700">45 min</option>
+                                                 <option {{if '3600' == $data.reser_period}} selected="selected" {{/if}} value="3600">1 hour</option>
+                                                 <option {{if '4500' == $data.reser_period}} selected="selected" {{/if}} value="4500">1 hour 15</option>
+                                                 <option {{if '5400' == $data.reser_period}} selected="selected" {{/if}} value="5400">1 hour 30</option>
+                                                 <option {{if '6300' == $data.reser_period}} selected="selected" {{/if}} value="6300">1 hour 45</option>
+                                                 <option {{if '7200' == $data.reser_period}} selected="selected" {{/if}} value="7200">2 hours</option>
+                                                 <option {{if '10800' == $data.reser_period}} selected="selected" {{/if}} value="10800">3 hours</option>
+                                                 <option {{if '14400' == $data.reser_period}} selected="selected" {{/if}} value="14400">4 hours</option>
+                                                 <option {{if '18000' == $data.reser_period}} selected="selected" {{/if}} value="18000">5 hours</option>
+                                            </select>
+                                    </p>
+                                    
+                                    <br/>
+                                    
                                     <p class="p15t green"><b>Approve/Enable Restaurant</b></p>  
                                     <p>
                                         <label>Approved</label>
