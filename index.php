@@ -13,7 +13,8 @@
  */
 //try {
 
-    date_default_timezone_set('Asia/Krasnoyarsk');
+//    date_default_timezone_set('America/Toronto');
+    date_default_timezone_set('Asia/Ho_Chi_Minh');
     set_include_path('.' . 
     				 PATH_SEPARATOR . 'libs' . 
     				 PATH_SEPARATOR . get_include_path());			 

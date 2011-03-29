@@ -18,6 +18,16 @@ class restaurant_InfoController extends Vi_Controller_Action
 		if ( !isset($_SESSION['cart'][$order_id]) ) {
 			$this->_redirect('');
 		}
+	
+       /**
+        * Get restaurant
+        */
+        $objRes = new Models_Restaurant();
+        $res = $objRes->find($_SESSION['cart'][$order_id]['restaurant_id'])->toArray();
+        $res = current($res);
+        if (false == $res || '0' == $res['reser_onoff']) {
+            $this->_redirect('');
+        }
 		
 		$this->view->session_cart 		= $_SESSION['cart'][$order_id];
 		$this->view->subtotal 			= $_SESSION['cart'][$order_id]['subtotal'];
@@ -192,7 +202,7 @@ class restaurant_InfoController extends Vi_Controller_Action
                     <td colspan='3'  style='color: #442006; font-weight: bold;'>PAYMENT METHOD</td>
                 </tr> 
                 <tr>
-                   <td>
+                   <td valign='top'>
                        <br/>
                        <table width='400px;'>
 
@@ -218,8 +228,32 @@ class restaurant_InfoController extends Vi_Controller_Action
                        <br/>
                        
                    </td>
-                   <td  colspan='3' >
-                       <span  style='color: #442006;'>{$data['card_type']}: {$data['card_number']} </span>
+                   <td valign='top'>
+                       <br/>
+                       <table width='400px;'>
+
+                           <tr>
+                               <td width='30%' align='right' style='background-color: #EEEEEE;'>Name:</td>
+                               <td width='70%' style='color: #442006;'>{$res['name']}</td>
+                           </tr>
+                           <tr>
+                               <td align='right' style='background-color: #EEEEEE;'>Address:</td>
+                               <td style='color: #442006;'>{$res['street']}, {$res['city']}, {$res['state']}</td>
+                           </tr>
+                           <tr>
+                               <td width='30%' align='right' style='background-color: #EEEEEE;'>Phone:</td>
+                               <td width='70%' style='color: #442006;'>{$res['phone']}</td>
+                           </tr>
+                           
+                           <tr>
+                               <td colspan='2' style='color: #442006; font-weight: bold;'><br/>PAYMENT METHOD</td>
+                           </tr>
+                           <tr>
+                               <td  align='right' colspan='2'>{$data['card_type']}: {$data['card_number']}</td>
+                           </tr>
+                           
+                       </table>
+                       <br/>
                    </td>
 
                 </tr>
@@ -279,7 +313,7 @@ class restaurant_InfoController extends Vi_Controller_Action
 //            echo '<pre>';print_r($data);die;
             
             $admin = $objUser->getByUserName('admin');
-            $objMail->sendHtmlMail('meal_order', $data, array($admin['email'], $data_info['email']));
+            $objMail->sendHtmlMail('reservation_order', $data, array($admin['email'], $data['email'], $res['owner_email']));
 	 		/**
 	 		 * Clear session
 	 		 */

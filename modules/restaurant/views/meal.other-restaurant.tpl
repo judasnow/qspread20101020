@@ -165,7 +165,7 @@ function Cancel_Order(){
 <!-- 		
         <span class="fs14"><b>{{$arr_restaurant.name}}</b></span><br />
         {{$arr_restaurant.street}}<br />
-        {{$arr_restaurant.city}} {{$arr_restaurant.state}} <span class="color_1"><a href="#" onclick="return fbs_click('{{$address_restaurant}}')">Map</a> </span><br />
+        {{$arr_restaurant.city}}, {{$arr_restaurant.state}} <span class="color_1"><a href="#" onclick="return fbs_click('{{$address_restaurant}}')">Map</a> </span><br />
         {{$arr_restaurant.description}}<br />   
  -->         	
       </div>
