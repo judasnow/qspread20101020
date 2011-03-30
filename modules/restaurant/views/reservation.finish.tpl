@@ -227,7 +227,7 @@ $(function() {
                         <br/>
                         
                         <label class="w130 m10r right">&nbsp;</label>
-                        <input type="submit" style="background:url({{$LAYOUT_HELPER_URL}}front/img/complatefree.png);width:184px;height:21px;border:0px;cursor: pointer;" value="" />
+                        <input type="submit" style="background:url({{$LAYOUT_HELPER_URL}}front/img/complatefree2.png);width:156px;height:21px;border:0px;cursor: pointer;" value="" />
                         <br />
                 </div> 
                 {{/if}}
