@@ -17,7 +17,7 @@ function Cancel_Order(){
 		window.location.href = "{{$APP_BASE_URL}}cancel_res/{{$restaurant_id}}/{{$res_id_ses}}";
 }
 </script>
-<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAfC0VI1TK8TYdshSdnHDNSxSeGj8z-4c3Gkvm2sCURIKgXVhMtBRfYmT9EDfSCVyiP26LwRJpOXAiBg" type="text/javascript"></script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAfC0VI1TK8TYdshSdnHDNSxSqPMIOVuOlI2qqAysSIBkOl7bFVRQuTcvOGXqAtdqSpgpuj-hTMLRf8Q" type="text/javascript"></script>
 <div id="main">
       <div class="w201 float_left">
         <div class="top1 m20t"></div>
