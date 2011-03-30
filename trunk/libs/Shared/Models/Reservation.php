@@ -76,7 +76,7 @@ class Models_Reservation extends Vi_Model
         }
         
         if (null != @$condition['restaurant_id']) {
-            $select->where('restaurant_id = ?', $condition['restaurant_id']);
+            $select->where('r.restaurant_id = ?', $condition['restaurant_id']);
         }
         
         return $this->fetchAll($select)->toArray();

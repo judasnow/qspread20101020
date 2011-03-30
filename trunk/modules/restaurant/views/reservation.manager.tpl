@@ -2,24 +2,24 @@
         
 
         <div class="w692" style="padding-left: 96px;">
-            <p class="title1">Order manager</p>
+            <p class="title1">Reservation manager</p>
             <br/>
         
             
             
-                {{if $orderMessage|@count > 0 && $orderMessage.success == true}}
+                {{if $reserMessage|@count > 0 && $reserMessage.success == true}}
                 <br/>   
                 <div style="padding: 10px 0; color: green; font-weight: bold; border-top: 1px solid green; border-bottom: 1px solid green;">
-                    {{$orderMessage.message}}
+                    {{$reserMessage.message}}
                 </div>
                 <br/>
                 {{/if}}
                 
-                {{if $orderMessage|@count > 0 && $orderMessage.success == false}}
+                {{if $reserMessage|@count > 0 && $reserMessage.success == false}}
                 <br/> 
                 <div style="padding: 10px 0; color: red; font-weight: bold; border-top: 1px solid red; border-bottom: 1px solid red;">
                     <b>Error:</b>
-                    {{$orderMessage.message}}
+                    {{$reserMessage.message}}
                 </div>
                 <br/>
                 {{/if}}
@@ -27,9 +27,9 @@
                 
             
             <div style="float: right;padding: 10px;">
-                <form class="search" name="search" method="post" action="{{$BASE_URL}}order/index/manager">
+                <form class="search" name="search" method="post" action="{{$BASE_URL}}restaurant/reservation/manager">
                             
-                  Customer:  <input style="height: 18px;"   class="text-input small-input" type="text" name="condition[full_name]" id="ordername" value="{{$condition.full_name}}"/>
+                  Customer:  <input style="height: 18px;" class="text-input small-input" type="text" name="condition[full_name]" id="ordername" value="{{$condition.full_name}}"/>
                     
                     <input style="margin-bottom: -5px;" type="image" name="submit" value="Search" src="{{$LAYOUT_HELPER_URL}}front/img/bt_search.jpg"/>
                 </form>
@@ -45,57 +45,40 @@
 
                         <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                           <tr>
+                              <td  class="color_1 p5t p5b bd1b"><b> Reservation </b></td>
                               <td  class="color_1 p5t p5b bd1b"><b> Customer </b></td>
-                              <td  class="color_1 p5t p5b bd1b"><b> Address </b></td>
-                              <td  class="color_1 p5t p5b bd1b"><b> Total </b></td>
-                              <td  class="color_1 p5t p5b bd1b "><b> Time </b></td>
-                              <td  class="color_1 p5t p5b bd1b "><b> Order Type </b></td>
-                              <!-- <td  class="color_1 p5t p5b bd1b center"><b>Created Date</b></td> -->
-                              <td  class="color_1 p5t p5b bd1b "><b> Status </b></td>
+                              <td  class="color_1 p5t p5b bd1b "><b>Created Date</b></td>
                               <td  class="color_1 p5t p5b bd1b "><b> Action </b></td>
                             </tr>
                           
                           
-                          {{foreach from=$allOrders item=item}}
+                          {{foreach from=$allResers item=item}}
                             <tr>
                               <td class="bd1b p10t p5b" style="vertical-align: top;">
-                                    {{$item.full_name}}<br/>
-                                    <br/>
-                                    Email: <a href="mailto:{{$item.email}};">{{$item.email}}</a><br/>
-                                    Phone: {{$item.phone}}
+
+                                    
+                                     <b>{{$item.time|date_format:'%a, %m/%d/%Y %I:%M %p'}}</b><br/>
+                                        <br/>
+                                      Quantity: {{$item.quantity}}<br/>
+                                      Deposit: ${{$item.deposit|number_format:2}}
                               </td>
                               <td class="bd1b p10t p5b" style="vertical-align: top;">
-                                        {{$item.address}}<br/>
-                                        {{$item.city}} {{$item.state}} {{$item.zip_code}}<br/>
-                                        Suite#/Apt.#/Note: {{$item.suite}}
-                              </td>
-                              <td class="bd1b p10t p5b top">${{$item.order_total|number_format:2}}</td>
-                              <td class="bd1b p10t p5b top">
-                                        {{$item.time}}<br/>
-                                        {{$item.date}}
-                              </td>
-                              <td class="bd1b p10t p5b top">
-                                    {{$item.order_service}}
-                              </td>
-                              <!-- <td class="bd1b p10t p5b top">
-                                    {{$item.created_date}}
-                              </td> -->
-                              <td class="bd1b p10t p5b top">
-                                    
-                                        {{if $item.status == 1}}
-                                        <span style="color: red">Paid</span>
-                                        {{else}}
-                                        Finished
-                                        {{/if}}
+                                        <b>{{$item.full_name}}</b><br/>
                                         <br/>
-                                        (<a href="{{$APP_BASE_URL}}order/index/change-status/id/{{$item.order_id}}">change</a>)
-                                    
+                                        Address: {{$item.address}}<br/>
+                                        Suite#/Apt.#/Note: {{$item.note}}<br/>
+                                        City: {{$item.city}}, {{$item.state}}<br/>
+                                        Postal Code: {{$item.zip_code}}<br/>
+                                        Phone: {{$item.phone}}<br/>
+                                        Email: {{$item.email}}<br/>
+                                        <br/>
+                                        Special Requests: {{$item.special_request}}
                               </td>
+                              <td class="bd1b p10t p5b top">{{$item.created_date|date_format:'%m/%d/%Y'}}</td>
                               <td class="bd1b p10t p5b top center">
                                         <!-- Icons -->
-                                         <a href="javascript:deleteAOrder({{$item.order_id}});" title="Delete"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross.png"  alt="Delete" /></a> 
-                                         <a href="{{$APP_BASE_URL}}order/index/detail/id/{{$item.order_id}}" title="Order detail"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/edit_list_16.png"  alt="Order detail" /></a>
-                              </td>
+                                         <a href="javascript:deleteAReser({{$item.reservation_id}});" title="Delete"><img src="{{$LAYOUT_HELPER_URL}}admin/images/icons/cross.png"  alt="Delete" /></a> 
+                                    </td>
                             </tr>
                           {{/foreach}}    
                           
@@ -105,9 +88,9 @@
                         
                     
                      <!-- MESSAGE HERE -->
-                        {{if $allOrders|@count <= 0}}
+                        {{if $allResers|@count <= 0}}
                         <tr>
-                            <td colspan="7"> <br/>No order with above condition.</td> 
+                            <td colspan="7"> <br/>No reservation with above condition.</td> 
                         </tr>
                         {{/if}}
                         
@@ -147,12 +130,13 @@
 <script language="javascript" type="text/javascript">
 
 
-function deleteAOrder(id)
+
+function deleteAReser(id)
 {
-    result = confirm('Are you sure you want to delete this order?');
+    result = confirm('Are you sure you want to delete this reservation?');
     if (false == result) {
         return;
     }
-    window.location.href = '{{$APP_BASE_URL}}order/index/delete/id/' + id;
+    window.location.href = '{{$APP_BASE_URL}}restaurant/reservation/delete-reservation/id/' + id;
 }
 </script>

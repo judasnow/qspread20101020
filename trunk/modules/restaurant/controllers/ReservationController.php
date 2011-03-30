@@ -169,7 +169,7 @@ class restaurant_ReservationController extends Vi_Controller_Action
          */
         $t = $this->_getParam('t', false);
         $search = $this->session->reserSearch;
-        if (null == $search || false == $t) {
+        if (null == $search || false == $t || 0 >= $search['quantity']) {
             $this->_redirect('restaurant/reservation/index/rid/' . $resId);
         }
         $t = base64_decode($t);
@@ -472,6 +472,128 @@ class restaurant_ReservationController extends Vi_Controller_Action
 	        $this->_redirect('');
 	    }
 	}
+	
+
+    public function managerAction()
+    {
+        $resId      = Vi_Registry::getRestaurantIdFromLoggedUser();
+        if (false == $resId) {
+            $this->_redirect('access/index/login');
+        }
+        $objRes = new Models_Restaurant();
+        $res = $objRes->find($resId)->toArray();
+        $res = current($res);
+        if (false == $res) {
+            $this->_redirect('');
+        }
+        
+        $this->view->headTitle(Vi_Language::translate('Reservation manager'));
+        $this->view->menu = array('reservation');
+        
+        $config = Vi_Registry::getConfig();
+        $numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
+        $currentPage = $this->_getParam("page",1);
+        $displayNum = $this->_getParam('displayNum', false);
+        
+        /**
+         * Get number of reser per page
+         */
+        if (false === $displayNum) {
+            $displayNum = $this->session->reserDisplayNum;
+        } else {
+            $this->session->reserDisplayNum = $displayNum;
+        }
+        if (null != $displayNum) {
+            $numRowPerPage = $displayNum;
+        }
+        /**
+         * Get condition
+         */
+        $condition = $this->_getParam('condition', false);
+        if (false === $condition) {
+            $condition = $this->session->reserCondition;
+        } else {
+            $this->session->reserCondition = $condition;
+            $currentPage = 1;
+        }
+        if (false == $condition) {
+            $condition = array();
+        }
+        $condition['restaurant_id'] = $resId;
+        /**
+         * Load all resers
+         */
+        $objReser = new Models_Reservation();
+        $allResers = $objReser->getAllResers($condition, 'reservation_id DESC',
+                                                   $numRowPerPage,
+                                                   ($currentPage - 1) * $numRowPerPage
+                                                  );
+        /**
+         * Count all resers
+         */
+        $count = count($objReser->getAllResers($condition));
+        /**
+         * Modify all resers
+         */
+        foreach ($allResers as &$reser) {
+            if (null != $reser['created_date']) {
+//                $reser['created_date'] = date($config['dateFormat'], $reser['created_date']);
+            }
+        }
+        unset($reser);
+//        echo '<pre>';print_r($allResers);die;
+        /**
+         * Set values for tempalte
+         */
+        $this->setPagination($numRowPerPage, $currentPage, $count);
+        $this->view->allResers = $allResers;
+        $this->view->reserMessage = $this->session->reserMessage;
+        $this->session->reserMessage = null;
+        $this->view->condition = $condition;
+        $this->view->displayNum = $numRowPerPage;
+    }
+    
+
+    public function deleteReservationAction()
+    {
+    
+        $resId      = Vi_Registry::getRestaurantIdFromLoggedUser();
+        if (false == $resId) {
+            $this->_redirect('access/index/login');
+        }
+        $objRes = new Models_Restaurant();
+        $res = $objRes->find($resId)->toArray();
+        $res = current($res);
+        if (false == $res) {
+            $this->_redirect('');
+        }
+        
+        
+        $id = $this->_getParam('id', false);
+        
+        if (false == $id) {
+            $this->_redirect('restaurant/admin/reservation');
+        }
+        
+        $ids = explode('_', trim($id, '_'));
+        
+        $objReser = new Models_Reservation();
+        try {
+            foreach ($ids as $id) {
+               $objReser->delete( array('reservation_id=?' => $id, 'restaurant_id=?' => $resId));
+            }
+            $this->session->reserMessage = array(
+                                               'success' => true,
+                                               'message' => 'Reservation is deleted successfully'
+                                           );
+        } catch (Exception $e) {
+            $this->session->reserMessage = array(
+                                               'success' => false,
+                                               'message' => 'Can NOT delete this reservation. Please try again'
+                                           );
+        }
+        $this->_redirect('restaurant/reservation/manager');
+    }
     
 } 
 
