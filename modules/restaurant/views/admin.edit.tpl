@@ -358,7 +358,7 @@ function clearImage()
                                         
                                         <select name="data[reser_onoff]"  >
                                                 <option {{if 1==$data.reser_onoff}} selected="selected" {{/if}} value="1">On</option>
-                                                <option {{if 0==$data.reser_onoff}} selected="selected" {{/if}} value="1">Off</option>
+                                                <option {{if 0==$data.reser_onoff}} selected="selected" {{/if}} value="0">Off</option>
                                         </select>
                                     </p>
                                     <p>
@@ -366,7 +366,7 @@ function clearImage()
 
                                         <select name="data[reser_deposit_onoff]" >
                                                 <option {{if 1==$data.reser_deposit_onoff}} selected="selected" {{/if}} value="1">On</option>
-                                                <option {{if 0==$data.reser_deposit_onoff}} selected="selected" {{/if}} value="1">Off</option>
+                                                <option {{if 0==$data.reser_deposit_onoff}} selected="selected" {{/if}} value="0">Off</option>
                                         </select>
                                         &nbsp;&nbsp;&nbsp;$ <input name="data[reser_deposit]" type="text" value="{{$data.reser_deposit}}" style="width: 35px;" />
                                         

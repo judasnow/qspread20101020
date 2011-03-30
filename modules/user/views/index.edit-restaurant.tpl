@@ -318,14 +318,14 @@ $().ready(function() {
                 <label class="w155">Reservation:<span class="red">*</span></label>
                 <select name="data[reser_onoff]" style="width: 121px;" >
                         <option {{if 1==$data.reser_onoff}} selected="selected" {{/if}} value="1">On</option>
-                        <option {{if 0==$data.reser_onoff}} selected="selected" {{/if}} value="1">Off</option>
+                        <option {{if 0==$data.reser_onoff}} selected="selected" {{/if}} value="0">Off</option>
                 </select>
                 <br />
                 
                 <label class="w155">Deposit:</label>
                 <select name="data[reser_deposit_onoff]" style="width: 121px;" >
                         <option {{if 1==$data.reser_deposit_onoff}} selected="selected" {{/if}} value="1">On</option>
-                        <option {{if 0==$data.reser_deposit_onoff}} selected="selected" {{/if}} value="1">Off</option>
+                        <option {{if 0==$data.reser_deposit_onoff}} selected="selected" {{/if}} value="0">Off</option>
                 </select>
                 &nbsp;&nbsp;&nbsp;$ <input name="data[reser_deposit]" type="text" value="{{$data.reser_deposit}}" style="width: 125px;" />
                 <br />

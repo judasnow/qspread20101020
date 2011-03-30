@@ -99,7 +99,7 @@ $(function() {
                                 {{/foreach}}
                             </select>
                         </td>
-                        <td width="176"><span style="color:#300">Party Size</span><span class="red">*</span> <br />
+                        <td width="176"><span style="color:#300">Party Size</span><span class="red">*</span> (max: {{$res.reser_quantity}})<br />
                             <input class="integer" type="text" name="search[quantity]" style="width: 120px; height: 18px;" value="{{$search.quantity}}"> <span style="color:#300">people</span>
                         </td>
                         <td width="146">
@@ -137,7 +137,7 @@ $(function() {
                         </p></td>
                       <td class="bd1b p10t p5b top">
                             {{foreach from=$item.available key=time item=item2 name=availableTime}}
-                                {{if 1==$item2 && $time > $currentTime}}
+                                {{if 1==$item2 && $time > $currentTime && $search.quantity <= $res.reser_quantity}}
                                 <div class="button"><input onclick="window.location.href='{{$APP_BASE_URL}}restaurant/reservation/finish/rid/{{$resId}}/t/{{$time|@base64_encode}}';" class="{{if $time==$search.unixTime}} button_select{{/if}} {{if 3 == $smarty.foreach.availableTime.index}}button_center{{/if}}"  type="button" value="{{$time|date_format:'%I:%M %p'}}"/></div>
                                 {{else}}
                                 <div class="button {{if 3 == $smarty.foreach.availableTime.index}}button_center{{/if}}"><span class="{{if $time==$search.unixTime}} button_select{{/if}} " >{{$time|date_format:'%I:%M %p'}}</span></div>
