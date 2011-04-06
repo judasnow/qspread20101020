@@ -122,7 +122,7 @@ function update_cart_temp(meal_id){
 						<form name="form_cart" method="post" action="{{$APP_BASE_URL}}restaurant/cart">
 				        <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                           <tr>
-                            <td width="8%" class="color_1 p5t p5b bd1b"><b>Dish</b></td>
+                            <td width="8%" class="color_1 p5t p5b bd1b"><b>Meal</b></td>
                             <td width="37%" class="color_1 p5t p5b bd1b">&nbsp;</td>
                             <td width="11%" class="color_1 p5t p5b bd1b center"><b>Quanlity</b></td>
                             <td width="14%" class="color_1 p5t p5b bd1b center"><b>Price</b></td>
@@ -133,7 +133,9 @@ function update_cart_temp(meal_id){
                           {{if is_numeric($key) }}                                                
                           <tr>
                             <td class="bd1b p10t p5b">
-                            <!-- <img src="{{$LAYOUT_HELPER_URL}}front/img/img_restaurant_menu.jpg" alt="" width="58" height="57" /> -->
+                               {{if $item.image}}
+                                 <img alt="{{$item.name|@addslashes}}" src="{{$BASE_URL}}{{$item.image}}" style="max-width: 100px;">
+                              {{/if}}
                             </td>
                             <td class="bd1b p10t p5b"><b>{{$item.name}}</b>
                                 <p class="fs11"> {{$item.description}}<br />
