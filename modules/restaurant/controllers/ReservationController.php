@@ -135,6 +135,7 @@ class restaurant_ReservationController extends Vi_Controller_Action
         $this->view->search = $search;
         $this->view->searchDateArr = $searchDateArr;
         $this->view->currentTime = time();
+        $this->view->address_restaurant = $res['street']." ".$res['city']." ".$res['state'];
 	}
 	
 	public function finishAction()
