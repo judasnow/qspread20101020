@@ -314,7 +314,7 @@ class restaurant_InfoController extends Vi_Controller_Action
 //            echo '<pre>';print_r($data);die;
             
             $admin = $objUser->getByUserName('admin');
-            $objMail->sendHtmlMail('reservation_order', $data, array($admin['email'], $data['email'], $res['owner_email']));
+            $objMail->sendHtmlMail('meal_order', $data, array($admin['email'], $data['email'], $res['owner_email']));
 	 		/**
 	 		 * Clear session
 	 		 */
