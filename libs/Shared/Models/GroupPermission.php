@@ -47,7 +47,7 @@ class Models_GroupPermission extends Vi_Model
     }
     
     public function getGroupPermission($groupId, $access)
-    {
+    {    	
         $select = " SELECT  `gp` . * ,  `p` . * 
                     FROM (SELECT * FROM `vi_permission` WHERE module = " . $this->getAdapter()->quote($access) . ") AS  `p`
                     LEFT JOIN (SELECT * FROM `vi_group_permission` WHERE group_id = " . $this->getAdapter()->quote($groupId) . ") AS  `gp` 
