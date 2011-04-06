@@ -5,6 +5,7 @@ include_once 'libs/Shared/Models/OrderDetail.php';
 include_once 'libs/Shared/Models/ScontentLang.php';
 include_once 'libs/Shared/Models/User.php';
 include_once 'libs/Shared/Models/Mail.php';
+include_once 'libs/Shared/Models/Restaurant.php';
 class restaurant_InfoController extends Vi_Controller_Action
 {
 	/**
