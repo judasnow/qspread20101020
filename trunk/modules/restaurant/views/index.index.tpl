@@ -44,7 +44,6 @@ function fbs_click(address){
 }  
 </script>
 <!-- end autocomplete -->
-<!-- <script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAfC0VI1TK8TYdshSdnHDNSxRj8XIJxol65Pr1PoVJbiw1L5MubxQzaLoL5T5ECViyoO6PVtMdT4Wlog" type="text/javascript"></script>-->
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;key=ABQIAAAAfC0VI1TK8TYdshSdnHDNSxSqPMIOVuOlI2qqAysSIBkOl7bFVRQuTcvOGXqAtdqSpgpuj-hTMLRf8Q" type="text/javascript"></script>
 
 <div id="main">
