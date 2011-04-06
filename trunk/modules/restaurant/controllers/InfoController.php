@@ -272,7 +272,7 @@ class restaurant_InfoController extends Vi_Controller_Action
                  if (null == $meal['meal_id']) {
                      continue;
                  }
-                 $mealImage = Vi_Registry::getConfig('liveSite') . $meal['image'];
+                 $mealImage = Vi_Registry::getConfig('liveSite') . '/' . $meal['image'];
                  if (null != $meal['image']) {
                     $mealImage = '<img src="' . $mealImage . '" style="max-width: 100px;">';
                  } else {
