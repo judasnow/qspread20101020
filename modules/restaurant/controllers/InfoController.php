@@ -17,6 +17,7 @@ class restaurant_InfoController extends Vi_Controller_Action
 		$order_id = session_id();
 		
 		if ( !isset($_SESSION['cart'][$order_id]) ) {
+		    echo '<pre>';print_r($_SESSION);die;
 			$this->_redirect('');
 		}
 	
