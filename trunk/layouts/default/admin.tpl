@@ -176,7 +176,7 @@
 			
 			<div id="footer">
 				<small> <!-- Remove this notice or replace it with whatever you want -->
-						&#169; Copyright 2011 QuickSpread.com | Powered by <a href="http://hzsolutions.com/">HZSolutions</a> | <a href="#">Top</a>
+						&#169; Copyright 2011 QuickSpread.com | Powered by <a href="http://hzsolutions.com/" target="_blank">HZSolutions</a> | <a href="#">Top</a>
 				</small>
 			</div><!-- End #footer -->
 			
