@@ -261,7 +261,8 @@ class restaurant_InfoController extends Vi_Controller_Action
                 
                 
                 <tr style='background-color: #DDDDDD;'>
-                    <td style='color: #AD5B21; font-weight: bold;'> Dish</td>
+                    <td style='color: #AD5B21; font-weight: bold;'> Meal</td>
+                    <td style='color: #AD5B21; font-weight: bold;'> </td>
                     <td style='color: #AD5B21; font-weight: bold;'> Quanlity</td>
                     <td style='color: #AD5B21; font-weight: bold;'> Price</td>
                     <td style='color: #AD5B21; font-weight: bold;'> Total</td>
@@ -271,8 +272,17 @@ class restaurant_InfoController extends Vi_Controller_Action
                  if (null == $meal['meal_id']) {
                      continue;
                  }
+                 $mealImage = Vi_Registry::getConfig('liveSite') . $meal['image'];
+                 if (null != $meal['image']) {
+                    $mealImage = '<img src="' . $mealImage . '" style="max-width: 100px;">';
+                 } else {
+                     $mealImage = '';
+                 }
                  $cartDetail .= "
                  <tr>
+                    <td style='border-bottom: 1px solid #DDDDDD;'>
+                        {$mealImage}
+                    </td>
                     <td style='border-bottom: 1px solid #DDDDDD;'>
                         <b>{$meal['name']}</b>
 
