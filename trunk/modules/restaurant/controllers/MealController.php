@@ -14,6 +14,12 @@ class restaurant_MealController extends Vi_Controller_Action
 		$restaurant_id 		= $this->_getParam('id', false); 
 		$restaurant_id_ses 	= $this->_getParam('res_id_ses', false); //$_SESSION['cart'][$order_id]['restaurant_id'];
 			
+		/**
+		 * Check restaurantID
+		 */
+		if (false === $restaurant_id) {
+		    $this->_redirect('');
+		}
 		
 		if ( false != $restaurant_id_ses ){			
 			unset($_SESSION['cart'][$order_id]);
