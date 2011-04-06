@@ -17,7 +17,6 @@ class restaurant_InfoController extends Vi_Controller_Action
 		$order_id = session_id();
 		
 		if ( !isset($_SESSION['cart'][$order_id]) ) {
-		    echo '<pre>';print_r($_SESSION);die;
 			$this->_redirect('');
 		}
 	
@@ -27,7 +26,7 @@ class restaurant_InfoController extends Vi_Controller_Action
         $objRes = new Models_Restaurant();
         $res = $objRes->find($_SESSION['cart'][$order_id]['restaurant_id'])->toArray();
         $res = current($res);
-        if (false == $res || '0' == $res['reser_onoff']) {
+        if (false == $res ) {
             $this->_redirect('');
         }
 		
