@@ -123,7 +123,7 @@ function clearImage()
                                     </p>
                                     
                                     <p>
-                                        <label>Enalbed</label>
+                                        <label>Enabled</label>
                                         <input type="radio" name="data[enabled]" value="1" {{if $data.enabled != '0'}}checked="checked"{{/if}}/> Yes &nbsp;&nbsp;&nbsp;&nbsp;
                                         <input type="radio" name="data[enabled]" value="0" {{if $data.enabled == '0'}}checked="checked"{{/if}}/> No
                                     </p>
