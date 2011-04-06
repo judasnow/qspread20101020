@@ -18,6 +18,10 @@ class restaurant_CartController extends Vi_Controller_Action
 		 $time 		= $_SESSION['time'];//$this->_getParam('time', false);
 		 $res_id	= $this->_getParam('res_id', false);
 		
+		 if (false === $res_id) {
+		    $this->_redirect('');
+		 }
+		 
 		 $order_id = session_id();	
 		
 		 //-- begin delete meal in session cart

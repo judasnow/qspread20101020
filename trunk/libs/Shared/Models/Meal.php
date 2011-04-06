@@ -66,6 +66,7 @@ class Models_Meal extends Vi_Model
     }
     
 	public function getDataById($meal_id){    	
+		//-- NTHN notes
         $meal_id = $this->getAdapter()->quote($meal_id);
         $query = "  SELECT m.*
     				FROM ".$this->_prefix."meal m
