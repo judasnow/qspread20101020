@@ -99,7 +99,7 @@
                     <ul>
                         <li><a href="{{$BASE_URL}}restaurant-owner-register.html" target="_blank">New Restaurant</a></li>
                         <li><a href="{{$APP_BASE_URL}}restaurant/admin/pending" class="{{if $menu[1]=='pending'}}current{{/if}}">Pending Restaurants</a></li>
-                        <li><a href="{{$APP_BASE_URL}}restaurant/admin/manager" class="{{if $menu[1]=='manager'}}current{{/if}}">Restaurant Manager</a></li>
+                        <li><a href="{{$APP_BASE_URL}}restaurant/admin/manager" class="{{if $menu[1]=='rmanager'}}current{{/if}}">Restaurant Manager</a></li>
                     </ul>
                 </li>
                 
