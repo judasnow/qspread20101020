@@ -346,7 +346,7 @@ class restaurant_ReservationController extends Vi_Controller_Action
                                        <tr>
                                            <td align='right' style='background-color: #EEEEEE;'>Phone:</td>
             
-                                           <td style='color: #442006;'>{$data['phone']}</td>
+                                           <td style='color: #442006;'>{$data['phone1']}.{$data['phone2']}.{$data['phone3']}</td>
                                        </tr>
                                        <tr>
                                            <td align='right' style='background-color: #EEEEEE;'>Special Requests:</td>
