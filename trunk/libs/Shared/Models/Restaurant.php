@@ -79,29 +79,40 @@ class Models_Restaurant extends Vi_Model
         return $this->fetchRow($select)->toArray();
     }	
     
-    public function getRestaurantByData($arrData, $count = null, $offset = null){      	
+    public function getRestaurantByData($arrData, $count = null, $offset = null){      
+    	$zip = isset($arrData['zip'])?$this->getAdapter()->quote($arrData['zip']):'';	
+    	$city = isset($arrData['city'])?$this->getAdapter()->quote('%'.$arrData['city'].'%'):'';	
+    	$mark = isset($arrData['mark'])?$this->getAdapter()->quote($arrData['mark']):'';	
+    	$name = isset($arrData['name'])?$this->getAdapter()->quote($arrData['name'].'%'):'';    		
+    	$time = isset($arrData['time'])?$this->getAdapter()->quote($arrData['time']):'';	    	
+    	$cuisine_id = isset($arrData['cuisine_id'])?$this->getAdapter()->quote($arrData['cuisine_id']):'';
+    	
         $query = "  SELECT r.*, m.name as cuisine_name
     				FROM vi_restaurant r   
     				JOIN vi_category_value m ON (r.cuisine 	 = m.category_value_id)  				    				    				
     	";
         if ( isset($arrData['zip']) )
-        	$query .= " JOIN vi_country c ON (c.postal_code = '".$arrData['zip']."') AND (r.city LIKE '%c.city%')";
+        	$query .= " JOIN vi_country c ON (c.postal_code = ".$zip.") AND (r.city LIKE '%c.city%')";
 //        if ( isset($arrData['cuisine_id']) )
 //        	$query .= " JOIN vi_meal m ON (r.restaurant_id = m.restaurant_id) AND (m.meal_id =	".$arrData['cuisine_id'].")";
         else
         	$query .= " WHERE true ";       
         if ( isset($arrData['city']) )
-        	$query .= " AND (r.city LIKE '%".$arrData['city']."%')";
+        	$query .= " AND (r.city LIKE ".$city.")";
         if ( isset($arrData['mark']) )
         	$query .= " AND (r.{$arrData['mark']} != ".Zend_DB::NULL_EMPTY_STRING.")";
         if ( isset($arrData['name']) )
-        	$query .= " AND (r.name LIKE '".$arrData['name']."%')";
+        	$query .= " AND (r.name LIKE ".$name.")";
 //        if ( isset($arrData['address']) )
 //        	$query .= " AND (r.address LIKE '%".$arrData['address']."%')";
         if ( isset($arrData['date']) && isset($arrData['time']) && (strcmp($arrData['time'],'asap') != 0 ) )
-        	$query .= " AND (r.date_".$arrData['date']."_start <= '".$arrData['time']."') AND (r.date_".$arrData['date']."_end >= '".$arrData['time']."')";
+        	$query .= " AND (r.date_".$arrData['date']."_start <= ".$time.") AND (r.date_".$arrData['date']."_end >= ".$time.")";
         
-        $query .= " AND r.enabled=1 ";	
+        $query .= " AND r.enabled=1 ";
+
+        if ( isset($arrData['cuisine_id']) && $arrData['cuisine_id'] > 0)
+        	$query .= " AND m.category_value_id =  ".$cuisine_id;
+        
        	if ( null != $count )
         	$query .= " LIMIT $offset,$count";
     
@@ -149,7 +160,8 @@ class Models_Restaurant extends Vi_Model
         return $this->fetchAll($select)->toArray();
     }
   
-	public function getShipFeeFromMealId($meal_id){      	
+	public function getShipFeeFromMealId($meal_id){     
+		$meal_id = $this->getAdapter()->quote($meal_id);	 	
         $query = "  SELECT r.delivery_charge, r.catering_delivery_charge
     				FROM vi_meal m, vi_restaurant r
     				WHERE (m.meal_id = $meal_id) AND (m.restaurant_id = r.restaurant_id)  				    				
