@@ -259,6 +259,8 @@ class restaurant_InfoController extends Vi_Controller_Action
 
                 </tr>
                 
+                </table>
+                <table>
                 
                 <tr style='background-color: #DDDDDD;'>
                     <td style='color: #AD5B21; font-weight: bold;'> Meal</td>
