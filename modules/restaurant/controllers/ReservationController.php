@@ -437,6 +437,7 @@ class restaurant_ReservationController extends Vi_Controller_Action
         $this->view->search = $search;
         $this->view->data = $data;
         $this->view->error = $error;
+        $this->view->address_restaurant = $res['street']." ".$res['city']." ".$res['state'];
         
         /**
          * Expired year
