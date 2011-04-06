@@ -268,7 +268,7 @@ class restaurant_InfoController extends Vi_Controller_Action
                     <td style='color: #AD5B21; font-weight: bold;'> Total</td>
                 </tr> ";
                        
-             foreach ($_SESSION['cart'][$order_id] as $meal) {   
+             foreach ($_SESSION['cart'][$order_id] as $key=>$meal) {   
                  if (null == $meal['meal_id']) {
                      continue;
                  }
@@ -278,21 +278,23 @@ class restaurant_InfoController extends Vi_Controller_Action
                  } else {
                      $mealImage = '';
                  }
-                 $cartDetail .= "
-                 <tr>
-                    <td style='border-bottom: 1px solid #DDDDDD;'>
-                        {$mealImage}
-                    </td>
-                    <td style='border-bottom: 1px solid #DDDDDD;'>
-                        <b>{$meal['name']}</b>
-
-                        <br/>
-                        <p>{$meal['description']}</p>
-                    </td>
-                    <td style='border-bottom: 1px solid #DDDDDD;'>{$meal['quantity']}</td>
-                    <td style='border-bottom: 1px solid #DDDDDD;'>$ " . number_format($meal['price']*1.0, 2)."</td>
-                    <td style='border-bottom: 1px solid #DDDDDD;'>$ " . number_format($meal['total_money']*1.0, 2)."</td>
-                </tr>"; 
+                 if (is_numeric($key)) { 
+	                 $cartDetail .= "
+	                 <tr>
+	                    <td style='border-bottom: 1px solid #DDDDDD;'>
+	                        {$mealImage}
+	                    </td>
+	                    <td style='border-bottom: 1px solid #DDDDDD;'>
+	                        <b>{$meal['name']}</b>
+	
+	                        <br/>
+	                        <p>{$meal['description']}</p>
+	                    </td>
+	                    <td style='border-bottom: 1px solid #DDDDDD;'>{$meal['quantity']}</td>
+	                    <td style='border-bottom: 1px solid #DDDDDD;'>$ " . number_format($meal['price']*1.0, 2)."</td>
+	                    <td style='border-bottom: 1px solid #DDDDDD;'>$ " . number_format($meal['total_money']*1.0, 2)."</td>
+	                </tr>"; 
+                 }
              }
              $cartDetail .= "   
                 <tr>
