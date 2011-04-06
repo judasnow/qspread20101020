@@ -291,8 +291,8 @@ class restaurant_InfoController extends Vi_Controller_Action
 	                        <p>{$meal['description']}</p>
 	                    </td>
 	                    <td style='border-bottom: 1px solid #DDDDDD;'>{$meal['quantity']}</td>
-	                    <td style='border-bottom: 1px solid #DDDDDD;'>$ " . number_format($meal['price']*1.0, 2)."</td>
-	                    <td style='border-bottom: 1px solid #DDDDDD;'>$ " . number_format($meal['total_money']*1.0, 2)."</td>
+	                    <td style='border-bottom: 1px solid #DDDDDD;'>$" . number_format($meal['price']*1.0, 2)."</td>
+	                    <td style='border-bottom: 1px solid #DDDDDD;'>$" . number_format($meal['total_money']*1.0, 2)."</td>
 	                </tr>"; 
                  }
              }
@@ -300,24 +300,24 @@ class restaurant_InfoController extends Vi_Controller_Action
                 <tr>
                     <td colspan='2'> </td>
                     <td> Subtotal </td>
-                    <td>$ " . number_format($data['sub_total'], 2)."</td>
+                    <td>$" . number_format($data['sub_total'], 2)."</td>
 
                 </tr>
                 <tr>
                     <td colspan='2'> </td>
                     <td> Tax </td>
-                    <td>$ " . number_format($data['sales_tax'], 2)."</td>
+                    <td>$" . number_format($data['sales_tax'], 2)."</td>
                 </tr>
                 <tr>
                     <td colspan='2'> </td>
                     <td> Shipping fee </td>
 
-                    <td>$ " . number_format($data['shipping_fee'], 2)."</td>
+                    <td>$" . number_format($data['shipping_fee'], 2)."</td>
                 </tr>
                 <tr>
                     <td colspan='2'> </td>
                     <td> Order total </td>
-                    <td  style='color: #AD5B21; font-weight: bold;'>$ " . number_format($data['order_total'], 2)."</td>
+                    <td  style='color: #AD5B21; font-weight: bold;'>$" . number_format($data['order_total'], 2)."</td>
                 </tr>
             </table>
             ";

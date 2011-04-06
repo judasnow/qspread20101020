@@ -20,7 +20,7 @@ class restaurant_AdminController extends Vi_Controller_Action_Admin
     public function managerAction()
     {
         $this->view->headTitle(Vi_Language::translate('Restaurant manager'));
-        $this->view->menu = array('restaurant', 'manager');
+        $this->view->menu = array('restaurant', 'rmanager');
         
         $config = Vi_Registry::getConfig();
         $numRowPerPage = Vi_Registry::getConfig("defaultNumberRowPerPage");
