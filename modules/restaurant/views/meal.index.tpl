@@ -138,7 +138,7 @@ function fbs_click(address){
             <div class="p10 meal">
               <table cellpadding="0" cellspacing="0" border="0" style="width:100%;">
                 <tr>
-                  <td width="10%" class="color_1 p5t p5b bd1b"><b>Meal name</b></td>
+                  <td width="10%" class="color_1 p5t p5b bd1b"><b>Meal</b></td>
                   <td width="60%" class="color_1 p5t p5b bd1b"></td>
                   <td width="20%" class="color_1 p5t p5b bd1b"><b>Price</b></td>
                   <td width="10%" class="color_1 p5t p5b bd1b"><b>Action</b></td>
