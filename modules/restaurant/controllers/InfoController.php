@@ -26,6 +26,8 @@ class restaurant_InfoController extends Vi_Controller_Action
         $objRes = new Models_Restaurant();
         $res = $objRes->find($_SESSION['cart'][$order_id]['restaurant_id'])->toArray();
         $res = current($res);
+        echo '<pre>';print_r($_SESSION);//die;
+        echo '<pre>';print_r($res);die;
         if (false == $res ) {
             $this->_redirect('');
         }
